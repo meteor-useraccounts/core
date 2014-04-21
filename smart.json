@@ -1,0 +1,11 @@
+{
+	"name": "accounts-users-core",
+	"description": "Users' Accounts Systems for Meteor.js to be possibly styled for different front-end frameworks. Core package.",
+	"homepage": "accounts-users.meteor.com",
+	"author": "Luca Mussi <ing.luca.mussi@gmail.com>",
+	"version": "0.0.1",
+	"git": "https://github.com/splendido/accounts-users-core.git",
+	"packages": {
+		//"accounts-t9n": {}
+	}
+}
