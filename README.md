@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/splendido/accounts-users-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-users-core)
-
 Accounts-Users-Core
 ===================
 
