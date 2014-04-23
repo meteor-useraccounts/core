@@ -55,7 +55,9 @@ AU = (function() {
 
     // Constructor
     function AU() {
-        this._deps["state"] = new Deps.Dependency();
+        if (Meteor.isClient){
+            this._deps["state"] = new Deps.Dependency();
+        }
     }
 
     // Initialization
@@ -65,7 +67,7 @@ AU = (function() {
         // A password field is strictly required
         if (typeof this._fields.password === "undefined")
             throw Error("A password field is strictly required!");
-        if (typeof this._fields.password.type !== "password")
+        if (this._fields.password.type !== "password")
             throw Error("The type of password field should be password!");
         // Then we need at least one "username" or one "email"
         // ...having both of them is fine
@@ -73,16 +75,17 @@ AU = (function() {
             throw Error("At least one 'username' or one 'email' field is required! Having themboth is also fine...");
         // Possibly checks 'username'
         if (typeof this._fields.username !== "undefined"){
-            if (typeof this._fields.username.type !== "text")
+            if (this._fields.username.type !== "text")
                 throw Error("The type of username field should be text!");
         }
         // Possibly checks 'email'
         if (typeof this._fields.email !== "undefined"){
-            if (typeof this._fields.email.type !== "email")
+            if (this._fields.email.type !== "email")
                 throw Error("The type of email field should be email!");
         }
 
-        self._initialized = true;
+        console.dir(this._fields);
+        this._initialized = true;
     };
 
     // State validation
@@ -96,12 +99,20 @@ AU = (function() {
 
     // Getter for current state
     AU.prototype.getState = function() {
+        // Checks we are client-side!
+        if (Meteor.isServer) {
+            throw new Error("AccountsUsers.getState can be called client-side only!");
+        }
         this._deps["state"].depend();
         return this.state;
     };
 
     // Setter for current state
     AU.prototype.setState = function(value) {
+        // Checks we are client-side!
+        if (Meteor.isServer) {
+            throw new Error("AccountsUsers.setState can be called client-side only!");
+        }
         if (value === this.state) {
             return;
         }
@@ -122,10 +133,7 @@ AU = (function() {
     };
 
     AU.prototype.addFields = function(fields) {
-        // Checks we are server-side!
-        if (Meteor.isClient) {
-            throw new Meteor.Error(500, "Internal server error", "AccountsUsers.addFields can be called server-side only!");
-        }        var ok;
+        var ok;
         try { // don"t bother with `typeof` - just access `length` and `catch`
             ok = fields.length > 0 && "0" in Object(fields);
         } catch (e) {
@@ -143,10 +151,6 @@ AU = (function() {
     };
 
     AU.prototype.addField = function(field) {
-        // Checks we are server-side!
-        if (Meteor.isClient) {
-            throw new Meteor.Error(500, "Internal server error", "AccountsUsers.addField can be called server-side only!");
-        }
         // Fields can be added only before initialization
         if (this._initialized) {
             throw new Error("AccountsUsers.addField should strictly be called before AccountsUsers.init!");
@@ -183,10 +187,6 @@ AU = (function() {
     };
 
     AU.prototype.removeField = function(field_name) {
-        // Checks we are server-side!
-        if (Meteor.isClient) {
-            throw new Meteor.Error(500, "Internal server error", "AccountsUsers.removeField can be called server-side only!");
-        }
         // Fields can be removed only before initialization
         if (this._initialized) {
             throw new Error("AccountsUsers.removeField should strictly be called before AccountsUsers.init!");
