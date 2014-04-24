@@ -38,6 +38,14 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         test.isTrue(AccountsUsers.removeField('email'));
         test.isUndefined(AccountsUsers._fields.email);
 
+        // Trying to add a field named 'config', which is not allowed
+        test.throws(function() {
+            AccountsUsers.addField({name: 'config', displayName: "config", type: "text"});
+        }, function(err) {
+            if (err instanceof Error && err.message == "\'config\' is not a valid name for a field!")
+                return true;
+        });
+
         // Trying to add an already existing field
         test.throws(function() {
             AccountsUsers.addField(AccountsUsers._fields.password);
@@ -48,6 +56,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
 
         var email = {
             name: 'email',
+            displayName: 'Email',
             type: 'email'
         };
 
@@ -65,6 +74,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         test.throws(function() {
             AccountsUsers.addField({
                 name: 'foo',
+                displayName: 'Foo',
                 type: 'bar'
             });
         }, function(err) {
@@ -76,6 +86,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         test.throws(function() {
             AccountsUsers.addField({
                 name: 'first-name',
+                displayName: 'First Name',
                 type: 'text',
                 minLength: 0
             });
@@ -87,6 +98,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         test.throws(function() {
             AccountsUsers.addField({
                 name: 'first-name',
+                displayName: 'First Name',
                 type: 'text',
                 maxLength: 0
             });
@@ -98,6 +110,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         test.throws(function() {
             AccountsUsers.addField({
                 name: 'first-name',
+                displayName: 'First Name',
                 type: 'text',
                 minLength: 2,
                 maxLength: 1
@@ -110,6 +123,7 @@ Tinytest.add("AccountsUsers - addField/removeField", function(test) {
         // Successful add
         var first_name = {
             name: 'first_name',
+            displayName: 'First Name',
             type: 'text',
             minLength: 2,
             maxLength: 50,
@@ -154,6 +168,7 @@ Tinytest.add("AccountsUsers - addFields", function(test) {
         // Successful add
         var first_name = {
             name: 'first_name',
+            displayName: 'First Name',
             type: 'text',
             minLength: 2,
             maxLength: 50,
@@ -161,6 +176,7 @@ Tinytest.add("AccountsUsers - addFields", function(test) {
         };
         var last_name = {
             name: 'last_name',
+            displayName: 'Last Name',
             type: 'text',
             minLength: 2,
             maxLength: 100,
@@ -208,6 +224,11 @@ Tinytest.add("AccountsUsers - setState/getState", function(test) {
     }
 });
 
+
+// -------------------------------------
+// TODO: complite the following tests...
+// -------------------------------------
+
 Tinytest.add("AccountsUsers - getFieldError/setFieldError", function(test) {
     if (Meteor.isServer) {
         // getFieldError does not exist server-side
@@ -223,3 +244,13 @@ Tinytest.add("AccountsUsers - getFieldError/setFieldError", function(test) {
     }
 });
 
+Tinytest.add("AccountsUsers - configure", function(test) {
+    if (Meteor.isClient) {
+        // configure does not exist client-side
+        test.throws(function() {
+            AccountsUsers.configure({});
+        });
+    } else {
+        // TODO: write actual tests...
+    }
+});
