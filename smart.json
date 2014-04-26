@@ -1,9 +1,9 @@
 {
-  "name": "accounts-users-core",
-  "description": "Users' Accounts Systems to be possibly styled for different front-end frameworks. Core package.",
-  "homepage": "http://accounts-users.meteor.com",
+  "name": "accounts-templates-core",
+  "description": "Accounts Templates to be possibly styled for different front-end frameworks. Core package.",
+  "homepage": "http://accounts-templates.meteor.com",
   "author": "Luca Mussi <ing.luca.mussi@gmail.com>",
   "version": "0.0.1",
-  "git": "https://github.com/splendido/accounts-users-core.git",
+  "git": "https://github.com/splendido/accounts-templates-core.git",
   "packages": {}
 }
