@@ -1,9 +1,14 @@
 {
-  "name": "accounts-templates-core",
-  "description": "Accounts Templates to be possibly styled for different front-end frameworks. Core package.",
-  "homepage": "http://accounts-templates.meteor.com",
-  "author": "Luca Mussi <ing.luca.mussi@gmail.com>",
-  "version": "0.0.1",
-  "git": "https://github.com/splendido/accounts-templates-core.git",
-  "packages": {}
+    "name": "accounts-templates-core",
+    "description": "Accounts Templates to be possibly styled for different front-end frameworks. Core package.",
+    "homepage": "http://accounts-templates.meteor.com",
+    "author": "Luca Mussi <ing.luca.mussi@gmail.com> (https://github.com/splendido)",
+    "version": "0.0.1",
+    "git": "https://github.com/splendido/accounts-templates-core.git",
+    "packages": {
+        "accounts-merge": {
+            "_path": "/home/idel/Projects/AccountsTemplates/accounts-merge",
+            "git": "https://github.com/splendido/meteor-accounts-merge.git"
+        }
+    }
 }

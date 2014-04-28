@@ -3,16 +3,25 @@ Package.describe({
 });
 
 Package.on_use(function(api, where) {
-    api.use(['check', 'deps'], ['client', 'server']);
-    api.add_files([
-        'lib/accounts-templates-core.js'
+
+    api.use([
+        'check',
+        'deps',
+        'accounts-merge',
     ], ['client', 'server']);
-    /*
+
     api.add_files([
-        'lib/accounts-templates-core-events.js',
-        'lib/accounts-templates-core-helpers.js'
-    ], ['client']);
+        'lib/accounts-templates-core.js',
+        'lib/accounts-templates-methods.js',
+    ], ['client', 'server']);
+
+
+    /*
+    api.imply([
+        'accounts-merge',
+    ], ['client', 'server']);
     */
+
     api.export([
         'AccountsTemplates',
         'ATFieldsCollection',
