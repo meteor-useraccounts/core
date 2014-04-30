@@ -9,6 +9,9 @@
         "accounts-merge": {
             "_path": "/home/idel/Projects/AccountsTemplates/accounts-merge",
             "git": "https://github.com/splendido/meteor-accounts-merge.git"
+        },
+        "accounts-t9n" :  {
+            "git": "https://github.com/softwarerero/meteor-accounts-t9n.git"
         }
     }
 }

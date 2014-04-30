@@ -8,11 +8,17 @@ Package.on_use(function(api, where) {
         'check',
         'deps',
         'accounts-merge',
+        'accounts-t9n',
     ], ['client', 'server']);
 
     api.add_files([
         'lib/accounts-templates-core.js',
         'lib/accounts-templates-methods.js',
+        'lib/t9n/english.js',
+        'lib/t9n/french.js',
+        'lib/t9n/german.js',
+        'lib/t9n/polish.js',
+        'lib/t9n/spanish.js',
     ], ['client', 'server']);
 
 
