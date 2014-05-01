@@ -17,6 +17,7 @@ Package.on_use(function(api, where) {
         'lib/t9n/english.js',
         'lib/t9n/french.js',
         'lib/t9n/german.js',
+        'lib/t9n/italian.js',
         'lib/t9n/polish.js',
         'lib/t9n/spanish.js',
     ], ['client', 'server']);
@@ -37,5 +38,14 @@ Package.on_use(function(api, where) {
 Package.on_test(function(api) {
     api.use('accounts-templates-core');
     api.use(['tinytest', 'test-helpers'], ['client', 'server']);
-    api.add_files('tests/accounts-templates-core_tests.js', ['client', 'server']);
+    api.add_files([
+        'lib/accounts-templates-core.js',
+        'lib/accounts-templates-methods.js',
+        'lib/t9n/english.js',
+        'lib/t9n/french.js',
+        'lib/t9n/german.js',
+        'lib/t9n/italian.js',
+        'lib/t9n/polish.js',
+        'lib/t9n/spanish.js',
+    ], ['client', 'server']);
 });
