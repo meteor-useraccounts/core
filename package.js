@@ -8,7 +8,7 @@ Package.on_use(function(api, where) {
         'check',
         'deps',
         'accounts-base',
-        'accounts-merge',
+        //'accounts-merge',
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
@@ -25,21 +25,24 @@ Package.on_use(function(api, where) {
     ], ['client', 'server']);
 
 
-    /*
     api.imply([
-        'accounts-merge',
+        'accounts-base',
+        //'accounts-merge',
+        'accounts-t9n',
+        'iron-router',
     ], ['client', 'server']);
-    */
 
     api.export([
         'AccountsTemplates',
-        'ATFieldsCollection',
     ], ['client', 'server']);
 });
 
 Package.on_test(function(api) {
     api.use('accounts-templates-core');
-    api.use(['tinytest', 'test-helpers'], ['client', 'server']);
+    api.use([
+        'tinytest',
+        'test-helpers',
+    ], ['client', 'server']);
     api.add_files([
         'lib/accounts-templates-core.js',
         'lib/accounts-templates-methods.js',
