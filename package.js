@@ -7,8 +7,10 @@ Package.on_use(function(api, where) {
     api.use([
         'check',
         'deps',
+        'accounts-base',
         'accounts-merge',
         'accounts-t9n',
+        'iron-router',
     ], ['client', 'server']);
 
     api.add_files([

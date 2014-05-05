@@ -6,12 +6,10 @@
     "version": "0.0.1",
     "git": "https://github.com/splendido/accounts-templates-core.git",
     "packages": {
-        "accounts-merge": {
-            "_path": "/home/idel/Projects/AccountsTemplates/accounts-merge",
-            "git": "https://github.com/splendido/meteor-accounts-merge.git"
-        },
+        "accounts-merge": {},
         "accounts-t9n" :  {
-            "git": "https://github.com/softwarerero/meteor-accounts-t9n.git"
+            "_path": "/home/idel/Projects/AccountsTemplates/meteor-accounts-t9n",
+            "git": "https://github.com/splendido/meteor-accounts-t9n.git"
         }
     }
 }
