@@ -1,143 +1,129 @@
+AccountsTemplates.init();
+
 
 Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
-    if (Meteor.isClient) {
-        // addField does not exist client-side
-        test.throws(function() {
-            AccountsTemplates.addField();
-        });
-        // setState does not exist client-side
-        test.throws(function() {
-            AccountsTemplates.removeField('');
-        });
-    } else {
-        // Calls after AccountsTemplates.init()
-        AccountsTemplates._initialized = true;
-        test.throws(function() {
-            AccountsTemplates.addField('');
-        }, function(err) {
-            if (err instanceof Error && err.message === 'AccountsTemplates.addField should strictly be called before AccountsTemplates.init!')
-                return true;
-        });
-        test.throws(function() {
-            AccountsTemplates.removeField('');
-        }, function(err) {
-            if (err instanceof Error && err.message === 'AccountsTemplates.removeField should strictly be called before AccountsTemplates.init!')
-                return true;
-        });
-        AccountsTemplates._initialized = false;
+    // Calls after AccountsTemplates.init()
+    AccountsTemplates._initialized = true;
+    test.throws(function() {
+        AccountsTemplates.addField('');
+    }, function(err) {
+        if (err instanceof Error && err.message === 'AccountsTemplates.addField should strictly be called before AccountsTemplates.init!')
+            return true;
+    });
+    test.throws(function() {
+        AccountsTemplates.removeField('');
+    }, function(err) {
+        if (err instanceof Error && err.message === 'AccountsTemplates.removeField should strictly be called before AccountsTemplates.init!')
+            return true;
+    });
+    AccountsTemplates._initialized = false;
 
-        // Trying to remove a non-existing field
-        test.throws(function() {
-            AccountsTemplates.removeField('foo');
-        }, function(err) {
-            if (err instanceof Error && err.message == 'A field called foo does not exist!')
-                return true;
+    // Trying to remove a non-existing field
+    test.throws(function() {
+        AccountsTemplates.removeField('foo');
+    }, function(err) {
+        if (err instanceof Error && err.message == 'A field called foo does not exist!')
+            return true;
+    });
+
+    // Trying to remove an existing field
+    AccountsTemplates.removeField('login');
+    test.isUndefined(AccountsTemplates.getField('login'));
+
+    // Trying to add an already existing field
+    test.throws(function() {
+        AccountsTemplates.addField(AccountsTemplates.getField('password'));
+    }, function(err) {
+        if (err instanceof Error && err.message == 'A field called password already exists!')
+            return true;
+    });
+
+    var login = {
+        name: 'login',
+        displayName: 'Email',
+        type: 'email'
+    };
+
+    // Invalid field properties
+    test.throws(function() {
+        AccountsTemplates.addField(_.extend(_.clone(login), {
+            foo: 'bar'
+        }));
+    }, Error);
+
+    // Successful add
+    AccountsTemplates.addField(login);
+
+    // Invalid field.type
+    test.throws(function() {
+        AccountsTemplates.addField({
+            name: 'foo',
+            displayName: 'Foo',
+            type: 'bar'
         });
+    }, function(err) {
+        if (err instanceof Error && err.message == 'field.type is not valid!')
+            return true;
+    });
 
-        // Trying to remove an existing field
-        test.isTrue(AccountsTemplates.removeField('login'));
-        test.isUndefined(AccountsTemplates._fields.login);
-
-        // Trying to add a field named 'config', which is not allowed
-        test.throws(function() {
-            AccountsTemplates.addField({name: 'config', displayName: "config", type: "text"});
-        }, function(err) {
-            if (err instanceof Error && err.message == "\'config\' is not a valid name for a field!")
-                return true;
+    // Invalid minLength
+    test.throws(function() {
+        AccountsTemplates.addField({
+            name: 'first-name',
+            displayName: 'First Name',
+            type: 'text',
+            minLength: 0
         });
-
-        // Trying to add an already existing field
-        test.throws(function() {
-            AccountsTemplates.addField(AccountsTemplates._fields.password);
-        }, function(err) {
-            if (err instanceof Error && err.message == 'A field called password already exists!')
-                return true;
+    }, function(err) {
+        if (err instanceof Error && err.message == 'field.minLength should be greater than zero!')
+            return true;
+    });
+    // Invalid maxLength
+    test.throws(function() {
+        AccountsTemplates.addField({
+            name: 'first-name',
+            displayName: 'First Name',
+            type: 'text',
+            maxLength: 0
         });
-
-        var login = {
-            name: 'login',
-            displayName: 'Email',
-            type: 'email'
-        };
-
-        // Invalid field properties
-        test.throws(function() {
-            AccountsTemplates.addField(_.extend(_.clone(login), {
-                foo: 'bar'
-            }));
-        }, Error);
-
-        // Successful add
-        AccountsTemplates.addField(login);
-
-        // Invalid field.type
-        test.throws(function() {
-            AccountsTemplates.addField({
-                name: 'foo',
-                displayName: 'Foo',
-                type: 'bar'
-            });
-        }, function(err) {
-            if (err instanceof Error && err.message == 'field.type is not valid!')
-                return true;
-        });
-
-        // Invalid minLength
-        test.throws(function() {
-            AccountsTemplates.addField({
-                name: 'first-name',
-                displayName: 'First Name',
-                type: 'text',
-                minLength: 0
-            });
-        }, function(err) {
-            if (err instanceof Error && err.message == 'field.minLength should be greater than zero!')
-                return true;
-        });
-        // Invalid maxLength
-        test.throws(function() {
-            AccountsTemplates.addField({
-                name: 'first-name',
-                displayName: 'First Name',
-                type: 'text',
-                maxLength: 0
-            });
-        }, function(err) {
-            if (err instanceof Error && err.message == 'field.maxLength should be greater than zero!')
-                return true;
-        });
-        // maxLength < minLength
-        test.throws(function() {
-            AccountsTemplates.addField({
-                name: 'first-name',
-                displayName: 'First Name',
-                type: 'text',
-                minLength: 2,
-                maxLength: 1
-            });
-        }, function(err) {
-            if (err instanceof Error && err.message == 'field.maxLength should be greater than field.maxLength!')
-                return true;
-        });
-
-        // Successful add
-        var first_name = {
-            name: 'first_name',
+    }, function(err) {
+        if (err instanceof Error && err.message == 'field.maxLength should be greater than zero!')
+            return true;
+    });
+    // maxLength < minLength
+    test.throws(function() {
+        AccountsTemplates.addField({
+            name: 'first-name',
             displayName: 'First Name',
             type: 'text',
             minLength: 2,
-            maxLength: 50,
-            required: true
-        };
-        AccountsTemplates.addField(first_name);
-        test.equal(AccountsTemplates._fields.first_name, first_name);
-        // Now removes ot to be consistend with tests re-run
-        AccountsTemplates.removeField('first_name');
-    }
+            maxLength: 1
+        });
+    }, function(err) {
+        if (err instanceof Error && err.message == 'field.maxLength should be greater than field.maxLength!')
+            return true;
+    });
+
+    // Successful add
+    var first_name = {
+        name: 'first_name',
+        displayName: 'First Name',
+        type: 'text',
+        minLength: 2,
+        maxLength: 50,
+        required: true
+    };
+    AccountsTemplates.addField(first_name);
+    test.equal(AccountsTemplates.getField('first_name'), first_name);
+    // Now removes ot to be consistend with tests re-run
+    AccountsTemplates.removeField('first_name');
 });
 
 
 Tinytest.add("AccountsTemplates - addFields", function(test) {
+    // Fake uninitialized state...
+    AccountsTemplates._initialized = false;
+
     if (Meteor.isClient) {
         // addFields does not exist client-side
         test.throws(function() {
@@ -183,13 +169,16 @@ Tinytest.add("AccountsTemplates - addFields", function(test) {
             required: false
         };
         AccountsTemplates.addFields([first_name, last_name]);
-        test.equal(AccountsTemplates._fields.first_name, first_name);
-        test.equal(AccountsTemplates._fields.last_name, last_name);
+        test.equal(AccountsTemplates.getField('first_name'), first_name);
+        test.equal(AccountsTemplates.getField('last_name'), last_name);
         // Now removes ot to be consistend with tests re-run
         AccountsTemplates.removeField('first_name');
         AccountsTemplates.removeField('last_name');
     }
+    // Restores initialized state...
+    AccountsTemplates._initialized = true;
 });
+
 
 Tinytest.add("AccountsTemplates - setState/getState", function(test) {
     if (Meteor.isServer) {
@@ -229,6 +218,7 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
 // TODO: complite the following tests...
 // -------------------------------------
 
+
 Tinytest.add("AccountsTemplates - getFieldError/setFieldError", function(test) {
     if (Meteor.isServer) {
         // getFieldError does not exist server-side
@@ -243,6 +233,7 @@ Tinytest.add("AccountsTemplates - getFieldError/setFieldError", function(test) {
         // TODO: write actual tests...
     }
 });
+
 
 Tinytest.add("AccountsTemplates - configure", function(test) {
     if (Meteor.isClient) {
