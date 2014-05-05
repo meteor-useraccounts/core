@@ -42,15 +42,10 @@ Package.on_test(function(api) {
     api.use([
         'tinytest',
         'test-helpers',
+        'accounts-t9n',
+        'iron-router',
     ], ['client', 'server']);
     api.add_files([
-        'lib/accounts-templates-core.js',
-        'lib/accounts-templates-methods.js',
-        'lib/t9n/english.js',
-        'lib/t9n/french.js',
-        'lib/t9n/german.js',
-        'lib/t9n/italian.js',
-        'lib/t9n/polish.js',
-        'lib/t9n/spanish.js',
+        'tests/accounts-templates-core_tests.js',
     ], ['client', 'server']);
 });
