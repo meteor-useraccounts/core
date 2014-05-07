@@ -8,7 +8,7 @@ Package.on_use(function(api, where) {
         'check',
         'deps',
         'accounts-base',
-        //'accounts-merge',
+        'accounts-merge',
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
@@ -27,7 +27,7 @@ Package.on_use(function(api, where) {
 
     api.imply([
         'accounts-base',
-        //'accounts-merge',
+        'accounts-merge',
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
