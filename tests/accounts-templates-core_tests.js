@@ -201,8 +201,8 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
         AccountsTemplates.setState('fpwd');
         test.equal(AccountsTemplates.getState(), 'fpwd');
         // Setting 'Change Password'
-        AccountsTemplates.setState('cpwd');
-        test.equal(AccountsTemplates.getState(), 'cpwd');
+        //AccountsTemplates.setState('cpwd');
+        //test.equal(AccountsTemplates.getState(), 'cpwd');
         // Setting an invalid state should throw a Meteor.Error
         test.throws(function() {
             AccountsTemplates.setState('foo');
