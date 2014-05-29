@@ -1,0 +1,3 @@
+[submodule "lib/accounts-merge"]
+	path = lib/accounts-merge
+	url = /home/idel/Projects/AccountsTemplates/accounts-merge/

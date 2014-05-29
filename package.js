@@ -8,10 +8,27 @@ Package.on_use(function(api, where) {
         'check',
         'deps',
         'accounts-base',
-        //'accounts-merge',
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
+
+    api.use([
+        'minimongo',
+        'mongo-livedata',
+        'templating'
+    ], 'client');
+
+    // accounts-merge fake deps (server)
+    api.add_files([
+        'lib/accounts-merge/lib/accounts-emails-field/accounts-emails-field.js',
+        'lib/accounts-merge/lib/accounts-merge-server.js',
+    ], ['server']);
+
+    // accounts-merge fake deps (client)
+    api.add_files([
+        'lib/accounts-merge/lib/accounts-merge-client.html',
+        'lib/accounts-merge/lib/accounts-merge-client.js',
+    ], ['client']);
 
     api.add_files([
         'lib/accounts-templates-core.js',
@@ -24,13 +41,20 @@ Package.on_use(function(api, where) {
         'lib/t9n/spanish.js',
     ], ['client', 'server']);
 
-
     api.imply([
         'accounts-base',
-        //'accounts-merge',
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
+
+    api.export([
+        'AccountsMerge',
+        'MergeActions',
+    ], ['server']);
+
+    api.export([
+        'MergeActions',
+    ], ['client']);
 
     api.export([
         'AccountsTemplates',
