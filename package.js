@@ -20,14 +20,14 @@ Package.on_use(function(api, where) {
 
     // accounts-merge fake deps (server)
     api.add_files([
-        'lib/accounts-merge/lib/accounts-emails-field/accounts-emails-field.js',
-        'lib/accounts-merge/lib/accounts-merge-server.js',
+        'lib/accounts-emails-field.js',
+        'lib/accounts-merge-server.js',
     ], ['server']);
 
     // accounts-merge fake deps (client)
     api.add_files([
-        'lib/accounts-merge/lib/accounts-merge-client.html',
-        'lib/accounts-merge/lib/accounts-merge-client.js',
+        'lib/accounts-merge-client.html',
+        'lib/accounts-merge-client.js',
     ], ['client']);
 
     api.add_files([

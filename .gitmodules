@@ -1,3 +1,0 @@
-[submodule "lib/accounts-meld"]
-	path = lib/accounts-meld
-	url = https://github.com/splendido/meteor-accounts-meld
