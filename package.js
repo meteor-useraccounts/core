@@ -18,16 +18,16 @@ Package.on_use(function(api, where) {
         'templating'
     ], 'client');
 
-    // accounts-merge fake deps (server)
+    // accounts-meld fake deps (server)
     api.add_files([
         'lib/accounts-emails-field.js',
-        'lib/accounts-merge-server.js',
+        'lib/accounts-meld-server.js',
     ], ['server']);
 
-    // accounts-merge fake deps (client)
+    // accounts-meld fake deps (client)
     api.add_files([
-        'lib/accounts-merge-client.html',
-        'lib/accounts-merge-client.js',
+        'lib/accounts-meld-client.html',
+        'lib/accounts-meld-client.js',
     ], ['client']);
 
     api.add_files([
