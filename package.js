@@ -18,17 +18,12 @@ Package.on_use(function(api, where) {
         'templating'
     ], 'client');
 
+    api.add_files([
+    // accounts-emails-field fake deps (server)
+        'lib/accounts-meld/lib/accounts-emails-field/accounts-emails-field.js',
     // accounts-meld fake deps (server)
-    api.add_files([
-        'lib/accounts-emails-field.js',
-        'lib/accounts-meld-server.js',
+        'lib/accounts-meld/lib/accounts-meld-server.js',
     ], ['server']);
-
-    // accounts-meld fake deps (client)
-    api.add_files([
-        'lib/accounts-meld-client.html',
-        'lib/accounts-meld-client.js',
-    ], ['client']);
 
     api.add_files([
         'lib/accounts-templates-core.js',
