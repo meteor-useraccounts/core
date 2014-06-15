@@ -44,7 +44,8 @@ Package.on_use(function(api, where) {
 
     api.export([
         'AccountsMerge',
-        'MergeActions',
+        'AccountsMeld',
+        'MeldActions',
     ], ['server']);
 
     api.export([
