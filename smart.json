@@ -3,7 +3,7 @@
     "description": "Accounts Templates to be possibly styled for different front-end frameworks. Core package.",
     "homepage": "http://accounts-templates.meteor.com",
     "author": "Luca Mussi <ing.luca.mussi@gmail.com> (https://github.com/splendido)",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "git": "https://github.com/splendido/accounts-templates-core.git",
     "packages": {
         "accounts-t9n" : {
