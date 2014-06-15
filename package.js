@@ -19,13 +19,6 @@ Package.on_use(function(api, where) {
     ], 'client');
 
     api.add_files([
-    // accounts-emails-field fake deps (server)
-        'lib/accounts-meld/lib/accounts-emails-field/accounts-emails-field.js',
-    // accounts-meld fake deps (server)
-        'lib/accounts-meld/lib/accounts-meld-server.js',
-    ], ['server']);
-
-    api.add_files([
         'lib/accounts-templates-core.js',
         'lib/accounts-templates-methods.js',
         'lib/t9n/english.js',
@@ -41,16 +34,6 @@ Package.on_use(function(api, where) {
         'accounts-t9n',
         'iron-router',
     ], ['client', 'server']);
-
-    api.export([
-        'AccountsMerge',
-        'AccountsMeld',
-        'MeldActions',
-    ], ['server']);
-
-    api.export([
-        'MergeActions',
-    ], ['client']);
 
     api.export([
         'AccountsTemplates',
