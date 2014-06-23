@@ -1,5 +1,7 @@
-## v0.0.10
+## Master
 
+* Do not show validation errors during sign in 
+* Do not show sign up link when account creation is disabled
 * Better use of UnderscoreJS
 * Corrected documentation for showAddRemoveServices
 
