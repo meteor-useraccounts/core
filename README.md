@@ -222,7 +222,7 @@ The following is a complete example of routing configuration:
 
 ```javascript
 AccountsTemplates.configure({
-    homeRoutePath: 'home';
+    homeRoutePath: 'home',
     signInRoutePath: '/sign-in',
     signInRouteName: 'signInPage',
     signInRouteTemplate: 'fullPageSigninForm',
