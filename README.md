@@ -137,6 +137,30 @@ mrt add accounts-ui
 mrt add accounts-ui-unstyled
 ```
 
+<a name="accountsCreation"/>
+### Disabling Client-side Accounts Creation
+
+AccountsTemplates disables by default accounts creation on the client. This is done to use a dedicated method called `ATCreateUserServer` **(sending the password on the wire already hashed as usual...)** to create the new users server-side.
+This way a bulletproof profile fields full validation can be performed.
+But there is one more parameter to set in case you'd like to forbid client-side accounts creation, which is the following:
+
+* `forbidClientAccountCreation` - (Boolean, default true) Specifies whether to forbid accounts creation from the client.
+
+it is exactly the same provided by the Accounts object, so this means you need to do:
+
+```javascript
+AccountsTemplates.config({
+    forbidClientAccountCreation: true
+});
+```javascript
+
+instead of the usual:
+
+```javascript
+Accounts.config({
+  forbidClientAccountCreation : true
+});
+```javascript
 
 <a name="appearance"/>
 ### Appearance Options
@@ -241,7 +265,7 @@ This tells `AccountsTemplates` to set up a named route for each of the possible 
 * `homeRoutePath` - (optional String, default `/`) Tells `AccountsTemplates.ensureSignedIn` which is your home route: it used for some redirect in case the previous route is not available and after logout.
 * `signInRoutePath` - (optional String, default none) Specifies the path for the sign-in action.
 * `signInRouteName` - (optional String, default `signIn`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
-* `signInRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-in page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-in form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign in form. **Note: signInRouteTemplate is also used by `AccountsTemplates.ensureSignedIn` to know what to render in case the access to a particula route is protected.**
+* `signInRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-in page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-in form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign in form. **Note: signInRouteTemplate is also used by `AccountsTemplates.ensureSignedIn` to know what to render in case the access to a particular route is protected.**
 * `signUpRoutePath` - (optional String, default none) Specifies the path for the sign-up action. When not set, signInRoutePath is used also for sign-up, if neither this is specified no redirection is applied and all happens inside the same template.
 * `signUpRouteName` - (optional String, default `signUp`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
 * `signUpRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-up page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-up form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign up form.
