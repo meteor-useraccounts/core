@@ -1,5 +1,7 @@
 ## Master
 
+* Fixes for #19, #24, #25, #26
+* layoutTemplate option
 * Better signup flow, with proper server side validation!
 * Fixes for #15, and #16
 * Do not show validation errors during sign in 
