@@ -20,9 +20,21 @@ Package.on_use(function(api, where) {
     ], 'client');
 
     api.add_files([
-        'lib/accounts-templates-core.js',
-        'lib/accounts-templates-methods.js',
-    ], ['client', 'server']);
+        'lib/core.js',
+        'lib/server.js',
+        'lib/methods.js',
+    ], ['server']);
+
+    api.add_files([
+        'lib/utils.js',
+        'lib/core.js',
+        'lib/client.js',
+        'lib/atInput.js',
+        'lib/atResetPassword.js',
+        'lib/atSocial.js',
+        'lib/signinForm.js',
+        'lib/methods.js',
+    ], ['client']);
 
     api.imply([
         'accounts-base',
