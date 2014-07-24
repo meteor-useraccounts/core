@@ -7,8 +7,8 @@
     "git": "https://github.com/splendido/accounts-templates-core.git",
     "packages": {
         "accounts-t9n" : {
-            "_path": "/home/idel/Projects/AccountsTemplates/meteor-accounts-t9n",
-            "git": "https://github.com/splendido/meteor-accounts-t9n.git"
+            "path": "/home/idel/Projects/AccountsTemplates/meteor-accounts-t9n",
+            "_git": "https://github.com/splendido/meteor-accounts-t9n.git"
         },
         "iron-router": {}
     }
