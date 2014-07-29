@@ -30,7 +30,6 @@ Package.on_use(function(api, where) {
         'lib/core.js',
         'lib/client.js',
         'lib/atInput.js',
-        'lib/atResetPassword.js',
         'lib/atSocial.js',
         'lib/signinForm.js',
         'lib/methods.js',
