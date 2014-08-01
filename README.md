@@ -152,7 +152,7 @@ it is exactly the same provided by the Accounts object, so this means you need t
 AccountsTemplates.config({
     forbidClientAccountCreation: true
 });
-```javascript
+```
 
 instead of the usual:
 
@@ -160,7 +160,7 @@ instead of the usual:
 Accounts.config({
   forbidClientAccountCreation : true
 });
-```javascript
+```
 
 <a name="appearance"/>
 ### Appearance Options
