@@ -1,5 +1,5 @@
 
-## v0.0.12 -current
+## v0.0.12 --curent
 
 * implemented #3, plus small fixes - fixes: [#3](https://github.com/splendido/accounts-templates-core/issues/3) - [`c43d2ee`](https://github.com/splendido/accounts-templates-core/commit/c43d2eef03bd9382eadc4612d29897b103c99668)
 * state parameter for signinForm to lock the template state - [`6c1e6d4`](https://github.com/splendido/accounts-templates-core/commit/6c1e6d4c4ff3dade4433c07af24e97f532dcc7cb)
