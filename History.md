@@ -1,3 +1,9 @@
+## v0.0.13 
+
+* Add support for Terms of Service and Privacy Policy #4
+* 
+
+
 ## Master
 
 * Fixes for #19, #24, #25, #26
