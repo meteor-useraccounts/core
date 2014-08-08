@@ -12,7 +12,7 @@
 * Throw an error in case no account service is present - Fixes: [#33](https://github.com/splendido/accounts-templates-core/issues/33) - [`14fd1db`](https://github.com/splendido/accounts-templates-core/commit/14fd1db91fa9c623285d60eed1bb2781b1084d58)
 * Accounts-t9n dependency moved to original repo - Fixes: [#32](https://github.com/splendido/accounts-templates-core/issues/32) - [`f2b4b86`](https://github.com/splendido/accounts-templates-core/commit/f2b4b86d6bf0d1fad86934d8c21c3457a7c79f55)
 * Signin route redirects in case the user is already logged in - Fixes: [#36](https://github.com/splendido/accounts-templates-core/issues/36) - [`0d7b66d`](https://github.com/splendido/accounts-templates-core/commit/0d7b66d71f11a7f2ae79b66de85ecba14049bc4f)
-* Added sigle template for accounts functionality, now using states - [`7ef32cf`](https://github.com/splendido/accounts-templates-core/commit/7ef32cf7d8b7335d585f90621e3413615b10755c)
+* Added single template for accounts functionality, now using states - [`7ef32cf`](https://github.com/splendido/accounts-templates-core/commit/7ef32cf7d8b7335d585f90621e3413615b10755c)
 
 
 
