@@ -1,6 +1,6 @@
 ## v0.0.13 
 
-* Add support for Terms of Service and Privacy Policy #4
+* Add support for Terms of Service and Privacy Policy [`#3`](https://github.com/splendido/accounts-templates-core/issues/3)
 * 
 
 
