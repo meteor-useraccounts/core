@@ -5,22 +5,19 @@ accounts-templates-core
 
 ### Warning
 
-This is a Meteor package used by [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap), [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation), etc.
-
 **You don't have to manually add this package to your app**. It is automatically added when you add `accounts-templates-bootstrap` or `accounts-templates-foundation`, etc.
-
-
-### WIP
 
 **This project is still Work In Progress**: any comments, suggestions, testing efforts, and PRs are very very welcome. Please use the [repo](https://github.com/splendido/accounts-templates-core) page for issues, discussions, etc.
 Anyone interested in creating a styled version for new front-end frameworks can send an issue on the repo or start his own package. Following what is actually inside [accounts-templates-bootstrap](https://github.com/splendido/accounts-templates-bootstrap) should be easy enough to get done.
+
+This is a Meteor package used by [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap), [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation), etc.
 
 
 <a name="documentation"/>
 # Documentation
 
 ##### Table of Contents
-* [Package Configuration](#configuration)
+* [Setup](#setup)
 * [Available Templates](#templates)
 * [Social Accounts Configuration](#social)
 * [Appearance Options](#appearance)
@@ -30,11 +27,10 @@ Anyone interested in creating a styled version for new front-end frameworks can 
 * [Internationalization support](#i18n)
 * [Forgot Password](#forgotpassword)
 
-This package provides the `AccountsTemplates` object used by the other accounts-templates-* packages.
 
-It is **heavily** based on the awesome package [accounts-entry]() written by [Differential](http://differential.io/).
+###Setup
 
-...but, hopefully, it is more flexible and customizable other than very easily stylizable for many different front-end frameworks like [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap)), [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)), and others (coming soon...). This is because all the core logic, templates' helpers and events are contained inside `accounts-templates-core` which is automatically installed as soon as you add one of the styled packages with, e.g.:
+
 
 ```Shell
 mrt add accounts-templates-bootstrap
@@ -358,3 +354,13 @@ is called somewhere, whenever you want to switch language.
 
 As soon as you configure the email service you'll see the usual 'Forgot Email?' link.
 To do so you need to set the environment variable MAIL_URL and add the package `email`. See the official Meteor [documentation](http://docs.meteor.com/#email) for more details.
+
+
+###Notes
+
+This package provides the `AccountsTemplates` object used by the other accounts-templates-* packages.
+
+It is **heavily** based on the awesome package [accounts-entry]() written by [Differential](http://differential.io/).
+
+...but, hopefully, it is more flexible and customizable other than very easily stylizable for many different front-end frameworks like [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap)), [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)), and others (coming soon...). This is because all the core logic, templates' helpers and events are contained inside `accounts-templates-core` which is automatically installed as soon as you add one of the styled packages with, e.g.:
+
