@@ -30,11 +30,12 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 ##### Table of Contents
 * [Styled versions](#styled-versions)
 * [Setup](#setup)
+* [Templates](#templates)
 * [Configuration](#configuration)
-* [Social configuration](#social-configuration)
-* [Appearance Options](#appearance)
-* [SignUp Fields Customization](#fields)
-* [Routing Options](#routing)
+  * [Appearance Options](#appearance)
+  * [SignUp Fields Customization](#fields)
+  * [Routing Options](#routing)
+  * [Social configuration](#social-configuration)
 * [Content Protection](#protection)
 * [Internationalization support](#i18n)
 * [Forgot Password](#forgotpassword)
@@ -43,12 +44,13 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 ###Styled versions
 
 * [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap))
+* [Semantic UI](http://semantic-ui.com) (see [accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui)) 
 * [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)) 
 * others (coming soon...).
 
 ###Setup
 
-Just choose one of the aviable styled versions and install it via meteorite.
+Just choose one of the [aviable styled](#styled-versions) versions and install it via meteorite.
 
 ```Shell
 mrt add accounts-templates-bootstrap
@@ -59,21 +61,8 @@ Then call `.init()` **inside a file included for both the client and the server*
 AccountsTemplates.init();
 ```
 
-###Configuration
 
-To specify configuration options you need to call `.configure` before `.init()` in order to specify non-default parameter values.
 
-```javascript
-AccountsTemplates.configure({
-    displayFormLabels: false,
-    continuousValidation: false,
-    postSignUpRoute: '/profile'
-});
-
-AccountsTemplates.init();
-```
-
-After `.init()` is called no more changes are allowed
 
 ###Templates
 
@@ -99,7 +88,132 @@ Please note that `signinForm` does not wrap itself inside a `<div class="contain
 See, e.g., the [official bootstrap documentation](http://getbootstrap.com/css/#overview-container) where they say *containers are not nestable by default*.
 
 
-###Social configuration
+
+###Configuration
+
+To specify configuration options you need to call `.configure` before `.init()` in order to specify non-default parameter values.
+
+```javascript
+AccountsTemplates.configure({
+    //these are the default values
+    showPlaceholders: false,
+    postSignUpRoute: '/profile'
+});
+```
+After `.init()` is called no more changes are allowed
+
+
+#### Appearance [option details](#signup-fields-option-details)
+
+```javascript
+AccountsTemplates.configure({
+    //these are the default values
+    showPlaceholders: true,
+    displayFormLabels: true,
+    formValidationFeedback: true,
+    continuousValidation: true,
+    showAddRemoveServices: false,
+});
+
+```
+
+
+
+### SignUp fields [option details](#signup-fields-option-details)
+
+The most interesting part is about sign up field customization. With very few lines a new field can be added to the sign-up form.
+
+
+
+#### Add a field
+
+```javascript
+AccountsTemplates.addField({
+    name: 'phone',
+    type: 'tel',
+    displayName: "Landline Number",
+});
+```
+
+The above snippet asks `AccountsTemplates` to draw an additional input element within the sign-up form.
+
+
+
+#### Add fields at once
+
+Another possibility is to add many additional fields at once using `addFields`:
+
+```javascript
+AccountsTemplates.addFields([
+    {
+        name: 'phone',
+        type: 'tel',
+        displayName: "Landline Number",
+    },
+    {
+        name: 'fax',
+        type: 'tel',
+        displayName: "Fax Number",
+    }
+]);
+
+AccountsTemplates.init();
+```
+
+#### Remove fields
+
+
+There is also a `removeField` method which can be used to remove predefined required fields and adding them again specify different options.
+
+```javascript
+AccountsTemplates.removeField('password');
+AccountsTemplates.addField({
+    name: 'password',
+    type: 'password',
+    required: true,
+    minLength: 6,
+    re: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
+    errStr: 'At least 1 digit, 1 lowercase and 1 uppercase',
+});
+
+AccountsTemplates.init();
+```
+
+
+
+
+
+
+### Routing [option details](#signup-fields-option-details)
+
+There are no routes provided by default. But you can configure `AccountsTemplates` to have a set of routes dedicated to sign-* actions.
+
+The following is a complete example of routing configuration:
+
+```javascript
+AccountsTemplates.configure({
+    homeRoutePath: 'home';
+    signInRoutePath: '/sign-in',
+    signInRouteName: 'signInPage',
+    signInRouteTemplate: 'fullPageSigninForm',
+    signUpRoutePath: '/sign-up',
+    signUpRouteName: 'signUpPage',
+    signUpRouteTemplate: 'fullPageSigninForm',
+    postSignUpRoutePath: '/profile',
+    forgotPwdRoutePath: '/forgot-pwd',
+    forgotPwdRouteName: 'forgotPwdPage',
+    forgotPwdRouteTemplate: 'fullPageSigninForm'
+});
+```
+
+This tells `AccountsTemplates` to set up a named route for each of the possible actions also specifying their paths and custom templates to be used. More in details:
+
+
+
+
+
+
+####Social configuration
 
 Normally, if you have not configured a social account with, e.g.,
 
@@ -151,117 +265,12 @@ Accounts.config({
 });
 ```
 
-<a name="appearance"/>
-### Appearance Options
-
-* `showPlaceholders` - (Boolean, default true) Specifies whether to display placeholder text inside input elements.
-* `displayFormLabels` - (Boolean, default true) Specifies whether to display text labels above input elements.
-* `formValidationFeedback` - (Boolean, default true) [**works only with bootstrap**] Specifies whether to display validation feed-back inside input elements: see [here](http://getbootstrap.com/css/#forms-control-validation) inside the subsection *With optional icons*.
-* `continuousValidation` - (Boolean, default true) Specifies whether to continuously validate field values while the user is typing. *Continuous validation is performed client-side only to save round trips with the server*.
-* `showAddRemoveServices` - (Boolean, default false) Tells whether to show soccial account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not assiciated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this puspore.
 
 
-<a name="fields"/>
-### SignUp Fields Customization
-
-The most interesting part is about sign up field customization. With very few lines a new field can be added to the sign-up form.
-
-```javascript
-AccountsTemplates.addField({
-    name: 'phone',
-    type: 'tel',
-    displayName: "Landline Number",
-});
-
-AccountsTemplates.init();
-```
-
-The above snippet asks `AccountsTemplates` to draw an additional input element within the sign-up form.
-
-Another possibility is to add many additional fields at once using `addFields`:
-
-```javascript
-AccountsTemplates.addFields([
-    {
-        name: 'phone',
-        type: 'tel',
-        displayName: "Landline Number",
-    },
-    {
-        name: 'fax',
-        type: 'tel',
-        displayName: "Fax Number",
-    }
-]);
-
-AccountsTemplates.init();
-```
-
-There is also a `removeField` method which can be used to remove predefined required fields and adding them again specify different options.
-
-```javascript
-AccountsTemplates.removeField('password');
-AccountsTemplates.addField({
-    name: 'password',
-    type: 'password',
-    required: true,
-    minLength: 6,
-    re: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
-    errStr: 'At least 1 digit, 1 lowercase and 1 uppercase',
-});
-
-AccountsTemplates.init();
-```
-
-Options details:
-
-* `name` - (**required** String) The name of the field to be also used as attribute name into `Meteor.user().profile`. Usually all lower-case letters
-* `type` - (**required** String) Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. More to come...
-* `required` - (optional Boolean, default false) Set the field as required, which means it cannot be left blank.
-* `displayName` - (optional String) The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `name` is used. The text label is shown only if `displayFormLabels` options is set to true.
-* `placeholder` - (optional String) Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `name` is used. The placeholder is shown only if `showPlaceholders` options is set to true.
-* `minLength` - (optional Integer, default none) If specified require the content of the field to be at least `minLength` characters.
-* `maxLength` - (optional Integer, default none) If specified require the content of the field to be at most `maxLength` characters.
-* `re` - (optional ReGex, default none) Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side once the sign-up request is submitted.
-* `errStr` - (optional String) Error string to be displayed in case re validation fails. It can also be a [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered label, in which case it will be translated based on the currently selected language. To see how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
 
-<a name="routing"/>
-### Routing Options
 
-There are no routes provided by default. But you can configure `AccountsTemplates` to have a set of routes dedicated to sign-* actions.
 
-The following is a complete example of routing configuration:
-
-```javascript
-AccountsTemplates.configure({
-    homeRoutePath: 'home';
-    signInRoutePath: '/sign-in',
-    signInRouteName: 'signInPage',
-    signInRouteTemplate: 'fullPageSigninForm',
-    signUpRoutePath: '/sign-up',
-    signUpRouteName: 'signUpPage',
-    signUpRouteTemplate: 'fullPageSigninForm',
-    postSignUpRoutePath: '/profile',
-    forgotPwdRoutePath: '/forgot-pwd',
-    forgotPwdRouteName: 'forgotPwdPage',
-    forgotPwdRouteTemplate: 'fullPageSigninForm'
-});
-```
-
-This tells `AccountsTemplates` to set up a named route for each of the possible actions also specifying their paths and custom templates to be used. More in details:
-
-* `homeRoutePath` - (optional String, default `/`) Tells `AccountsTemplates.ensureSignedIn` which is your home route: it used for some redirect in case the previous route is not available and after logout.
-* `signInRoutePath` - (optional String, default none) Specifies the path for the sign-in action.
-* `signInRouteName` - (optional String, default `signIn`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
-* `signInRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-in page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-in form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign in form. **Note: signInRouteTemplate is also used by `AccountsTemplates.ensureSignedIn` to know what to render in case the access to a particular route is protected.**
-* `signUpRoutePath` - (optional String, default none) Specifies the path for the sign-up action. When not set, signInRoutePath is used also for sign-up, if neither this is specified no redirection is applied and all happens inside the same template.
-* `signUpRouteName` - (optional String, default `signUp`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
-* `signUpRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-up page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-up form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign up form.
-* `postSignUpRoutePath` - (optional String, default `/`) Specifies where to head to after a successful sign-up.
-* `forgotPwdRoutePath` - (optional String, default none) Specifies the path for the forgot password action. When not set, signInRoutePath is used also for forgot password, if neither this is specified no redirection is applied and all happens inside the same template.
-* `forgotPwdRouteName` - (optional String, default `forgotPwd`) Specifies the name to be given to the forgot password route to be used with iron-router helpers.
-* `forgotPwdRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the forgot password page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided forgot-password form. If nothing is specified, `fullPageSigninForm` template is used to get a full page forgot password form.
 
 
 <a name="protection"/>
@@ -366,4 +375,42 @@ Use of the great package [accounts-merge](https://atmospherejs.com/package/accou
 
 List of peculiar features:
 
+
+
+### Option details
+
+
+#### Appearence option details
+
+* `showPlaceholders` - (Boolean, default true) Specifies whether to display placeholder text inside input elements.
+* `displayFormLabels` - (Boolean, default true) Specifies whether to display text labels above input elements.
+* `formValidationFeedback` - (Boolean, default true) [**works only with bootstrap**] Specifies whether to display validation feed-back inside input elements: see [here](http://getbootstrap.com/css/#forms-control-validation) inside the subsection *With optional icons*.
+* `continuousValidation` - (Boolean, default true) Specifies whether to continuously validate field values while the user is typing. *Continuous validation is performed client-side only to save round trips with the server*.
+* `showAddRemoveServices` - (Boolean, default false) Tells whether to show soccial account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not assiciated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this puspore.
+
+#### Routing option details
+
+* `homeRoutePath` - (optional String, default `/`) Tells `AccountsTemplates.ensureSignedIn` which is your home route: it used for some redirect in case the previous route is not available and after logout.
+* `signInRoutePath` - (optional String, default none) Specifies the path for the sign-in action.
+* `signInRouteName` - (optional String, default `signIn`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
+* `signInRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-in page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-in form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign in form. **Note: signInRouteTemplate is also used by `AccountsTemplates.ensureSignedIn` to know what to render in case the access to a particular route is protected.**
+* `signUpRoutePath` - (optional String, default none) Specifies the path for the sign-up action. When not set, signInRoutePath is used also for sign-up, if neither this is specified no redirection is applied and all happens inside the same template.
+* `signUpRouteName` - (optional String, default `signUp`) Specifies the name to be given to the sign in route to be used with iron-router helpers.
+* `signUpRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the sign-up page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided sign-up form. If nothing is specified, `fullPageSigninForm` template is used to get a full page sign up form.
+* `postSignUpRoutePath` - (optional String, default `/`) Specifies where to head to after a successful sign-up.
+* `forgotPwdRoutePath` - (optional String, default none) Specifies the path for the forgot password action. When not set, signInRoutePath is used also for forgot password, if neither this is specified no redirection is applied and all happens inside the same template.
+* `forgotPwdRouteName` - (optional String, default `forgotPwd`) Specifies the name to be given to the forgot password route to be used with iron-router helpers.
+* `forgotPwdRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the forgot password page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided forgot-password form. If nothing is specified, `fullPageSigninForm` template is used to get a full page forgot password form.
+
+#### SignUp field option details
+
+* `name` - (**required** String) The name of the field to be also used as attribute name into `Meteor.user().profile`. Usually all lower-case letters
+* `type` - (**required** String) Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. More to come...
+* `required` - (optional Boolean, default false) Set the field as required, which means it cannot be left blank.
+* `displayName` - (optional String) The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `name` is used. The text label is shown only if `displayFormLabels` options is set to true.
+* `placeholder` - (optional String) Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `name` is used. The placeholder is shown only if `showPlaceholders` options is set to true.
+* `minLength` - (optional Integer, default none) If specified require the content of the field to be at least `minLength` characters.
+* `maxLength` - (optional Integer, default none) If specified require the content of the field to be at most `maxLength` characters.
+* `re` - (optional ReGex, default none) Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side once the sign-up request is submitted.
+* `errStr` - (optional String) Error string to be displayed in case re validation fails. It can also be a [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered label, in which case it will be translated based on the currently selected language. To see how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
