@@ -2,6 +2,17 @@
 accounts-templates-core
 =======================
 
+###Features
+
+* easily stylizable for different font-end frameworks
+* fully customizable sign-up fields
+* robust field validation
+* internationalization support
+* easy content protection
+* return to previous route after sign-in (even for random sign in choice and not only after required sign-in)
+* fully reactive
+* no use of `Session` object
+
 
 ### Warning
 
@@ -17,8 +28,9 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 # Documentation
 
 ##### Table of Contents
+* [Styled versions](#styled_versions)
 * [Setup](#setup)
-* [Available Templates](#templates)
+* [Configuration](#templates)
 * [Social Accounts Configuration](#social)
 * [Appearance Options](#appearance)
 * [SignUp Fields Customization](#fields)
@@ -28,13 +40,26 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 * [Forgot Password](#forgotpassword)
 
 
+###Styled versions
+
+*[Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap))
+*[Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)) 
+* others (coming soon...).
+
 ###Setup
 
-
+Just choose one of the aviable styled versions and install it via meteorite.
 
 ```Shell
 mrt add accounts-templates-bootstrap
 ```
+Then call `.init()` **inside a file included for both the client and the server**.
+
+```javascript
+AccountsTemplates.init();
+```
+
+
 
 Another interesting point is about the given possibility to customize the list of sign-up fields specifying for each one **validation rules enforced both client and server side**.
 
@@ -44,14 +69,7 @@ Use of the great package [accounts-merge](https://atmospherejs.com/package/accou
 
 List of peculiar features:
 
-* easily stylizable for different font-end frameworks
-* fully customizable sign-up fields
-* robust field validation
-* internationalization support
-* easy content protection
-* return to previous route after sign-in (even for random sign in choice and not only after required sign-in)
-* fully reactive
-* no use of `Session` object
+
 
 
 <a name="configuration"/>
