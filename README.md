@@ -36,9 +36,15 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
   * [SignUp Fields](#signup-fields)
   * [Routing](#routing)
   * [Social](#social)
-* [Content Protection](#protection)
-* [Internationalization support](#i18n)
-* [Forgot Password](#forgotpassword)
+* [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
+* [Content Protection](#content-protection)
+* [Internationalization support](#internationalization-support)
+* [Forgot Password](#forgot-password)
+* [Notes](#notes)
+* [Option details](#option-details-3)
+  * [Appearence option details](#appearence-option-details)
+  * [SignUp field option details](#signup-field-option-details)
+  * [Routing option details](#routing-option-details)
 
 
 ###Styled versions
@@ -121,7 +127,7 @@ AccountsTemplates.configure({
 
 
 #### SignUp fields
-######[option details](#signup-field-option-details)
+######[`option details`](#signup-field-option-details)
 
 The most interesting part is about sign up field customization. With very few lines a new field can be added to the sign-up form.
 
@@ -162,7 +168,7 @@ AccountsTemplates.addFields([
 AccountsTemplates.init();
 ```
 
-#### Remove fields
+##### Remove fields
 
 
 There is also a `removeField` method which can be used to remove predefined required fields and adding them again specify different options.
@@ -187,7 +193,7 @@ AccountsTemplates.init();
 
 
 #### Routing
-######[option details](#routing-option-details)
+######[`option details`](#routing-option-details)
 
 There are no routes provided by default. But you can configure `AccountsTemplates` to have a set of routes dedicated to sign-* actions.
 
@@ -216,7 +222,7 @@ This tells `AccountsTemplates` to set up a named route for each of the possible 
 
 
 
-####Social configuration
+####Social
 
 Normally, if you have not configured a social account with, e.g.,
 
