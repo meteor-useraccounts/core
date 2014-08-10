@@ -103,7 +103,7 @@ AccountsTemplates.configure({
 After `.init()` is called no more changes are allowed
 
 
-  #### Appearance ######[option details](#signup-fields-option-details)
+#### Appearance ######[option details](#signup-fields-option-details)
 
 ```javascript
 AccountsTemplates.configure({
