@@ -28,10 +28,10 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 # Documentation
 
 ##### Table of Contents
-* [Styled versions](#styled_versions)
+* [Styled versions](#styled-versions)
 * [Setup](#setup)
-* [Configuration](#templates)
-* [Social Accounts Configuration](#social)
+* [Configuration](#configuration)
+* [Social configuration](#social-configuration)
 * [Appearance Options](#appearance)
 * [SignUp Fields Customization](#fields)
 * [Routing Options](#routing)
@@ -42,8 +42,8 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 
 ###Styled versions
 
-*[Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap))
-*[Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)) 
+* [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap))
+* [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)) 
 * others (coming soon...).
 
 ###Setup
@@ -59,33 +59,9 @@ Then call `.init()` **inside a file included for both the client and the server*
 AccountsTemplates.init();
 ```
 
+###Configuration
 
-
-Another interesting point is about the given possibility to customize the list of sign-up fields specifying for each one **validation rules enforced both client and server side**.
-
-It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection and [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) for internationalization support.
-
-Use of the great package [accounts-merge](https://atmospherejs.com/package/accounts-merge), for permitting a user to have many different social accounts configured under the same user object, is also under investigation. But since `accounts-merge` is still a young package it won't be included inside published versions unless we'll all be sure there are no security issues with it.
-
-List of peculiar features:
-
-
-
-
-<a name="configuration"/>
-## Package Configuration
-
-There are many different configuration options that can be used to customize the behaviour and appearance of the Accounts Templates.
-
-The minimum required for the package to work is calling `.init()` on it **inside a file included for both the client and the server**.
-For example you could have `shared/ATConfig.js` containing:
-
-```javascript
-AccountsTemplates.init();
-```
-
-To specify other configuration options you need to call `.configure` before `.init()` in order to specify non-default parameter values.
-For example, inside the same file as above, you might do:
+To specify configuration options you need to call `.configure` before `.init()` in order to specify non-default parameter values.
 
 ```javascript
 AccountsTemplates.configure({
@@ -99,13 +75,9 @@ AccountsTemplates.init();
 
 After `.init()` is called no more changes are allowed
 
-Below are explained all available templates and configuration options, for both appearance and routing.
+###Templates
 
-
-<a name="templates"/>
-### Available Templates
-
-For now there is only one template which is used to reactively draw appropriate sign in, sign up, forgot password, and logout forms.
+For now there is only one template which is used to reactively draw appropriate sign in, sign up, forgot password, and logout forms via template states.
 It is called `signinForm` and can be included anywhere you wish.
 For example, to get a full-page login form, you might want to declare a template this way (supposing you're using `accounts-templates-bootstrap`):
 
@@ -127,8 +99,7 @@ Please note that `signinForm` does not wrap itself inside a `<div class="contain
 See, e.g., the [official bootstrap documentation](http://getbootstrap.com/css/#overview-container) where they say *containers are not nestable by default*.
 
 
-<a name="social"/>
-### Social Accounts Configuration
+###Social configuration
 
 Normally, if you have not configured a social account with, e.g.,
 
@@ -150,6 +121,10 @@ social buttons are not shown. To allow display buttons with, e.g., 'Configure Go
 mrt add accounts-ui
 mrt add accounts-ui-unstyled
 ```
+
+
+
+
 
 <a name="accountsCreation"/>
 ### Disabling Client-side Accounts Creation
@@ -381,4 +356,14 @@ This package provides the `AccountsTemplates` object used by the other accounts-
 It is **heavily** based on the awesome package [accounts-entry]() written by [Differential](http://differential.io/).
 
 ...but, hopefully, it is more flexible and customizable other than very easily stylizable for many different front-end frameworks like [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap)), [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)), and others (coming soon...). This is because all the core logic, templates' helpers and events are contained inside `accounts-templates-core` which is automatically installed as soon as you add one of the styled packages with, e.g.:
+
+
+Another interesting point is about the given possibility to customize the list of sign-up fields specifying for each one **validation rules enforced both client and server side**.
+
+It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection and [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) for internationalization support.
+
+Use of the great package [accounts-merge](https://atmospherejs.com/package/accounts-merge), for permitting a user to have many different social accounts configured under the same user object, is also under investigation. But since `accounts-merge` is still a young package it won't be included inside published versions unless we'll all be sure there are no security issues with it.
+
+List of peculiar features:
+
 
