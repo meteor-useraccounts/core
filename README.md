@@ -103,7 +103,7 @@ AccountsTemplates.configure({
 After `.init()` is called no more changes are allowed
 
 
-#### Appearance [`option details`](#signup-fields-option-details)
+  #### Appearance ######[option details](#signup-fields-option-details)
 
 ```javascript
 AccountsTemplates.configure({
@@ -119,13 +119,13 @@ AccountsTemplates.configure({
 
 
 
-### SignUp fields [option details](#signup-fields-option-details)
+#### SignUp fields [option details](#signup-fields-option-details)
 
 The most interesting part is about sign up field customization. With very few lines a new field can be added to the sign-up form.
 
 
 
-#### Add a field
+##### Add a field
 
 ```javascript
 AccountsTemplates.addField({
@@ -139,7 +139,7 @@ The above snippet asks `AccountsTemplates` to draw an additional input element w
 
 
 
-#### Add fields at once
+##### Add fields at once
 
 Another possibility is to add many additional fields at once using `addFields`:
 
