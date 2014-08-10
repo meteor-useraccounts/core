@@ -32,10 +32,10 @@ This is a Meteor package used by [accounts-templates-bootstrap](https://atmosphe
 * [Setup](#setup)
 * [Templates](#templates)
 * [Configuration](#configuration)
-  * [Appearance Options](#appearance)
-  * [SignUp Fields Customization](#fields)
-  * [Routing Options](#routing)
-  * [Social configuration](#social-configuration)
+  * [Appearance](#appearance)
+  * [SignUp Fields](#signup-fields)
+  * [Routing](#routing)
+  * [Social](#social)
 * [Content Protection](#protection)
 * [Internationalization support](#i18n)
 * [Forgot Password](#forgotpassword)
@@ -104,7 +104,7 @@ After `.init()` is called no more changes are allowed
 
 
 #### Appearance
-######[`option details`](#signup-fields-option-details)
+######[`option details`](#appearence-option-details)
 
 ```javascript
 AccountsTemplates.configure({
@@ -120,7 +120,8 @@ AccountsTemplates.configure({
 
 
 
-#### SignUp fields [option details](#signup-fields-option-details)
+#### SignUp fields
+######[option details](#signup-field-option-details)
 
 The most interesting part is about sign up field customization. With very few lines a new field can be added to the sign-up form.
 
@@ -185,7 +186,8 @@ AccountsTemplates.init();
 
 
 
-### Routing [option details](#signup-fields-option-details)
+#### Routing
+######[option details](#routing-option-details)
 
 There are no routes provided by default. But you can configure `AccountsTemplates` to have a set of routes dedicated to sign-* actions.
 
@@ -365,7 +367,7 @@ This package provides the `AccountsTemplates` object used by the other accounts-
 
 It is **heavily** based on the awesome package [accounts-entry]() written by [Differential](http://differential.io/).
 
-...but, hopefully, it is more flexible and customizable other than very easily stylizable for many different front-end frameworks like [Twitter Bootstrap](http://getbootstrap.com/) (see [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap)), [Zurb Foundation](http://foundation.zurb.com/) (see [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation)), and others (coming soon...). This is because all the core logic, templates' helpers and events are contained inside `accounts-templates-core` which is automatically installed as soon as you add one of the styled packages with, e.g.:
+...but, hopefully, it is more flexible and customizable other than very easily stylizable for many different front-end frameworks. This is because all the core logic, templates' helpers and events are contained inside `accounts-templates-core` which is automatically installed as soon as you add one of the styled packages.
 
 
 Another interesting point is about the given possibility to customize the list of sign-up fields specifying for each one **validation rules enforced both client and server side**.
@@ -373,8 +375,6 @@ Another interesting point is about the given possibility to customize the list o
 It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection and [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) for internationalization support.
 
 Use of the great package [accounts-merge](https://atmospherejs.com/package/accounts-merge), for permitting a user to have many different social accounts configured under the same user object, is also under investigation. But since `accounts-merge` is still a young package it won't be included inside published versions unless we'll all be sure there are no security issues with it.
-
-List of peculiar features:
 
 
 
@@ -388,6 +388,18 @@ List of peculiar features:
 * `formValidationFeedback` - (Boolean, default true) [**works only with bootstrap**] Specifies whether to display validation feed-back inside input elements: see [here](http://getbootstrap.com/css/#forms-control-validation) inside the subsection *With optional icons*.
 * `continuousValidation` - (Boolean, default true) Specifies whether to continuously validate field values while the user is typing. *Continuous validation is performed client-side only to save round trips with the server*.
 * `showAddRemoveServices` - (Boolean, default false) Tells whether to show soccial account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not assiciated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this puspore.
+
+#### SignUp field option details
+
+* `name` - (**required** String) The name of the field to be also used as attribute name into `Meteor.user().profile`. Usually all lower-case letters
+* `type` - (**required** String) Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. More to come...
+* `required` - (optional Boolean, default false) Set the field as required, which means it cannot be left blank.
+* `displayName` - (optional String) The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `name` is used. The text label is shown only if `displayFormLabels` options is set to true.
+* `placeholder` - (optional String) Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `name` is used. The placeholder is shown only if `showPlaceholders` options is set to true.
+* `minLength` - (optional Integer, default none) If specified require the content of the field to be at least `minLength` characters.
+* `maxLength` - (optional Integer, default none) If specified require the content of the field to be at most `maxLength` characters.
+* `re` - (optional ReGex, default none) Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side once the sign-up request is submitted.
+* `errStr` - (optional String) Error string to be displayed in case re validation fails. It can also be a [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered label, in which case it will be translated based on the currently selected language. To see how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
 #### Routing option details
 
@@ -403,15 +415,4 @@ List of peculiar features:
 * `forgotPwdRouteName` - (optional String, default `forgotPwd`) Specifies the name to be given to the forgot password route to be used with iron-router helpers.
 * `forgotPwdRouteTemplate` - (optional String) When specified tells `AccountsTemplates` to render a custom template when headed to the forgot password page. This custom template should include, anywhere convenient, `{{> signinForm}}` in order to get the provided forgot-password form. If nothing is specified, `fullPageSigninForm` template is used to get a full page forgot password form.
 
-#### SignUp field option details
-
-* `name` - (**required** String) The name of the field to be also used as attribute name into `Meteor.user().profile`. Usually all lower-case letters
-* `type` - (**required** String) Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. More to come...
-* `required` - (optional Boolean, default false) Set the field as required, which means it cannot be left blank.
-* `displayName` - (optional String) The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `name` is used. The text label is shown only if `displayFormLabels` options is set to true.
-* `placeholder` - (optional String) Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `name` is used. The placeholder is shown only if `showPlaceholders` options is set to true.
-* `minLength` - (optional Integer, default none) If specified require the content of the field to be at least `minLength` characters.
-* `maxLength` - (optional Integer, default none) If specified require the content of the field to be at most `maxLength` characters.
-* `re` - (optional ReGex, default none) Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side once the sign-up request is submitted.
-* `errStr` - (optional String) Error string to be displayed in case re validation fails. It can also be a [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered label, in which case it will be translated based on the currently selected language. To see how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
