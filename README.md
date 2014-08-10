@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
 accounts-templates-core
 =======================
+Jump to [docs](#documentation).
 
 ###Features
 
