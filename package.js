@@ -10,6 +10,7 @@ Package.on_use(function(api, where) {
         'accounts-base',
         'accounts-t9n',
         'iron-router',
+        'underscore',
     ], ['client', 'server']);
 
     api.use([
