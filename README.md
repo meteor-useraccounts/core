@@ -104,7 +104,7 @@ To specify configuration options you need to call `.configure` before `.init()` 
 AccountsTemplates.configure({
     //these are the default values
     showPlaceholders: false,
-    postSignUpRoute: '/profile'
+    postSignUpRoutePath: '/profile'
 });
 ```
 After `.init()` is called no more changes are allowed
