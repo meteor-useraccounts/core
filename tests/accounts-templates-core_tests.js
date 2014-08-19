@@ -192,18 +192,24 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
             AccountsTemplates.setState();
         });
     } else {
-        // Setting 'Sign In'
-        AccountsTemplates.setState('sgin');
-        test.equal(AccountsTemplates.getState(), 'sgin');
-        // Setting 'Sign Up'
-        AccountsTemplates.setState('sgup');
-        test.equal(AccountsTemplates.getState(), 'sgup');
-        // Setting 'Forgot Password'
-        AccountsTemplates.setState('fpwd');
-        test.equal(AccountsTemplates.getState(), 'fpwd');
         // Setting 'Change Password'
-        //AccountsTemplates.setState('cpwd');
-        //test.equal(AccountsTemplates.getState(), 'cpwd');
+        AccountsTemplates.setState('changePwd');
+        test.equal(AccountsTemplates.getState(), 'changePwd');
+        // Setting 'Enroll Account'
+        AccountsTemplates.setState('enrollAccount');
+        test.equal(AccountsTemplates.getState(), 'enrollAccount');
+        // Setting 'Forgot Password'
+        AccountsTemplates.setState('forgotPwd');
+        test.equal(AccountsTemplates.getState(), 'forgotPwd');
+        // Setting 'Reset Password'
+        AccountsTemplates.setState('resetPwd');
+        test.equal(AccountsTemplates.getState(), 'resetPwd');
+        // Setting 'Sign In'
+        AccountsTemplates.setState('signIn');
+        test.equal(AccountsTemplates.getState(), 'signIn');
+        // Setting 'Sign Up'
+        AccountsTemplates.setState('signUp');
+        test.equal(AccountsTemplates.getState(), 'signUp');
         // Setting an invalid state should throw a Meteor.Error
         test.throws(function() {
             AccountsTemplates.setState('foo');
