@@ -30,9 +30,9 @@ Package.on_use(function(api, where) {
         'lib/utils.js',
         'lib/core.js',
         'lib/client.js',
+        'lib/atForm.js',
         'lib/atInput.js',
         'lib/atSocial.js',
-        'lib/signinForm.js',
         'lib/methods.js',
     ], ['client']);
 
