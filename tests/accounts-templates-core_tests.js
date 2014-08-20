@@ -29,6 +29,13 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // Trying to remove an existing field
     AccountsTemplates.removeField('email');
     test.isUndefined(AccountsTemplates.getField('email'));
+    // ...and puts it back in for tests re-run
+    AccountsTemplates.addField({
+        name: "email",
+        type: "email",
+        displayName: "Email",
+        required: true,
+    });
 
     // Trying to add an already existing field
     test.throws(function() {
@@ -54,6 +61,8 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
 
     // Successful add
     AccountsTemplates.addField(login);
+    // ...and removes it for tests re-run
+    AccountsTemplates.removeField('login');
 
     // Invalid field.type
     test.throws(function() {
@@ -116,7 +125,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     };
     AccountsTemplates.addField(first_name);
     test.equal(AccountsTemplates.getField('first_name'), first_name);
-    // Now removes ot to be consistend with tests re-run
+    // Now removes it to be consistent with tests re-run
     AccountsTemplates.removeField('first_name');
 });
 
