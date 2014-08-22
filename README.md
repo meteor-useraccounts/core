@@ -7,7 +7,7 @@ Jump to [docs](#documentation).
 
 **This version of the documentation is not up to date with the current release!**
 
-**Although it will be very soon, please have a look at the discussion about new features, issue #34, to get directions about the new API. In the meanwhile, you can also check the repository for [test-accounts-templates-bootstrap](https://github.com/splendido/test-accounts-templates-bootstrap) which is up to date.**
+**Although it will be very soon, please have a look at the discussion about new features, issue [#34](https://github.com/splendido/accounts-templates-core/issues/34), to get directions about the new API. In the meanwhile, you can also check the repository for [test-accounts-templates-bootstrap](https://github.com/splendido/test-accounts-templates-bootstrap) which is up to date.**
 
 **I'm sorry for this inconvinience, I hope to get some spare time to realign everything (it should happen very soon though...)!**
 
