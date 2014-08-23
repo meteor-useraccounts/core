@@ -81,7 +81,7 @@ mrt add accounts-templates-bootstrap
 
 **Warning:** You don't have to add `accounts-templates-core` to your app! It is automatically added when you add `accounts-templates-<something>`...
 
-Then call `AccountsTemplates.init()` **on both the client and the server**: the easiest way is to put the call inside a file shared between both. For example your file `share/config/at_config.js` should contain at least the following line:
+Then call `AccountsTemplates.init()` **on both the client and the server**: the easiest way is to put the call inside a file shared between both. For example your file `lib/config/at_config.js` should contain at least the following line:
 
 ```javascript
 AccountsTemplates.init();
@@ -143,7 +143,7 @@ There are basically three way to interact with AccountsTemplates for basic confi
 There is no specific order for the above calls to be effective, and you can do many of them possibly in different files, but `AccountsTemplates.init();` **should always come last**!
 After `.init()` is called no more changes are allowed...
 
-**The only other requirement is to make exactly the same calls on both the server and the client.** As already suggested, the best thing is to put everything inside a file shared between both. I suggest you use something like `shared/config/at_config.js`
+**The only other requirement is to make exactly the same calls on both the server and the client.** As already suggested, the best thing is to put everything inside a file shared between both. I suggest you use something like `lib/config/at_config.js`
 
 
 <a name="routing"/>
