@@ -368,11 +368,11 @@ Each field object is represented by the following properties:
 
 | Property    | Type     | Required | Description                                                           |
 | ----------- | -------- |:--------:| --------------------------------------------------------------------- |
-| name        | String   |    X     | A unique field's name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additinoal sign up field. Usually all lower-case letters. |
+| _id         | String   |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additinoal sign up field. Usually all lower-case letters. |
 | type        | String   |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like checkbox, and select are likely to be supported in some future release. |
 | required    | Boolean  |          | When set to true the corresponding field cannot be left blank.|
-| displayName | String   |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `name` is used. The text label is shown only if `displayFormLabels` options is set to true.  |
-| placeholder | String   |          | Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `name` will be used. The placeholder is shown only if `showPlaceholders` option is set to true. |
+| displayName | String   |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.  |
+| placeholder | String   |          | Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `_id` will be used. The placeholder is shown only if `showPlaceholders` option is set to true. |
 | minLength   | Integer  |          | If specified requires the content of the field to be at least `minLength` characters. |
 | maxLength   | Integer  |          | If specified require the content of the field to be at most `maxLength` characters. |
 | re          | RegExp   |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
@@ -382,9 +382,9 @@ Each field object is represented by the following properties:
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
-#### Special Field's Names
+#### Special Field's Ids
 
-There are a number of special names used for basic input fields. These are:
+There are a number of special ids used for basic input fields. These are:
 
 * username
 * email
@@ -395,7 +395,7 @@ There are a number of special names used for basic input fields. These are:
 * new_password
 * new_password_again
 
-Any other name will be interpreted as an additional sign up field.
+Any other id will be interpreted as an additional sign up field.
 In case aspecial field is not explicitely added, it will be automatically inserted at initialization time (with appropriate default properties).
 
 #### Add a field
@@ -405,7 +405,7 @@ For example you can do:
 
 ```javascript
 AccountsTemplates.addField({
-    name: 'phone',
+    _id: 'phone',
     type: 'tel',
     displayName: "Landline Number",
 });
@@ -420,12 +420,12 @@ Another possibility is to add many additional fields at once using `addFields`:
 ```javascript
 AccountsTemplates.addFields([
     {
-        name: 'phone',
+        _id: 'phone',
         type: 'tel',
         displayName: "Landline Number",
     },
     {
-        name: 'fax',
+        _id: 'fax',
         type: 'tel',
         displayName: "Fax Number",
     }
@@ -439,7 +439,7 @@ There is also a `removeField` method which can be used to remove predefined requ
 ```javascript
 AccountsTemplates.removeField('password');
 AccountsTemplates.addField({
-    name: 'password',
+    _id: 'password',
     type: 'password',
     required: true,
     minLength: 6,

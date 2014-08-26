@@ -31,7 +31,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     test.isUndefined(AccountsTemplates.getField('email'));
     // ...and puts it back in for tests re-run
     AccountsTemplates.addField({
-        name: "email",
+        _id: "email",
         type: "email",
         displayName: "Email",
         required: true,
@@ -47,7 +47,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     });
 
     var login = {
-        name: 'login',
+        _id: 'login',
         displayName: 'Email',
         type: 'email'
     };
@@ -67,7 +67,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // Invalid field.type
     test.throws(function() {
         AccountsTemplates.addField({
-            name: 'foo',
+            _id: 'foo',
             displayName: 'Foo',
             type: 'bar'
         });
@@ -79,7 +79,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // Invalid minLength
     test.throws(function() {
         AccountsTemplates.addField({
-            name: 'first-name',
+            _id: 'first-name',
             displayName: 'First Name',
             type: 'text',
             minLength: 0
@@ -91,7 +91,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // Invalid maxLength
     test.throws(function() {
         AccountsTemplates.addField({
-            name: 'first-name',
+            _id: 'first-name',
             displayName: 'First Name',
             type: 'text',
             maxLength: 0
@@ -103,7 +103,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // maxLength < minLength
     test.throws(function() {
         AccountsTemplates.addField({
-            name: 'first-name',
+            _id: 'first-name',
             displayName: 'First Name',
             type: 'text',
             minLength: 2,
@@ -116,7 +116,7 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
 
     // Successful add
     var first_name = {
-        name: 'first_name',
+        _id: 'first_name',
         displayName: 'First Name',
         type: 'text',
         minLength: 2,
@@ -163,7 +163,7 @@ Tinytest.add("AccountsTemplates - addFields", function(test) {
 
         // Successful add
         var first_name = {
-            name: 'first_name',
+            _id: 'first_name',
             displayName: 'First Name',
             type: 'text',
             minLength: 2,
@@ -171,7 +171,7 @@ Tinytest.add("AccountsTemplates - addFields", function(test) {
             required: true
         };
         var last_name = {
-            name: 'last_name',
+            _id: 'last_name',
             displayName: 'Last Name',
             type: 'text',
             minLength: 2,
