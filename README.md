@@ -1,17 +1,9 @@
-**Warning:** The update process of this new version of the documentation is still in progress and does not fully cover the API for the current release!
-
-Although it will be very soon, please have a look at the [README_old.md](https://github.com/splendido/accounts-templates-core/blob/master/README_old.md) and the discussion about new features, issue [#34](https://github.com/splendido/accounts-templates-core/issues/34) to get directions about the new API. In the meanwhile, you can also check the repository for [test-accounts-templates-bootstrap](https://github.com/splendido/test-accounts-templates-bootstrap) which is up to date.
-
-**I'm sorry for this inconvinience, I hope to get some spare time to realign everything (it should happen very soon though...)!**
-
-
-
 accounts-templates-core
 =======================
 
 [![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
 
-accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides higly customizable user accounts UI templates for many different frontend frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
+accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enrol account, and link or remove of many 3rd party services.
 
 
 The package `accounts-templates-core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
@@ -28,7 +20,7 @@ You can get a better idea about this heading to http://accounts-templates.meteor
 
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
 
-Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc.
+Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
 
 <a name="documentation"/>
@@ -40,8 +32,8 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
   * [Setup](#setup)
   * [Templates](#templates)
 * [Basic Customization](#basic-customization)
-  * [I18n Support](#i18n) 
-  * [Configuration API](#configuration-api) 
+  * [I18n Support](#i18n)
+  * [Configuration API](#configuration-api)
   * [Options](#options)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
@@ -59,7 +51,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 * internationalization support thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n)
 * custom sign-up fields
 * robust server side sign-up field validation
-* easy content protection 
+* easy content protection
 * return to previous route after sign-in (even for random sign in choice and not only after required sign-in)
 * fully reactive, Blaze fast!
 * no use of `Session` object
@@ -119,7 +111,7 @@ This is to let you configure your app exactly the way you wish, without imposing
 <a name="templates"/>
 ### Templates
 
-There is **only one template** which is used to reactively draw appropriate sign in, sign up, forgot password, reset password, change password, and enroll account forms!
+There is **only one template** which is used to reactively draw appropriate sign in, sign up, forgot password, reset password, change password, and enrol account forms!
 
 It is `atForm` and can be used anywhere you wish like this:
 
@@ -129,7 +121,7 @@ It is `atForm` and can be used anywhere you wish like this:
 
 Its design is as *transparent* as possible making it play nicely with themes and personal css customizations! What more, it is not wrapped inside any *container* so that you can put it everywhere, including complex multi-column layouts.
 
-In case you whish to *lock* the template to a particular state, you can also use, e.g.,
+In case you wish to *lock* the template to a particular state, you can also use, e.g.,
 
 ```html
 {{> atForm state='signUp'}}
@@ -172,61 +164,81 @@ After `.init()` is called no more changes are allowed...
 <a name="options"/>
 #### Options
 
-By calling `AccountsTemplates.configure(options)` you can specify a bunch of choices regardin both visual appearence and behaviour.
+By calling `AccountsTemplates.configure(options)` you can specify a bunch of choices regarding both visual appearance and behaviour.
 
 The following is a complete example of options configuration (with fields in alphabetical order):
 
 ```javascript
 AccountsTemplates.configure({
+    // Behaviour
     confirmPassword: true,
-    continuousValidation: false,
-    displayFormLabels: true,
     enablePasswordChange: true,
     forbidClientAccountCreation: false,
-    formValidationFeedback: true,
-    homeRoutePath: '/',
     overrideLoginErrors: true,
-    privacyUrl: 'privacy',
-    sendVerificationEmail: true,
+    sendVerificationEmail: false,
+
+    // Appearance
     showAddRemoveServices: false,
     showForgotPasswordLink: true,
-    showPlaceholders: false,
-    termsUrl: 'temrs-of-use'
+    showLabels: true,
+    showPlaceholders: true,
+
+    // Client-side Validation
+    continuousValidation: false,
+    negativeFeedback: false,
+    negativeValidation: true,
+    positiveValidation: true,
+    positiveFeedback: true,
+
+    // Privacy Policy and Terms of Use
+    privacyUrl: 'privacy',
+    termsUrl: 'terms-of-use',
+
+    // Redirects
+    homeRoutePath: '/home',
+
 });
 ```
 
 Details for each of them follow.
 
-| Option                      | Type    | Default | Description |
-| --------------------------- | ------- | ------- | ----------- |
-| confirmPassword             | Boolean |
-| continuousValidation        | Boolean |
-| displayFormLabels           | Boolean |
-| enablePasswordChange        | Boolean |
-| forbidClientAccountCreation | Boolean |
-| formValidationFeedback      | Boolean |
-| homeRoutePath               | String  |
-| overrideLoginErrors         | Boolean |
-| privacyUrl                  | String  |
-| sendVerificationEmail       | Boolean |
-| showAddRemoveServices       | Boolean |
-| showForgotPasswordLink      | Boolean |
-| showPlaceholders            | Boolean |
-| termsUrl                    | String  |
+| Option                      | Type    | Default   | Description |
+| --------------------------- | ------- | --------- | ----------- |
+| Behaviour                   |         |           |             |
+| confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
+| enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
+| forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
+| overrideLoginErrors         | Boolean | true      |             |
+| sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
+| Appearance                  |         |           |             |
+| showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
+| showForgotPasswordLink      | Boolean | false     |             |
+| showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
+| showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
+| Client-side Validation      |         |           |             |
+| continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
+| negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
+| negativeValidation          | Boolean | false     | Specifies whether to highlight input elements in case of positive validation. |
+| positiveValidation          | Boolean | false     | Specifies whether to display negative validation feed-back inside input elements. |
+| positiveFeedback            | Boolean | false     | Specifies whether to display positive validation feed-back inside input elements. |
+| Links                       |         |           |             |
+| homeRoutePath               | String  | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
+| privacyUrl                  | String  | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
+| termsUrl                    | String  | undefined | Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
 
 
 <a name="routing"/>
 #### Routing
 
-There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
+There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enrol account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
 
-The simplest way is to make the call passing just the route code (available codes are: changePwd, enrollAccount, forgotPwd, resetPwd, signIn, signUp):
+The simplest way is to make the call passing just the route code (available codes are: changePwd, enrolAccount, forgotPwd, resetPwd, signIn, signUp):
 
 ```javascript
 AccountsTemplates.configureRoute('signIn');
 ```
 
-This will setup the sign in route with a full-page form letting users access your app.
+This will set up the sign in route with a full-page form letting users access your app.
 
 But you can also pass in more options to adapt it to your needs with:
 
@@ -253,14 +265,14 @@ All the above fields are optional and fall back to default values in case you do
 | Route           | Code          | Name            | Path             | Template       |
 | --------------- | ------------- | --------------- | ---------------  | -------------- |
 | change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |
-| enroll account  | enrollAccount | atEnrollAccount | /enroll-account  | fullPageAtForm |
+| enrol account   | enrolAccount  | atEnrolAccount  | /enrol-account   | fullPageAtForm |
 | forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |
 | reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |
 | sign in         | signIn        | atSignIn        | /signin          | fullPageAtForm |
 | sign up         | signUp        | atSignUp        | /signup          | fullPageAtForm |
 
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
-If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successfull sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
+If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
 
 
 <a name="content-protection"/>
@@ -362,17 +374,17 @@ Accounts.config({
 ### Form Fields Configuration
 
 Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour.
-One of the most interesting part is that custom additinal sign up fiels can be also added to the sign up form!
+One of the most interesting part is that custom additional sign up fields can be also added to the sign up form!
 
 Each field object is represented by the following properties:
 
 | Property    | Type     | Required | Description                                                           |
 | ----------- | -------- |:--------:| --------------------------------------------------------------------- |
-| _id         | String   |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additinoal sign up field. Usually all lower-case letters. |
-| type        | String   |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like checkbox, and select are likely to be supported in some future release. |
-| required    | Boolean  |          | When set to true the corresponding field cannot be left blank.|
+| _id         | String   |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters. |
+| type        | String   |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like check box, and select are likely to be supported in some future release. |
+| required    | Boolean  |          | When set to true the corresponding field cannot be left blank
 | displayName | String   |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.  |
-| placeholder | String   |          | Specifies the placeholder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `_id` will be used. The placeholder is shown only if `showPlaceholders` option is set to true. |
+| placeholder | String   |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true. |
 | minLength   | Integer  |          | If specified requires the content of the field to be at least `minLength` characters. |
 | maxLength   | Integer  |          | If specified require the content of the field to be at most `maxLength` characters. |
 | re          | RegExp   |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
@@ -396,7 +408,7 @@ There are a number of special ids used for basic input fields. These are:
 * new_password_again
 
 Any other id will be interpreted as an additional sign up field.
-In case aspecial field is not explicitely added, it will be automatically inserted at initialization time (with appropriate default properties).
+In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
 
 #### Add a field
 
@@ -444,10 +456,65 @@ AccountsTemplates.addField({
     required: true,
     minLength: 6,
     re: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
-    errStr: 'At least 1 digit, 1 lowercase and 1 uppercase',
+    errStr: 'At least 1 digit, 1 lower-case and 1 upper-case',
 });
 ```
 
+#### Login with Username or Email
+
+In order to let the user register with both a `username` and an `email` address and let him the possibility to log in using one of them, both the `username` and `email` fields must be added.
+This is an example about how to configure such a behaviour:
+
+```javascript
+AccountsTemplates.removeField('email');
+AccountsTemplates.addFields([
+  {
+      _id: "username",
+      type: "text",
+      displayName: "username",
+      required: true,
+      minLength: 5,
+  },
+  {
+      _id: 'email',
+      type: 'email',
+      required: true,
+      displayName: "email",
+      re: /.+@(.+){2,}\.(.+){2,}/,
+      errStr: 'Invalid email',
+  }
+]);
+```
+
+This will trigger the automatic insertion of the special field `username_and_email` to be used for the sign in form.
+If you wish to further customize the `username_and_email` field you can add it together with the other two:
+
+```javascript
+AccountsTemplates.removeField('email');
+AccountsTemplates.addFields([
+  {
+      _id: "username",
+      type: "text",
+      displayName: "username",
+      required: true,
+      minLength: 5,
+  },
+  {
+      _id: 'email',
+      type: 'email',
+      required: true,
+      displayName: "email",
+      re: /.+@(.+){2,}\.(.+){2,}/,
+      errStr: 'Invalid email',
+  },
+  {
+      _id: 'username_and_email',
+      type: 'text',
+      required: true,
+      displayName: "Login",
+  }
+]);
+```
 
 <a name="side-notes"/>
 ## Side Notes

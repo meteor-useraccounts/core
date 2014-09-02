@@ -116,9 +116,9 @@
 * Bump to version 0.0.7 - [`546d2aa`](https://github.com/splendido/accounts-templates-core/commit/546d2aa73ab8bf820fe0344e8fe7d35c4aabd366)
 * temporarly removed status cpwd - [`8963551`](https://github.com/splendido/accounts-templates-core/commit/8963551f2a3d86d422423c0da87b8dce3d2ffed9)
 * re-added state enro to be able to switch between different text inside the resetPassword template - [`6aa269c`](https://github.com/splendido/accounts-templates-core/commit/6aa269cd9bdbcf7544850735687eb0b0a2fc707f)
-* Merge pull request [#8](https://github.com/splendido/accounts-templates-core/issues/8) from fpoirier1/master Account enrollment - [`25cd809`](https://github.com/splendido/accounts-templates-core/commit/25cd809f32aa44fcbc87b8845dac84902def00ef)
-* Removed unnecessary enroll state - [`1f385c8`](https://github.com/splendido/accounts-templates-core/commit/1f385c8611ac4d1b24043f74ddbfe2954fd50dfe)
-* Added account enrollment - [`2387b9d`](https://github.com/splendido/accounts-templates-core/commit/2387b9ddb728cb705aba603b920ddbe44d6df9ef)
+* Merge pull request [#8](https://github.com/splendido/accounts-templates-core/issues/8) from fpoirier1/master Account enrolment - [`25cd809`](https://github.com/splendido/accounts-templates-core/commit/25cd809f32aa44fcbc87b8845dac84902def00ef)
+* Removed unnecessary enrol state - [`1f385c8`](https://github.com/splendido/accounts-templates-core/commit/1f385c8611ac4d1b24043f74ddbfe2954fd50dfe)
+* Added account enrolment - [`2387b9d`](https://github.com/splendido/accounts-templates-core/commit/2387b9ddb728cb705aba603b920ddbe44d6df9ef)
 
 ## v.0.0.06
 

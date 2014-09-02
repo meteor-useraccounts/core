@@ -204,9 +204,9 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
         // Setting 'Change Password'
         AccountsTemplates.setState('changePwd');
         test.equal(AccountsTemplates.getState(), 'changePwd');
-        // Setting 'Enroll Account'
-        AccountsTemplates.setState('enrollAccount');
-        test.equal(AccountsTemplates.getState(), 'enrollAccount');
+        // Setting 'Enrol Account'
+        AccountsTemplates.setState('enrolAccount');
+        test.equal(AccountsTemplates.getState(), 'enrolAccount');
         // Setting 'Forgot Password'
         AccountsTemplates.setState('forgotPwd');
         test.equal(AccountsTemplates.getState(), 'forgotPwd');
