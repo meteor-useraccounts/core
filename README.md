@@ -38,6 +38,8 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
   * [Routing](#routing)
   * [Content Protection](#content-protection)
 * [Advanced Customization](#advanced-customization)
+  * [Form Title](#form-title)
+  * [Button Text](#button-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
 * [Side Notes](#side-notes)
@@ -150,9 +152,11 @@ is called somewhere, whenever you want to switch language.
 <a name="configuration-api"/>
 ### Configuration API
 
-There are basically three way to interact with AccountsTemplates for basic configuration:
+There are basically few different ways to interact with AccountsTemplates for basic configuration:
 * AccountsTemplates.configureRoute(route_core, options);
 * AccountsTemplates.configure(options);
+* AccountsTemplates.configureTitle(title);
+* AccountsTemplates.configureButtonText(text);
 * AccountsTemplates.init();
 
 There is no specific order for the above calls to be effective, and you can do many of them possibly in different files, but `AccountsTemplates.init();` **should always come last**!
@@ -344,6 +348,43 @@ possibly have a look at the iron-router [documentation](https://github.com/Event
 ## Advanced Customization
 
 
+<a name="form-title"/>
+### Form Title
+
+In case you wish to change form titles, you can call:
+
+```javascript
+AccountsTemplates.configureTitle({
+    changePwd: "Password Title",
+    enrolAccount: "Enrol Title",
+    forgotPwd: "Forgot Pwd Title",
+    resetPwd: "Reset Pwd Title",
+    signIn: "Sign In Title",
+    signUp: "Sign Up Title",
+};
+```
+
+the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+<a name="button-text"/>
+### Button Text
+
+In case you wish to change the text appearing inside the submission button, you can call:
+
+```javascript
+AccountsTemplates.configureButtonText({
+    changePwd: "Password Text",
+    enrolAccount: "Enrol Text",
+    forgotPwd: "Forgot Pwd Text",
+    resetPwd: "Reset Pwd Text",
+    signIn: "Sign In Text",
+    signUp: "Sign Up Text",
+};
+```
+
+the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+
 <a name="disabling-client-side-accounts-creation"/>
 ### Disabling Client-side Accounts Creation
 
@@ -383,8 +424,8 @@ Each field object is represented by the following properties:
 | _id         | String   |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters. |
 | type        | String   |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like check box, and select are likely to be supported in some future release. |
 | required    | Boolean  |          | When set to true the corresponding field cannot be left blank
-| displayName | String   |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.  |
-| placeholder | String   |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the `displayName` or, if not available, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true. |
+| displayName | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.  |
+| placeholder | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true. |
 | minLength   | Integer  |          | If specified requires the content of the field to be at least `minLength` characters. |
 | maxLength   | Integer  |          | If specified require the content of the field to be at most `maxLength` characters. |
 | re          | RegExp   |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
@@ -393,6 +434,39 @@ Each field object is represented by the following properties:
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
+
+Furthermore, you can pass an object for `displayName`, `placeholder` to specify different texts for different form states. The matched pattern is:
+
+```javascript
+{
+    default: Match.Optional(String),
+    changePwd: Match.Optional(String),
+    enrolAccount: Match.Optional(String),
+    forgotPwd: Match.Optional(String),
+    resetPwd: Match.Optional(String),
+    signIn: Match.Optional(String),
+    signUp: Match.Optional(String),
+}
+```
+
+which permits to specify a different text for each different state, or a default value to be used for states which are not explicitely provided. For example:
+
+```javascript
+AccountsTemplates.addField({
+    _id: 'password',
+    type: 'password',
+    placeholder: {
+        signUp: "At least six characters"
+    },
+    required: true,
+    minLength: 6,
+    re: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
+    errStr: 'At least 1 digit, 1 lowercase and 1 uppercase',
+});
+```
+
+asks AccountsTemplates to display "At least six characters" as the placeholder for the password field when the sign up form is display, and to display "Password" (the capitalized *_id*_) in any other case.
+
 
 #### Special Field's Ids
 
