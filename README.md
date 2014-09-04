@@ -467,6 +467,74 @@ AccountsTemplates.addField({
 
 asks AccountsTemplates to display "At least six characters" as the placeholder for the password field when the sign up form is display, and to display "Password" (the capitalized *_id*_) in any other case.
 
+**Custom validation** can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
+
+```
+AccountsTemplates.addField({
+    name: 'name',
+    type: 'text',
+    displayName: "Name",
+    func: function(value){return value === 'Full Name';},
+    errStr: 'Only "Full Name" allowed!',
+});
+```
+
+will require the name input to be exactly "Full Name" (though this might not be that interesting...).
+If instead you do something along the following line:
+
+```javascript
+AccountsTemplates.addField({
+    name: 'phone',
+    type: 'tel',
+    displayName: "Phone",
+    required: true,
+    func: function (number) {
+        if (Meteor.isServer){
+            return isValidPhone(number);
+        }
+        return true;
+    },
+    errStr: 'Invalid Phone number!',
+});
+```
+
+supposing `isValidPhone` is available only server-side, you will be validating the field only server-side, on form submission.
+If, differently you do it this way:
+
+```javascript
+if (Meteor.isServer){
+    Meteor.methods({
+        validatePhone: function (number) {
+            return isValidPhone(number);
+        },
+    });
+}
+
+AccountsTemplates.addField({
+    name: 'phone',
+    type: 'tel',
+    displayName: "Phone",
+    required: true,
+    func: function(val){
+        Meteor.call('validatePhone', val, function (error, valid) {
+            if (error) {
+                console.log(error.reason);
+            } else {
+                if (valid)
+                    AccountsTemplates.setFieldError('phone', false);
+                else
+                    AccountsTemplates.setFieldError('phone', 'Invalid Phone number!');     
+            }
+        });
+        return true;
+    },
+    errStr: 'Invalid Phone number!',
+});
+```
+
+you can achieve also client-side validation, even if there will be a bit of delay before getting the error displayed...
+
+*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validatino error), are finally interpreted as error and displayed where more appropriate.
 
 #### Special Field's Ids
 
