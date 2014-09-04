@@ -200,7 +200,6 @@ AccountsTemplates.configure({
 
     // Redirects
     homeRoutePath: '/home',
-
 });
 ```
 
@@ -262,7 +261,20 @@ AccountsTemplates.configureRoute('signIn', {
 });
 ```
 
-Fields `name`, `path`, `template`, and `layoutTemplate` are passed down directly to Router.map (see the official iron router documentation [here](https://github.com/EventedMind/iron-router/#api) for more details), while `redirect` permits to specify where to redirect the user after successful form submit.
+Fields `name`, `path`, `template`, and `layoutTemplate` are passed down directly to Router.map (see the official iron router documentation [here](https://github.com/EventedMind/iron-router/#api) for more details), while `redirect` permits to specify where to redirect the user after successful form submit. Actually, `redirect` can be a function so that, for example, the following:
+
+```javascript
+AccountsTemplates.configureRoute('signIn', {
+    redirect: function(){
+        var user = Meteor.user();
+        if (user)
+          Router.go('/user/' + user._id);
+    }
+});
+```
+
+will redirect to, e.g., '/user/ae8WQQk6DrtDzA2AZ' after succesful login :-)
+
 
 All the above fields are optional and fall back to default values in case you don't provide them. Default values are as follows:
 
@@ -354,14 +366,16 @@ possibly have a look at the iron-router [documentation](https://github.com/Event
 In case you wish to change form titles, you can call:
 
 ```javascript
-AccountsTemplates.configureTitle({
-    changePwd: "Password Title",
-    enrolAccount: "Enrol Title",
-    forgotPwd: "Forgot Pwd Title",
-    resetPwd: "Reset Pwd Title",
-    signIn: "Sign In Title",
-    signUp: "Sign Up Title",
-};
+AccountsTemplates.configure({
+    title: {
+      changePwd: "Password Title",
+      enrolAccount: "Enrol Title",
+      forgotPwd: "Forgot Pwd Title",
+      resetPwd: "Reset Pwd Title",
+      signIn: "Sign In Title",
+      signUp: "Sign Up Title",
+    }
+});
 ```
 
 the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
@@ -372,14 +386,16 @@ the above example asks to change the title for all possible form states, but you
 In case you wish to change the text appearing inside the submission button, you can call:
 
 ```javascript
-AccountsTemplates.configureButtonText({
-    changePwd: "Password Text",
-    enrolAccount: "Enrol Text",
-    forgotPwd: "Forgot Pwd Text",
-    resetPwd: "Reset Pwd Text",
-    signIn: "Sign In Text",
-    signUp: "Sign Up Text",
-};
+AccountsTemplates.configure({
+    buttonText: {
+      changePwd: "Password Text",
+      enrolAccount: "Enrol Text",
+      forgotPwd: "Forgot Pwd Text",
+      resetPwd: "Reset Pwd Text",
+      signIn: "Sign In Text",
+      signUp: "Sign Up Text",
+    }
+});
 ```
 
 the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.
