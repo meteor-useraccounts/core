@@ -1,7 +1,123 @@
-`Last updated: 2014-08-10`
+`Last updated: 2014-09-06`
 
 ## Master
+* fixed field error, see [#68](https://github.com/splendido/accounts-templates-core/issues/68) - [`6049875`](https://github.com/splendido/accounts-templates-core/commit/6049875b0bc225cb8267ddca16f27bd8e8ec58d4)
+* enrol -> enroll again - [`9b2fb0a`](https://github.com/splendido/accounts-templates-core/commit/9b2fb0a5468703bc3cb55479d3d2717f8543b478)
 
+## v.0.0.25
+
+* Bump to version 0.0.25 - [`10cab06`](https://github.com/splendido/accounts-templates-core/commit/10cab06bab997d1fc27ca10efcd0e98d3ed91408)
+* accounts-t9n version 0.0.16 - [`85aa904`](https://github.com/splendido/accounts-templates-core/commit/85aa90409282a0f0db11e5f467d1d642e3a25806)
+* more docs - [`01a2d0d`](https://github.com/splendido/accounts-templates-core/commit/01a2d0d906b02607b7dfb264812a43d8e197b0dc)
+* tabs to spaces - [`75b00a0`](https://github.com/splendido/accounts-templates-core/commit/75b00a06ad7a6c8bbe13d0a0bcc3e985bf013da1)
+* fixed [#62](https://github.com/splendido/accounts-templates-core/issues/62) and https://github.com/splendido/accounts-templates-bootstrap/issues/5 - [`b56f4f6`](https://github.com/splendido/accounts-templates-core/commit/b56f4f6a7bf409c0b924023e99d1739cbceb0233)
+* removed configureTitle and configureButtonText: merged into configure. See [#65](https://github.com/splendido/accounts-templates-core/issues/65) - [`fc0177b`](https://github.com/splendido/accounts-templates-core/commit/fc0177b6f686799d9606aaae452b05199982e04c)
+* fixed [#63](https://github.com/splendido/accounts-templates-core/issues/63) - [`820b44a`](https://github.com/splendido/accounts-templates-core/commit/820b44a9f11c16e1c2f37d3dea317449f2c0c31a)
+
+## v.0.0.24
+
+* Bump to version 0.0.24 - [`d862cf0`](https://github.com/splendido/accounts-templates-core/commit/d862cf062ee433ec7dc07ce278627bb71eba7e3b)
+* Bump to version 0.0.24 - [`002a79b`](https://github.com/splendido/accounts-templates-core/commit/002a79b15ec214ca5a1a1cbbf1d3dd13790ebb0c)
+* more docs - [`df64d06`](https://github.com/splendido/accounts-templates-core/commit/df64d064327586e82601e2f1bdd9c88a341d2660)
+* implemented [#57](https://github.com/splendido/accounts-templates-core/issues/57), redirect can be a function - [`a2b65a9`](https://github.com/splendido/accounts-templates-core/commit/a2b65a94bea1340bf1568da60437c418b2344c28)
+* Implemented [#60](https://github.com/splendido/accounts-templates-core/issues/60), title, button, placeholder, and displayName customizations - [`4c735fd`](https://github.com/splendido/accounts-templates-core/commit/4c735fd77703870e086776e62daed86450569282)
+
+## v.0.0.23
+
+
+* Bump to version 0.0.23 - [`bacf007`](https://github.com/splendido/accounts-templates-core/commit/bacf0078f9dca8570f4432fd7ed928f1a757f40c)
+* update README.md, plus some other internal renaming - [`b49bc26`](https://github.com/splendido/accounts-templates-core/commit/b49bc262ddb3cf3256ae5eab1ad6bf80dd6b0b9e)
+* meteor publish - [`1f5efe3`](https://github.com/splendido/accounts-templates-core/commit/1f5efe3566760a35db452de1565519a6ec1b4f42)
+
+## v.0.0.22
+
+* Bump to version 0.0.22 - [`13ad75b`](https://github.com/splendido/accounts-templates-core/commit/13ad75b2a316a0d2270780760377ffb9d8d3105a)
+* fixed automatic fields initialization - [`23e3605`](https://github.com/splendido/accounts-templates-core/commit/23e3605d3eebf98d66ebe9354eb78750e98fa3a1)
+* package_0.8.3.js -> package.js - [`01a1f2b`](https://github.com/splendido/accounts-templates-core/commit/01a1f2b090b890fa514da8218ca09b3b3c8d5f2f)
+* new files for Meteor 0.9.0 - [`d746afa`](https://github.com/splendido/accounts-templates-core/commit/d746afa33271d2c152ec48aaf075480ce3e253d0)
+
+## v.0.0.21
+
+* Bump to version 0.0.21 - [`c41262f`](https://github.com/splendido/accounts-templates-core/commit/c41262fe77853e6c981c14c30d5cffa2e73dedb2)
+* fixed setFieldError inside ensureSignedIn - [`fc4d40b`](https://github.com/splendido/accounts-templates-core/commit/fc4d40ba4e1011f43660f4f7c4cdf99ca5b71f3f)
+
+## v.0.0.20
+
+* Bump to version 0.0.20 - [`975b728`](https://github.com/splendido/accounts-templates-core/commit/975b72867bf1902b4c6d3712014a1062d4b8c3dd)
+* fix validation stuff - [`ea3c264`](https://github.com/splendido/accounts-templates-core/commit/ea3c264678468c8da95270bce5000ba666d62e29)
+
+## v.0.0.19
+
+* Bump to version 0.0.19 - [`64bc471`](https://github.com/splendido/accounts-templates-core/commit/64bc47182f1b4fa57ac6761580f7100bb8f24050)
+* field.name -> field._id to fix bug with input fields rendering - [`d7387e8`](https://github.com/splendido/accounts-templates-core/commit/d7387e8cec90e4751f45288fac84c9241e0214e7)
+* console.log cleanup - [`8261a52`](https://github.com/splendido/accounts-templates-core/commit/8261a52cac6730f41007384d1031773257d588b8)
+* new validation and feedback api - [`78833aa`](https://github.com/splendido/accounts-templates-core/commit/78833aa48edaba2b80e054d78099e4cde4f6e126)
+* first stub for new validation API - [`7ed2075`](https://github.com/splendido/accounts-templates-core/commit/7ed207518e6d2e24b8033c0b488e6d4e5946248b)
+* ported more documentation - [`4fd84b1`](https://github.com/splendido/accounts-templates-core/commit/4fd84b16a414e5f642ba98d164fcc5e2b3b99b1e)
+* added smart.lock - [`4200341`](https://github.com/splendido/accounts-templates-core/commit/4200341120041168c16a2cbc5eb68c3b7c5dddd6)
+
+## v.0.0.18
+
+* Bump to versino 0.0.18 - [`b7ec23b`](https://github.com/splendido/accounts-templates-core/commit/b7ec23b04b75ecf40e2f41f24b6911878b5ec21c)
+* small fixes - [`21321ae`](https://github.com/splendido/accounts-templates-core/commit/21321aef3d99f142153a1c5881fc0e005175ef92)
+* first paragraphs for the new documentation - [`2d1a2c3`](https://github.com/splendido/accounts-templates-core/commit/2d1a2c359e297c466d249ee98b518ade59f75780)
+* old readme backup - [`7d5d3cd`](https://github.com/splendido/accounts-templates-core/commit/7d5d3cdc8d306c8d77471d89cb117f30d7127819)
+* better link to issue 34 - [`e38bdf9`](https://github.com/splendido/accounts-templates-core/commit/e38bdf9a84858463420d2be521d4b8403cb713da)
+* typo fix - [`51282be`](https://github.com/splendido/accounts-templates-core/commit/51282bea209c703c23552e5bb45f7c855ebef21f)
+* moved sendVerificationEmail to AccountsTemplates.config - [`2182337`](https://github.com/splendido/accounts-templates-core/commit/218233782857c5f579b017d27e750b3615e31d94)
+* added overrideLoginErrors to improove security - [`dec448c`](https://github.com/splendido/accounts-templates-core/commit/dec448c82f511d8137bc50cabbf042b25a209347)
+* added overrideLoginErrors to improove security - [`f318062`](https://github.com/splendido/accounts-templates-core/commit/f318062fd2afbe8bb0512af92e869e41e33552cd)
+* removed old configuration flags - [`e241726`](https://github.com/splendido/accounts-templates-core/commit/e241726455c413a3478e262139df7bf2f388eab7)
+
+## v.0.0.16
+
+* Bump to version 0.0.16 - [`f886674`](https://github.com/splendido/accounts-templates-core/commit/f8866741dcb9b23f5eb2181ff9dc2b66c5d9b3f8)
+* better errors - [`8b16a5f`](https://github.com/splendido/accounts-templates-core/commit/8b16a5fffbb2526db9306ef6456d8e869c5544ce)
+
+## v.0.0.15
+
+* Bump to version 0.0.15 - [`69e011e`](https://github.com/splendido/accounts-templates-core/commit/69e011ee7b5bc9a514bb61f40778bd2a2a3a9c23)
+* fixed link click - [`310a34f`](https://github.com/splendido/accounts-templates-core/commit/310a34f7d9be9722b67423cd2b8c70475ff41d78)
+
+## v.0.0.14
+
+* Bump to version 0.0.14 - [`5839384`](https://github.com/splendido/accounts-templates-core/commit/583938428ea157431b4aff1ad21252c203ceb2e9)
+* fixed [#54](https://github.com/splendido/accounts-templates-core/issues/54), plus more fixes - [`68aa80b`](https://github.com/splendido/accounts-templates-core/commit/68aa80b87dde562b76eeadcecb2967cd0994871b)
+
+## v.0.0.13
+
+* Bump to version 0.0.13 - [`70ab259`](https://github.com/splendido/accounts-templates-core/commit/70ab259354199080e80e406b9f7e45a4a6513305)
+* documentation warning - [`f1df9a2`](https://github.com/splendido/accounts-templates-core/commit/f1df9a244c050a8d7d16ac9f0f7ef9f7c27702c2)
+* documentation warning - [`5409b0e`](https://github.com/splendido/accounts-templates-core/commit/5409b0ed0e9771cad0fc6d9d5985241c42bf2506)
+* tests fix for allowing re-run - [`0f4d828`](https://github.com/splendido/accounts-templates-core/commit/0f4d8287a16b90033f82757d9593cb97ee49e6e2)
+* new routes configuration with configureRoute - [`0403daf`](https://github.com/splendido/accounts-templates-core/commit/0403daf2ae409e8dd2925458502afcf56908d955)
+* new names for internal states - [`6578ce8`](https://github.com/splendido/accounts-templates-core/commit/6578ce87fd41237d343e7369e53a22e5471d1eed)
+* new templates name - [`0eacf3b`](https://github.com/splendido/accounts-templates-core/commit/0eacf3b0bde58b6a6a0fd45861a3d5bd4b671e05)
+* better validation with fewer code - [`7030d7a`](https://github.com/splendido/accounts-templates-core/commit/7030d7aed097a74b243274b95fd0de50fb12f855)
+* more about [#53](https://github.com/splendido/accounts-templates-core/issues/53) - [`5d02f6b`](https://github.com/splendido/accounts-templates-core/commit/5d02f6b80698efc025b1175930e1dd8fb30e8f3d)
+* fixed [#51](https://github.com/splendido/accounts-templates-core/issues/51) - [`df834c7`](https://github.com/splendido/accounts-templates-core/commit/df834c7cb40977a95487a74109172377ac0c3d1b)
+* Merge pull request [#53](https://github.com/splendido/accounts-templates-core/issues/53) from PranayShah/patch-2 !! at lines 76, 86 replaced with !_.isEmpty - [`ac08a58`](https://github.com/splendido/accounts-templates-core/commit/ac08a58ba25a678800fc3fd2d91a9989495941fc)
+* !! at lines 76, 86 replaced with !_.isEmpty !! for some reason does not work. - [`4240bfc`](https://github.com/splendido/accounts-templates-core/commit/4240bfcdc50bd4b3ae7ed7eb689e891c5896df3d)
+* removed title when user is logged in - [`0c3a15a`](https://github.com/splendido/accounts-templates-core/commit/0c3a15af1147c88a137a007cd53dce55cf89200d)
+* removed logout button - [`c0e693c`](https://github.com/splendido/accounts-templates-core/commit/c0e693cfa3a89205ebb98ef3a2f3bab61d6a27e0)
+* Merge branch 'master' of github.com:splendido/accounts-templates-core - [`35cd3c5`](https://github.com/splendido/accounts-templates-core/commit/35cd3c55f3738869051e6312b9d5be1407976033)
+* small fixes, plus better deps - [`42260d7`](https://github.com/splendido/accounts-templates-core/commit/42260d79fd6e6523ffb019afbfa805c8f72f2751)
+* Merge pull request [#49](https://github.com/splendido/accounts-templates-core/issues/49) from geritol/master Updted changelog(now starting at initial commit + styling) + readme(styling, links, order) - [`2af51ce`](https://github.com/splendido/accounts-templates-core/commit/2af51ceb40e1a8e36f11dba890e84c253ced60bc)
+* Update README.md - [`5dad3fd`](https://github.com/splendido/accounts-templates-core/commit/5dad3fdb77244712e2c21e37c00e486e0d8e415d)
+* some order changes, links set up - [`8de6759`](https://github.com/splendido/accounts-templates-core/commit/8de6759085c3caf100c77756b7f6b71d4ca3ed4a)
+* Update README.md - [`8809b8b`](https://github.com/splendido/accounts-templates-core/commit/8809b8b0f1d16ac7d83311abc3de6654f6222379)
+* Update README.md - [`1bf45a5`](https://github.com/splendido/accounts-templates-core/commit/1bf45a557ce6d7016be80e42bd9a0945dfee5476)
+* Update README.md - [`9d9c05b`](https://github.com/splendido/accounts-templates-core/commit/9d9c05b1ee1053e2d6c525e612e0f8e688ed8694)
+* Update README.md - [`7d5b282`](https://github.com/splendido/accounts-templates-core/commit/7d5b282b4cd23d048c8cbedcdd7a435e6a9127a4)
+* Update README.md - [`c499152`](https://github.com/splendido/accounts-templates-core/commit/c499152e6bc115b10204e2dea294ec4e3abd6046)
+* Update README.md - [`01b1df9`](https://github.com/splendido/accounts-templates-core/commit/01b1df9a7bec87a3199ccfc87681ffe9d610a302)
+* Update README.md - [`d9a9e62`](https://github.com/splendido/accounts-templates-core/commit/d9a9e62a00180f4f9d3865e8672c8d2a450db953)
+* Update README.md - [`3b6ad52`](https://github.com/splendido/accounts-templates-core/commit/3b6ad528bb7e358d97bd18088cf7397fdae136ac)
+* Update README.md - [`53c5151`](https://github.com/splendido/accounts-templates-core/commit/53c5151ac7294d7801e2d56d3ebc2f3d98c457ea)
+* Update README.md - [`8efb09a`](https://github.com/splendido/accounts-templates-core/commit/8efb09ab0935d1d40255171753efd3644999d18d)
+* updated till v.0.0.01 - [`0610e75`](https://github.com/splendido/accounts-templates-core/commit/0610e754c489886dfd1701ba766648ab89f480bb)
+* Update CHANGELOG.md - [`ddef515`](https://github.com/splendido/accounts-templates-core/commit/ddef51598596791e1eb06e6b4a7b10650ab4f633)
+* Update CHANGELOG.md - [`b3488ad`](https://github.com/splendido/accounts-templates-core/commit/b3488ad72fb268b8ccd949cd748aec71d3596181)
 * Merge pull request [#48](https://github.com/splendido/accounts-templates-core/issues/48) from geritol/master Added CHANGELOG.md - [`5532c14`](https://github.com/splendido/accounts-templates-core/commit/5532c141e1d12b0d5e744a771f60e1fcf5e27345)
 * first attempt for positive feedback - [`02cf38d`](https://github.com/splendido/accounts-templates-core/commit/02cf38da544690ea99cb846a86a382b180a61141)
 * Create CHANGELOG.md - [`81437d2`](https://github.com/splendido/accounts-templates-core/commit/81437d2ea4eb5c10e2f61ad8bb90141680abacdb)
