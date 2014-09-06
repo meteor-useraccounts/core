@@ -214,7 +214,7 @@ Details for each of them follow.
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
 | overrideLoginErrors         | Boolean | true      |             |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
-| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `changePwd`, `enrollAccount`, and `resetPwd` routes. | 
+| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. | 
 | Appearance                  |         |           |             |
 | showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
 | showForgotPasswordLink      | Boolean | false     |             |
@@ -280,14 +280,15 @@ will redirect to, e.g., '/user/ae8WQQk6DrtDzA2AZ' after succesful login :-)
 
 All the above fields are optional and fall back to default values in case you don't provide them. Default values are as follows:
 
-| Route           | Code          | Name            | Path             | Template       |
-| --------------- | ------------- | --------------- | ---------------  | -------------- |
-| change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |
-| enrol account   | enrolAccount  | atEnrolAccount  | /enrol-account   | fullPageAtForm |
-| forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |
-| reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |
-| sign in         | signIn        | atSignIn        | /signin          | fullPageAtForm |
-| sign up         | signUp        | atSignUp        | /signup          | fullPageAtForm |
+| Route           | Code          | Name            | Path             | Template       | Redirect after Timeout |
+| --------------- | ------------- | --------------- | ---------------  | -------------- |:----------------------:|
+| change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |                        |
+| enrol account   | enrolAccount  | atEnrolAccount  | /enrol-account   | fullPageAtForm |            X           |
+| forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |            X           |
+| reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |            X           |
+| sign in         | signIn        | atSignIn        | /signin          | fullPageAtForm |                        |
+| sign up         | signUp        | atSignUp        | /signup          | fullPageAtForm |                        |
+| verify email    | verifyEmail   | atVerifyEmail   | /verify-email    | fullPageAtForm |            X           |
 
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
