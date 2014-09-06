@@ -200,6 +200,7 @@ AccountsTemplates.configure({
 
     // Redirects
     homeRoutePath: '/home',
+    redirectTimeout: 4000,
 });
 ```
 
@@ -213,6 +214,7 @@ Details for each of them follow.
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
 | overrideLoginErrors         | Boolean | true      |             |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
+| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `changePwd`, `enrollAccount`, and `resetPwd` routes. | 
 | Appearance                  |         |           |             |
 | showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
 | showForgotPasswordLink      | Boolean | false     |             |
