@@ -309,7 +309,7 @@ In case you want to protect about all of your routes you might want to set up yo
 
 ```javascript
 Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
-    except: ['home', 'login', 'signup', 'forgotPassword']
+    except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword']
 });
 ```
 
