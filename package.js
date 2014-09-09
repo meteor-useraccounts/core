@@ -57,9 +57,14 @@ Package.on_use(function(api) {
         'lib/utils.js',
         'lib/core.js',
         'lib/client.js',
-        'lib/atForm.js',
-        'lib/atInput.js',
-        'lib/atSocial.js',
+        'lib/at_error.js',
+        'lib/at_form.js',
+        'lib/at_input.js',
+        'lib/at_oauth.js',
+        'lib/at_result.js',
+        'lib/at_signin_link.js',
+        'lib/at_social.js',
+        'lib/at_title.js',
         'lib/methods.js',
     ], ['client']);
 
