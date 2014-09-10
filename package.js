@@ -56,6 +56,7 @@ Package.on_use(function(api) {
     api.add_files([
         'lib/utils.js',
         'lib/core.js',
+        'lib/field.js',
         'lib/client.js',
         'lib/at_error.js',
         'lib/at_form.js',
