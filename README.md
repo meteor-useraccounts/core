@@ -153,10 +153,8 @@ is called somewhere, whenever you want to switch language.
 ### Configuration API
 
 There are basically few different ways to interact with AccountsTemplates for basic configuration:
-* AccountsTemplates.configureRoute(route_core, options);
+* AccountsTemplates.configureRoute(route_code, options);
 * AccountsTemplates.configure(options);
-* AccountsTemplates.configureTitle(title);
-* AccountsTemplates.configureButtonText(text);
 * AccountsTemplates.init();
 
 There is no specific order for the above calls to be effective, and you can do many of them possibly in different files, but `AccountsTemplates.init();` **should always come last**!
@@ -201,6 +199,14 @@ AccountsTemplates.configure({
     // Redirects
     homeRoutePath: '/home',
     redirectTimeout: 4000,
+
+    // Texts
+    buttonText: {
+        signUp: "Sign Up Now!"
+    },
+    title: {
+        forgotPwd: "Recover Your Passwod"
+    },
 });
 ```
 
@@ -220,6 +226,9 @@ Details for each of them follow.
 | showForgotPasswordLink      | Boolean | false     |             |
 | showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
+| Texts                       |         |           |             |
+| buttonText                  | Object  |           | Permits to specify the text to be shown on the submit button for each form state (see [below](#button-text)). |
+| title                       | Object  |           | Permits to specify the title to be shown for each form state (see [below](#form-title)). || Client-side Validation      |         |           |             |
 | Client-side Validation      |         |           |             |
 | continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
