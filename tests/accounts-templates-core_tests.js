@@ -235,22 +235,6 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
 // -------------------------------------
 
 
-Tinytest.add("AccountsTemplates - getFieldError/setFieldError", function(test) {
-    if (Meteor.isServer) {
-        // getFieldError does not exist server-side
-        test.throws(function() {
-            AccountsTemplates.getFieldError();
-        });
-        // setFieldError does not exist server-side
-        test.throws(function() {
-            AccountsTemplates.setFieldError();
-        });
-    } else {
-        // TODO: write actual tests...
-    }
-});
-
-
 Tinytest.add("AccountsTemplates - configure", function(test) {
     if (Meteor.isClient) {
         // configure does not exist client-side

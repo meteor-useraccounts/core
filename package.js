@@ -43,6 +43,7 @@ Package.on_use(function(api) {
     api.use([
         'minimongo',
         'mongo-livedata',
+        'reactive-dict',
         'sha',
         'templating'
     ], 'client');
