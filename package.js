@@ -1,52 +1,37 @@
 Package.describe({
     summary: "Meteor sign up and sign in templates core package.",
-    version: "0.0.28",
+    version: "1.0.0",
     name: "splendido:accounts-templates-core",
     git: "https://github.com/splendido/accounts-templates-core.git",
 });
 
 Package.on_use(function(api) {
-    if (api.versionsFrom) {
-        api.versionsFrom("METEOR@0.9.0");
-
-        api.use([
-            'softwarerero:accounts-t9n@0.0.17',
-            'iron:router@0.9.3',
-        ], ['client', 'server']);
-
-        api.imply([
-            'accounts-base',
-            'softwarerero:accounts-t9n@0.0.17',
-            'iron:router@0.9.3',
-        ], ['client', 'server']);
-    }
-    else{
-        api.use([
-            'accounts-t9n',
-            'iron-router',
-        ], ['client', 'server']);
-
-        api.imply([
-            'accounts-base',
-            'accounts-t9n',
-            'iron-router',
-        ], ['client', 'server']);
-    }
+    api.versionsFrom("METEOR@0.9.1");
 
     api.use([
         'check',
-        'deps',
         'accounts-base',
         'underscore',
+        'iron:router@0.9.3',
+        'softwarerero:accounts-t9n@0.0.19',
     ], ['client', 'server']);
 
     api.use([
-        'minimongo',
-        'mongo-livedata',
+        //'minimongo',
+        //'mongo-livedata',
+        'blaze',
         'reactive-dict',
         'sha',
-        'templating'
     ], 'client');
+
+    api.imply([
+        'softwarerero:accounts-t9n@0.0.19',
+        'iron:router@0.9.3',
+    ], ['client', 'server']);
+
+    api.imply([
+        'templating',
+    ], ['client']);
 
     api.add_files([
         'lib/core.js',
@@ -81,24 +66,16 @@ Package.on_use(function(api) {
 });
 
 Package.on_test(function(api) {
-    if (api.versionsFrom) {
-        api.use('splendido:accounts-templates-core');
-        api.use([
-            'softwarerero:accounts-t9n@0.0.17',
-            'iron:router@0.9.3',
-        ], ['client', 'server']);
-    }
-    else{
-        api.use([
-            'accounts-t9n',
-            'iron-router',
-        ], ['client', 'server']);
-
-    }
+    api.use('splendido:accounts-templates-core');
     api.use([
-        'tinytest',
-        'test-helpers',
+        //'softwarerero:accounts-t9n@0.0.17',
+        //'iron:router@0.9.3',
     ], ['client', 'server']);
+    api.use([
+        //'tinytest',
+        //'test-helpers',
+    ], ['client', 'server']);
+
     api.add_files([
         'tests/accounts-templates-core_tests.js',
     ], ['client', 'server']);

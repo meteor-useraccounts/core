@@ -113,10 +113,6 @@
       "1.0.4"
     ],
     [
-      "mongo-livedata",
-      "1.0.4"
-    ],
-    [
       "observe-sequence",
       "1.0.2"
     ],
@@ -154,7 +150,7 @@
     ],
     [
       "softwarerero:accounts-t9n",
-      "0.0.17"
+      "0.0.19"
     ],
     [
       "spacebars",
