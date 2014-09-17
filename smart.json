@@ -6,7 +6,7 @@
     "version": "0.0.28",
     "git": "https://github.com/splendido/accounts-templates-core.git",
     "packages": {
-        "accounts-t9n" : "0.0.17",
+        "accounts-t9n" : "0.0.20",
         "iron-router": "0.8.2"
     }
 }
