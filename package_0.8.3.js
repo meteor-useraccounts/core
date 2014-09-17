@@ -1,33 +1,28 @@
 Package.describe({
     summary: "Meteor sign up and sign in templates core package.",
     version: "0.9.0",
-    name: "splendido:accounts-templates-core",
+    name: "accounts-templates-core",
     git: "https://github.com/splendido/accounts-templates-core.git",
 });
 
 Package.on_use(function(api) {
-    api.versionsFrom("METEOR@0.9.1");
-
     api.use([
         "check",
         "accounts-base",
         "underscore",
-        "iron:router@0.9.3",
-        "softwarerero:accounts-t9n@0.0.20",
+        "iron-router",
+        "accounts-t9n",
     ], ["client", "server"]);
 
     api.use([
-        //"minimongo",
-        //"mongo-livedata",
         "blaze",
         "reactive-dict",
         "sha",
     ], "client");
 
     api.imply([
-        "accounts-base",
-        "softwarerero:accounts-t9n@0.0.20",
-        "iron:router@0.9.3",
+        "accounts-t9n",
+        "iron-router",
     ], ["client", "server"]);
 
     api.imply([
@@ -68,16 +63,7 @@ Package.on_use(function(api) {
 });
 
 Package.on_test(function(api) {
-    api.use("splendido:accounts-templates-core");
-    api.use([
-        //"softwarerero:accounts-t9n@0.0.17",
-        //"iron:router@0.9.3",
-    ], ["client", "server"]);
-    api.use([
-        //"tinytest",
-        //"test-helpers",
-    ], ["client", "server"]);
-
+    api.use("accounts-templates-core");
     api.add_files([
         "tests/accounts-templates-core_tests.js",
     ], ["client", "server"]);
