@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "0.10.29"
 before_install:
   - git submodule update --init --recursive
   - "curl -L http://git.io/ejPSng | /bin/sh"
 env:
-  - TEST_COMMAND=meteor
-  - TEST_COMMAND=mrt METEOR_RELEASE=0.8.3
+  - TEST_COMMAND=meteor add accounts-password && meteor
+  - TEST_COMMAND=meteor add accounts-password && mrt METEOR_RELEASE=0.8.3
