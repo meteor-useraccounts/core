@@ -98,10 +98,12 @@ mrt add accounts-linkedin
 
 **Note**: 3rd party services need to be configured... more about this [here](http://docs.meteor.com/#meteor_loginwithexternalservice)
 
-And finally call `AccountsTemplates.init()` **on both the client and the server**: the easiest way is to put the call inside a file shared between both. For example your file `lib/config/at_config.js` should contain at least the following line:
+And finally call `AccountsTemplates.init()` **at meteor startup, on both the client and the server**: the easiest way is to put the call inside a file shared between both. For example your file `lib/config/at_config.js` should contain at least the following lines:
 
 ```javascript
-AccountsTemplates.init();
+Meteor.startup(function(){
+    AccountsTemplates.init();
+});
 ```
 
 And that's it!
