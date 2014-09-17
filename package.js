@@ -73,10 +73,12 @@ Package.on_test(function(api) {
         //"softwarerero:accounts-t9n@0.0.17",
         //"iron:router@0.9.3",
     ], ["client", "server"]);
+
     api.use([
-        //"tinytest",
-        //"test-helpers",
-    ], ["client", "server"]);
+        'accounts-password',
+        'tinytest',
+        'test-helpers'
+    ], ['client', 'server']);
 
     api.add_files([
         "tests/accounts-templates-core_tests.js",
