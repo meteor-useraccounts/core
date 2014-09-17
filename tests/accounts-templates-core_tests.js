@@ -39,7 +39,12 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
 
     // Trying to add an already existing field
     test.throws(function() {
-        var pwd = _.omit(AccountsTemplates.getField("password"), "visible");
+        var pwd = AccountsTemplates.getField("password");
+        pwd = _.pick(pwd, [
+            "_id", "type", "required", "displayName", "placeholder", "minLength", "maxLength", "re", "func", "errStr",
+            "continuousValidation", "negativeFeedback", "negativeValidation", "positiveValidation", "positiveFeedback",
+            "trim", "lowercase", "uppercase"
+        ]);
         AccountsTemplates.addField(pwd);
     }, function(err) {
         if (err instanceof Error && err.message == "A field called password already exists!")
@@ -201,24 +206,10 @@ Tinytest.add("AccountsTemplates - setState/getState", function(test) {
             AccountsTemplates.setState();
         });
     } else {
-        // Setting "Change Password"
-        AccountsTemplates.setState("changePwd");
-        test.equal(AccountsTemplates.getState(), "changePwd");
-        // Setting "Enrol Account"
-        AccountsTemplates.setState("enrolAccount");
-        test.equal(AccountsTemplates.getState(), "enrolAccount");
-        // Setting "Forgot Password"
-        AccountsTemplates.setState("forgotPwd");
-        test.equal(AccountsTemplates.getState(), "forgotPwd");
-        // Setting "Reset Password"
-        AccountsTemplates.setState("resetPwd");
-        test.equal(AccountsTemplates.getState(), "resetPwd");
-        // Setting "Sign In"
-        AccountsTemplates.setState("signIn");
-        test.equal(AccountsTemplates.getState(), "signIn");
-        // Setting "Sign Up"
-        AccountsTemplates.setState("signUp");
-        test.equal(AccountsTemplates.getState(), "signUp");
+        _.each(AccountsTemplates.STATES, function(state){
+            AccountsTemplates.setState(state);
+            test.equal(AccountsTemplates.getState(), state);
+        });
         // Setting an invalid state should throw a Meteor.Error
         test.throws(function() {
             AccountsTemplates.setState("foo");
