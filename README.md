@@ -44,6 +44,8 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
   * [Form Fields Configuration](#form-fields-configuration)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
+* [Contributing](#contributing)
+
 
 <a name="features"/>
 ## Features
@@ -731,3 +733,12 @@ mrt add accounts-ui
 ```
 
 **Warning**: At the moment the UI for service configuration is not supported and the one provided by `accounts-ui` will be shown!
+
+
+## Contributing
+
+Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
+
+Thanks to [all those who have contributed code changes](https://github.com/splendido/accounts-templates-core/graphs/contributors) and all who have helped by submitting bug reports and feature ideas.
+
+[![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png)](https://www.gittip.com/splendido/)
