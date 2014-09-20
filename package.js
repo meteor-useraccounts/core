@@ -12,6 +12,7 @@ Package.on_use(function(api) {
         "accounts-base",
         "check",
         "underscore",
+        "iron:router",
     ], ["client", "server"]);
 
     api.use([
