@@ -297,8 +297,8 @@ All the above fields are optional and fall back to default values in case you do
 | enrol account   | enrolAccount  | atEnrolAccount  | /enrol-account   | fullPageAtForm |            X           |
 | forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |            X           |
 | reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |            X           |
-| sign in         | signIn        | atSignIn        | /signin          | fullPageAtForm |                        |
-| sign up         | signUp        | atSignUp        | /signup          | fullPageAtForm |                        |
+| sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
+| sign up         | signUp        | atSignUp        | /sign-up         | fullPageAtForm |                        |
 | verify email    | verifyEmail   | atVerifyEmail   | /verify-email    | fullPageAtForm |            X           |
 
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
