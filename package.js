@@ -9,6 +9,7 @@ Package.on_use(function(api) {
     api.versionsFrom("METEOR@0.9.2.2");
 
     api.use([
+        "accounts-base",
         "check",
         "underscore",
     ], ["client", "server"]);
