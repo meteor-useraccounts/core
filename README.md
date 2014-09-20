@@ -1,5 +1,5 @@
-accounts-templates-core
-=======================
+splendido:accounts-templates-core
+=================================
 
 [![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
 
@@ -70,9 +70,9 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 <a name="available-styled-versions"/>
 ### Available Styled Versions
 
-* [accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) for [Twitter Bootstrap](http://getbootstrap.com/)
-* [accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) for [Zurb Foundation](http://foundation.zurb.com/)
-* [accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) for [Semantic UI](http://semantic-ui.com)
+* [splendido:accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) for [Twitter Bootstrap](http://getbootstrap.com/)
+* [splendido:accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) for [Zurb Foundation](http://foundation.zurb.com/)
+* [splendido:accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
 
@@ -82,19 +82,17 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 Just choose one of the packages among the [aviable styled versions](#available-styled-versions) and install it via meteorite:
 
 ```Shell
-mrt add accounts-templates-bootstrap
+meteor add splendido:accounts-templates-bootstrap
 ```
 
-**Warning:** You don't have to add `accounts-templates-core` to your app! It is automatically added when you add `accounts-templates-<something>`...
+**Warning:** You don't have to add `splendido:accounts-templates-core` to your app! It is automatically added when you add `splendido:accounts-templates-<something>`...
 
 Then add at least one login service:
 
 ```Shell
-mrt add accounts-password
-mrt add accounts-facebook
-mrt add accounts-github
-mrt add accounts-google
-mrt add accounts-linkedin
+meteor add accounts-password
+meteor add accounts-facebook
+meteor add accounts-google
 ...
 ```
 
@@ -726,10 +724,11 @@ Meteor.startup(function() {
 });
 ```
 
-3rd party login buttons are not shown. To allow display buttons with, e.g., 'Configure Foobook', simply add the package `accounts-ui` with:
+3rd party login buttons are not shown. To allow display buttons with, e.g., 'Configure Foobook', simply add the packages `service-configuration` and `accounts-ui` with:
 
 ```Shell
-mrt add accounts-ui
+meteor add service-configuration
+meteor add accounts-ui
 ```
 
 **Warning**: At the moment the UI for service configuration is not supported and the one provided by `accounts-ui` will be shown!
