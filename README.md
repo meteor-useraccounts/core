@@ -28,7 +28,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 
 * [Features](#features)
 * [Quick Start](#quickstart)
-  * [Available Styled Versions](#available-styled-versions)
+  * [Available Versions](#available-versions)
   * [Setup](#setup)
   * [Templates](#templates)
 * [Basic Customization](#basic-customization)
@@ -42,6 +42,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
   * [Button Text](#button-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
+  * [CSS Rules](#css-rules)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 * [Contributing](#contributing)
@@ -67,12 +68,13 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 ## Quick Start
 
 
-<a name="available-styled-versions"/>
-### Available Styled Versions
+<a name="available-versions"/>
+### Available Versions
 
-* [splendido:accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) for [Twitter Bootstrap](http://getbootstrap.com/)
-* [splendido:accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) for [Zurb Foundation](http://foundation.zurb.com/)
-* [splendido:accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) for [Semantic UI](http://semantic-ui.com)
+* [splendido:accounts-templates-unstyled](https://atmospherejs.com/package/accounts-templates-unstyled) with plain html and no CSS rules
+* [splendido:accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
+* [splendido:accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [splendido:accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
 
@@ -691,8 +693,116 @@ AccountsTemplates.addFields([
 ]);
 ```
 
+
+<a name="css-rules">
+## CSS Rules
+
+The main atForm is build up of several pieces, appearing and disappearing based on configuration options as well as the current internal status.
+Each of these blocks is wrapped inside a `div` with class `at-<something>`: this should made your life easier if you're trying to write your own CSS rules to change templates' appearance.
+
+Social login buttons (`button.at-social-btn`) have an `id` in the form `at-<servicename>` and name `<servicename>`.
+
+Input fields for the password service form are wrapped inside a div with class `at-input`. The same div gets classes `has-error`, `has-success`, and `has-feedback` in case of negative validation result, positive validation and validation with feedback respectively.
+The input element itself has id and name in the form `at-field-<field_id>`.
+**Note:** `has-error`, `has-success`, and `has-feedback` names might change from framework to framework. These are valid for the *unstyled* and *bootstrap* versions...
+
+
+Below is a html snapshot of an over-complete `atForm` taken from the unstyled version in which you can find all elements possibly shown under different configurations and circumstances.
+
+```html
+<div class="at-form">
+  <!-- Title -->
+  <div class="at-title">
+    <h3>Create an Account</h3>
+  </div>
+  <!-- Link to Sign In -->
+  <div class="at-signin-link">
+    <p>
+      If you already have an account 
+      <a href="/sign-in" id="at-signIn" class="at-link">sign in</a>
+    </p>
+  </div>
+  <!-- Social Buttons for Oauth Sign In / Sign Up-->
+  <div class="at-oauth">
+    <button class="at-social-btn" id="at-facebook" name="facebook">
+      <i class="fa fa-facebook"></i> Sign in with Facebook
+    </button>
+    <button class="at-social-btn" id="at-twitter" name="twitter">
+      <i class="fa fa-twitter"></i> Sign in with Twitter
+    </button>    
+  </div>
+  <!-- Services Separator -->
+  <div class="at-sep">
+    <strong>OR</strong>
+  </div>
+  <!-- Global Error -->
+  <div class="at-error">
+      <p>Login forbidden</p>
+  </div>
+  <!-- Global Resutl -->
+  <div class="at-result">
+      <p>Email Sent!</p>
+  </div>
+  <!-- Password Service -->
+  <div class="at-pwd-form">
+    <form role="form" id="at-pwd-form" novalidate="">
+      <!-- Input -->
+      <div class="at-input">
+        <label for="at-field-username">
+          Username 
+        </label>
+        <input type="text" id="at-field-username" name="at-field-username" placeholder="Username" autocapitalize="none" autocorrect="off">
+      </div>
+      <!-- Input with Validation Error -->
+      <div class="at-input has-error">
+        <label for="at-field-email">
+          Email 
+        </label>
+        <input type="email" id="at-field-email" name="at-field-email" placeholder="Email" autocapitalize="none" autocorrect="off">
+        <span>Invalid email</span>
+      </div>
+      <!-- Input with Successful Validation -->
+      <div class="at-input has-success">
+        <label for="at-field-password">
+          Password 
+        </label>
+        <input type="password" id="at-field-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off">
+      </div>
+      <!-- Forgot Password Link -->
+      <div class="at-pwd-link">
+        <p>
+          <a href="/forgot-password" id="at-forgotPwd" class="at-link">Forgot your password?</a>
+        </p>
+      </div>
+      <!-- Form Submit Button -->
+      <button type="submit" class="submit disabled" id="at-btn">
+        Register
+      </button>
+    </form>
+  </div>
+  <!-- Link to Sign Up -->
+  <div class="at-signup-link">
+    <p>
+      Don't have an account? 
+      <a href="/sign-up" id="at-signUp" class="at-link">Register</a>
+    </p>
+  </div>
+  <!-- Link to Privacy Policy and Terms of use -->
+  <div class="at-terms-link">
+    <p>
+      By clicking Register, you agree to our
+        <a href="/privacyPolicy">Privacy Policy</a>
+        and
+        <a href="/termsOfUse">Terms of Use</a>
+    </p>
+  </div>
+</div>
+```
+
+
 <a name="side-notes"/>
 ## Side Notes
+
 
 <a name="3rd-party-login-services-configuration"/>
 ### 3rd Party Login Services Configuration
