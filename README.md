@@ -3,7 +3,7 @@ splendido:accounts-templates-core
 
 [![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
 
-accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enrol account, and link or remove of many 3rd party services.
+accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
 
 The package `accounts-templates-core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
@@ -117,7 +117,7 @@ This is to let you configure your app exactly the way you wish, without imposing
 <a name="templates"/>
 ### Templates
 
-There is **only one template** which is used to reactively draw appropriate sign in, sign up, forgot password, reset password, change password, and enrol account forms!
+There is **only one template** which is used to reactively draw appropriate sign in, sign up, forgot password, reset password, change password, and enroll account forms!
 
 It is `atForm` and can be used anywhere you wish like this:
 
@@ -248,9 +248,9 @@ Details for each of them follow.
 <a name="routing"/>
 #### Routing
 
-There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enrol account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
+There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
 
-The simplest way is to make the call passing just the route code (available codes are: changePwd, enrolAccount, forgotPwd, resetPwd, signIn, signUp):
+The simplest way is to make the call passing just the route code (available codes are: changePwd, enrollAccount, forgotPwd, resetPwd, signIn, signUp):
 
 ```javascript
 AccountsTemplates.configureRoute('signIn');
@@ -296,7 +296,7 @@ All the above fields are optional and fall back to default values in case you do
 | Route           | Code          | Name            | Path             | Template       | Redirect after Timeout |
 | --------------- | ------------- | --------------- | ---------------  | -------------- |:----------------------:|
 | change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |                        |
-| enrol account   | enrolAccount  | atEnrolAccount  | /enrol-account   | fullPageAtForm |            X           |
+| enroll account  | enrollAccount | atEnrolAccount  | /enroll-account  | fullPageAtForm |            X           |
 | forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |            X           |
 | reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |            X           |
 | sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
@@ -385,7 +385,7 @@ In case you wish to change form titles, you can call:
 AccountsTemplates.configure({
     title: {
       changePwd: "Password Title",
-      enrolAccount: "Enrol Title",
+      enrollAccount: "Enrol Title",
       forgotPwd: "Forgot Pwd Title",
       resetPwd: "Reset Pwd Title",
       signIn: "Sign In Title",
@@ -405,7 +405,7 @@ In case you wish to change the text appearing inside the submission button, you 
 AccountsTemplates.configure({
     buttonText: {
       changePwd: "Password Text",
-      enrolAccount: "Enrol Text",
+      enrollAccount: "Enroll Text",
       forgotPwd: "Forgot Pwd Text",
       resetPwd: "Reset Pwd Text",
       signIn: "Sign In Text",
@@ -476,7 +476,7 @@ Furthermore, you can pass an object for `displayName`, `placeholder` to specify 
 {
     default: Match.Optional(String),
     changePwd: Match.Optional(String),
-    enrolAccount: Match.Optional(String),
+    enrollAccount: Match.Optional(String),
     forgotPwd: Match.Optional(String),
     resetPwd: Match.Optional(String),
     signIn: Match.Optional(String),
