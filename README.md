@@ -764,7 +764,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
       <!-- Forgot Password Link -->
       <div class="at-pwd-link">
         <p>
-          <a href="/forgot-password" id="at-forgotPwd" class="at-link">Forgot your password?</a>
+          <a href="/forgot-password" id="at-forgotPwd" class="at-link at-pwd">Forgot your password?</a>
         </p>
       </div>
       <!-- Form Submit Button -->
@@ -777,14 +777,14 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
   <div class="at-signin-link">
     <p>
       If you already have an account
-      <a href="/sign-in" id="at-signIn" class="at-link">sign in</a>
+      <a href="/sign-in" id="at-signIn" class="at-link at-signin">sign in</a>
     </p>
   </div>
   <!-- Link to Sign Up -->
   <div class="at-signup-link">
     <p>
       Don't have an account?
-      <a href="/sign-up" id="at-signUp" class="at-link">Register</a>
+      <a href="/sign-up" id="at-signUp" class="at-link at-signup">Register</a>
     </p>
   </div>
   <!-- Link to Privacy Policy and Terms of use -->
