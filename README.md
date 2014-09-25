@@ -224,7 +224,7 @@ Details for each of them follow.
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
 | overrideLoginErrors         | Boolean | true      |             |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
-| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. | 
+| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
 | Appearance                  |         |           |             |
 | showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
 | showForgotPasswordLink      | Boolean | false     |             |
@@ -558,7 +558,7 @@ AccountsTemplates.addField({
                 if (valid)
                     AccountsTemplates.setFieldError('phone', false);
                 else
-                    AccountsTemplates.setFieldError('phone', 'Invalid Phone number!');     
+                    AccountsTemplates.setFieldError('phone', 'Invalid Phone number!');
             }
         });
         return true;
@@ -718,7 +718,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
   <!-- Link to Sign In -->
   <div class="at-signin-link">
     <p>
-      If you already have an account 
+      If you already have an account
       <a href="/sign-in" id="at-signIn" class="at-link">sign in</a>
     </p>
   </div>
@@ -729,7 +729,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
     </button>
     <button class="at-social-btn" id="at-twitter" name="twitter">
       <i class="fa fa-twitter"></i> Sign in with Twitter
-    </button>    
+    </button>
   </div>
   <!-- Services Separator -->
   <div class="at-sep">
@@ -749,14 +749,14 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
       <!-- Input -->
       <div class="at-input">
         <label for="at-field-username">
-          Username 
+          Username
         </label>
         <input type="text" id="at-field-username" name="at-field-username" placeholder="Username" autocapitalize="none" autocorrect="off">
       </div>
       <!-- Input with Validation Error -->
       <div class="at-input has-error">
         <label for="at-field-email">
-          Email 
+          Email
         </label>
         <input type="email" id="at-field-email" name="at-field-email" placeholder="Email" autocapitalize="none" autocorrect="off">
         <span>Invalid email</span>
@@ -764,7 +764,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
       <!-- Input with Successful Validation -->
       <div class="at-input has-success">
         <label for="at-field-password">
-          Password 
+          Password
         </label>
         <input type="password" id="at-field-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off">
       </div>
@@ -775,7 +775,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
         </p>
       </div>
       <!-- Form Submit Button -->
-      <button type="submit" class="submit disabled" id="at-btn">
+      <button type="submit" class="at-btn submit disabled" id="at-btn">
         Register
       </button>
     </form>
@@ -783,7 +783,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
   <!-- Link to Sign Up -->
   <div class="at-signup-link">
     <p>
-      Don't have an account? 
+      Don't have an account?
       <a href="/sign-up" id="at-signUp" class="at-link">Register</a>
     </p>
   </div>
