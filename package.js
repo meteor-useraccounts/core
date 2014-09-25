@@ -23,7 +23,7 @@ Package.on_use(function(api) {
 
     api.imply([
         "accounts-base",
-        "softwarerero:accounts-t9n@0.0.20",
+        "softwarerero:accounts-t9n@1.0.0",
         "iron:router@0.9.3",
     ], ["client", "server"]);
 
@@ -67,7 +67,7 @@ Package.on_use(function(api) {
 Package.on_test(function(api) {
     api.use("splendido:accounts-templates-core@0.9.4");
     api.use([
-        //"softwarerero:accounts-t9n@0.0.17",
+        //"softwarerero:accounts-t9n@1.0.0",
         //"iron:router@0.9.3",
     ], ["client", "server"]);
 
