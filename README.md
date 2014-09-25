@@ -715,13 +715,6 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
   <div class="at-title">
     <h3>Create an Account</h3>
   </div>
-  <!-- Link to Sign In -->
-  <div class="at-signin-link">
-    <p>
-      If you already have an account
-      <a href="/sign-in" id="at-signIn" class="at-link">sign in</a>
-    </p>
-  </div>
   <!-- Social Buttons for Oauth Sign In / Sign Up-->
   <div class="at-oauth">
     <button class="at-social-btn" id="at-facebook" name="facebook">
@@ -779,6 +772,13 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
         Register
       </button>
     </form>
+  </div>
+  <!-- Link to Sign In -->
+  <div class="at-signin-link">
+    <p>
+      If you already have an account
+      <a href="/sign-in" id="at-signIn" class="at-link">sign in</a>
+    </p>
   </div>
   <!-- Link to Sign Up -->
   <div class="at-signup-link">
