@@ -1,5 +1,13 @@
 ## Master
 
+## v0.9.7
+
+* fixed #92, to permit the use of, e.g., `{{> atForm state="changePwd"}}` ( see [docs](https://github.com/splendido/accounts-templates-core#templates))
+
+## v0.9.6
+
+* fixed #91, pwdForm submission on signin page has no effect unless both password and usename/email are not empty
+
 ## v0.9.5
 
 * show title on sign in also with other services
