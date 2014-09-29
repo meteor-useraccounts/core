@@ -506,7 +506,7 @@ asks AccountsTemplates to display "At least six characters" as the placeholder f
 
 ```
 AccountsTemplates.addField({
-    name: 'name',
+    _id: 'name',
     type: 'text',
     displayName: "Name",
     func: function(value){return value === 'Full Name';},
@@ -519,7 +519,7 @@ If instead you do something along the following line:
 
 ```javascript
 AccountsTemplates.addField({
-    name: 'phone',
+    _id: 'phone',
     type: 'tel',
     displayName: "Phone",
     required: true,
@@ -546,7 +546,7 @@ if (Meteor.isServer){
 }
 
 AccountsTemplates.addField({
-    name: 'phone',
+    _id: 'phone',
     type: 'tel',
     displayName: "Phone",
     required: true,
