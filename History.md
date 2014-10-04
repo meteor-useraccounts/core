@@ -1,5 +1,14 @@
 ## Master
 
+## v0.9.9
+
+* Fixed links for `reset-password`, `enroll-account`, and `verify-email`
+
+## v0.9.8
+
+* fixed checks for login services (see #93)
+* minor updates to docs
+
 ## v0.9.7
 
 * fixed #92, to permit the use of, e.g., `{{> atForm state="changePwd"}}` ( see [docs](https://github.com/splendido/accounts-templates-core#templates))
