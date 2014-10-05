@@ -49,6 +49,7 @@ If you have a production app using accounts templates, let me know! I'd like to 
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
   * [CSS Rules](#css-rules)
+* [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 * [Contributing](#contributing)
@@ -67,6 +68,7 @@ If you have a production app using accounts templates, let me know! I'd like to 
 * fully reactive, Blaze fast!
 * no use of `Session` object
 * very easily stylizable for different font-end frameworks
+* ...[wrap it up for famo.us]() with a simple meteor line!
 
 
 
@@ -804,6 +806,10 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
   </div>
 </div>
 ```
+
+<a name="wrapping-up-for-famo.us"/>
+##Wrapping Up for Famo.us
+
 
 
 <a name="side-notes"/>
