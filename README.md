@@ -807,10 +807,188 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
 </div>
 ```
 
+
+
 <a name="wrapping-up-for-famo.us"/>
 ##Wrapping Up for Famo.us
 
+By simply typing
 
+```shell
+meteor add splendido:accounts-templates-famous-wrapper
+```
+
+you'll be able to turn your preferred flavour of accounts templates into a package ready to be used within a [famous-views](https://atmospherejs.com/gadicohen/famous-views) + [Famo.us](http://famo.us) application.
+
+This means you can get an animated version of the `atForm` template without any effort! :-)
+
+To learn how to make animations you might want to check the following links:
+
+* http://famous-views.meteor.com
+* http://famous-views.meteor.com/examples/animate
+* http://famo.us/university/lessons/#/famous-101/animating/1
+* http://famo.us/guides/layout
+* http://famo.us/guides/animations
+* http://famo.us/docs/modifiers/StateModifier
+* http://famo.us/docs/transitions/Transitionable
+
+### configureAnimations
+
+...well, actually it might be that you don't like the default animations so you might consider to use `AccountsTemplates.configureAnimations` (provided by the wrapper...) to specify your custom animation functions.
+This is an example showing how to do it:
+
+```javascript
+var Transform;
+var Easing;
+if (Meteor.isClient){
+    FView.ready(function(require) {
+        Transform = famous.core.Transform;
+        Easing = famous.transitions.Easing;
+    });
+}
+
+var slideLeftDestroy = function(fview){
+    fview.modifier.setTransform(
+        Transform.translate(-$(window).width(),0),
+        { duration : 250, curve: Easing.easeOutSine },
+        function() { fview.destroy();}
+    );
+};
+
+
+AccountsTemplates.configureAnimations({
+    destroy: {
+        atSignupLink: slideLeftDestroy,
+    }
+});
+```
+
+this asks AT to use `slideLeftDestroy` to animate the template `atSignupLink` when it is to be destroyed.
+
+As you've just seen `configureAnimations` take an `options` object as parameter:
+
+```javascript
+AccountsTemplates.configureAnimations(options);
+```
+
+this options object can have three different keys at the first level:
+
+```javascript
+var options = {
+    render: {
+      // more stuff here...
+    },
+    destroy: {
+      // more stuff here...
+    },
+    state_change: {
+      // more stuff here...
+    },
+};
+AccountsTemplates.configureAnimations(options);
+```
+
+they are `render`, `destroy`, and `state_change`.
+What a surprise, they let you specify what to do when one of the templates building up the `atForm` is rendered, destroyed or when the form's state changes (respectively).
+
+...at the second level you can specify which animation has to be applied to which template:
+
+```javascript
+var options = {
+    render: {
+        default: animA,
+        atTitle: animB,
+        atSocial: animC,
+        atSep: animC,
+        atError: animB,
+        atResult: animB,
+        atPwdForm: null,
+        atSigninLink: null,
+        atSignupLink: animB,
+        atTermsLink: animD,
+    },
+    // ...
+};
+```
+
+the above one is the full list of available animated templates...
+The value you specify can be `null` (to remove a default animation...) or a function.
+If you specify a function it should be like the following:
+
+```javascript
+var animFunc = function(fview){
+    fview.modifier.setTransform(
+        Transform.<some_transform>( ... ),
+        { duration : <millisecs>, curve: Easing.<some_curve> }
+    );
+};
+```
+
+the `fview` parameter actually let you access the famous view associated with the template (so feel free to do whatever you wish with it...).
+
+**Warning:** when you specify an animation to be used on `destroy` you must take care of the actual destroy!
+...usually it is enough to call `fview.destroy()` when the animation completes:
+
+```javascript
+var animFunc = function(fview){
+    fview.modifier.setTransform(
+        Transform.<some_transform>( ... ),
+        { duration : <millisecs>, curve: Easing.<some_curve> },
+        function(){ fview.destroy();}
+    );
+};
+```
+
+**Warning2:** At the moment the animation for the state change is supposed to last for 300 ms, and the state change is actually postponed by 150 ms. This let you divide your animation in two different part (so, e.g., you can hide things and show them again with the new content...).
+The following is the default animations used on state change:
+
+```javascript
+vFlip = function(fview){
+    fview.modifier.setTransform(
+        Transform.rotate(Math.PI-0.05,0,0),
+        { duration : 150, curve: "easeIn" },
+        function() {
+            fview.modifier.setTransform(
+                Transform.rotate(-0.1,0,0),
+                { duration : 150, curve: "easeOut" }
+            );
+        }
+    );
+};
+```
+
+and as you can see schedules two different animations, one after the another, lasting 150 ms each.
+
+
+### pushToAnimationQueue
+
+In case you're interested in sequence animation, AT also provides an experimental animation cue you can use to schedule your animation with a bit of delay between them.
+To use it simply wrap the `modifier.setTransform` within an `AccountsTemplates.pushToAnimationQueue` call, like this:
+
+```jacascript
+var fallFromTop = function(fview){
+    fview.modifier.setTransform(Transform.translate(0, -$(window).height()));
+    AccountsTemplates.pushToAnimationQueue(function() {
+        fview.modifier.setTransform(
+            Transform.translate(0,0),
+            { duration : 450, curve: Easing.easeOutSine }
+        );
+    });
+};
+```
+
+the full signature for it is:
+
+```javascript
+AccountsTemplates.pushToAnimationQueue(func, at_begin);
+```
+
+and if pass `true` for `at_begin`, the function will be pushed to the begin of the cue rather than at the end.
+
+For now the first animations is started after 100 ms from the first insertion and a delay of 150 ms is applied between start of animations (It is likely that these two number will become two more keys for the `configureAnimations` function...)
+
+And that's it!
+Enjoy ;-)
 
 <a name="side-notes"/>
 ## Side Notes
