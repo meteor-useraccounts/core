@@ -18,9 +18,15 @@ You can get a better idea about this heading to http://accounts-templates.meteor
 * http://accounts-templates-foundation.meteor.com/
 * http://accounts-templates-semantic-ui.meteor.com/
 
-If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
-
 Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc..
+
+## Who's using this?
+
+* [Telescope](http://www.telesc.pe/)
+* [Henfood](http://labs.henesis.eu:4363/)
+
+Aren't you on the list?!
+If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
 
 
 <a name="documentation"/>
