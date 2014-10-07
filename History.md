@@ -1,5 +1,11 @@
 ## Master
 
+## v0.9.10
+
+* added `defaultLayout` to configuration options
+* new callback parameter to `setState`
+* better rendering behaviour on `ensureSignedIn`
+
 ## v0.9.9
 
 * Fixed links for `reset-password`, `enroll-account`, and `verify-email`
@@ -31,7 +37,7 @@
 ## v0.9.4
 
 
-## Older versions (to be writtens)
+## Older versions (to be written)
 
 * Fixes for #19, #24, #25, #26
 * layoutTemplate option
