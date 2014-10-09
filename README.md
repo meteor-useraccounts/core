@@ -229,8 +229,9 @@ Details for each of them follow.
 | Behaviour                   |         |           |             |
 | confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
 | enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
+| enforceEmailVerification    | Boolean | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
-| overrideLoginErrors         | Boolean | true      |             |
+| overrideLoginErrors         | Boolean | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
 | redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
 | Appearance                  |         |           |             |
