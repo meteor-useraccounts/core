@@ -1,5 +1,15 @@
 ## Master
 
+## v0.9.12
+
+* experimental implementation for forbidding access with unverified email (see #108)
+* added options to hide links: hideSignInLink, hideSignUpLink
+* fixed #107
+
+## v0.9.11
+
+* fixed #109
+
 ## v0.9.10
 
 * added `defaultLayout` to configuration options
