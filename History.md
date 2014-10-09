@@ -2,7 +2,7 @@
 
 ## v0.9.12
 
-* experimental implementation for forbidding access with unverified email (see #108)
+* experimental implementation for forbidding access with unverified email (see #108) through configuration flag `enforceEmailVerification`
 * added options to hide links: hideSignInLink, hideSignUpLink
 * fixed #107
 
