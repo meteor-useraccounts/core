@@ -1,5 +1,9 @@
 ## Master
 
+## v0.9.15
+
+* fixed #110
+
 ## v0.9.14
 
 * fixed some redirection problems connected with `ensureSignedIn`
