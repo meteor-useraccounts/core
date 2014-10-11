@@ -370,7 +370,7 @@ Router.map(function() {
         path: '/private2',
         template: 'privatePage2',
         onBeforeAction: function(pause){
-            AccountsTemplates.ensureSignedIn(pause);
+            AccountsTemplates.ensureSignedIn.call(this, pause);
 
             // Some more stuff to check advanced permission an the like...
         }
@@ -378,9 +378,9 @@ Router.map(function() {
 });
 ```
 
-In this case only `private1` and `private2` routes are protected with sign-in access. Please note how the parameter `pause` is used inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
+In this case only `private1` and `private2` routes are protected with sign-in access. Please note that `ensureSignedIn` is called through the `call` method passing `this` (the Router object) and `pause` as parameters inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
 
-possibly have a look at the iron-router [documentation](https://github.com/EventedMind/iron-router/blob/master/DOCS.md) for more details.
+possibly have a look at the iron-router [documentation](http://eventedmind.github.io/iron-router/) for more details.
 
 
 
