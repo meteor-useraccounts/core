@@ -1,14 +1,23 @@
 ## Master
 
-## v0.9.12
+## v0.9.14
+
+* fixed some redirection problems connected with `ensureSignedIn`
+
+## v0.9.13
 
 * experimental implementation for forbidding access with unverified email (see #108) through configuration flag `enforceEmailVerification`
 * added options to hide links: hideSignInLink, hideSignUpLink
 * fixed #107
 
-## v0.9.11
+## v0.9.12
 
 * fixed #109
+
+## v0.9.11
+
+* better submit button disabling when no negative feedback is used
+* fixed #105
 
 ## v0.9.10
 
