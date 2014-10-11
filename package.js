@@ -24,7 +24,7 @@ Package.on_use(function(api) {
     api.imply([
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.0",
-        "iron:router@0.9.3",
+        "iron:router@0.9.4",
     ], ["client", "server"]);
 
     api.imply([
