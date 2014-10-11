@@ -1,5 +1,9 @@
 ## Master
 
+## v0.9.16
+
+* updated iron:router to v0.9.4
+
 ## v0.9.15
 
 * fixed #110
