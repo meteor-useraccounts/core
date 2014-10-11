@@ -888,12 +888,16 @@ var options = {
     state_change: {
       // more stuff here...
     },
+    animQueueDelay: 100,
+    animQueueStartDelay: 200,
+    setStateDelay: 300,
+
 };
 AccountsTemplates.configureAnimations(options);
 ```
 
-they are `render`, `destroy`, and `state_change`.
-What a surprise, they let you specify what to do when one of the templates building up the `atForm` is rendered, destroyed or when the form's state changes (respectively).
+they are `render`, `destroy`, `state_change`, `animQueueDelay`, `animQueueStartDelay`, and `setStateDelay`.
+The first three, what a surprise, they let you specify what to do when one of the templates building up the `atForm` is rendered, destroyed or when the form's state changes (respectively).
 
 ...at the second level you can specify which animation has to be applied to which template:
 
@@ -943,25 +947,31 @@ var animFunc = function(fview){
 };
 ```
 
-**Warning2:** At the moment the animation for the state change is supposed to last for 300 ms, and the state change is actually postponed by 150 ms. This let you divide your animation in two different part (so, e.g., you can hide things and show them again with the new content...).
+**Warning2:** At the moment the animation for the state change is supposed to last for double the `setStateDelay` duration, and the state change is actually postponed by `setStateDelay` milliseconds. This let you divide your animation in two different part (so, e.g., you can hide things and show them again with the new content...).
 The following is the default animations used on state change:
 
 ```javascript
 vFlip = function(fview){
     fview.modifier.setTransform(
         Transform.rotate(Math.PI-0.05,0,0),
-        { duration : 150, curve: "easeIn" },
+        {
+            duration : AccountsTemplates.animations.setStateDelay,
+            curve: "easeIn",
+        },
         function() {
             fview.modifier.setTransform(
                 Transform.rotate(-0.1,0,0),
-                { duration : 150, curve: "easeOut" }
+                {
+                    duration : AccountsTemplates.animations.setStateDelay,
+                    curve: "easeOut",
+                }
             );
         }
     );
 };
 ```
 
-and as you can see schedules two different animations, one after the another, lasting 150 ms each.
+and as you can see schedules two different animations, one after the another, lasting `setStateDelay` ms each.
 
 
 ### pushToAnimationQueue
@@ -989,7 +999,7 @@ AccountsTemplates.pushToAnimationQueue(func, at_begin);
 
 and if pass `true` for `at_begin`, the function will be pushed to the begin of the cue rather than at the end.
 
-For now the first animations is started after 100 ms from the first insertion and a delay of 150 ms is applied between start of animations (It is likely that these two number will become two more keys for the `configureAnimations` function...)
+The first animation is started after `animQueueStartDelay` milliseconds from the first insertion and a delay of `animQueueStartDelay` milliseconds is applied between start of animations (you can configure these two values with `configureAnimations` function as listed above...).
 
 And that's it!
 Enjoy ;-)
