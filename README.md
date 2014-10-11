@@ -18,9 +18,15 @@ You can get a better idea about this heading to http://accounts-templates.meteor
 * http://accounts-templates-foundation.meteor.com/
 * http://accounts-templates-semantic-ui.meteor.com/
 
-If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
-
 Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc..
+
+## Who's using this?
+
+* [Telescope](http://www.telesc.pe/)
+* [Henfood](http://labs.henesis.eu:4363/)
+
+Aren't you on the list?!
+If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
 
 
 <a name="documentation"/>
@@ -43,6 +49,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
   * [CSS Rules](#css-rules)
+* [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 * [Contributing](#contributing)
@@ -61,6 +68,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 * fully reactive, Blaze fast!
 * no use of `Session` object
 * very easily stylizable for different font-end frameworks
+* ...[wrap it up for famo.us]() with a simple meteor line!
 
 
 
@@ -221,11 +229,15 @@ Details for each of them follow.
 | Behaviour                   |         |           |             |
 | confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
 | enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
+| enforceEmailVerification    | Boolean | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
-| overrideLoginErrors         | Boolean | true      |             |
+| overrideLoginErrors         | Boolean | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
 | redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
 | Appearance                  |         |           |             |
+| defaultLayout               | String  | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
+| hideSignInLink              | Boolean | false     | When set to true, asks to never show the link to the sign in page  |
+| hideSignUpLink              | Boolean | false     | When set to true, asks to never show the link to the sign up page  |
 | showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
 | showForgotPasswordLink      | Boolean | false     |             |
 | showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
@@ -358,7 +370,7 @@ Router.map(function() {
         path: '/private2',
         template: 'privatePage2',
         onBeforeAction: function(pause){
-            AccountsTemplates.ensureSignedIn(pause);
+            AccountsTemplates.ensureSignedIn.call(this, pause);
 
             // Some more stuff to check advanced permission an the like...
         }
@@ -366,9 +378,9 @@ Router.map(function() {
 });
 ```
 
-In this case only `private1` and `private2` routes are protected with sign-in access. Please note how the parameter `pause` is used inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
+In this case only `private1` and `private2` routes are protected with sign-in access. Please note that `ensureSignedIn` is called through the `call` method passing `this` (the Router object) and `pause` as parameters inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
 
-possibly have a look at the iron-router [documentation](https://github.com/EventedMind/iron-router/blob/master/DOCS.md) for more details.
+possibly have a look at the iron-router [documentation](http://eventedmind.github.io/iron-router/) for more details.
 
 
 
@@ -799,6 +811,198 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
 </div>
 ```
 
+
+
+<a name="wrapping-up-for-famo.us"/>
+##Wrapping Up for Famo.us
+
+By simply typing
+
+```shell
+meteor add splendido:accounts-templates-famous-wrapper
+```
+
+you'll be able to turn your preferred flavour of accounts templates into a package ready to be used within a [famous-views](https://atmospherejs.com/gadicohen/famous-views) + [Famo.us](http://famo.us) application.
+
+This means you can get an animated version of the `atForm` template without any effort! :-)
+
+To learn how to make animations you might want to check the following links:
+
+* http://famous-views.meteor.com
+* http://famous-views.meteor.com/examples/animate
+* http://famo.us/university/lessons/#/famous-101/animating/1
+* http://famo.us/guides/layout
+* http://famo.us/guides/animations
+* http://famo.us/docs/modifiers/StateModifier
+* http://famo.us/docs/transitions/Transitionable
+
+### configureAnimations
+
+...well, actually it might be that you don't like the default animations so you might consider to use `AccountsTemplates.configureAnimations` (provided by the wrapper...) to specify your custom animation functions.
+This is an example showing how to do it:
+
+```javascript
+var Transform;
+var Easing;
+if (Meteor.isClient){
+    FView.ready(function(require) {
+        Transform = famous.core.Transform;
+        Easing = famous.transitions.Easing;
+    });
+}
+
+var slideLeftDestroy = function(fview){
+    fview.modifier.setTransform(
+        Transform.translate(-$(window).width(),0),
+        { duration : 250, curve: Easing.easeOutSine },
+        function() { fview.destroy();}
+    );
+};
+
+
+AccountsTemplates.configureAnimations({
+    destroy: {
+        atSignupLink: slideLeftDestroy,
+    }
+});
+```
+
+this asks AT to use `slideLeftDestroy` to animate the template `atSignupLink` when it is to be destroyed.
+
+As you've just seen `configureAnimations` take an `options` object as parameter:
+
+```javascript
+AccountsTemplates.configureAnimations(options);
+```
+
+this options object can have three different keys at the first level:
+
+```javascript
+var options = {
+    render: {
+      // more stuff here...
+    },
+    destroy: {
+      // more stuff here...
+    },
+    state_change: {
+      // more stuff here...
+    },
+    animQueueDelay: 100,
+    animQueueStartDelay: 200,
+    setStateDelay: 300,
+
+};
+AccountsTemplates.configureAnimations(options);
+```
+
+they are `render`, `destroy`, `state_change`, `animQueueDelay`, `animQueueStartDelay`, and `setStateDelay`.
+The first three, what a surprise, they let you specify what to do when one of the templates building up the `atForm` is rendered, destroyed or when the form's state changes (respectively).
+
+...at the second level you can specify which animation has to be applied to which template:
+
+```javascript
+var options = {
+    render: {
+        default: animA,
+        atTitle: animB,
+        atSocial: animC,
+        atSep: animC,
+        atError: animB,
+        atResult: animB,
+        atPwdForm: null,
+        atSigninLink: null,
+        atSignupLink: animB,
+        atTermsLink: animD,
+    },
+    // ...
+};
+```
+
+the above one is the full list of available animated templates...
+The value you specify can be `null` (to remove a default animation...) or a function.
+If you specify a function it should be like the following:
+
+```javascript
+var animFunc = function(fview){
+    fview.modifier.setTransform(
+        Transform.<some_transform>( ... ),
+        { duration : <millisecs>, curve: Easing.<some_curve> }
+    );
+};
+```
+
+the `fview` parameter actually let you access the famous view associated with the template (so feel free to do whatever you wish with it...).
+
+**Warning:** when you specify an animation to be used on `destroy` you must take care of the actual destroy!
+...usually it is enough to call `fview.destroy()` when the animation completes:
+
+```javascript
+var animFunc = function(fview){
+    fview.modifier.setTransform(
+        Transform.<some_transform>( ... ),
+        { duration : <millisecs>, curve: Easing.<some_curve> },
+        function(){ fview.destroy();}
+    );
+};
+```
+
+**Warning2:** At the moment the animation for the state change is supposed to last for double the `setStateDelay` duration, and the state change is actually postponed by `setStateDelay` milliseconds. This let you divide your animation in two different part (so, e.g., you can hide things and show them again with the new content...).
+The following is the default animations used on state change:
+
+```javascript
+vFlip = function(fview){
+    fview.modifier.setTransform(
+        Transform.rotate(Math.PI-0.05,0,0),
+        {
+            duration : AccountsTemplates.animations.setStateDelay,
+            curve: "easeIn",
+        },
+        function() {
+            fview.modifier.setTransform(
+                Transform.rotate(-0.1,0,0),
+                {
+                    duration : AccountsTemplates.animations.setStateDelay,
+                    curve: "easeOut",
+                }
+            );
+        }
+    );
+};
+```
+
+and as you can see schedules two different animations, one after the another, lasting `setStateDelay` ms each.
+
+
+### pushToAnimationQueue
+
+In case you're interested in sequence animation, AT also provides an experimental animation cue you can use to schedule your animation with a bit of delay between them.
+To use it simply wrap the `modifier.setTransform` within an `AccountsTemplates.pushToAnimationQueue` call, like this:
+
+```jacascript
+var fallFromTop = function(fview){
+    fview.modifier.setTransform(Transform.translate(0, -$(window).height()));
+    AccountsTemplates.pushToAnimationQueue(function() {
+        fview.modifier.setTransform(
+            Transform.translate(0,0),
+            { duration : 450, curve: Easing.easeOutSine }
+        );
+    });
+};
+```
+
+the full signature for it is:
+
+```javascript
+AccountsTemplates.pushToAnimationQueue(func, at_begin);
+```
+
+and if pass `true` for `at_begin`, the function will be pushed to the begin of the cue rather than at the end.
+
+The first animation is started after `animQueueStartDelay` milliseconds from the first insertion and a delay of `animQueueStartDelay` milliseconds is applied between start of animations (you can configure these two values with `configureAnimations` function as listed above...).
+
+And that's it!
+Enjoy ;-)
 
 <a name="side-notes"/>
 ## Side Notes

@@ -1,5 +1,47 @@
 ## Master
 
+## v0.9.16
+
+* updated iron:router to v0.9.4
+
+## v0.9.15
+
+* fixed #110
+
+## v0.9.14
+
+* fixed some redirection problems connected with `ensureSignedIn`
+
+## v0.9.13
+
+* experimental implementation for forbidding access with unverified email (see #108) through configuration flag `enforceEmailVerification`
+* added options to hide links: hideSignInLink, hideSignUpLink
+* fixed #107
+
+## v0.9.12
+
+* fixed #109
+
+## v0.9.11
+
+* better submit button disabling when no negative feedback is used
+* fixed #105
+
+## v0.9.10
+
+* added `defaultLayout` to configuration options
+* new callback parameter to `setState`
+* better rendering behaviour on `ensureSignedIn`
+
+## v0.9.9
+
+* Fixed links for `reset-password`, `enroll-account`, and `verify-email`
+
+## v0.9.8
+
+* fixed checks for login services (see #93)
+* minor updates to docs
+
 ## v0.9.7
 
 * fixed #92, to permit the use of, e.g., `{{> atForm state="changePwd"}}` ( see [docs](https://github.com/splendido/accounts-templates-core#templates))
@@ -22,7 +64,7 @@
 ## v0.9.4
 
 
-## Older versions (to be writtens)
+## Older versions (to be written)
 
 * Fixes for #19, #24, #25, #26
 * layoutTemplate option
