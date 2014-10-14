@@ -89,7 +89,7 @@ If you have a production app using accounts templates, let me know! I'd like to 
 <a name="setup"/>
 ### Setup
 
-Just choose one of the packages among the [aviable styled versions](#available-styled-versions) and install it via meteorite:
+Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it via meteorite:
 
 ```Shell
 meteor add splendido:accounts-templates-bootstrap
