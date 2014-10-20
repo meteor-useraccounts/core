@@ -23,6 +23,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 ## Who's using this?
 
 * [Telescope](http://www.telesc.pe/)
+* [bootstrappers.io](http://www.bootstrappers.io/)
 * [Henfood](http://labs.henesis.eu:4363/)
 
 Aren't you on the list?!
