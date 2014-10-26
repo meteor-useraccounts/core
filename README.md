@@ -45,8 +45,9 @@ If you have a production app using accounts templates, let me know! I'd like to 
   * [Routing](#routing)
   * [Content Protection](#content-protection)
 * [Advanced Customization](#advanced-customization)
-  * [Form Title](#form-title)
-  * [Button Text](#button-text)
+  * [Configuring Texts](#configuring-texts)
+    * [Form Title](#form-title)
+    * [Button Text](#button-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
   * [CSS Rules](#css-rules)
@@ -214,11 +215,14 @@ AccountsTemplates.configure({
     redirectTimeout: 4000,
 
     // Texts
-    buttonText: {
-        signUp: "Sign Up Now!"
-    },
-    title: {
-        forgotPwd: "Recover Your Passwod"
+    texts: {
+      buttonText: {
+          signUp: "Register Now!"
+      },
+      socialSignUp: "Register",
+      title: {
+          forgotPwd: "Recover Your Passwod"
+      },
     },
 });
 ```
@@ -244,6 +248,7 @@ Details for each of them follow.
 | showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
 | Texts                       |         |           |             |
+| texts                  | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | buttonText                  | Object  |           | Permits to specify the text to be shown on the submit button for each form state (see [below](#button-text)). |
 | title                       | Object  |           | Permits to specify the title to be shown for each form state (see [below](#form-title)). || Client-side Validation      |         |           |             |
 | Client-side Validation      |         |           |             |
@@ -389,20 +394,59 @@ possibly have a look at the iron-router [documentation](http://eventedmind.githu
 ## Advanced Customization
 
 
+<a name="configuring-texts"/>
+## Configuring Texts
+
+In case you wish to change texts on atForm, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        optionalField: "optional",
+        pwdLink_pre: "",
+        pwdLink_link: "forgotPassword",
+        pwdLink_suff: "",
+        sep: "OR",
+        signInLink_pre: "ifYouAlreadyHaveAnAccount",
+        signInLink_link: "signin",
+        signInLink_suff: "",
+        signUpLink_pre: "dontHaveAnAccount",
+        signUpLink_link: "signUp",
+        signUpLink_suff: "",
+        socialAdd: "add",
+        socialConfigure: "configure",
+        socialRemove: "remove",
+        socialSignIn: "signIn",
+        socialSignUp: "signUp",
+        socialWith: "with",
+        termsPreamble: "clickAgree",
+        termsPrivacy: "privacyPolicy",
+        termsAnd: "and",
+        termsTerms: "terms",
+    }
+};
+```
+
+the above example asks to change all available text configurations, but you can specify only a subset of them leaving default values unchanged.
+To learn how to change title, button, info, and errors text read below.
+
+
 <a name="form-title"/>
-### Form Title
+#### Form Title
 
 In case you wish to change form titles, you can call:
 
 ```javascript
 AccountsTemplates.configure({
-    title: {
-      changePwd: "Password Title",
-      enrollAccount: "Enrol Title",
-      forgotPwd: "Forgot Pwd Title",
-      resetPwd: "Reset Pwd Title",
-      signIn: "Sign In Title",
-      signUp: "Sign Up Title",
+    texts: {
+      title: {
+        changePwd: "Password Title",
+        enrollAccount: "Enrol Title",
+        forgotPwd: "Forgot Pwd Title",
+        resetPwd: "Reset Pwd Title",
+        signIn: "Sign In Title",
+        signUp: "Sign Up Title",
+      }
     }
 });
 ```
@@ -410,24 +454,67 @@ AccountsTemplates.configure({
 the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
 
 <a name="button-text"/>
-### Button Text
+#### Button Text
 
 In case you wish to change the text appearing inside the submission button, you can call:
 
 ```javascript
 AccountsTemplates.configure({
-    buttonText: {
-      changePwd: "Password Text",
-      enrollAccount: "Enroll Text",
-      forgotPwd: "Forgot Pwd Text",
-      resetPwd: "Reset Pwd Text",
-      signIn: "Sign In Text",
-      signUp: "Sign Up Text",
+    texts: {
+        buttonText: {
+          changePwd: "Password Text",
+          enrollAccount: "Enroll Text",
+          forgotPwd: "Forgot Pwd Text",
+          resetPwd: "Reset Pwd Text",
+          signIn: "Sign In Text",
+          signUp: "Sign Up Text",
+        }
     }
 });
 ```
 
 the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+<a name="info-text"/>
+#### Info Text
+
+In case you wish to change the info text appearing inside the results box, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        info: {
+            emailSent: "info.emailSent",
+            pwdChanged: "info.passwordChanged",
+            pwdReset: "info.passwordReset",
+            pwdSet: "info.passwordReset",
+            singUpVerifyEmail: "Registration Successful! Please check your email and follow the instructions.",
+        }
+    }
+});
+```
+
+The above calls simply set all values as the current default ones.
+
+<a name="errors-text"/>
+#### Errors Text
+
+In case you wish to change the text for erros appearing inside the error box, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        errors: {
+            pwdMismatch: "error.pwdsDontMatch",
+        }
+    }
+});
+```
+
+The above calls simply set all values as the current default ones.
+*Note:* The above list of errors refres to those set directly by AccountsTemplates only!
+Errors which comes from the Accounts packages cannot be overwritten (at least not easily...)
+Please have a look at [Form Fields Configuration](#form-fields-configuration) to lear how to set validation errors on a field basis.
 
 
 <a name="disabling-client-side-accounts-creation"/>
