@@ -503,6 +503,7 @@ In case you wish to change the text for erros appearing inside the error box, yo
 AccountsTemplates.configure({
     texts: {
         errors: {
+            mustBeLoggedIn: "error.accounts.Must be logged in",
             pwdMismatch: "error.pwdsDontMatch",
         }
     }
