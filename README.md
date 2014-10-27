@@ -216,7 +216,7 @@ AccountsTemplates.configure({
 
     // Texts
     texts: {
-      buttonText: {
+      button: {
           signUp: "Register Now!"
       },
       socialSignUp: "Register",
@@ -249,8 +249,6 @@ Details for each of them follow.
 | showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
 | Texts                       |         |           |             |
 | texts                  | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
-| buttonText                  | Object  |           | Permits to specify the text to be shown on the submit button for each form state (see [below](#button-text)). |
-| title                       | Object  |           | Permits to specify the title to be shown for each form state (see [below](#form-title)). || Client-side Validation      |         |           |             |
 | Client-side Validation      |         |           |             |
 | continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
@@ -461,7 +459,7 @@ In case you wish to change the text appearing inside the submission button, you 
 ```javascript
 AccountsTemplates.configure({
     texts: {
-        buttonText: {
+        button: {
           changePwd: "Password Text",
           enrollAccount: "Enroll Text",
           forgotPwd: "Forgot Pwd Text",
