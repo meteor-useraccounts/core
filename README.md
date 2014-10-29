@@ -554,10 +554,11 @@ Each field object is represented by the following properties:
 | Property    | Type          | Required | Description                                                                                                                                                                                                                            |
 | ----------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _id         | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
-| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like check box, and select are likely to be supported in some future release.                       |
+| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`.                                                                                        |
 | required    | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
 | displayName | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.                             |
 | placeholder | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
+| select      | list of obj   |          | Lets you specify the list of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
 | minLength   | Integer       |          | If specified requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
 | maxLength   | Integer       |          | If specified require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
 | re          | RegExp        |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
@@ -669,7 +670,57 @@ AccountsTemplates.addField({
 
 you can achieve also client-side validation, even if there will be a bit of delay before getting the error displayed...
 
-*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validatino error), are finally interpreted as error and displayed where more appropriate.
+*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.
+
+#### Checkboxes, Selects, and Radios
+
+This is an example about how to add Checkboxes, Selects, and Radios to the sign up fields:
+
+```javascript
+AccountsTemplates.addField({
+    _id: "gender",
+    type: "select",
+    displayName: "Gender",
+    select: [
+        {
+            text: "Male",
+            value: "male",
+        },
+        {
+            text: "Female",
+            value: "female",
+        },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id: "fruit",
+    type: "radio",
+    displayName: "Preferred Fruit",
+    select: [
+        {
+        text: "Apple",
+        value: "aa",
+      }, {
+        text: "Banana",
+        value: "bb",
+      }, {
+        text: "Carrot",
+        value: "cc",
+      },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id: "mailing_list",
+    type: "checkbox",
+    displayName: "Subscribe me to mailing List",
+});
+```
+
+please note the `select` list which lets you specify the values for the choice.
+The `value` value of corresponding selected `text` will be picked up and added into the `profile` field of the user object.
+
 
 #### Special Field's Ids
 
