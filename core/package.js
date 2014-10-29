@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Package.on_use(function(api) {
-    api.versionsFrom("METEOR@0.9.2.2");
+    api.versionsFrom("METEOR@1.0");
 
     api.use([
         "accounts-base",
@@ -24,7 +24,7 @@ Package.on_use(function(api) {
     api.imply([
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.0",
-        "iron:router@0.9.4",
+        "iron:router@1.0.0",
     ], ["client", "server"]);
 
     api.imply([
@@ -65,7 +65,7 @@ Package.on_use(function(api) {
 });
 
 Package.on_test(function(api) {
-    api.use("splendido:accounts-templates-core@0.11.0");
+    api.use("useraccounts:core@0.11.0");
     api.use([
         //"softwarerero:accounts-t9n@1.0.0",
         //"iron:router@0.9.3",
