@@ -66,10 +66,6 @@ Package.on_use(function(api) {
 
 Package.on_test(function(api) {
     api.use("useraccounts:core@0.11.0");
-    api.use([
-        //"softwarerero:accounts-t9n@1.0.0",
-        //"iron:router@0.9.3",
-    ], ["client", "server"]);
 
     api.use([
         'accounts-password',
