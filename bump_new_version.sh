@@ -57,19 +57,15 @@ echo "Major: $next_major"
 echo "Minor: $next_minor"
 echo "Patch: $next_patch"
 echo
+echo "Publishing version $next_version..."
+
 cd core
 echo
 echo
 pwd
-echo "Bumping to version $next_version..."
 sed -i "s/version: \"$curr_version\"/version: \"$next_version\"/g" package.js
 sed -i "s/accounts-templates-core@$curr_version/accounts-templates-core@$next_version/g" package.js
-git commit -am "$release_type - Bump to version $next_version"
-git push
-echo "Done!"
-echo "Now Publishing..."
 meteor publish
-echo "Done!"
 cd ..
 
 for folder in */
@@ -80,15 +76,22 @@ do
     echo
     echo
     pwd
-    echo "Bumping to version $next_version..."
     sed -i "s/version: \"$curr_version\"/version: \"$next_version\"/g" package.js
     sed -i "s/accounts-templates-core@$curr_version/accounts-templates-core@$next_version/g" package.js
-    git commit -am "$release_type - Bump to version $next_version"
-    git push
-    echo "Done!"
-    echo "Now Publishing..."
     meteor publish
-    echo "Done!"
     cd ..
   fi
 done
+
+echo "Committing..."
+
+git add . --all
+git commit -am "$release_type - Bump to version $next_version"
+git push
+git tag -a "$next_version" -m "$release_type - Bump to version $next_version"
+git push
+git push --tags
+curl --data '{"tag_name": "v$next_version","target_commitish": "master", "name": "v$next_version", "body": "$release_type - Bump to version $next_version", "draft": false, "prerelease": false}' https://api.github.com/repos/meteor-useraccounts/ui/releases?access_token=$GITHUB_ACCESS_TOKEN
+
+echo "Done!"
+
