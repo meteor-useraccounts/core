@@ -16,7 +16,7 @@ You can get a better idea about this heading to http://accounts-templates.meteor
 * http://accounts-templates-foundation.meteor.com/
 * http://accounts-templates-semantic-ui.meteor.com/
 
-Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc..
+Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/meteor-useraccounts/ui) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
 ## Who's using this?
 
@@ -79,10 +79,10 @@ If you have a production app using accounts templates, let me know! I'd like to 
 <a name="available-versions"/>
 ### Available Versions
 
-* [splendido:accounts-templates-unstyled](https://atmospherejs.com/package/accounts-templates-unstyled) with plain html and no CSS rules
-* [splendido:accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
-* [splendido:accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
-* [splendido:accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
+* [useraccounts:ui-unstyled](https://atmospherejs.com/useraccounts/ui-unstyled) with plain html and no CSS rules
+* [useraccounts:ui-bootstrap](https://atmospherejs.com/useraccounts/ui-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
+* [useraccounts:ui-foundation](https://atmospherejs.com/useraccounts/ui-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [useraccounts:ui-semantic-ui](https://atmospherejs.com/useraccounts/ui-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
 
@@ -92,10 +92,10 @@ If you have a production app using accounts templates, let me know! I'd like to 
 Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it via meteorite:
 
 ```Shell
-meteor add splendido:accounts-templates-bootstrap
+meteor add useraccounts:ui-bootstrap
 ```
 
-**Warning:** You don't have to add `splendido:accounts-templates-core` to your app! It is automatically added when you add `splendido:accounts-templates-<something>`...
+**Warning:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:ui-<something>`...
 
 Then add at least one login service:
 
@@ -956,7 +956,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
 By simply typing
 
 ```shell
-meteor add splendido:accounts-templates-famous-wrapper
+meteor add useraccounts:famous-wrapper
 ```
 
 you'll be able to turn your preferred flavour of accounts templates into a package ready to be used within a [famous-views](https://atmospherejs.com/gadicohen/famous-views) + [Famo.us](http://famo.us) application.
@@ -1189,6 +1189,6 @@ meteor add accounts-ui
 
 Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
 
-Thanks to [all those who have contributed code changes](https://github.com/splendido/accounts-templates-core/graphs/contributors) and all who have helped by submitting bug reports and feature ideas.
+Thanks to [all those who have contributed code changes](https://github.com/meteor-useraccounts/ui/graphs/contributors) and all who have helped by submitting bug reports and feature ideas.
 
 [![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png)](https://www.gittip.com/splendido/)
