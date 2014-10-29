@@ -1,0 +1,58 @@
+<template name="atInput">
+    {{> Template.dynamic template=templateName}}
+</template>
+
+<template name="atTextInput">
+  <div class="at-input row">
+    <div class="large-12 columns">
+      {{#if showLabels}}
+        <label class="{{#if hasError}}error{{/if}}" for="at-field-{{_id}}">
+          {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
+        </label>
+      {{/if}}
+      <input type="{{type}}" class="{{#if hasError}}error{{/if}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" aria-label="{{displayName}} {{#unless required}}{{optionalText}}{{/unless}}" {{disabled}}>
+      {{#if hasError}}
+        <small class="error">{{errorText}}</small>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="atCheckboxInput">
+  <div class="at-input row">
+    <div class="large-12 columns">
+      <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" {{disabled}}>
+      <label for="at-field-{{_id}}">{{displayName}}</label>
+    </div>
+  </div>
+</template>
+
+<template name="atSelectInput">
+  <div class="at-input row">
+    <div class="large-12 columns">
+      <label for="at-field-{{_id}}">{{displayName}}
+        <select id="at-field-{{_id}}" name="at-field-{{_id}}">
+          {{#each values}}
+            <option value="{{value}}">{{text}}</option>
+          {{/each}}
+        </select>
+      </label>
+    </div>
+  </div>
+</template>
+
+<template name="atRadioInput">
+  <div class="at-input row">
+    <div class="large-12 columns">
+      <label>{{displayName}}</label>
+    </div>
+  </div>
+  {{#each values}}
+    <div class="at-input row">
+      <div class="large-12 columns">
+        <input id="at-field-{{id}}-choice-{{value}}" type="radio" name="at-field-{{id}}" value={{value}}>
+        <label>{{text}}</label>
+      </div>
+    </div>
+  {{/each}}
+</template>

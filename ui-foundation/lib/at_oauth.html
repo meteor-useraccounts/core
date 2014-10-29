@@ -1,0 +1,7 @@
+<template name="atOauth">
+  <div class="at-oauth">
+    {{#each oauthService}}
+      {{> atSocial}}
+    {{/each}}
+  </div>
+</template>

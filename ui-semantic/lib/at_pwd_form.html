@@ -1,0 +1,15 @@
+<template name="atPwdForm">
+  <div class="at-pwd-form">
+    <div class="ui left aligned basic fitted segment">
+      <form class="ui form" id="at-pwd-form" novalidate>
+        {{#each fields}}
+          {{> atInput}}
+        {{/each}}
+        {{#if showForgotPasswordLink}}
+          {{> atPwdLink}}
+        {{/if}}
+        {{> atPwdFormBtn}}
+      </form>
+    </div>
+  </div>
+</template>

@@ -1,9 +1,7 @@
-splendido:accounts-templates-core
-=================================
+useraccounts:AccountsTemplates
+==============================
 
-[![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
-
-accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
+AccountsTemplates is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
 
 The package `accounts-templates-core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.

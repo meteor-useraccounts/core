@@ -1,0 +1,59 @@
+button#at-facebook {
+  background: #3B5998;
+  color: #fff;
+}
+button#at-facebook.disabled {
+  color: #ddd;
+  background: #666666;
+}
+button#at-facebook:hover {
+  background: #2C4780;
+}
+
+button#at-linkedin {
+  background: #338AB0;
+  color: #fff;
+}
+button#at-linkedin.disabled {
+  color: #ddd;
+  background: #666666;
+}
+button#at-linkedin:hover {
+  background: #0571A6;
+}
+
+button#at-twitter {
+  background: #4099FF;
+  color: #fff;
+}
+button#at-twitter.disabled {
+  color: #ddd;
+  background: #666666;
+}
+button#at-twitter:hover {
+  background: #3288EB;
+}
+
+button#at-google {
+  background: #db5a3c;
+  color: #fff;
+}
+button#at-google.disabled {
+  color: #ddd;
+  background: #666666;
+}
+button#at-google:hover {
+  background: #CA4C2E;
+}
+
+button#at-github {
+  background: #666;
+  color: #fff;
+}
+button#at-github.disabled {
+  color: #ddd;
+  background: #666666;
+}
+button#at-github:hover {
+  background: #555;
+}

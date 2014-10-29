@@ -1,0 +1,35 @@
+<template name="atFamousForm">
+  {{#unless hide}}
+    {{#ContainerSurface size="[undefined, undefined]" class="at-form"}}
+      {{#SequentialLayout size="[undefined, auto]"}}
+        {{#famousIf showTitle}}
+          {{>Surface template="atTitle" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showOauthServices}}
+          {{> atOauth}}
+        {{/famousIf}}
+        {{#famousIf showServicesSeparator}}
+          {{>Surface template="atSep" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showError}}
+          {{>Surface template="atError" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showResult}}
+          {{>Surface template="atResult" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showPwdForm}}
+          {{>Surface template="atPwdForm" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showSignInLink}}
+          {{>Surface template="atSigninLink" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showSignUpLink}}
+          {{>Surface template="atSignupLink" size="[undefined, auto]"}}
+        {{/famousIf}}
+        {{#famousIf showTermsLink}}
+          {{>Surface template="atTermsLink" size="[undefined, auto]"}}
+        {{/famousIf}}
+      {{/SequentialLayout}}
+    {{/ContainerSurface}}
+  {{/unless}}
+</template>
