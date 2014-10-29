@@ -233,6 +233,7 @@ Details for each of them follow.
 | --------------------------- | ------- | --------- | ----------- |
 | Behaviour                   |         |           |             |
 | confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
+| defaultState                | String  | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
 | enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
 | enforceEmailVerification    | Boolean | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
@@ -248,7 +249,7 @@ Details for each of them follow.
 | showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
 | Texts                       |         |           |             |
-| texts                  | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
+| texts                       | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | Client-side Validation      |         |           |             |
 | continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
