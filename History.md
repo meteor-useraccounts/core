@@ -1,5 +1,17 @@
 ## Master
 
+## v0.11.0
+
+* added support for checkbox, select, and radio inputs
+* added defaultState as referred in #125
+* fixes for #127
+
+## v0.10.0
+
+* better texts configuration API (as for #117)
+* prevPath fix
+
+
 ## v0.9.16
 
 * updated iron:router to v0.9.4

@@ -1,12 +1,12 @@
 Package.describe({
     summary: "Meteor sign up and sign in templates core package.",
-    version: "0.9.16-iron-v1.1",
-    name: "splendido:accounts-templates-core",
-    git: "https://github.com/splendido/accounts-templates-core.git",
+    version: "0.11.0",
+    name: "useraccounts:core",
+    git: "https://github.com/meteor-useraccounts/ui.git",
 });
 
 Package.on_use(function(api) {
-    api.versionsFrom("METEOR@0.9.2.2");
+    api.versionsFrom("METEOR@1.0");
 
     api.use([
         "accounts-base",
@@ -24,7 +24,7 @@ Package.on_use(function(api) {
     api.imply([
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.0",
-        "iron:router@1.0.0-pre4",
+        "iron:router@1.0.0",
     ], ["client", "server"]);
 
     api.imply([
@@ -42,20 +42,20 @@ Package.on_use(function(api) {
         "lib/core.js",
         "lib/field.js",
         "lib/client.js",
-        "lib/at_error.js",
-        "lib/at_form.js",
-        "lib/at_input.js",
-        "lib/at_oauth.js",
-        "lib/at_pwd_form.js",
-        "lib/at_pwd_form_btn.js",
-        "lib/at_pwd_link.js",
-        "lib/at_result.js",
-        "lib/at_sep.js",
-        "lib/at_signin_link.js",
-        "lib/at_signup_link.js",
-        "lib/at_social.js",
-        "lib/at_terms_link.js",
-        "lib/at_title.js",
+        "lib/templates_helpers/at_error.js",
+        "lib/templates_helpers/at_form.js",
+        "lib/templates_helpers/at_input.js",
+        "lib/templates_helpers/at_oauth.js",
+        "lib/templates_helpers/at_pwd_form.js",
+        "lib/templates_helpers/at_pwd_form_btn.js",
+        "lib/templates_helpers/at_pwd_link.js",
+        "lib/templates_helpers/at_result.js",
+        "lib/templates_helpers/at_sep.js",
+        "lib/templates_helpers/at_signin_link.js",
+        "lib/templates_helpers/at_signup_link.js",
+        "lib/templates_helpers/at_social.js",
+        "lib/templates_helpers/at_terms_link.js",
+        "lib/templates_helpers/at_title.js",
         "lib/methods.js",
     ], ["client"]);
 
@@ -65,11 +65,7 @@ Package.on_use(function(api) {
 });
 
 Package.on_test(function(api) {
-    api.use("splendido:accounts-templates-core@0.9.16-iron-v1.1");
-    api.use([
-        //"softwarerero:accounts-t9n@1.0.0",
-        //"iron:router@1.0.0",
-    ], ["client", "server"]);
+    api.use("useraccounts:core@0.11.0");
 
     api.use([
         'accounts-password',

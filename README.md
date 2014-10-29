@@ -1,12 +1,10 @@
-splendido:accounts-templates-core
-=================================
+useraccounts:AccountsTemplates
+==============================
 
-[![Build Status](https://travis-ci.org/splendido/accounts-templates-core.svg?branch=master)](https://travis-ci.org/splendido/accounts-templates-core)
-
-accounts-templates-core is part of a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
+AccountsTemplates is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
 
-The package `accounts-templates-core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
+The package `useraccounts:core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
 This means that developing a version of the UI with a different styling is just a matter of writing a few dozen of html lines, nothing more!
 
 Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) you can switch to your preferred language on the fly! Available languages are now: Arabic, Czech, French, German, Italian, Polish, Portuguese, Russian, Slovenian, Spanish, Swedish and Vietnamese.
@@ -18,11 +16,12 @@ You can get a better idea about this heading to http://accounts-templates.meteor
 * http://accounts-templates-foundation.meteor.com/
 * http://accounts-templates-semantic-ui.meteor.com/
 
-Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/splendido/accounts-templates-core) issues tracker for reporting bugs, problems, ideas, discussions, etc..
+Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/meteor-useraccounts/ui) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
 ## Who's using this?
 
 * [Telescope](http://www.telesc.pe/)
+* [bootstrappers.io](http://www.bootstrappers.io/)
 * [Henfood](http://labs.henesis.eu:4363/)
 
 Aren't you on the list?!
@@ -44,8 +43,9 @@ If you have a production app using accounts templates, let me know! I'd like to 
   * [Routing](#routing)
   * [Content Protection](#content-protection)
 * [Advanced Customization](#advanced-customization)
-  * [Form Title](#form-title)
-  * [Button Text](#button-text)
+  * [Configuring Texts](#configuring-texts)
+    * [Form Title](#form-title)
+    * [Button Text](#button-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
   * [CSS Rules](#css-rules)
@@ -79,23 +79,23 @@ If you have a production app using accounts templates, let me know! I'd like to 
 <a name="available-versions"/>
 ### Available Versions
 
-* [splendido:accounts-templates-unstyled](https://atmospherejs.com/package/accounts-templates-unstyled) with plain html and no CSS rules
-* [splendido:accounts-templates-bootstrap](https://atmospherejs.com/package/accounts-templates-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
-* [splendido:accounts-templates-foundation](https://atmospherejs.com/package/accounts-templates-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
-* [splendido:accounts-templates-semantic-ui](https://atmospherejs.com/package/accounts-templates-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
+* [useraccounts:ui-unstyled](https://atmospherejs.com/useraccounts/ui-unstyled) with plain html and no CSS rules
+* [useraccounts:ui-bootstrap](https://atmospherejs.com/useraccounts/ui-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
+* [useraccounts:ui-foundation](https://atmospherejs.com/useraccounts/ui-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [useraccounts:ui-semantic-ui](https://atmospherejs.com/useraccounts/ui-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
 
 <a name="setup"/>
 ### Setup
 
-Just choose one of the packages among the [aviable styled versions](#available-styled-versions) and install it via meteorite:
+Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it via meteorite:
 
 ```Shell
-meteor add splendido:accounts-templates-bootstrap
+meteor add useraccounts:ui-bootstrap
 ```
 
-**Warning:** You don't have to add `splendido:accounts-templates-core` to your app! It is automatically added when you add `splendido:accounts-templates-<something>`...
+**Warning:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:ui-<something>`...
 
 Then add at least one login service:
 
@@ -213,11 +213,14 @@ AccountsTemplates.configure({
     redirectTimeout: 4000,
 
     // Texts
-    buttonText: {
-        signUp: "Sign Up Now!"
-    },
-    title: {
-        forgotPwd: "Recover Your Passwod"
+    texts: {
+      button: {
+          signUp: "Register Now!"
+      },
+      socialSignUp: "Register",
+      title: {
+          forgotPwd: "Recover Your Passwod"
+      },
     },
 });
 ```
@@ -228,6 +231,7 @@ Details for each of them follow.
 | --------------------------- | ------- | --------- | ----------- |
 | Behaviour                   |         |           |             |
 | confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
+| defaultState                | String  | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
 | enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
 | enforceEmailVerification    | Boolean | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
 | forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
@@ -238,13 +242,12 @@ Details for each of them follow.
 | defaultLayout               | String  | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
 | hideSignInLink              | Boolean | false     | When set to true, asks to never show the link to the sign in page  |
 | hideSignUpLink              | Boolean | false     | When set to true, asks to never show the link to the sign up page  |
-| showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by accounts-templates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
+| showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by AccountsTemplates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
 | showForgotPasswordLink      | Boolean | false     |             |
 | showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
 | Texts                       |         |           |             |
-| buttonText                  | Object  |           | Permits to specify the text to be shown on the submit button for each form state (see [below](#button-text)). |
-| title                       | Object  |           | Permits to specify the title to be shown for each form state (see [below](#form-title)). || Client-side Validation      |         |           |             |
+| texts                       | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | Client-side Validation      |         |           |             |
 | continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
@@ -388,20 +391,59 @@ possibly have a look at the iron-router [documentation](http://eventedmind.githu
 ## Advanced Customization
 
 
+<a name="configuring-texts"/>
+## Configuring Texts
+
+In case you wish to change texts on atForm, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        optionalField: "optional",
+        pwdLink_pre: "",
+        pwdLink_link: "forgotPassword",
+        pwdLink_suff: "",
+        sep: "OR",
+        signInLink_pre: "ifYouAlreadyHaveAnAccount",
+        signInLink_link: "signin",
+        signInLink_suff: "",
+        signUpLink_pre: "dontHaveAnAccount",
+        signUpLink_link: "signUp",
+        signUpLink_suff: "",
+        socialAdd: "add",
+        socialConfigure: "configure",
+        socialRemove: "remove",
+        socialSignIn: "signIn",
+        socialSignUp: "signUp",
+        socialWith: "with",
+        termsPreamble: "clickAgree",
+        termsPrivacy: "privacyPolicy",
+        termsAnd: "and",
+        termsTerms: "terms",
+    }
+};
+```
+
+the above example asks to change all available text configurations, but you can specify only a subset of them leaving default values unchanged.
+To learn how to change title, button, info, and errors text read below.
+
+
 <a name="form-title"/>
-### Form Title
+#### Form Title
 
 In case you wish to change form titles, you can call:
 
 ```javascript
 AccountsTemplates.configure({
-    title: {
-      changePwd: "Password Title",
-      enrollAccount: "Enrol Title",
-      forgotPwd: "Forgot Pwd Title",
-      resetPwd: "Reset Pwd Title",
-      signIn: "Sign In Title",
-      signUp: "Sign Up Title",
+    texts: {
+      title: {
+        changePwd: "Password Title",
+        enrollAccount: "Enrol Title",
+        forgotPwd: "Forgot Pwd Title",
+        resetPwd: "Reset Pwd Title",
+        signIn: "Sign In Title",
+        signUp: "Sign Up Title",
+      }
     }
 });
 ```
@@ -409,24 +451,68 @@ AccountsTemplates.configure({
 the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
 
 <a name="button-text"/>
-### Button Text
+#### Button Text
 
 In case you wish to change the text appearing inside the submission button, you can call:
 
 ```javascript
 AccountsTemplates.configure({
-    buttonText: {
-      changePwd: "Password Text",
-      enrollAccount: "Enroll Text",
-      forgotPwd: "Forgot Pwd Text",
-      resetPwd: "Reset Pwd Text",
-      signIn: "Sign In Text",
-      signUp: "Sign Up Text",
+    texts: {
+        button: {
+          changePwd: "Password Text",
+          enrollAccount: "Enroll Text",
+          forgotPwd: "Forgot Pwd Text",
+          resetPwd: "Reset Pwd Text",
+          signIn: "Sign In Text",
+          signUp: "Sign Up Text",
+        }
     }
 });
 ```
 
 the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+<a name="info-text"/>
+#### Info Text
+
+In case you wish to change the info text appearing inside the results box, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        info: {
+            emailSent: "info.emailSent",
+            pwdChanged: "info.passwordChanged",
+            pwdReset: "info.passwordReset",
+            pwdSet: "info.passwordReset",
+            singUpVerifyEmail: "Registration Successful! Please check your email and follow the instructions.",
+        }
+    }
+});
+```
+
+The above calls simply set all values as the current default ones.
+
+<a name="errors-text"/>
+#### Errors Text
+
+In case you wish to change the text for erros appearing inside the error box, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        errors: {
+            mustBeLoggedIn: "error.accounts.Must be logged in",
+            pwdMismatch: "error.pwdsDontMatch",
+        }
+    }
+});
+```
+
+The above calls simply set all values as the current default ones.
+*Note:* The above list of errors refres to those set directly by AccountsTemplates only!
+Errors which comes from the Accounts packages cannot be overwritten (at least not easily...)
+Please have a look at [Form Fields Configuration](#form-fields-configuration) to lear how to set validation errors on a field basis.
 
 
 <a name="disabling-client-side-accounts-creation"/>
@@ -466,10 +552,11 @@ Each field object is represented by the following properties:
 | Property    | Type          | Required | Description                                                                                                                                                                                                                            |
 | ----------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _id         | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
-| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`. Other input types like check box, and select are likely to be supported in some future release.                       |
+| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`.                                                                                        |
 | required    | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
 | displayName | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.                             |
 | placeholder | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
+| select      | list of obj   |          | Lets you specify the list of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
 | minLength   | Integer       |          | If specified requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
 | maxLength   | Integer       |          | If specified require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
 | re          | RegExp        |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
@@ -581,7 +668,57 @@ AccountsTemplates.addField({
 
 you can achieve also client-side validation, even if there will be a bit of delay before getting the error displayed...
 
-*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validatino error), are finally interpreted as error and displayed where more appropriate.
+*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.
+
+#### Checkboxes, Selects, and Radios
+
+This is an example about how to add Checkboxes, Selects, and Radios to the sign up fields:
+
+```javascript
+AccountsTemplates.addField({
+    _id: "gender",
+    type: "select",
+    displayName: "Gender",
+    select: [
+        {
+            text: "Male",
+            value: "male",
+        },
+        {
+            text: "Female",
+            value: "female",
+        },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id: "fruit",
+    type: "radio",
+    displayName: "Preferred Fruit",
+    select: [
+        {
+        text: "Apple",
+        value: "aa",
+      }, {
+        text: "Banana",
+        value: "bb",
+      }, {
+        text: "Carrot",
+        value: "cc",
+      },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id: "mailing_list",
+    type: "checkbox",
+    displayName: "Subscribe me to mailing List",
+});
+```
+
+please note the `select` list which lets you specify the values for the choice.
+The `value` value of corresponding selected `text` will be picked up and added into the `profile` field of the user object.
+
 
 #### Special Field's Ids
 
@@ -819,7 +956,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
 By simply typing
 
 ```shell
-meteor add splendido:accounts-templates-famous-wrapper
+meteor add useraccounts:famous-wrapper
 ```
 
 you'll be able to turn your preferred flavour of accounts templates into a package ready to be used within a [famous-views](https://atmospherejs.com/gadicohen/famous-views) + [Famo.us](http://famo.us) application.
@@ -1052,6 +1189,6 @@ meteor add accounts-ui
 
 Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
 
-Thanks to [all those who have contributed code changes](https://github.com/splendido/accounts-templates-core/graphs/contributors) and all who have helped by submitting bug reports and feature ideas.
+Thanks to [all those who have contributed code changes](https://github.com/meteor-useraccounts/ui/graphs/contributors) and all who have helped by submitting bug reports and feature ideas.
 
 [![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png)](https://www.gittip.com/splendido/)
