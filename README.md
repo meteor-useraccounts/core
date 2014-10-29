@@ -1,5 +1,5 @@
-useraccounts:AccountsTemplates
-==============================
+Accounts Templates
+==================
 
 AccountsTemplates is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
@@ -79,10 +79,10 @@ If you have a production app using accounts templates, let me know! I'd like to 
 <a name="available-versions"/>
 ### Available Versions
 
-* [useraccounts:ui-unstyled](https://atmospherejs.com/useraccounts/ui-unstyled) with plain html and no CSS rules
-* [useraccounts:ui-bootstrap](https://atmospherejs.com/useraccounts/ui-bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
-* [useraccounts:ui-foundation](https://atmospherejs.com/useraccounts/ui-foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
-* [useraccounts:ui-semantic-ui](https://atmospherejs.com/useraccounts/ui-semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
+* [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
+* [useraccounts:bootstrap](https://atmospherejs.com/useraccounts/bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
+* [useraccounts:foundation](https://atmospherejs.com/useraccounts/foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [useraccounts:semantic-ui](https://atmospherejs.com/useraccounts/semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
 
@@ -92,10 +92,10 @@ If you have a production app using accounts templates, let me know! I'd like to 
 Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it via meteorite:
 
 ```Shell
-meteor add useraccounts:ui-bootstrap
+meteor add useraccounts:bootstrap
 ```
 
-**Warning:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:ui-<something>`...
+**Warning:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:<something>`...
 
 Then add at least one login service:
 
