@@ -1,5 +1,7 @@
 ## Master
 
+## v1.1.0
+
 * new template `atNavButton`
 * added methos `AccountsTemplates.logout()` which redirects back to `homeRoutePath` when configured
 * support for hidden fields
