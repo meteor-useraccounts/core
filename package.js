@@ -45,6 +45,7 @@ Package.on_use(function(api) {
         "lib/templates_helpers/at_error.js",
         "lib/templates_helpers/at_form.js",
         "lib/templates_helpers/at_input.js",
+        "lib/templates_helpers/at_nav_button.js",
         "lib/templates_helpers/at_oauth.js",
         "lib/templates_helpers/at_pwd_form.js",
         "lib/templates_helpers/at_pwd_form_btn.js",
