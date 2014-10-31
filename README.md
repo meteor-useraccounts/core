@@ -144,6 +144,10 @@ In case you wish to *lock* the template to a particular state, you can also use,
 this will prevent the template to change its content. See [internal states](#internal-states) for more details...
 
 
+Well, actually there is many, used inside `atForm`...
+
+...plus one another: `atNavButton` which is currently at an experimental stage, but which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status.
+
 
 <a name="basic-customization"/>
 ## Basic Customization
@@ -399,6 +403,8 @@ In case you wish to change texts on atForm, you can call:
 ```javascript
 AccountsTemplates.configure({
     texts: {
+        navSignIn: "signIn",
+        navSignOut: "signOut",
         optionalField: "optional",
         pwdLink_pre: "",
         pwdLink_link: "forgotPassword",
@@ -552,7 +558,7 @@ Each field object is represented by the following properties:
 | Property    | Type          | Required | Description                                                                                                                                                                                                                            |
 | ----------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _id         | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
-| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`.                                                                                        |
+| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`, `hidden`.                                                                                        |
 | required    | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
 | displayName | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `displayFormLabels` options is set to true.                             |
 | placeholder | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
@@ -670,7 +676,7 @@ you can achieve also client-side validation, even if there will be a bit of dela
 
 *Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.
 
-#### Checkboxes, Selects, and Radios
+#### Checkboxes, Selects, Radios, and Hidden
 
 This is an example about how to add Checkboxes, Selects, and Radios to the sign up fields:
 
@@ -714,11 +720,28 @@ AccountsTemplates.addField({
     type: "checkbox",
     displayName: "Subscribe me to mailing List",
 });
+
+AccountsTemplates.addField({
+    _id: 'reg_code',
+    type: 'hidden'
+});
 ```
 
 please note the `select` list which lets you specify the values for the choice.
 The `value` value of corresponding selected `text` will be picked up and added into the `profile` field of the user object.
 
+Hidden inputs might be of help in case you want to consider to link to your registration page from around the web (emails, ads, discount campaigns, etc...) with links like this:
+
+```
+http://my.splendido.site/sign-up?email=giorgio@example.com&reg_code=123
+```
+
+exploiting the ability of AccountsTemplates to pick-up query parameters having the same key as field ids, this would permit to get `reg_code: "123"` under the `profile` field of the user object.
+**Please use this with caution!** ..never ever do something like:
+```
+http://my.splendido.site/sign-up?role=admin
+```
+and then set the role of the new user based on the hidden `role` field. I guess you can appreciate the security hole there ;-) 
 
 #### Special Field's Ids
 
