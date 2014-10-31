@@ -1,6 +1,7 @@
 ## Master
 
 * new template `atNavButton`
+* added methos `AccountsTemplates.logout()` which redirects back to `homeRoutePath` when configured
 * support for hidden fields
 * url query parameters loaded into input fields -> useful mostly for hidden fields ;-)
 * granted full control over field ordering (except for special fields...). see #135
