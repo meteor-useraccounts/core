@@ -1,5 +1,10 @@
 ## Master
 
+## v1.0.0
+
+* new names: no more splendido:accounts-templates:<somethig> but useraccounts:<somethig> !
+* updated iron:router to v1.0.0
+
 ## v0.11.0
 
 * added support for checkbox, select, and radio inputs
