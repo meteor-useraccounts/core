@@ -1,5 +1,15 @@
 ## Master
 
+* new template `atNavButton`
+* support for hidden fields
+* url query parameters loaded into input fields -> useful mostly for hidden fields ;-)
+* granted full control over field ordering (except for special fields...). see #135
+* fixes for #130, #132
+
+## v1.0.1
+
+* fixed link to git repositories inside package.js files
+
 ## v1.0.0
 
 * new names: no more splendido:accounts-templates:<somethig> but useraccounts:<somethig> !
