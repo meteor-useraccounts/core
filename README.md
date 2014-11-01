@@ -533,7 +533,7 @@ But there is one more parameter to set in case you'd like to forbid client-side 
 it is exactly the same provided by the Accounts object, so this means you need to do:
 
 ```javascript
-AccountsTemplates.config({
+AccountsTemplates.configure({
     forbidClientAccountCreation: true
 });
 ```
