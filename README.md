@@ -315,7 +315,7 @@ All the above fields are optional and fall back to default values in case you do
 | Action          | route_code    | Route Name      | Route Path       | Template       | Redirect after Timeout |
 | --------------- | ------------- | --------------- | ---------------  | -------------- |:----------------------:|
 | change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |                        |
-| enroll account  | enrollAccount | atEnrolAccount  | /enroll-account  | fullPageAtForm |            X           |
+| enroll account  | enrollAccount | atEnrollAccount | /enroll-account  | fullPageAtForm |            X           |
 | forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |            X           |
 | reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |            X           |
 | sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
@@ -444,7 +444,7 @@ AccountsTemplates.configure({
     texts: {
       title: {
         changePwd: "Password Title",
-        enrollAccount: "Enrol Title",
+        enrollAccount: "Enroll Title",
         forgotPwd: "Forgot Pwd Title",
         resetPwd: "Reset Pwd Title",
         signIn: "Sign In Title",
@@ -502,7 +502,7 @@ The above calls simply set all values as the current default ones.
 <a name="errors-text"/>
 #### Errors Text
 
-In case you wish to change the text for erros appearing inside the error box, you can call:
+In case you wish to change the text for errors appearing inside the error box, you can call:
 
 ```javascript
 AccountsTemplates.configure({
@@ -516,9 +516,9 @@ AccountsTemplates.configure({
 ```
 
 The above calls simply set all values as the current default ones.
-*Note:* The above list of errors refres to those set directly by AccountsTemplates only!
+*Note:* The above list of errors refers to those set directly by AccountsTemplates only!
 Errors which comes from the Accounts packages cannot be overwritten (at least not easily...)
-Please have a look at [Form Fields Configuration](#form-fields-configuration) to lear how to set validation errors on a field basis.
+Please have a look at [Form Fields Configuration](#form-fields-configuration) to learn how to set validation errors on a field basis.
 
 
 <a name="disabling-client-side-accounts-creation"/>
@@ -589,7 +589,7 @@ Furthermore, you can pass an object for `displayName`, `placeholder` to specify 
 }
 ```
 
-which permits to specify a different text for each different state, or a default value to be used for states which are not explicitely provided. For example:
+which permits to specify a different text for each different state, or a default value to be used for states which are not explicitly provided. For example:
 
 ```javascript
 AccountsTemplates.addField({
