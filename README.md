@@ -659,11 +659,12 @@ AccountsTemplates.addField({
         Meteor.call('validatePhone', val, function (error, valid) {
             if (error) {
                 console.log(error.reason);
+                AccountsTemplates.state.fields.set('phone', error.reason);
             } else {
                 if (valid)
-                    AccountsTemplates.setFieldError('phone', false);
+                    AccountsTemplates.state.fields.set('phone', false);
                 else
-                    AccountsTemplates.setFieldError('phone', 'Invalid Phone number!');
+                    AccountsTemplates.state.fields.set('phone', 'Invalid Phone number!');
             }
         });
         return true;
