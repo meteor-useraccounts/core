@@ -46,6 +46,9 @@ If you have a production app using accounts templates, let me know! I'd like to 
   * [Configuring Texts](#configuring-texts)
     * [Form Title](#form-title)
     * [Button Text](#button-text)
+    * [Social Button Icons](#social-button-icons)
+    * [Info Text](#info-text)
+    * [Errors Text](#errors-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
   * [CSS Rules](#css-rules)
@@ -222,6 +225,9 @@ AccountsTemplates.configure({
           signUp: "Register Now!"
       },
       socialSignUp: "Register",
+      socialIcons: {
+          "meteor-developer": "fa fa-rocket"
+      },
       title: {
           forgotPwd: "Recover Your Passwod"
       },
@@ -418,6 +424,9 @@ AccountsTemplates.configure({
         signUpLink_suff: "",
         socialAdd: "add",
         socialConfigure: "configure",
+        socialIcons: {
+            "meteor-developer": "fa fa-rocket",
+        },
         socialRemove: "remove",
         socialSignIn: "signIn",
         socialSignUp: "signUp",
@@ -431,7 +440,7 @@ AccountsTemplates.configure({
 ```
 
 the above example asks to change all available text configurations, but you can specify only a subset of them leaving default values unchanged.
-To learn how to change title, button, info, and errors text read below.
+To learn how to change title, button, social buttons' icon, info, and errors text read below.
 
 
 <a name="form-title"/>
@@ -477,6 +486,26 @@ AccountsTemplates.configure({
 ```
 
 the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+<a name="social-button-icons"/>
+#### Social Button Icons
+
+In case you wish to change the icon appearing on the left of social login buttons, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+        socialIcons: {
+          google: "myGoogleIcon",
+          "meteor-developer": "myMeteorIcon",
+        }
+    }
+});
+```
+
+to specify a different icon classes to be used for services. By default the icon class is set to `fa fa-*service*`,
+but for the "meteor-developer" service for which `fa fa-rocket` is used. An exception is made for `useaccounts:semantic-ui`
+which sets them simply to `*service*`, which is the correct way to go.
 
 <a name="info-text"/>
 #### Info Text
