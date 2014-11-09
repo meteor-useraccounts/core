@@ -783,8 +783,6 @@ There are a number of special ids used for basic input fields. These are:
 * password
 * password_again
 * current_password
-* new_password
-* new_password_again
 
 Any other id will be interpreted as an additional sign up field.
 In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
