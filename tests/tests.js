@@ -24,24 +24,14 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     });
 
     // Trying to remove an existing field
-    AccountsTemplates.removeField("email");
+    var email = AccountsTemplates.removeField("email");
     test.isUndefined(AccountsTemplates.getField("email"));
     // ...and puts it back in for tests re-run
-    AccountsTemplates.addField({
-        _id: "email",
-        type: "email",
-        displayName: "Email",
-        required: true,
-    });
+    AccountsTemplates.addField(email);
 
     // Trying to add an already existing field
     test.throws(function() {
         var pwd = AccountsTemplates.getField("password");
-        pwd = _.pick(pwd, [
-            "_id", "type", "required", "displayName", "placeholder", "minLength", "maxLength", "re", "func", "errStr",
-            "continuousValidation", "negativeFeedback", "negativeValidation", "positiveValidation", "positiveFeedback",
-            "trim", "lowercase", "uppercase"
-        ]);
         AccountsTemplates.addField(pwd);
     }, function(err) {
         if (err instanceof Error && err.message == "A field called password already exists!")
@@ -53,13 +43,6 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
         displayName: "Email",
         type: "email"
     };
-
-    // Invalid field properties
-    test.throws(function() {
-        AccountsTemplates.addField(_.extend(_.clone(login), {
-            foo: "bar"
-        }));
-    }, Error);
 
     // Successful add
     AccountsTemplates.addField(login);
@@ -126,7 +109,6 @@ Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
         required: true
     };
     AccountsTemplates.addField(first_name);
-    test.equal(AccountsTemplates.getField("first_name"), first_name);
     // Now removes it to be consistent with tests re-run
     AccountsTemplates.removeField("first_name");
 });
@@ -181,8 +163,6 @@ Tinytest.add("AccountsTemplates - addFields", function(test) {
             required: false
         };
         AccountsTemplates.addFields([first_name, last_name]);
-        test.equal(AccountsTemplates.getField("first_name"), first_name);
-        test.equal(AccountsTemplates.getField("last_name"), last_name);
         // Now removes ot to be consistend with tests re-run
         AccountsTemplates.removeField("first_name");
         AccountsTemplates.removeField("last_name");
