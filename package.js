@@ -33,16 +33,16 @@ Package.on_use(function(api) {
     ], ["client"]);
 
     api.add_files([
-        "lib/core.js",
         "lib/field.js",
+        "lib/core.js",
         "lib/server.js",
         "lib/methods.js",
     ], ["server"]);
 
     api.add_files([
         "lib/utils.js",
-        "lib/core.js",
         "lib/field.js",
+        "lib/core.js",
         "lib/client.js",
         "lib/templates_helpers/at_error.js",
         "lib/templates_helpers/at_form.js",
