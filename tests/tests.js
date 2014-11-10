@@ -1,6 +1,3 @@
-AccountsTemplates.init();
-
-
 Tinytest.add("AccountsTemplates - addField/removeField", function(test) {
     // Calls after AccountsTemplates.init()
     AccountsTemplates._initialized = true;
