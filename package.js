@@ -13,6 +13,7 @@ Package.on_use(function(api) {
         "check",
         "underscore",
         "iron:router",
+        "reactive-var",
     ], ["client", "server"]);
 
     api.use([
@@ -33,6 +34,7 @@ Package.on_use(function(api) {
 
     api.add_files([
         "lib/core.js",
+        "lib/field.js",
         "lib/server.js",
         "lib/methods.js",
     ], ["server"]);

@@ -1,5 +1,19 @@
 ## Master
 
+## v1.2.0
+
+* removed the need to call `Accounts.init()`
+* added support for fields' validating state to display a 'loading' icon
+* added support for fields' icon configuration
+* added support for social buttons' icon configuration (see [this](https://github.com/meteor-useraccounts/core#social-button-icons) new section)
+* added support for `meteor-developer` oauth service (see #147)
+* fixed (special) fields ordering, see #144
+* removed `new_password` and `new_password_again` special fields, simply use `password` and `password_again` from now on!
+* better redirect behaviour when a logged in user lands on a sign-in/sign-up page: usual redirect is now performed. (see #139)
+* updated dependency to softwarerero:accounts-t9n@1.0.2
+* corrected many errors and typos inside the Documentation
+
+## v1.1.1
 ## v1.1.0
 
 * fixed  `atNavButton` for useraccounts:unstyled

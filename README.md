@@ -111,14 +111,6 @@ meteor add accounts-google
 
 **Note**: 3rd party services need to be configured... more about this [here](http://docs.meteor.com/#meteor_loginwithexternalservice)
 
-And finally call `AccountsTemplates.init()` **at meteor startup, on both the client and the server**: the easiest way is to put the call inside a file shared between both. For example your file `lib/config/at_config.js` should contain at least the following lines:
-
-```javascript
-Meteor.startup(function(){
-    AccountsTemplates.init();
-});
-```
-
 And that's it!
 
 ...but don't expect to see much without doing something more ;-)
@@ -171,15 +163,13 @@ is called somewhere, whenever you want to switch language.
 <a name="configuration-api"/>
 ### Configuration API
 
-There are basically few different ways to interact with AccountsTemplates for basic configuration:
+There are basically two different ways to interact with AccountsTemplates for basic configuration:
 * AccountsTemplates.configureRoute(route_code, options);
 * AccountsTemplates.configure(options);
-* AccountsTemplates.init();
 
-There is no specific order for the above calls to be effective, and you can do many of them possibly in different files, but `AccountsTemplates.init();` **should always come last**!
-After `.init()` is called no more changes are allowed...
+There is no specific order for the above calls to be effective, and you can do many of them possibly in different files
 
-**The only other requirement is to make exactly the same calls on both the server and the client.** As already suggested, the best thing is to put everything inside a file shared between both. I suggest you use something like `lib/config/at_config.js`
+**The only other requirement is to make exactly the same calls on both the server and the client.** The best thing is to put everything inside a file shared between both. I suggest you use something like `lib/config/at_config.js`
 
 
 <a name="options"/>
