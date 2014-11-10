@@ -22,6 +22,7 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 
 * [Telescope](http://www.telesc.pe/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
+* [onehanders.com](http://onehanders.com/)
 * [Henfood](http://labs.henesis.eu:4363/)
 
 Aren't you on the list?!
@@ -761,7 +762,7 @@ exploiting the ability of AccountsTemplates to pick-up query parameters having t
 ```
 http://my.splendido.site/sign-up?role=admin
 ```
-and then set the role of the new user based on the hidden `role` field. I guess you can appreciate the security hole there ;-) 
+and then set the role of the new user based on the hidden `role` field. I guess you can appreciate the security hole there ;-)
 
 #### Special Field's Ids
 
