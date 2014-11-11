@@ -201,6 +201,7 @@ AccountsTemplates.configure({
     negativeValidation: true,
     positiveValidation: true,
     positiveFeedback: true,
+    showValidation: true,
 
     // Privacy Policy and Terms of Use
     privacyUrl: 'privacy',
@@ -255,6 +256,7 @@ Details for each of them follow.
 | negativeValidation          | Boolean | false     | Specifies whether to highlight input elements in case of positive validation. |
 | positiveValidation          | Boolean | false     | Specifies whether to display negative validation feed-back inside input elements. |
 | positiveFeedback            | Boolean | false     | Specifies whether to display positive validation feed-back inside input elements. |
+| showValidating              | Boolean | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
 | Links                       |         |           |             |
 | homeRoutePath               | String  | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
 | privacyUrl                  | String  | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
@@ -519,6 +521,23 @@ AccountsTemplates.configure({
 
 The above calls simply set all values as the current default ones.
 
+<a name="input-icons"/>
+#### Input Field Icons
+
+In case you wish to change the icon appearing on the right side of input fields to show their validation status, you can call:
+
+```javascript
+AccountsTemplates.configure({
+    texts: {
+      inputIcons: {
+          isValidating: "fa fa-spinner fa-spin",
+          hasSuccess: "fa fa-check",
+          hasError: "fa fa-times",
+      }
+    }
+});
+```
+
 <a name="errors-text"/>
 #### Errors Text
 
@@ -575,25 +594,33 @@ One of the most interesting part is that custom additional sign up fields can be
 
 Each field object is represented by the following properties:
 
-| Property    | Type          | Required | Description                                                                                                                                                                                                                            |
-| ----------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _id         | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
-| type        | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`, `hidden`.                                                                                        |
-| required    | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
-| displayName | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `showLabels` options is set to true.                             |
-| placeholder | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
-| select      | list of obj   |          | Lets you specify the list of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
-| minLength   | Integer       |          | If specified requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
-| maxLength   | Integer       |          | If specified require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
-| re          | RegExp        |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
-| func        | Function      |          | Custom function to be used for validation.                                                                                                                                                                                             |
-| errStr      | String        |          | Error message to be displayed in case re or func validation fail.                                                                                                                                                                      |
-| trim        | Boolean       |          | Specifies whether to trim the input value or not.                                                                                                                                                                                      |
-| lowercase   | Boolean       |          | Specifies whether to convert the input value to lowercase or not.                                                                                                                                                                      |
-| uppercase   | Boolean       |          | Specifies whether to convert the input value to uppercase or not.                                                                                                                                                                      |
+| Property             | Type          | Required | Description                                                                                                                                                                                                                            |
+| -------------------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _id                  | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
+| type                 | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`, `hidden`.                                                                                        |
+| required             | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
+| displayName          | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `showLabels` options is set to true.                             |
+| placeholder          | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
+| select               | list of obj   |          | Lets you specify the list of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
+| minLength            | Integer       |          | If specified requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
+| maxLength            | Integer       |          | If specified require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
+| re                   | RegExp        |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
+| func                 | Function      |          | Custom function to be used for validation.                                                                                                                                                                                             |
+| errStr               | String        |          | Error message to be displayed in case re or func validation fail.                                                                                                                                                                      |
+| trim                 | Boolean       |          | Specifies whether to trim the input value or not.                                                                                                                                                                                      |
+| lowercase            | Boolean       |          | Specifies whether to convert the input value to lowercase or not.                                                                                                                                                                      |
+| uppercase            | Boolean       |          | Specifies whether to convert the input value to uppercase or not.                                                                                                                                                                      |
+| continuousValidation | Boolean       |          | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
+| negativeFeedback     | Boolean       |          | Specifies whether to highlight input elements in case of negative validation. |
+| negativeValidation   | Boolean       |          | Specifies whether to highlight input elements in case of positive validation. |
+| positiveValidation   | Boolean       |          | Specifies whether to display negative validation feed-back inside input elements. |
+| positiveFeedback     | Boolean       |          | Specifies whether to display positive validation feed-back inside input elements. |
+| showValidating       | Boolean       |          | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
+
+`continuousValidation`, `negativeFeedback`, `negativeValidation`, `positiveValidation`, `positiveFeedback`, `showValidating` can be used to override global settings (see [Form Fields Configuration](#form-fields-configuration)) on a per field basis.
 
 Furthermore, you can pass an object for `displayName`, `placeholder` to specify different texts for different form states. The matched pattern is:
 
@@ -650,52 +677,55 @@ AccountsTemplates.addField({
     required: true,
     func: function (number) {
         if (Meteor.isServer){
-            return isValidPhone(number);
+          if (isValidPhone(number))
+              return false; // meaning no error!
+          return true; // Validation error!
         }
-        return true;
     },
     errStr: 'Invalid Phone number!',
 });
 ```
 
 supposing `isValidPhone` is available only server-side, you will be validating the field only server-side, on form submission.
-If, differently you do it this way:
+
+If, differently, you do something like this:
 
 ```javascript
 if (Meteor.isServer){
     Meteor.methods({
-        validatePhone: function (number) {
-            return isValidPhone(number);
+        "userExists": function(username){
+            return !!Meteor.users.findOne({username: username});
         },
     });
 }
 
 AccountsTemplates.addField({
-    _id: 'phone',
-    type: 'tel',
-    displayName: "Phone",
+    _id: 'username',
+    type: 'text',
     required: true,
-    func: function(val){
-        Meteor.call('validatePhone', val, function (error, valid) {
-            if (error) {
-                console.log(error.reason);
-                AccountsTemplates.state.fields.set('phone', error.reason);
-            } else {
-                if (valid)
-                    AccountsTemplates.state.fields.set('phone', false);
+    func: function(value){
+        if (Meteor.isClient) {
+            var self = this;
+            Meteor.call("userExists", value, function(err, userExists){
+                if (err)
+                    self.setError(err.details || err.reason);
+                if (userExists)
+                    self.setError("Username already in use!");
                 else
-                    AccountsTemplates.state.fields.set('phone', 'Invalid Phone number!');
-            }
-        });
-        return true;
+                    self.setSuccess();
+                self.setValidating(false);
+            });
+        }
+        // Server
+        return Meteor.call("userExists", value);
     },
-    errStr: 'Invalid Phone number!',
-});
-```
+});```
 
-you can achieve also client-side validation, even if there will be a bit of delay before getting the error displayed...
+you can achieve also client-side and server-side validation calling a server method
+During the waiting time a loading icon will be displayed (if you configure `showValidating` to be true).
+To configure the loading icon see [Input Field Icons](#input-icons).
 
-*Note:* AccountsTemplates.setFieldError(fieldName, value) is the method used internally to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.
+*Note:* `field.setError(err)`, `field.setSuccess()`, and `field.setValidating()` are methods used to deal with inputs' validation states. A `null` value means non-validated, `false` means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.
 
 #### Checkboxes, Selects, Radios, and Hidden
 
@@ -768,12 +798,12 @@ and then set the role of the new user based on the hidden `role` field. I guess 
 
 There are a number of special ids used for basic input fields. These are:
 
-* username
+* current_password
 * email
-* username_and_email
 * password
 * password_again
-* current_password
+* username
+* username_and_email
 
 Any other id will be interpreted as an additional sign up field.
 In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
