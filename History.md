@@ -8,8 +8,11 @@
 * added support for social buttons' icon configuration (see [this](https://github.com/meteor-useraccounts/core#social-button-icons) new section)
 * added support for `meteor-developer` oauth service (see #147)
 * fixed (special) fields ordering, see #144
+* fixed ensureSignedIn (see #152)
 * removed `new_password` and `new_password_again` special fields, simply use `password` and `password_again` from now on!
 * better redirect behaviour when a logged in user lands on a sign-in/sign-up page: usual redirect is now performed. (see #139)
+* better field validation patterns...
+* updated dependency to irou:router@1.0.1
 * updated dependency to softwarerero:accounts-t9n@1.0.2
 * corrected many errors and typos inside the Documentation
 
