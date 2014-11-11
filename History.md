@@ -2,6 +2,10 @@
 
 ## v1.2.1
 
+* fixed bad redirect for cheange password route (see #154)
+
+## v1.2.1
+
 * fixed regression due reactivity problems after fix for #139
 
 ## v1.2.0
