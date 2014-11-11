@@ -1,5 +1,9 @@
 ## Master
 
+## v1.2.1
+
+* fixed regression due reactivity problems after fix for #139
+
 ## v1.2.0
 
 * removed the need to call `Accounts.init()`
