@@ -1,16 +1,16 @@
 ## Master
 
-## v1.2.1
+## v1.2.2 / 2014/11/12
 
 * fixed bad redirect for cheange password route (see #154)
 
-## v1.2.1
+## v1.2.1 / 2014/11/12
 
 * fixed regression due reactivity problems after fix for #139
 
-## v1.2.0
+## v1.2.0 / 2014/11/12
 
-* removed the need to call `Accounts.init()`
+* **breaking change:** removed the need to call `Accounts.init()`
 * added support for fields' validating state to display a 'loading' icon
 * added support for fields' icon configuration
 * added support for social buttons' icon configuration (see [this](https://github.com/meteor-useraccounts/core#social-button-icons) new section)
