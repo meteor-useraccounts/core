@@ -1,5 +1,9 @@
 ## Master
 
+## v1.2.3 / 2014/11/13
+
+* put back in a `init` method dispalying a warning to preserve backward compatibility...
+
 ## v1.2.2 / 2014/11/12
 
 * fixed bad redirect for cheange password route (see #154)
