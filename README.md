@@ -719,7 +719,8 @@ AccountsTemplates.addField({
         // Server
         return Meteor.call("userExists", value);
     },
-});```
+});
+```
 
 you can achieve also client-side and server-side validation calling a server method
 During the waiting time a loading icon will be displayed (if you configure `showValidating` to be true).
