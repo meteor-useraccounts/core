@@ -324,6 +324,16 @@ All the above fields are optional and fall back to default values in case you do
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
 
+Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for `AccountsTemplates.ensuredSignedIn` (see [Content Protection](#content-protection)):
+
+```javascript
+AccountsTemplates.configureRoute('ensureSignedIn', {
+    template: 'myLogin',
+    layoutTemplate: 'myLayout',
+});
+```
+
+in this case, any field different from `template` and `layoutTemplate` will be ignored!
 
 <a name="content-protection"/>
 #### Content Protection
@@ -388,7 +398,16 @@ In this case only `private1` and `private2` routes are protected with sign-in ac
 
 possibly have a look at the iron-router [documentation](http://eventedmind.github.io/iron-router/) for more details.
 
+If you wish to customize the template and layout to be used you can change them with:
 
+```javascript
+AccountsTemplates.configureRoute('ensureSignedIn', {
+    template: 'myLogin',
+    layoutTemplate: 'myLayout',
+});
+```
+
+see [Routing](#routing) for more information.
 
 <a name="advances-customization"/>
 ## Advanced Customization
