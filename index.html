@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Meteor UserAccounts : Account Templates and much more for your MeteorJs App!">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Meteor UserAccounts</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/meteor-useraccounts/core">View on GitHub</a>
+
+          <h1 id="project_title">Meteor UserAccounts</h1>
+          <h2 id="project_tagline">Account Templates and much more for your MeteorJs App!</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/meteor-useraccounts/core/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/meteor-useraccounts/core/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="accounts-templates" class="anchor" href="#accounts-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Accounts Templates</h1>
+
+<p>UserAccounts is a suite of packages for the <a href="https://www.meteor.com/">Meteor.js</a> platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.</p>
+
+<p>The package <code>useraccounts:core</code> contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
+This means that developing a version of the UI with a different styling is just a matter of writing a few dozen of html lines, nothing more!</p>
+
+<p>Thanks to <a href="https://github.com/softwarerero/meteor-accounts-t9n">accounts-t9n</a> you can switch to your preferred language on the fly! Available languages are now: Arabic, Czech, French, German, Italian, Polish, Portuguese, Russian, Slovenian, Spanish, Swedish and Vietnamese.</p>
+
+<p>It also uses <a href="https://atmospherejs.com/package/iron-router">iron-router</a> for basic routing and content protection.</p>
+
+<p>You can get a better idea about this heading to <a href="http://accounts-templates.meteor.com/">http://accounts-templates.meteor.com/</a> and then, on your choice, to:</p>
+
+<ul>
+<li><a href="http://accounts-templates-bootstrap.meteor.com/">http://accounts-templates-bootstrap.meteor.com/</a></li>
+<li><a href="http://accounts-templates-foundation.meteor.com/">http://accounts-templates-foundation.meteor.com/</a></li>
+<li><a href="http://accounts-templates-semantic-ui.meteor.com/">http://accounts-templates-semantic-ui.meteor.com/</a></li>
+</ul>
+
+<p>Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the <a href="https://github.com/meteor-useraccounts/ui">repository</a> issues tracker for reporting bugs, problems, ideas, discussions, etc..</p>
+
+<h2>
+<a id="whos-using-this" class="anchor" href="#whos-using-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who's using this?</h2>
+
+<ul>
+<li><a href="http://www.telesc.pe/">Telescope</a></li>
+<li><a href="http://crater.io/">Crater.io</a></li>
+<li><a href="http://www.bootstrappers.io/">bootstrappers.io</a></li>
+<li><a href="http://onehanders.com/">onehanders.com</a></li>
+<li><a href="http://labs.henesis.eu:4363/">Henfood</a></li>
+</ul>
+
+<p>Aren't you on the list?!
+If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.</p>
+
+<p><a name="documentation"></a></p>
+
+<h1>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
+
+<ul>
+<li><a href="#features">Features</a></li>
+<li>
+<a href="#quickstart">Quick Start</a>
+
+<ul>
+<li><a href="#available-versions">Available Versions</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#templates">Templates</a></li>
+</ul>
+</li>
+<li>
+<a href="#basic-customization">Basic Customization</a>
+
+<ul>
+<li><a href="#i18n">I18n Support</a></li>
+<li><a href="#configuration-api">Configuration API</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#routing">Routing</a></li>
+<li><a href="#content-protection">Content Protection</a></li>
+</ul>
+</li>
+<li>
+<a href="#advanced-customization">Advanced Customization</a>
+
+<ul>
+<li>
+<a href="#configuring-texts">Configuring Texts</a>
+
+<ul>
+<li><a href="#form-title">Form Title</a></li>
+<li><a href="#button-text">Button Text</a></li>
+<li><a href="#social-button-icons">Social Button Icons</a></li>
+<li><a href="#info-text">Info Text</a></li>
+<li><a href="#errors-text">Errors Text</a></li>
+</ul>
+</li>
+<li><a href="#disabling-client-side-accounts-creation">Disabling Client-side Accounts Creation</a></li>
+<li><a href="#form-fields-configuration">Form Fields Configuration</a></li>
+<li><a href="#css-rules">CSS Rules</a></li>
+</ul>
+</li>
+<li><a href="#wrapping-up-for-famo.us">Wrapping Up for Famo.us</a></li>
+<li>
+<a href="#side-notes">Side Notes</a>
+
+<ul>
+<li><a href="#3rd-party-login-services-configuration">3rd Party Login Services Configuration</a></li>
+</ul>
+</li>
+<li><a href="#contributing">Contributing</a></li>
+</ul>
+
+<p><a name="features"></a></p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>fully customizable</li>
+<li>security aware</li>
+<li>internationalization support thanks to <a href="https://github.com/softwarerero/meteor-accounts-t9n">accounts-t9n</a>
+</li>
+<li>custom sign-up fields</li>
+<li>robust server side sign-up field validation</li>
+<li>easy content protection</li>
+<li>return to previous route after sign-in (even for random sign in choice and not only after required sign-in)</li>
+<li>fully reactive, Blaze fast!</li>
+<li>no use of <code>Session</code> object</li>
+<li>very easily stylizable for different font-end frameworks</li>
+<li>...<a href="">wrap it up for famo.us</a> with a simple meteor line!</li>
+</ul>
+
+<p><a name="quickstart"></a></p>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p><a name="available-versions"></a></p>
+
+<h3>
+<a id="available-versions" class="anchor" href="#available-versions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available Versions</h3>
+
+<ul>
+<li>
+<a href="https://atmospherejs.com/useraccounts/unstyled">useraccounts:unstyled</a> with plain html and no CSS rules</li>
+<li>
+<a href="https://atmospherejs.com/useraccounts/bootstrap">useraccounts:bootstrap</a> styled for <a href="http://getbootstrap.com/">Twitter Bootstrap</a>
+</li>
+<li>
+<a href="https://atmospherejs.com/useraccounts/foundation">useraccounts:foundation</a> styled for <a href="http://foundation.zurb.com/">Zurb Foundation</a>
+</li>
+<li>
+<a href="https://atmospherejs.com/useraccounts/semantic-ui">useraccounts:semantic-ui</a> styled for <a href="http://semantic-ui.com">Semantic UI</a>
+</li>
+<li>plus others coming soon...</li>
+</ul>
+
+<p><a name="setup"></a></p>
+
+<h3>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<p>Just choose one of the packages among the <a href="#available-styled-versions">available styled versions</a> and install it via meteorite:</p>
+
+<div class="highlight highlight-Shell"><pre>meteor add useraccounts:bootstrap</pre></div>
+
+<p><strong>Warning:</strong> You don't have to add <code>useraccounts:core</code> to your app! It is automatically added when you add <code>useraccounts:&lt;something&gt;</code>...</p>
+
+<p>Then add at least one login service:</p>
+
+<div class="highlight highlight-Shell"><pre>meteor add accounts-password
+meteor add accounts-facebook
+meteor add accounts-google
+...</pre></div>
+
+<p><strong>Note</strong>: 3rd party services need to be configured... more about this <a href="http://docs.meteor.com/#meteor_loginwithexternalservice">here</a></p>
+
+<p>And that's it!</p>
+
+<p>...but don't expect to see much without doing something more ;-)
+This is to let you configure your app exactly the way you wish, without imposing anything beforehand!</p>
+
+<p><a name="templates"></a></p>
+
+<h3>
+<a id="templates" class="anchor" href="#templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Templates</h3>
+
+<p>There is <strong>only one template</strong> which is used to reactively draw appropriate sign in, sign up, forgot password, reset password, change password, and enroll account forms!</p>
+
+<p>It is <code>atForm</code> and can be used anywhere you wish like this:</p>
+
+<div class="highlight highlight-html"><pre>{{&gt; atForm}}</pre></div>
+
+<p>Its design is as <em>transparent</em> as possible making it play nicely with themes and personal css customizations! What more, it is not wrapped inside any <em>container</em> so that you can put it everywhere, including complex multi-column layouts.</p>
+
+<p>In case you wish to <em>lock</em> the template to a particular state, you can also use, e.g.,</p>
+
+<div class="highlight highlight-html"><pre>{{&gt; atForm state='signUp'}}</pre></div>
+
+<p>this will prevent the template to change its content. See <a href="#internal-states">internal states</a> for more details...</p>
+
+<p>Well, actually there is many, used inside <code>atForm</code>...</p>
+
+<p>...plus one another: <code>atNavButton</code> which is currently at an experimental stage, but which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status.</p>
+
+<p><a name="basic-customization"></a></p>
+
+<h2>
+<a id="basic-customization" class="anchor" href="#basic-customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Customization</h2>
+
+<p><a name="i18n"></a></p>
+
+<h3>
+<a id="i18n-support" class="anchor" href="#i18n-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>I18n Support</h3>
+
+<p>i18n is achieved using <a href="https://atmospherejs.com/package/accounts-t9n">accounts-t9n</a>. The only thing you have to do is ensure</p>
+
+<div class="highlight highlight-javascript"><pre>T9n.setLanguage(<span class="pl-s1"><span class="pl-pds">'</span>&lt;lang&gt;<span class="pl-pds">'</span></span>);</pre></div>
+
+<p>is called somewhere, whenever you want to switch language.</p>
+
+<p><a name="configuration-api"></a></p>
+
+<h3>
+<a id="configuration-api" class="anchor" href="#configuration-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration API</h3>
+
+<p>There are basically two different ways to interact with AccountsTemplates for basic configuration:</p>
+
+<ul>
+<li>AccountsTemplates.configureRoute(route_code, options);</li>
+<li>AccountsTemplates.configure(options);</li>
+</ul>
+
+<p>There is no specific order for the above calls to be effective, and you can do many of them possibly in different files</p>
+
+<p><strong>The only other requirement is to make exactly the same calls on both the server and the client.</strong> The best thing is to put everything inside a file shared between both. I suggest you use something like <code>lib/config/at_config.js</code></p>
+
+<p><a name="options"></a></p>
+
+<h4>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h4>
+
+<p>By calling <code>AccountsTemplates.configure(options)</code> you can specify a bunch of choices regarding both visual appearance and behaviour.</p>
+
+<p>The following is a complete example of options configuration (with fields in alphabetical order):</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    <span class="pl-c">// Behaviour</span>
+    confirmPassword<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    enablePasswordChange<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    forbidClientAccountCreation<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    overrideLoginErrors<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    sendVerificationEmail<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+
+    <span class="pl-c">// Appearance</span>
+    showAddRemoveServices<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    showForgotPasswordLink<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    showLabels<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    showPlaceholders<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+
+    <span class="pl-c">// Client-side Validation</span>
+    continuousValidation<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    negativeFeedback<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    negativeValidation<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    positiveValidation<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    positiveFeedback<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    showValidation<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+
+    <span class="pl-c">// Privacy Policy and Terms of Use</span>
+    privacyUrl<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>privacy<span class="pl-pds">'</span></span>,
+    termsUrl<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>terms-of-use<span class="pl-pds">'</span></span>,
+
+    <span class="pl-c">// Redirects</span>
+    homeRoutePath<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/home<span class="pl-pds">'</span></span>,
+    redirectTimeout<span class="pl-k">:</span> <span class="pl-c1">4000</span>,
+
+    <span class="pl-c">// Texts</span>
+    texts<span class="pl-k">:</span> {
+      button<span class="pl-k">:</span> {
+          signUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Register Now!<span class="pl-pds">"</span></span>
+      },
+      socialSignUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Register<span class="pl-pds">"</span></span>,
+      socialIcons<span class="pl-k">:</span> {
+          <span class="pl-s1"><span class="pl-pds">"</span>meteor-developer<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fa fa-rocket<span class="pl-pds">"</span></span>
+      },
+      title<span class="pl-k">:</span> {
+          forgotPwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Recover Your Passwod<span class="pl-pds">"</span></span>
+      },
+    },
+});</pre></div>
+
+<p>Details for each of them follow.</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Behaviour</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>confirmPassword</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form.</td>
+</tr>
+<tr>
+<td>defaultState</td>
+<td>String</td>
+<td>"signIn"</td>
+<td>Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes.</td>
+</tr>
+<tr>
+<td>enablePasswordChange</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to allow to show the form for password change. Note: In case the <code>changePwd</code> route is not configures, this is to be done <em>manually</em> inside some custom template.</td>
+</tr>
+<tr>
+<td>enforceEmailVerification</td>
+<td>Boolean</td>
+<td>false</td>
+<td>When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. <strong>Warning: experimental! Use it only if you have accounts-password as the only service!!!</strong>
+</td>
+</tr>
+<tr>
+<td>forbidClientAccountCreation</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown.</td>
+</tr>
+<tr>
+<td>overrideLoginErrors</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Asks to show a general <code>Login Forbidden</code> on a login failure, without specifying whether it was for a wrong email or for a wrong password.</td>
+</tr>
+<tr>
+<td>sendVerificationEmail</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to send the verification email after successful registration.</td>
+</tr>
+<tr>
+<td>redirectTimeout</td>
+<td>Number</td>
+<td>2000</td>
+<td>Specifies a timeout time for the redirect after successful form submit on <code>enrollAccount</code>, <code>forgotPwd</code>, <code>resetPwd</code>, and <code>verifyEmail</code> routes.</td>
+</tr>
+<tr>
+<td>Appearance</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>defaultLayout</td>
+<td>String</td>
+<td>undefined</td>
+<td>Possibly specify the default layout to be used to render configured routes (see <a href="#routing">Routing</a>.</td>
+</tr>
+<tr>
+<td>hideSignInLink</td>
+<td>Boolean</td>
+<td>false</td>
+<td>When set to true, asks to never show the link to the sign in page</td>
+</tr>
+<tr>
+<td>hideSignUpLink</td>
+<td>Boolean</td>
+<td>false</td>
+<td>When set to true, asks to never show the link to the sign up page</td>
+</tr>
+<tr>
+<td>showAddRemoveServices</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user <strong>and</strong> there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to <code>Meteor.loginWithXXX</code>, as usual, while click on 'Remove XXX' will call the method <code>ATRemoveService</code> provided by AccountsTemplates. This means you need to have some additional logic to deal with the call <code>Meteor.loginWithXXX</code> in order to actually add the service to the user account. One solution to this is to use the package <a href="https://atmospherejs.com/package/accounts-meld">accounts-meld</a> which was build exactly for this purpose.</td>
+</tr>
+<tr>
+<td>showForgotPasswordLink</td>
+<td>Boolean</td>
+<td>false</td>
+<td></td>
+</tr>
+<tr>
+<td>showLabels</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Specifies whether to display text labels above input elements.</td>
+</tr>
+<tr>
+<td>showPlaceholders</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Specifies whether to display place-holder text inside input elements.</td>
+</tr>
+<tr>
+<td>Texts</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>texts</td>
+<td>Object</td>
+<td></td>
+<td>Permits to specify texts to be shown on the atForm for each of its states (see <a href="#configuring-texts">below</a>).</td>
+</tr>
+<tr>
+<td>Client-side Validation</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>continuousValidation</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to continuously validate fields' value while the user is typing. <em>It is performed client-side only to save round trips with the server</em>.</td>
+</tr>
+<tr>
+<td>negativeFeedback</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to highlight input elements in case of negative validation.</td>
+</tr>
+<tr>
+<td>negativeValidation</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to highlight input elements in case of positive validation.</td>
+</tr>
+<tr>
+<td>positiveValidation</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to display negative validation feed-back inside input elements.</td>
+</tr>
+<tr>
+<td>positiveFeedback</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to display positive validation feed-back inside input elements.</td>
+</tr>
+<tr>
+<td>showValidating</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to display a loding icon inside input elements while the validation process is in progress.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>homeRoutePath</td>
+<td>String</td>
+<td>'/'</td>
+<td>Path for the home route, to be possibly used for redirects after successful form submission.</td>
+</tr>
+<tr>
+<td>privacyUrl</td>
+<td>String</td>
+<td>undefined</td>
+<td>Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate).</td>
+</tr>
+<tr>
+<td>termsUrl</td>
+<td>String</td>
+<td>undefined</td>
+<td>Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate).</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="routing"></a></p>
+
+<h4>
+<a id="routing" class="anchor" href="#routing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routing</h4>
+
+<p>There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using <code>AccountsTemplates.configureRoute</code>. This is done internally relying on the awesome <a href="https://atmospherejs.com/package/iron-router">Iron-Router</a> package.</p>
+
+<p>The simplest way is to make the call passing just the route code (available codes are: changePwd, enrollAccount, forgotPwd, resetPwd, signIn, signUp):</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configureRoute(<span class="pl-s1"><span class="pl-pds">'</span>signIn<span class="pl-pds">'</span></span>);</pre></div>
+
+<p>This will set up the sign in route with a full-page form letting users access your app.</p>
+
+<p>But you can also pass in more options to adapt it to your needs with:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configureRoute(route_code, options);</pre></div>
+
+<p>The following is a complete example of a route configuration:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configureRoute(<span class="pl-s1"><span class="pl-pds">'</span>signIn<span class="pl-pds">'</span></span>, {
+    name<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>signin<span class="pl-pds">'</span></span>,
+    path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/login<span class="pl-pds">'</span></span>,
+    template<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>myLogin<span class="pl-pds">'</span></span>,
+    layoutTemplate<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>myLayout<span class="pl-pds">'</span></span>,
+    redirect<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/user-profile<span class="pl-pds">'</span></span>,
+});</pre></div>
+
+<p>Fields <code>name</code>, <code>path</code>, <code>template</code>, and <code>layoutTemplate</code> are passed down directly to Router.map (see the official iron router documentation <a href="https://github.com/EventedMind/iron-router/#api">here</a> for more details), while <code>redirect</code> permits to specify where to redirect the user after successful form submit. Actually, <code>redirect</code> can be a function so that, for example, the following:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configureRoute(<span class="pl-s1"><span class="pl-pds">'</span>signIn<span class="pl-pds">'</span></span>, {
+    <span class="pl-en">redirect</span>: <span class="pl-st">function</span>(){
+        <span class="pl-s">var</span> user <span class="pl-k">=</span> Meteor.user();
+        <span class="pl-k">if</span> (user)
+          Router.<span class="pl-s3">go</span>(<span class="pl-s1"><span class="pl-pds">'</span>/user/<span class="pl-pds">'</span></span> <span class="pl-k">+</span> user._id);
+    }
+});</pre></div>
+
+<p>will redirect to, e.g., '/user/ae8WQQk6DrtDzA2AZ' after succesful login :-)</p>
+
+<p>All the above fields are optional and fall back to default values in case you don't provide them. Default values are as follows:</p>
+
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>route_code</th>
+<th>Route Name</th>
+<th>Route Path</th>
+<th>Template</th>
+<th align="center">Redirect after Timeout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>change password</td>
+<td>changePwd</td>
+<td>atChangePwd</td>
+<td>/change-password</td>
+<td>fullPageAtForm</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>enroll account</td>
+<td>enrollAccount</td>
+<td>atEnrollAccount</td>
+<td>/enroll-account</td>
+<td>fullPageAtForm</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td>forgot password</td>
+<td>forgotPwd</td>
+<td>atForgotPwd</td>
+<td>/forgot-password</td>
+<td>fullPageAtForm</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td>reset password</td>
+<td>resetPwd</td>
+<td>atResetPwd</td>
+<td>/reset-password</td>
+<td>fullPageAtForm</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td>sign in</td>
+<td>signIn</td>
+<td>atSignIn</td>
+<td>/sign-in</td>
+<td>fullPageAtForm</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>sign up</td>
+<td>signUp</td>
+<td>atSignUp</td>
+<td>/sign-up</td>
+<td>fullPageAtForm</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>verify email</td>
+<td>verifyEmail</td>
+<td>atVerifyEmail</td>
+<td>/verify-email</td>
+<td>fullPageAtForm</td>
+<td align="center">X</td>
+</tr>
+</tbody>
+</table>
+
+<p>If <code>layoutTemplate</code> is not specified, it falls back to what is currently set up with Iron-Router.
+If <code>redirect</code> is not specified, it default to the previous route (obviously routes set up with <code>AccountsTemplates.configureRoute</code> are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see <a href="#content-protection">Content Protection</a>, the user is redirect to the protected page after successful sign in or sign up, regardless of whether a <code>redirect</code> parameter was passed for <code>signIn</code> or <code>signUp</code> route configuration or not.</p>
+
+<p><a name="content-protection"></a></p>
+
+<h4>
+<a id="content-protection" class="anchor" href="#content-protection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Content Protection</h4>
+
+<p>There is a method which permits to prompt for the sign in form for the pages requiring the user to be signed in. It is:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.ensureSignedIn</pre></div>
+
+<p>It behaves nicely letting the required route path inside the address bar and bringing you back to the same route once logged in.</p>
+
+<p>In case you want to protect about all of your routes you might want to set up your Router this way:</p>
+
+<div class="highlight highlight-javascript"><pre>Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+    except<span class="pl-k">:</span> [<span class="pl-s1"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>atSignIn<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>atSignUp<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>atForgotPassword<span class="pl-pds">'</span></span>]
+});</pre></div>
+
+<p>if, instead, it's only a bunch of routes to be protected you could do:</p>
+
+<div class="highlight highlight-javascript"><pre>Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+    only<span class="pl-k">:</span> [<span class="pl-s1"><span class="pl-pds">'</span>profile<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>privateStuff<span class="pl-pds">'</span></span>]
+});</pre></div>
+
+<p>Another possibility is to set up single routes one after the another. For example:</p>
+
+<div class="highlight highlight-javascript"><pre>Router.map(<span class="pl-st">function</span>() {
+    <span class="pl-v">this</span>.route(<span class="pl-s1"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>, {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>,
+        template<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>homeMain<span class="pl-pds">'</span></span>
+    });
+
+    <span class="pl-v">this</span>.route(<span class="pl-s1"><span class="pl-pds">'</span>aboutPage<span class="pl-pds">'</span></span>, {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/about<span class="pl-pds">'</span></span>,
+        template<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>about<span class="pl-pds">'</span></span>
+    });
+
+    <span class="pl-v">this</span>.route(<span class="pl-s1"><span class="pl-pds">'</span>private1<span class="pl-pds">'</span></span>, {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/private1<span class="pl-pds">'</span></span>,
+        template<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>privatePage1<span class="pl-pds">'</span></span>,
+        onBeforeAction<span class="pl-k">:</span> AccountsTemplates.ensureSignedIn
+    });
+
+    <span class="pl-v">this</span>.route(<span class="pl-s1"><span class="pl-pds">'</span>private2<span class="pl-pds">'</span></span>, {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/private2<span class="pl-pds">'</span></span>,
+        template<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>privatePage2<span class="pl-pds">'</span></span>,
+        <span class="pl-en">onBeforeAction</span>: <span class="pl-st">function</span>(<span class="pl-vpf">pause</span>){
+            AccountsTemplates.ensureSignedIn.<span class="pl-s3">call</span>(<span class="pl-v">this</span>, pause);
+
+            <span class="pl-c">// Some more stuff to check advanced permission an the like...</span>
+        }
+    });
+});</pre></div>
+
+<p>In this case only <code>private1</code> and <code>private2</code> routes are protected with sign-in access. Please note that <code>ensureSignedIn</code> is called through the <code>call</code> method passing <code>this</code> (the Router object) and <code>pause</code> as parameters inside <code>onBeforeAction</code> for route <code>private2</code> in order to achieve correct functioning (see <a href="https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks">here</a>).</p>
+
+<p>possibly have a look at the iron-router <a href="http://eventedmind.github.io/iron-router/">documentation</a> for more details.</p>
+
+<p><a name="advances-customization"></a></p>
+
+<h2>
+<a id="advanced-customization" class="anchor" href="#advanced-customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Customization</h2>
+
+<p><a name="configuring-texts"></a></p>
+
+<h2>
+<a id="configuring-texts" class="anchor" href="#configuring-texts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring Texts</h2>
+
+<p>In case you wish to change texts on atForm, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+        navSignIn<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signIn<span class="pl-pds">"</span></span>,
+        navSignOut<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signOut<span class="pl-pds">"</span></span>,
+        optionalField<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>optional<span class="pl-pds">"</span></span>,
+        pwdLink_pre<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        pwdLink_link<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>forgotPassword<span class="pl-pds">"</span></span>,
+        pwdLink_suff<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        sep<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>OR<span class="pl-pds">"</span></span>,
+        signInLink_pre<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>ifYouAlreadyHaveAnAccount<span class="pl-pds">"</span></span>,
+        signInLink_link<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signin<span class="pl-pds">"</span></span>,
+        signInLink_suff<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        signUpLink_pre<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>dontHaveAnAccount<span class="pl-pds">"</span></span>,
+        signUpLink_link<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signUp<span class="pl-pds">"</span></span>,
+        signUpLink_suff<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        socialAdd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>add<span class="pl-pds">"</span></span>,
+        socialConfigure<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>configure<span class="pl-pds">"</span></span>,
+        socialIcons<span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>meteor-developer<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fa fa-rocket<span class="pl-pds">"</span></span>,
+        },
+        socialRemove<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>remove<span class="pl-pds">"</span></span>,
+        socialSignIn<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signIn<span class="pl-pds">"</span></span>,
+        socialSignUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>signUp<span class="pl-pds">"</span></span>,
+        socialWith<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>with<span class="pl-pds">"</span></span>,
+        termsPreamble<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>clickAgree<span class="pl-pds">"</span></span>,
+        termsPrivacy<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>privacyPolicy<span class="pl-pds">"</span></span>,
+        termsAnd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>and<span class="pl-pds">"</span></span>,
+        termsTerms<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>terms<span class="pl-pds">"</span></span>,
+    }
+};</pre></div>
+
+<p>the above example asks to change all available text configurations, but you can specify only a subset of them leaving default values unchanged.
+To learn how to change title, button, social buttons' icon, info, and errors text read below.</p>
+
+<p><a name="form-title"></a></p>
+
+<h4>
+<a id="form-title" class="anchor" href="#form-title" aria-hidden="true"><span class="octicon octicon-link"></span></a>Form Title</h4>
+
+<p>In case you wish to change form titles, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+      title<span class="pl-k">:</span> {
+        changePwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Password Title<span class="pl-pds">"</span></span>,
+        enrollAccount<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Enroll Title<span class="pl-pds">"</span></span>,
+        forgotPwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Forgot Pwd Title<span class="pl-pds">"</span></span>,
+        resetPwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Reset Pwd Title<span class="pl-pds">"</span></span>,
+        signIn<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Sign In Title<span class="pl-pds">"</span></span>,
+        signUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Sign Up Title<span class="pl-pds">"</span></span>,
+      }
+    }
+});</pre></div>
+
+<p>the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.</p>
+
+<p><a name="button-text"></a></p>
+
+<h4>
+<a id="button-text" class="anchor" href="#button-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Button Text</h4>
+
+<p>In case you wish to change the text appearing inside the submission button, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+        button<span class="pl-k">:</span> {
+          changePwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Password Text<span class="pl-pds">"</span></span>,
+          enrollAccount<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Enroll Text<span class="pl-pds">"</span></span>,
+          forgotPwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Forgot Pwd Text<span class="pl-pds">"</span></span>,
+          resetPwd<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Reset Pwd Text<span class="pl-pds">"</span></span>,
+          signIn<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Sign In Text<span class="pl-pds">"</span></span>,
+          signUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Sign Up Text<span class="pl-pds">"</span></span>,
+        }
+    }
+});</pre></div>
+
+<p>the above example asks to change the button text for all possible form states, but you can specify only a subset of them leaving default values unchanged.</p>
+
+<p><a name="social-button-icons"></a></p>
+
+<h4>
+<a id="social-button-icons" class="anchor" href="#social-button-icons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Social Button Icons</h4>
+
+<p>In case you wish to change the icon appearing on the left of social login buttons, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+        socialIcons<span class="pl-k">:</span> {
+          google<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>myGoogleIcon<span class="pl-pds">"</span></span>,
+          <span class="pl-s1"><span class="pl-pds">"</span>meteor-developer<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>myMeteorIcon<span class="pl-pds">"</span></span>,
+        }
+    }
+});</pre></div>
+
+<p>to specify a different icon classes to be used for services. By default the icon class is set to <code>fa fa-*service*</code>,
+but for the "meteor-developer" service for which <code>fa fa-rocket</code> is used. An exception is made for <code>useaccounts:semantic-ui</code>
+which sets them simply to <code>*service*</code>, which is the correct way to go.</p>
+
+<p><a name="info-text"></a></p>
+
+<h4>
+<a id="info-text" class="anchor" href="#info-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Info Text</h4>
+
+<p>In case you wish to change the info text appearing inside the results box, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+        info<span class="pl-k">:</span> {
+            emailSent<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>info.emailSent<span class="pl-pds">"</span></span>,
+            pwdChanged<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>info.passwordChanged<span class="pl-pds">"</span></span>,
+            pwdReset<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>info.passwordReset<span class="pl-pds">"</span></span>,
+            pwdSet<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>info.passwordReset<span class="pl-pds">"</span></span>,
+            singUpVerifyEmail<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Registration Successful! Please check your email and follow the instructions.<span class="pl-pds">"</span></span>,
+        }
+    }
+});</pre></div>
+
+<p>The above calls simply set all values as the current default ones.</p>
+
+<p><a name="input-icons"></a></p>
+
+<h4>
+<a id="input-field-icons" class="anchor" href="#input-field-icons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Field Icons</h4>
+
+<p>In case you wish to change the icon appearing on the right side of input fields to show their validation status, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+      inputIcons<span class="pl-k">:</span> {
+          isValidating<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fa fa-spinner fa-spin<span class="pl-pds">"</span></span>,
+          hasSuccess<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fa fa-check<span class="pl-pds">"</span></span>,
+          hasError<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fa fa-times<span class="pl-pds">"</span></span>,
+      }
+    }
+});</pre></div>
+
+<p><a name="errors-text"></a></p>
+
+<h4>
+<a id="errors-text" class="anchor" href="#errors-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Errors Text</h4>
+
+<p>In case you wish to change the text for errors appearing inside the error box, you can call:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    texts<span class="pl-k">:</span> {
+        errors<span class="pl-k">:</span> {
+            mustBeLoggedIn<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>error.accounts.Must be logged in<span class="pl-pds">"</span></span>,
+            pwdMismatch<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>error.pwdsDontMatch<span class="pl-pds">"</span></span>,
+        }
+    }
+});</pre></div>
+
+<p>The above calls simply set all values as the current default ones.
+<em>Note:</em> The above list of errors refers to those set directly by AccountsTemplates only!
+Errors which comes from the Accounts packages cannot be overwritten (at least not easily...)
+Please have a look at <a href="#form-fields-configuration">Form Fields Configuration</a> to learn how to set validation errors on a field basis.</p>
+
+<p><a name="disabling-client-side-accounts-creation"></a></p>
+
+<h3>
+<a id="disabling-client-side-accounts-creation" class="anchor" href="#disabling-client-side-accounts-creation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disabling Client-side Accounts Creation</h3>
+
+<p>AccountsTemplates disables by default accounts creation on the client. This is done to use a dedicated method called <code>ATCreateUserServer</code> <strong>(sending the password on the wire already hashed as usual...)</strong> to create the new users server-side.
+This way a bulletproof profile fields full validation can be performed.
+But there is one more parameter to set in case you'd like to forbid client-side accounts creation, which is the following:</p>
+
+<ul>
+<li>
+<code>forbidClientAccountCreation</code> - (Boolean, default true) Specifies whether to forbid accounts creation from the client.</li>
+</ul>
+
+<p>it is exactly the same provided by the Accounts object, so this means you need to do:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configure({
+    forbidClientAccountCreation<span class="pl-k">:</span> <span class="pl-c1">true</span>
+});</pre></div>
+
+<p>instead of the usual:</p>
+
+<div class="highlight highlight-javascript"><pre>Accounts.config({
+  forbidClientAccountCreation <span class="pl-k">:</span> <span class="pl-c1">true</span>
+});</pre></div>
+
+<p><a name="form-fields-configuration"></a></p>
+
+<h3>
+<a id="form-fields-configuration" class="anchor" href="#form-fields-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Form Fields Configuration</h3>
+
+<p>Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour.
+One of the most interesting part is that custom additional sign up fields can be also added to the sign up form!</p>
+
+<p>Each field object is represented by the following properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th align="center">Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_id</td>
+<td>String</td>
+<td align="center">X</td>
+<td>A unique field's id / name (internal use only) to be also used as attribute name into <code>Meteor.user().profile</code> in case it identifies an additional sign up field. Usually all lower-case letters.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td align="center">X</td>
+<td>Specifies the input element type: at the moment supported inputs are: <code>password</code>, <code>email</code>, <code>text</code>, <code>tel</code>, <code>url</code>, <code>checkbox</code>, <code>select</code>, <code>radio</code>, <code>hidden</code>.</td>
+</tr>
+<tr>
+<td>required</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>When set to true the corresponding field cannot be left blank</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>String or obj</td>
+<td align="center"></td>
+<td>The field name to be shown as text label above the input element. In case nothing is specified, the capitalized <code>_id</code> is used. The text label is shown only if <code>showLabels</code> options is set to true.</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>String or obj</td>
+<td align="center"></td>
+<td>Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized <code>_id</code> will be used. The place-holder is shown only if <code>showPlaceholders</code> option is set to true.</td>
+</tr>
+<tr>
+<td>select</td>
+<td>list of obj</td>
+<td align="center"></td>
+<td>Lets you specify the list of choices to be displayed for select and radio inputs. See example below.</td>
+</tr>
+<tr>
+<td>minLength</td>
+<td>Integer</td>
+<td align="center"></td>
+<td>If specified requires the content of the field to be at least <code>minLength</code> characters.</td>
+</tr>
+<tr>
+<td>maxLength</td>
+<td>Integer</td>
+<td align="center"></td>
+<td>If specified require the content of the field to be at most <code>maxLength</code> characters.</td>
+</tr>
+<tr>
+<td>re</td>
+<td>RegExp</td>
+<td align="center"></td>
+<td>Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff <code>continuousValidation</code> option is set to true) and server-side on form submit.</td>
+</tr>
+<tr>
+<td>func</td>
+<td>Function</td>
+<td align="center"></td>
+<td>Custom function to be used for validation.</td>
+</tr>
+<tr>
+<td>errStr</td>
+<td>String</td>
+<td align="center"></td>
+<td>Error message to be displayed in case re or func validation fail.</td>
+</tr>
+<tr>
+<td>trim</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to trim the input value or not.</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to convert the input value to lowercase or not.</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to convert the input value to uppercase or not.</td>
+</tr>
+<tr>
+<td>continuousValidation</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to continuously validate fields' value while the user is typing. <em>It is performed client-side only to save round trips with the server</em>.</td>
+</tr>
+<tr>
+<td>negativeFeedback</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to highlight input elements in case of negative validation.</td>
+</tr>
+<tr>
+<td>negativeValidation</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to highlight input elements in case of positive validation.</td>
+</tr>
+<tr>
+<td>positiveValidation</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to display negative validation feed-back inside input elements.</td>
+</tr>
+<tr>
+<td>positiveFeedback</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to display positive validation feed-back inside input elements.</td>
+</tr>
+<tr>
+<td>showValidating</td>
+<td>Boolean</td>
+<td align="center"></td>
+<td>Specifies whether to display a loding icon inside input elements while the validation process is in progress.</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>displayName</code>, <code>placeholder</code>, and <code>errStr</code> can also be an <a href="https://atmospherejs.com/package/accounts-t9n">accounts-t9n</a> registered key, in which case it will be translated based on the currently selected language.
+In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official <a href="https://github.com/softwarerero/meteor-accounts-t9n#define-translations">documentation</a>.</p>
+
+<p><code>continuousValidation</code>, <code>negativeFeedback</code>, <code>negativeValidation</code>, <code>positiveValidation</code>, <code>positiveFeedback</code>, <code>showValidating</code> can be used to override global settings (see <a href="#form-fields-configuration">Form Fields Configuration</a>) on a per field basis.</p>
+
+<p>Furthermore, you can pass an object for <code>displayName</code>, <code>placeholder</code> to specify different texts for different form states. The matched pattern is:</p>
+
+<div class="highlight highlight-javascript"><pre>{
+    <span class="pl-k">default</span><span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    changePwd<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    enrollAccount<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    forgotPwd<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    resetPwd<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    signIn<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+    signUp<span class="pl-k">:</span> Match.Optional(<span class="pl-s3">String</span>),
+}</pre></div>
+
+<p>which permits to specify a different text for each different state, or a default value to be used for states which are not explicitly provided. For example:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>,
+    placeholder<span class="pl-k">:</span> {
+        signUp<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>At least six characters<span class="pl-pds">"</span></span>
+    },
+    required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    minLength<span class="pl-k">:</span> <span class="pl-c1">6</span>,
+    re<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span>(?=<span class="pl-c1">.</span><span class="pl-k">*</span><span class="pl-c1">\d</span>)(?=<span class="pl-c1">.</span><span class="pl-k">*</span><span class="pl-c1">[<span class="pl-c1">a-z</span>]</span>)(?=<span class="pl-c1">.</span><span class="pl-k">*</span><span class="pl-c1">[<span class="pl-c1">A-Z</span>]</span>)<span class="pl-c1">.</span><span class="pl-k">{6,}</span><span class="pl-pds">/</span></span>,
+    errStr<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>At least 1 digit, 1 lowercase and 1 uppercase<span class="pl-pds">'</span></span>,
+});</pre></div>
+
+<p>asks AccountsTemplates to display "At least six characters" as the placeholder for the password field when the sign up form is display, and to display "Password" (the capitalized <em>_id</em>_) in any other case.</p>
+
+<p><strong>Custom validation</strong> can be achieved by providing a regular expression or a function. In case you go for the function solution, this:</p>
+
+<pre><code>AccountsTemplates.addField({
+    _id: 'name',
+    type: 'text',
+    displayName: "Name",
+    func: function(value){return value === 'Full Name';},
+    errStr: 'Only "Full Name" allowed!',
+});
+</code></pre>
+
+<p>will require the name input to be exactly "Full Name" (though this might not be that interesting...).
+If instead you do something along the following line:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>phone<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>tel<span class="pl-pds">'</span></span>,
+    displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Phone<span class="pl-pds">"</span></span>,
+    required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    <span class="pl-en">func</span>: <span class="pl-st">function</span> (<span class="pl-vpf">number</span>) {
+        <span class="pl-k">if</span> (Meteor.isServer){
+          <span class="pl-k">if</span> (isValidPhone(number))
+              <span class="pl-k">return</span> <span class="pl-c1">false</span>; <span class="pl-c">// meaning no error!</span>
+          <span class="pl-k">return</span> <span class="pl-c1">true</span>; <span class="pl-c">// Validation error!</span>
+        }
+    },
+    errStr<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Invalid Phone number!<span class="pl-pds">'</span></span>,
+});</pre></div>
+
+<p>supposing <code>isValidPhone</code> is available only server-side, you will be validating the field only server-side, on form submission.</p>
+
+<p>If, differently, you do something like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">if</span> (Meteor.isServer){
+    Meteor.methods({
+        <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-en">userExists</span><span class="pl-pds">"</span></span>: <span class="pl-st">function</span>(<span class="pl-vpf">username</span>){
+            <span class="pl-k">return</span> <span class="pl-k">!!</span>Meteor.users.findOne({username<span class="pl-k">:</span> username});
+        },
+    });
+}
+
+AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>,
+    required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    <span class="pl-en">func</span>: <span class="pl-st">function</span>(<span class="pl-vpf">value</span>){
+        <span class="pl-k">if</span> (Meteor.isClient) {
+            <span class="pl-s">var</span> self <span class="pl-k">=</span> <span class="pl-v">this</span>;
+            Meteor.<span class="pl-s3">call</span>(<span class="pl-s1"><span class="pl-pds">"</span>userExists<span class="pl-pds">"</span></span>, value, <span class="pl-st">function</span>(<span class="pl-vpf">err</span>, <span class="pl-vpf">userExists</span>){
+                <span class="pl-k">if</span> (err)
+                    self.setError(err.details <span class="pl-k">||</span> err.reason);
+                <span class="pl-k">if</span> (userExists)
+                    self.setError(<span class="pl-s1"><span class="pl-pds">"</span>Username already in use!<span class="pl-pds">"</span></span>);
+                <span class="pl-k">else</span>
+                    self.setSuccess();
+                self.setValidating(<span class="pl-c1">false</span>);
+            });
+        }
+        <span class="pl-c">// Server</span>
+        <span class="pl-k">return</span> Meteor.<span class="pl-s3">call</span>(<span class="pl-s1"><span class="pl-pds">"</span>userExists<span class="pl-pds">"</span></span>, value);
+    },
+});</pre></div>
+
+<p>you can achieve also client-side and server-side validation calling a server method
+During the waiting time a loading icon will be displayed (if you configure <code>showValidating</code> to be true).
+To configure the loading icon see <a href="#input-icons">Input Field Icons</a>.</p>
+
+<p><em>Note:</em> <code>field.setError(err)</code>, <code>field.setSuccess()</code>, and <code>field.setValidating()</code> are methods used to deal with inputs' validation states. A <code>null</code> value means non-validated, <code>false</code> means correctly validated, no error, and any other value evaluated as true (usually strings specifying the reason for the validation error), are finally interpreted as error and displayed where more appropriate.</p>
+
+<h4>
+<a id="checkboxes-selects-radios-and-hidden" class="anchor" href="#checkboxes-selects-radios-and-hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checkboxes, Selects, Radios, and Hidden</h4>
+
+<p>This is an example about how to add Checkboxes, Selects, and Radios to the sign up fields:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>gender<span class="pl-pds">"</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>select<span class="pl-pds">"</span></span>,
+    displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Gender<span class="pl-pds">"</span></span>,
+    select<span class="pl-k">:</span> [
+        {
+            text<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Male<span class="pl-pds">"</span></span>,
+            value<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>male<span class="pl-pds">"</span></span>,
+        },
+        {
+            text<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Female<span class="pl-pds">"</span></span>,
+            value<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>female<span class="pl-pds">"</span></span>,
+        },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>fruit<span class="pl-pds">"</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span>,
+    displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Preferred Fruit<span class="pl-pds">"</span></span>,
+    select<span class="pl-k">:</span> [
+        {
+        text<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Apple<span class="pl-pds">"</span></span>,
+        value<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>aa<span class="pl-pds">"</span></span>,
+      }, {
+        text<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Banana<span class="pl-pds">"</span></span>,
+        value<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>bb<span class="pl-pds">"</span></span>,
+      }, {
+        text<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Carrot<span class="pl-pds">"</span></span>,
+        value<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>cc<span class="pl-pds">"</span></span>,
+      },
+    ],
+});
+
+AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mailing_list<span class="pl-pds">"</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span>,
+    displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Subscribe me to mailing List<span class="pl-pds">"</span></span>,
+});
+
+AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>reg_code<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>hidden<span class="pl-pds">'</span></span>
+});</pre></div>
+
+<p>please note the <code>select</code> list which lets you specify the values for the choice.
+The <code>value</code> value of corresponding selected <code>text</code> will be picked up and added into the <code>profile</code> field of the user object.</p>
+
+<p>Hidden inputs might be of help in case you want to consider to link to your registration page from around the web (emails, ads, discount campaigns, etc...) with links like this:</p>
+
+<pre><code>http://my.splendido.site/sign-up?email=giorgio@example.com&amp;reg_code=123
+</code></pre>
+
+<p>exploiting the ability of AccountsTemplates to pick-up query parameters having the same key as field ids, this would permit to get <code>reg_code: "123"</code> under the <code>profile</code> field of the user object.
+<strong>Please use this with caution!</strong> ..never ever do something like:</p>
+
+<pre><code>http://my.splendido.site/sign-up?role=admin
+</code></pre>
+
+<p>and then set the role of the new user based on the hidden <code>role</code> field. I guess you can appreciate the security hole there ;-)</p>
+
+<h4>
+<a id="special-fields-ids" class="anchor" href="#special-fields-ids" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special Field's Ids</h4>
+
+<p>There are a number of special ids used for basic input fields. These are:</p>
+
+<ul>
+<li>current_password</li>
+<li>email</li>
+<li>password</li>
+<li>password_again</li>
+<li>username</li>
+<li>username_and_email</li>
+</ul>
+
+<p>Any other id will be interpreted as an additional sign up field.
+In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).</p>
+
+<h4>
+<a id="add-a-field" class="anchor" href="#add-a-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add a field</h4>
+
+<p>You can use <code>AccountsTemplates.addField(options)</code> to configure an input field. This apply for both special fields and custom ones.
+For example you can do:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>phone<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>tel<span class="pl-pds">'</span></span>,
+    displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Landline Number<span class="pl-pds">"</span></span>,
+});</pre></div>
+
+<p>The above snippet asks <code>AccountsTemplates</code> to draw an additional input element within the sign-up form.</p>
+
+<h4>
+<a id="add-many-fields-at-once" class="anchor" href="#add-many-fields-at-once" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add many fields at once</h4>
+
+<p>Another possibility is to add many additional fields at once using <code>addFields</code>:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.addFields([
+    {
+        _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>phone<span class="pl-pds">'</span></span>,
+        type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>tel<span class="pl-pds">'</span></span>,
+        displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Landline Number<span class="pl-pds">"</span></span>,
+    },
+    {
+        _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>fax<span class="pl-pds">'</span></span>,
+        type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>tel<span class="pl-pds">'</span></span>,
+        displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Fax Number<span class="pl-pds">"</span></span>,
+    }
+]);</pre></div>
+
+<h4>
+<a id="remove-fields" class="anchor" href="#remove-fields" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remove fields</h4>
+
+<p>There is also a <code>removeField</code> method which can be used to remove predefined required fields and adding them again specify different options.</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.removeField(<span class="pl-s1"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>);
+AccountsTemplates.addField({
+    _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span>,
+    required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    minLength<span class="pl-k">:</span> <span class="pl-c1">6</span>,
+    re<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>(?=.*<span class="pl-cce">\\</span>d)(?=.*[a-z])(?=.*[A-Z]).{6,}<span class="pl-pds">"</span></span>,
+    errStr<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>At least 1 digit, 1 lower-case and 1 upper-case<span class="pl-pds">'</span></span>,
+});</pre></div>
+
+<h4>
+<a id="login-with-username-or-email" class="anchor" href="#login-with-username-or-email" aria-hidden="true"><span class="octicon octicon-link"></span></a>Login with Username or Email</h4>
+
+<p>In order to let the user register with both a <code>username</code> and an <code>email</code> address and let him the possibility to log in using one of them, both the <code>username</code> and <code>email</code> fields must be added.
+This is an example about how to configure such a behaviour:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.removeField(<span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>);
+AccountsTemplates.addFields([
+  {
+      _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span>,
+      type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>,
+      displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span>,
+      required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+      minLength<span class="pl-k">:</span> <span class="pl-c1">5</span>,
+  },
+  {
+      _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>,
+      type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>,
+      required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+      displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>,
+      re<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-c1">.</span><span class="pl-k">+</span>@(<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-k">{2,}</span><span class="pl-cce">\.</span>(<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-k">{2,}</span><span class="pl-pds">/</span></span>,
+      errStr<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Invalid email<span class="pl-pds">'</span></span>,
+  }
+]);</pre></div>
+
+<p>This will trigger the automatic insertion of the special field <code>username_and_email</code> to be used for the sign in form.
+If you wish to further customize the <code>username_and_email</code> field you can add it together with the other two:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.removeField(<span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>);
+AccountsTemplates.addFields([
+  {
+      _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span>,
+      type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>,
+      displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span>,
+      required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+      minLength<span class="pl-k">:</span> <span class="pl-c1">5</span>,
+  },
+  {
+      _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>,
+      type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span>,
+      required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+      displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span>,
+      re<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-c1">.</span><span class="pl-k">+</span>@(<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-k">{2,}</span><span class="pl-cce">\.</span>(<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-k">{2,}</span><span class="pl-pds">/</span></span>,
+      errStr<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Invalid email<span class="pl-pds">'</span></span>,
+  },
+  {
+      _id<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>username_and_email<span class="pl-pds">'</span></span>,
+      type<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>,
+      required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+      displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Login<span class="pl-pds">"</span></span>,
+  }
+]);</pre></div>
+
+<p><a name="css-rules"></a></p>
+
+<h2>
+<a id="css-rules" class="anchor" href="#css-rules" aria-hidden="true"><span class="octicon octicon-link"></span></a>CSS Rules</h2>
+
+<p>The main atForm is build up of several pieces, appearing and disappearing based on configuration options as well as the current internal status.
+Each of these blocks is wrapped inside a <code>div</code> with class <code>at-&lt;something&gt;</code>: this should made your life easier if you're trying to write your own CSS rules to change templates' appearance.</p>
+
+<p>Social login buttons (<code>button.at-social-btn</code>) have an <code>id</code> in the form <code>at-&lt;servicename&gt;</code> and name <code>&lt;servicename&gt;</code>.</p>
+
+<p>Input fields for the password service form are wrapped inside a div with class <code>at-input</code>. The same div gets classes <code>has-error</code>, <code>has-success</code>, and <code>has-feedback</code> in case of negative validation result, positive validation and validation with feedback respectively.
+The input element itself has id and name in the form <code>at-field-&lt;field_id&gt;</code>.
+<strong>Note:</strong> <code>has-error</code>, <code>has-success</code>, and <code>has-feedback</code> names might change from framework to framework. These are valid for the <em>unstyled</em> and <em>bootstrap</em> versions...</p>
+
+<p>Below is a html snapshot of an over-complete <code>atForm</code> taken from the unstyled version in which you can find all elements possibly shown under different configurations and circumstances.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-form<span class="pl-pds">"</span></span>&gt;
+  <span class="pl-c">&lt;!-- Title --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-title<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">h3</span>&gt;Create an Account&lt;/<span class="pl-ent">h3</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Social Buttons for Oauth Sign In / Sign Up--&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-oauth<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">button</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-social-btn<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-facebook<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>facebook<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>fa fa-facebook<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt; Sign in with Facebook
+    &lt;/<span class="pl-ent">button</span>&gt;
+    &lt;<span class="pl-ent">button</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-social-btn<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-twitter<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>twitter<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>fa fa-twitter<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt; Sign in with Twitter
+    &lt;/<span class="pl-ent">button</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Services Separator --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-sep<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">strong</span>&gt;OR&lt;/<span class="pl-ent">strong</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Global Error --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-error<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">p</span>&gt;Login forbidden&lt;/<span class="pl-ent">p</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Global Resutl --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-result<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">p</span>&gt;Email Sent!&lt;/<span class="pl-ent">p</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Password Service --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-pwd-form<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">form</span> <span class="pl-e">role</span>=<span class="pl-s1"><span class="pl-pds">"</span>form<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-pwd-form<span class="pl-pds">"</span></span> <span class="pl-e">novalidate</span>=<span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
+      <span class="pl-c">&lt;!-- Input --&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-input<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-username<span class="pl-pds">"</span></span>&gt;
+          Username
+        &lt;/<span class="pl-ent">label</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-username<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-username<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s1"><span class="pl-pds">"</span>Username<span class="pl-pds">"</span></span> <span class="pl-e">autocapitalize</span>=<span class="pl-s1"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span> <span class="pl-e">autocorrect</span>=<span class="pl-s1"><span class="pl-pds">"</span>off<span class="pl-pds">"</span></span>&gt;
+      &lt;/<span class="pl-ent">div</span>&gt;
+      <span class="pl-c">&lt;!-- Input with Validation Error --&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-input has-error<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-email<span class="pl-pds">"</span></span>&gt;
+          Email
+        &lt;/<span class="pl-ent">label</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-email<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-email<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s1"><span class="pl-pds">"</span>Email<span class="pl-pds">"</span></span> <span class="pl-e">autocapitalize</span>=<span class="pl-s1"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span> <span class="pl-e">autocorrect</span>=<span class="pl-s1"><span class="pl-pds">"</span>off<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">span</span>&gt;Invalid email&lt;/<span class="pl-ent">span</span>&gt;
+      &lt;/<span class="pl-ent">div</span>&gt;
+      <span class="pl-c">&lt;!-- Input with Successful Validation --&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-input has-success<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-password<span class="pl-pds">"</span></span>&gt;
+          Password
+        &lt;/<span class="pl-ent">label</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-password<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-field-password<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s1"><span class="pl-pds">"</span>Password<span class="pl-pds">"</span></span> <span class="pl-e">autocapitalize</span>=<span class="pl-s1"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span> <span class="pl-e">autocorrect</span>=<span class="pl-s1"><span class="pl-pds">"</span>off<span class="pl-pds">"</span></span>&gt;
+      &lt;/<span class="pl-ent">div</span>&gt;
+      <span class="pl-c">&lt;!-- Forgot Password Link --&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-pwd-link<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">p</span>&gt;
+          &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>/forgot-password<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-forgotPwd<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-link at-pwd<span class="pl-pds">"</span></span>&gt;Forgot your password?&lt;/<span class="pl-ent">a</span>&gt;
+        &lt;/<span class="pl-ent">p</span>&gt;
+      &lt;/<span class="pl-ent">div</span>&gt;
+      <span class="pl-c">&lt;!-- Form Submit Button --&gt;</span>
+      &lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-btn submit disabled<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-btn<span class="pl-pds">"</span></span>&gt;
+        Register
+      &lt;/<span class="pl-ent">button</span>&gt;
+    &lt;/<span class="pl-ent">form</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Link to Sign In --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-signin-link<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;
+      If you already have an account
+      &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>/sign-in<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-signIn<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-link at-signin<span class="pl-pds">"</span></span>&gt;sign in&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;/<span class="pl-ent">p</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Link to Sign Up --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-signup-link<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;
+      Don't have an account?
+      &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>/sign-up<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-signUp<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-link at-signup<span class="pl-pds">"</span></span>&gt;Register&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;/<span class="pl-ent">p</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  <span class="pl-c">&lt;!-- Link to Privacy Policy and Terms of use --&gt;</span>
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>at-terms-link<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;
+      By clicking Register, you agree to our
+        &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>/privacyPolicy<span class="pl-pds">"</span></span>&gt;Privacy Policy&lt;/<span class="pl-ent">a</span>&gt;
+        and
+        &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s1"><span class="pl-pds">"</span>/termsOfUse<span class="pl-pds">"</span></span>&gt;Terms of Use&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;/<span class="pl-ent">p</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p><a name="wrapping-up-for-famo.us"></a></p>
+
+<h2>
+<a id="wrapping-up-for-famous" class="anchor" href="#wrapping-up-for-famous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wrapping Up for Famo.us</h2>
+
+<p>By simply typing</p>
+
+<div class="highlight highlight-shell"><pre>meteor add useraccounts:famous-wrapper</pre></div>
+
+<p>you'll be able to turn your preferred flavour of accounts templates into a package ready to be used within a <a href="https://atmospherejs.com/gadicohen/famous-views">famous-views</a> + <a href="http://famo.us">Famo.us</a> application.</p>
+
+<p>This means you can get an animated version of the <code>atForm</code> template without any effort! :-)</p>
+
+<p>To learn how to make animations you might want to check the following links:</p>
+
+<ul>
+<li><a href="http://famous-views.meteor.com">http://famous-views.meteor.com</a></li>
+<li><a href="http://famous-views.meteor.com/examples/animate">http://famous-views.meteor.com/examples/animate</a></li>
+<li><a href="http://famo.us/university/lessons/#/famous-101/animating/1">http://famo.us/university/lessons/#/famous-101/animating/1</a></li>
+<li><a href="http://famo.us/guides/layout">http://famo.us/guides/layout</a></li>
+<li><a href="http://famo.us/guides/animations">http://famo.us/guides/animations</a></li>
+<li><a href="http://famo.us/docs/modifiers/StateModifier">http://famo.us/docs/modifiers/StateModifier</a></li>
+<li><a href="http://famo.us/docs/transitions/Transitionable">http://famo.us/docs/transitions/Transitionable</a></li>
+</ul>
+
+<h3>
+<a id="configureanimations" class="anchor" href="#configureanimations" aria-hidden="true"><span class="octicon octicon-link"></span></a>configureAnimations</h3>
+
+<p>...well, actually it might be that you don't like the default animations so you might consider to use <code>AccountsTemplates.configureAnimations</code> (provided by the wrapper...) to specify your custom animation functions.
+This is an example showing how to do it:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Transform;
+<span class="pl-s">var</span> Easing;
+<span class="pl-k">if</span> (Meteor.isClient){
+    FView.ready(<span class="pl-st">function</span>(<span class="pl-vpf">require</span>) {
+        Transform <span class="pl-k">=</span> famous.core.Transform;
+        Easing <span class="pl-k">=</span> famous.transitions.Easing;
+    });
+}
+
+<span class="pl-s">var</span> <span class="pl-en">slideLeftDestroy</span> <span class="pl-k">=</span> <span class="pl-st">function</span>(<span class="pl-vpf">fview</span>){
+    fview.modifier.setTransform(
+        Transform.translate(<span class="pl-k">-</span>$(<span class="pl-s3">window</span>).<span class="pl-sc">width</span>(),<span class="pl-c1">0</span>),
+        { duration <span class="pl-k">:</span> <span class="pl-c1">250</span>, curve<span class="pl-k">:</span> Easing.easeOutSine },
+        <span class="pl-st">function</span>() { fview.destroy();}
+    );
+};
+
+
+AccountsTemplates.configureAnimations({
+    destroy<span class="pl-k">:</span> {
+        atSignupLink<span class="pl-k">:</span> slideLeftDestroy,
+    }
+});</pre></div>
+
+<p>this asks AT to use <code>slideLeftDestroy</code> to animate the template <code>atSignupLink</code> when it is to be destroyed.</p>
+
+<p>As you've just seen <code>configureAnimations</code> take an <code>options</code> object as parameter:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.configureAnimations(options);</pre></div>
+
+<p>this options object can have three different keys at the first level:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> options <span class="pl-k">=</span> {
+    render<span class="pl-k">:</span> {
+      <span class="pl-c">// more stuff here...</span>
+    },
+    destroy<span class="pl-k">:</span> {
+      <span class="pl-c">// more stuff here...</span>
+    },
+    state_change<span class="pl-k">:</span> {
+      <span class="pl-c">// more stuff here...</span>
+    },
+    animQueueDelay<span class="pl-k">:</span> <span class="pl-c1">100</span>,
+    animQueueStartDelay<span class="pl-k">:</span> <span class="pl-c1">200</span>,
+    setStateDelay<span class="pl-k">:</span> <span class="pl-c1">300</span>,
+
+};
+AccountsTemplates.configureAnimations(options);</pre></div>
+
+<p>they are <code>render</code>, <code>destroy</code>, <code>state_change</code>, <code>animQueueDelay</code>, <code>animQueueStartDelay</code>, and <code>setStateDelay</code>.
+The first three, what a surprise, they let you specify what to do when one of the templates building up the <code>atForm</code> is rendered, destroyed or when the form's state changes (respectively).</p>
+
+<p>...at the second level you can specify which animation has to be applied to which template:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> options <span class="pl-k">=</span> {
+    render<span class="pl-k">:</span> {
+        <span class="pl-k">default</span><span class="pl-k">:</span> animA,
+        atTitle<span class="pl-k">:</span> animB,
+        atSocial<span class="pl-k">:</span> animC,
+        atSep<span class="pl-k">:</span> animC,
+        atError<span class="pl-k">:</span> animB,
+        atResult<span class="pl-k">:</span> animB,
+        atPwdForm<span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        atSigninLink<span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        atSignupLink<span class="pl-k">:</span> animB,
+        atTermsLink<span class="pl-k">:</span> animD,
+    },
+    <span class="pl-c">// ...</span>
+};</pre></div>
+
+<p>the above one is the full list of available animated templates...
+The value you specify can be <code>null</code> (to remove a default animation...) or a function.
+If you specify a function it should be like the following:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> <span class="pl-en">animFunc</span> <span class="pl-k">=</span> <span class="pl-st">function</span>(<span class="pl-vpf">fview</span>){
+    fview.modifier.setTransform(
+        Transform.<span class="pl-k">&lt;</span>some_transform<span class="pl-k">&gt;</span>( ... ),
+        { duration <span class="pl-k">:</span> <span class="pl-k">&lt;</span>millisecs<span class="pl-k">&gt;</span>, curve<span class="pl-k">:</span> Easing.<span class="pl-k">&lt;</span>some_curve<span class="pl-k">&gt;</span> }
+    );
+};</pre></div>
+
+<p>the <code>fview</code> parameter actually let you access the famous view associated with the template (so feel free to do whatever you wish with it...).</p>
+
+<p><strong>Warning:</strong> when you specify an animation to be used on <code>destroy</code> you must take care of the actual destroy!
+...usually it is enough to call <code>fview.destroy()</code> when the animation completes:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> <span class="pl-en">animFunc</span> <span class="pl-k">=</span> <span class="pl-st">function</span>(<span class="pl-vpf">fview</span>){
+    fview.modifier.setTransform(
+        Transform.<span class="pl-k">&lt;</span>some_transform<span class="pl-k">&gt;</span>( ... ),
+        { duration <span class="pl-k">:</span> <span class="pl-k">&lt;</span>millisecs<span class="pl-k">&gt;</span>, curve<span class="pl-k">:</span> Easing.<span class="pl-k">&lt;</span>some_curve<span class="pl-k">&gt;</span> },
+        <span class="pl-st">function</span>(){ fview.destroy();}
+    );
+};</pre></div>
+
+<p><strong>Warning2:</strong> At the moment the animation for the state change is supposed to last for double the <code>setStateDelay</code> duration, and the state change is actually postponed by <code>setStateDelay</code> milliseconds. This let you divide your animation in two different part (so, e.g., you can hide things and show them again with the new content...).
+The following is the default animations used on state change:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-en">vFlip</span> <span class="pl-k">=</span> <span class="pl-st">function</span>(<span class="pl-vpf">fview</span>){
+    fview.modifier.setTransform(
+        Transform.rotate(<span class="pl-s3">Math</span>.<span class="pl-sc">PI</span><span class="pl-k">-</span><span class="pl-c1">0.05</span>,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>),
+        {
+            duration <span class="pl-k">:</span> AccountsTemplates.animations.setStateDelay,
+            curve<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>easeIn<span class="pl-pds">"</span></span>,
+        },
+        <span class="pl-st">function</span>() {
+            fview.modifier.setTransform(
+                Transform.rotate(<span class="pl-k">-</span><span class="pl-c1">0.1</span>,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>),
+                {
+                    duration <span class="pl-k">:</span> AccountsTemplates.animations.setStateDelay,
+                    curve<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>easeOut<span class="pl-pds">"</span></span>,
+                }
+            );
+        }
+    );
+};</pre></div>
+
+<p>and as you can see schedules two different animations, one after the another, lasting <code>setStateDelay</code> ms each.</p>
+
+<h3>
+<a id="pushtoanimationqueue" class="anchor" href="#pushtoanimationqueue" aria-hidden="true"><span class="octicon octicon-link"></span></a>pushToAnimationQueue</h3>
+
+<p>In case you're interested in sequence animation, AT also provides an experimental animation cue you can use to schedule your animation with a bit of delay between them.
+To use it simply wrap the <code>modifier.setTransform</code> within an <code>AccountsTemplates.pushToAnimationQueue</code> call, like this:</p>
+
+<pre lang="jacascript"><code>var fallFromTop = function(fview){
+    fview.modifier.setTransform(Transform.translate(0, -$(window).height()));
+    AccountsTemplates.pushToAnimationQueue(function() {
+        fview.modifier.setTransform(
+            Transform.translate(0,0),
+            { duration : 450, curve: Easing.easeOutSine }
+        );
+    });
+};
+</code></pre>
+
+<p>the full signature for it is:</p>
+
+<div class="highlight highlight-javascript"><pre>AccountsTemplates.pushToAnimationQueue(func, at_begin);</pre></div>
+
+<p>and if pass <code>true</code> for <code>at_begin</code>, the function will be pushed to the begin of the cue rather than at the end.</p>
+
+<p>The first animation is started after <code>animQueueStartDelay</code> milliseconds from the first insertion and a delay of <code>animQueueStartDelay</code> milliseconds is applied between start of animations (you can configure these two values with <code>configureAnimations</code> function as listed above...).</p>
+
+<p>And that's it!
+Enjoy ;-)</p>
+
+<p><a name="side-notes"></a></p>
+
+<h2>
+<a id="side-notes" class="anchor" href="#side-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Side Notes</h2>
+
+<p><a name="3rd-party-login-services-configuration"></a></p>
+
+<h3>
+<a id="3rd-party-login-services-configuration" class="anchor" href="#3rd-party-login-services-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>3rd Party Login Services Configuration</h3>
+
+<p>Normally, if you have not configured a social account with, e.g.,</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// Set up login services</span>
+Meteor.startup(<span class="pl-st">function</span>() {
+    <span class="pl-c">// Remove configuration entries in case service is already configured</span>
+    ServiceConfiguration.configurations.<span class="pl-s3">remove</span>({$or<span class="pl-k">:</span> [
+        {service<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>facebook<span class="pl-pds">"</span></span>},
+        {service<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>github<span class="pl-pds">"</span></span>}
+    ]});
+
+    <span class="pl-c">// Add Facebook configuration entry</span>
+    ServiceConfiguration.configurations.insert({
+        <span class="pl-s1"><span class="pl-pds">"</span>service<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>facebook<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>appId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>XXXXXXXXXXXXXXX<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<span class="pl-pds">"</span></span>
+    });
+
+    <span class="pl-c">// Add GitHub configuration entry</span>
+    ServiceConfiguration.configurations.insert({
+        <span class="pl-s1"><span class="pl-pds">"</span>service<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>github<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>clientId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>XXXXXXXXXXXXXXXXXXXX<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<span class="pl-pds">"</span></span>
+    });
+});</pre></div>
+
+<p>3rd party login buttons are not shown. To allow display buttons with, e.g., 'Configure Foobook', simply add the packages <code>service-configuration</code> and <code>accounts-ui</code> with:</p>
+
+<div class="highlight highlight-Shell"><pre>meteor add service-configuration
+meteor add accounts-ui</pre></div>
+
+<p><strong>Warning</strong>: At the moment the UI for service configuration is not supported and the one provided by <code>accounts-ui</code> will be shown!</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.</p>
+
+<p>Thanks to <a href="https://github.com/meteor-useraccounts/ui/graphs/contributors">all those who have contributed code changes</a> and all who have helped by submitting bug reports and feature ideas.</p>
+
+<p><a href="https://www.gittip.com/splendido/"><img src="https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png" alt="Support via Gittip"></a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Meteor UserAccounts maintained by <a href="https://github.com/meteor-useraccounts">meteor-useraccounts</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
