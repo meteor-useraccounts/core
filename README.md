@@ -178,7 +178,7 @@ There is no specific order for the above calls to be effective, and you can do m
 
 By calling `AccountsTemplates.configure(options)` you can specify a bunch of choices regarding both visual appearance and behaviour.
 
-The following is a complete example of options configuration (with fields in alphabetical order):
+The following is an almost complete example of options configuration (with fields in alphabetical order):
 
 ```javascript
 AccountsTemplates.configure({
