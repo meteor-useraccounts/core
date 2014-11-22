@@ -240,6 +240,7 @@ Details for each of them follow.
 | overrideLoginErrors         | Boolean | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
 | sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
 | redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
+| socialLoginStyle            | String  | "popup"   | Specifies the login style for 3rd party services login. Valid values are `popup` or `redirect`. See `loginStyle` option of [Meteor.loginWith<ExternalService>](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) for more information.  |
 | Appearance                  |         |           |             |
 | defaultLayout               | String  | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
 | hideSignInLink              | Boolean | false     | When set to true, asks to never show the link to the sign in page  |
