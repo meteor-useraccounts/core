@@ -705,16 +705,16 @@ AccountsTemplates.addField({
     required: true,
     func: function(value){
         if (Meteor.isClient) {
+            console.log("Validating username...");
             var self = this;
             Meteor.call("userExists", value, function(err, userExists){
-                if (err)
-                    self.setError(err.details || err.reason);
-                if (userExists)
-                    self.setError("Username already in use!");
-                else
+                if (!userExists)
                     self.setSuccess();
+                else
+                    self.setError(userExists);
                 self.setValidating(false);
             });
+            return;
         }
         // Server
         return Meteor.call("userExists", value);
