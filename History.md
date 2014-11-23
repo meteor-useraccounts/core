@@ -1,5 +1,15 @@
 ## Master
 
+## v1.3.0 / 2014/11/23
+
+* added support for [Ratchet](http://goratchet.com/): see [useraccounts:ratchet](https://atmospherejs.com/useraccounts/ratchet). Note: form validation is currently not supported by Ratchet!
+* fixed bug in custom validation flow
+* better default validation for `email` field (see #156)
+* few corrections inside docs
+* added `ensuredSignedIn` among configurable routes so that different `template` and `layoutTemplate` can be specified (fix for #160 and #98)
+* added `socialLoginStyle` among the configuration options to select the login flow (`popup` or `redirect`) for 3rd party login services (see #163)
+* fixed bug about fields ordering
+
 ## v1.2.3 / 2014/11/13
 
 * put back in a `init` method dispalying a warning to preserve backward compatibility...
