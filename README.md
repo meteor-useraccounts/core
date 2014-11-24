@@ -35,6 +35,7 @@ If you have a production app using accounts templates, let me know! I'd like to 
 * [Features](#features)
 * [Quick Start](#quickstart)
   * [Available Versions](#available-versions)
+  * [Boilerplates](#boilerplates)
   * [Setup](#setup)
   * [Templates](#templates)
 * [Basic Customization](#basic-customization)
@@ -90,6 +91,13 @@ If you have a production app using accounts templates, let me know! I'd like to 
 * plus others coming soon...
 
 
+<a name="boilerplates"/>
+### Boilerplates
+
+For a very very quick start you can find some boilerplate example inside [this repository](https://github.com/meteor-useraccounts/boilerplates)
+
+We'll try to make them richer and richer, still keeping them as general as possible, as the time passes by...
+
 <a name="setup"/>
 ### Setup
 
@@ -97,9 +105,10 @@ Just choose one of the packages among the [available styled versions](#available
 
 ```Shell
 meteor add useraccounts:bootstrap
+meteor add 'your preferred bootstrap package'
 ```
-
-**Warning:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:<something>`...
+**Note 1:** no additional packages nor CSS/LESS/SASS files providing styles are included by useraccounts packages. This is to let you choose your preferred way to include them!
+**Note 2:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:<something>`...
 
 Then add at least one login service:
 
