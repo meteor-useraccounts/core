@@ -105,9 +105,11 @@ Just choose one of the packages among the [available styled versions](#available
 
 ```Shell
 meteor add useraccounts:bootstrap
-meteor add 'your preferred bootstrap package'
+meteor add <your preferred bootstrap package>
 ```
+
 **Note 1:** no additional packages nor CSS/LESS/SASS files providing styles are included by useraccounts packages. This is to let you choose your preferred way to include them!
+
 **Note 2:** You don't have to add `useraccounts:core` to your app! It is automatically added when you add `useraccounts:<something>`...
 
 Then add at least one login service:
