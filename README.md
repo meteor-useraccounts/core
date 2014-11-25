@@ -87,6 +87,7 @@ If you have a production app using accounts templates, let me know! I'd like to 
 * [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
 * [useraccounts:bootstrap](https://atmospherejs.com/useraccounts/bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
 * [useraccounts:foundation](https://atmospherejs.com/useraccounts/foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [useraccounts:ratchet](https://atmospherejs.com/useraccounts/ratchet) styled for [Ratchet](http://goratchet.com/)
 * [useraccounts:semantic-ui](https://atmospherejs.com/useraccounts/semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
 
