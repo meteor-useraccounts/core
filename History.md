@@ -1,5 +1,9 @@
 ## Master
 
+## v1.3.2 / 2014/11/25
+
+* more robust logout pattern when dealing with routes protected with ensureSigndIn
+
 ## v1.3.1 / 2014/11/25
 
 * updated dependency to iron:router@1.0.3
