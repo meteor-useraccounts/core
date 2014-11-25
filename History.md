@@ -2,9 +2,9 @@
 
 ## v1.3.1 / 2014/11/25
 
+* updated dependency to iron:router@1.0.3
 * fixed bug in linkClick (see #170)
 * fixed bug in configureRoute
-
 
 ## v1.3.0 / 2014/11/23
 
