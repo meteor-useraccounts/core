@@ -203,7 +203,7 @@ AccountsTemplates.configure({
 
     // Appearance
     showAddRemoveServices: false,
-    showForgotPasswordLink: true,
+    showForgotPasswordLink: false,
     showLabels: true,
     showPlaceholders: true,
 
