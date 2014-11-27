@@ -21,9 +21,10 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 ## Who's using this?
 
 * [Telescope](http://www.telesc.pe/)
+* [Crater.io](http://crater.io/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [onehanders.com](http://onehanders.com/)
-* [Henfood](http://labs.henesis.eu:4363/)
+* [Henfood](http://labs.henesis.eu/henfood)
 
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
