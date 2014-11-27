@@ -213,7 +213,7 @@ AccountsTemplates.configure({
     negativeValidation: true,
     positiveValidation: true,
     positiveFeedback: true,
-    showValidation: true,
+    showValidating: true,
 
     // Privacy Policy and Terms of Use
     privacyUrl: 'privacy',
