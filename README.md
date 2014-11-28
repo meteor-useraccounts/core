@@ -182,7 +182,7 @@ There are basically two different ways to interact with AccountsTemplates for ba
 * AccountsTemplates.configureRoute(route_code, options);
 * AccountsTemplates.configure(options);
 
-**These function should be called in top-level code, not inside `Meteor.startup()`.**
+**These functions should be called in top-level code, not inside `Meteor.startup()`.**
 
 There is no specific order for the above calls to be effective, and you can do many of them possibly in different files
 
