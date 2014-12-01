@@ -165,7 +165,7 @@ Well, actually there is many, used inside `atForm`...
 <a name="i18n"/>
 ### I18n Support
 
-i18n is achieved using [accounts-t9n](https://atmospherejs.com/package/accounts-t9n). The only thing you have to do is ensure
+i18n is achieved using [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n). The only thing you have to do is ensure
 
 ```javascript
 T9n.setLanguage('<lang>');
@@ -653,7 +653,7 @@ Each field object is represented by the following properties:
 | positiveFeedback     | Boolean       |          | Specifies whether to display positive validation feed-back inside input elements. |
 | showValidating       | Boolean       |          | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
 
-`displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/package/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
+`displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
 
 `continuousValidation`, `negativeFeedback`, `negativeValidation`, `positiveValidation`, `positiveFeedback`, `showValidating` can be used to override global settings (see [Form Fields Configuration](#form-fields-configuration)) on a per field basis.
