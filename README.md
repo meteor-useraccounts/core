@@ -115,7 +115,7 @@ Add the official package as usual with `meteor add useraccounts:semantic-ui` but
 * [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
-* [Contributing](#contributing)
+* [Thanks](#thanks)
 
 
 <a name="features"/>
@@ -1350,8 +1350,8 @@ meteor add accounts-ui
 
 **Warning**: At the moment the UI for service configuration is not supported and the one provided by `accounts-ui` will be shown!
 
-
-## Contributing
+<a name="thanks"/>
+## Thanks
 
 Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
 
