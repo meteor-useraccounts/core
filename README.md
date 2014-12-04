@@ -29,6 +29,63 @@ Any comments, suggestions, testing efforts, and PRs are very very welcome! Pleas
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
 
+## Contributing
+Contributors are very welcome. There are many things you can help with,
+including finding and fixing bugs and creating examples for the brand new [wiki](https://github.com/meteor-useraccounts/wiki).
+We're also working on `useraccounts@2.0` (see the [Milestone](https://github.com/meteor-useraccounts/core/milestones)) so you can also help
+with an improved design or adding features.
+
+Some guidelines below:
+
+* **Questions**: Please create a new issue and label it as a `question`.
+
+* **New Features**: If you'd like to work on a feature,
+  start by creating a 'Feature Design: Title' issue. This will let people bat it
+  around a bit before you send a full blown pull request. Also, you can create
+  an issue to discuss a design even if you won't be working on it.
+
+* **Bugs**: If you think you found a bug, please create a "reproduction." This is a small project that demonstrates the problem as concisely as possible. If you think the bug can be reproduced with only a few steps a description by words might be enough though. The project should be cloneable from Github. Any bug reports without a reproduction that don't have an obvious solution will be marked as "awaiting-reproduction" and closed after a bit of time.
+
+###  Working Locally
+This is useful if you're contributing code to useraccounts or just trying to modify something to suite your own specific needs.
+
+##### Scenario A
+
+1. Set up a local packages folder
+2. Add the PACKAGE_DIRS environment variable to your .bashrc file
+  - Example: `export PACKAGE_DIRS="/full/path/topackages/folder"`
+  - Screencast: https://www.eventedmind.com/posts/meteor-versioning-and-packages
+3. Clone the repository into your local packages directory
+4. Add the package just like any other meteor core package like this: `meteor
+   add useraccounts:unstyled`
+
+```bash
+> cd /full/path/topackages/folder
+> git clone https://github.com/meteor-useraccounts/semantic-ui.git
+> cd your/project/path
+> meteor add useraccounts:semantic-ui
+> meteor
+```
+
+##### Scenario B
+
+Like Scenario A, but skipping point 2.
+Add the official package as usual with `meteor add useraccounts:semantic-ui` but then run your project like this:
+
+```bash
+> PACKAGE_DIRS="/full/path/topackages/folder meteor
+```
+
+##### Scenario C
+
+```bash
+> cd your/project/path
+> mkdir packages && cd packages
+> git clone https://github.com/meteor-useraccounts/semantic-ui.git
+> cd ..
+> meteor add useraccounts:semantic-ui
+> meteor
+```
 
 <a name="documentation"/>
 # Documentation
