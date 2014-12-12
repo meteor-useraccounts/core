@@ -73,7 +73,7 @@ Like Scenario A, but skipping point 2.
 Add the official package as usual with `meteor add useraccounts:semantic-ui` but then run your project like this:
 
 ```bash
-> PACKAGE_DIRS="/full/path/topackages/folder meteor
+> PACKAGE_DIRS="/full/path/topackages/folder" meteor
 ```
 
 ##### Scenario C
