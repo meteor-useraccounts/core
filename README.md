@@ -285,6 +285,10 @@ AccountsTemplates.configure({
     homeRoutePath: '/home',
     redirectTimeout: 4000,
 
+    // Hooks
+    onLogoutHook: myLogoutFunc,
+    onSubmitHook: mySubmitFunc,
+
     // Texts
     texts: {
       button: {
@@ -303,40 +307,42 @@ AccountsTemplates.configure({
 
 Details for each of them follow.
 
-| Option                      | Type    | Default   | Description |
-| --------------------------- | ------- | --------- | ----------- |
-| Behaviour                   |         |           |             |
-| confirmPassword             | Boolean | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
-| defaultState                | String  | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
-| enablePasswordChange        | Boolean | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
-| enforceEmailVerification    | Boolean | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
-| forbidClientAccountCreation | Boolean | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
-| overrideLoginErrors         | Boolean | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
-| sendVerificationEmail       | Boolean | false     | Specifies whether to send the verification email after successful registration. |
-| redirectTimeout             | Number  | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
-| socialLoginStyle            | String  | "popup"   | Specifies the login style for 3rd party services login. Valid values are `popup` or `redirect`. See `loginStyle` option of [Meteor.loginWith<ExternalService>](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) for more information.  |
-| Appearance                  |         |           |             |
-| defaultLayout               | String  | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
-| hideSignInLink              | Boolean | false     | When set to true, asks to never show the link to the sign in page  |
-| hideSignUpLink              | Boolean | false     | When set to true, asks to never show the link to the sign up page  |
-| showAddRemoveServices       | Boolean | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by AccountsTemplates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
-| showForgotPasswordLink      | Boolean | false     |             |
-| showLabels                  | Boolean | true      | Specifies whether to display text labels above input elements. |
-| showPlaceholders            | Boolean | true      | Specifies whether to display place-holder text inside input elements. |
-| Texts                       |         |           |             |
-| texts                       | Object  |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
-| Client-side Validation      |         |           |             |
-| continuousValidation        | Boolean | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
-| negativeFeedback            | Boolean | false     | Specifies whether to highlight input elements in case of negative validation. |
-| negativeValidation          | Boolean | false     | Specifies whether to highlight input elements in case of positive validation. |
-| positiveValidation          | Boolean | false     | Specifies whether to display negative validation feed-back inside input elements. |
-| positiveFeedback            | Boolean | false     | Specifies whether to display positive validation feed-back inside input elements. |
-| showValidating              | Boolean | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
-| Links                       |         |           |             |
-| homeRoutePath               | String  | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
-| privacyUrl                  | String  | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
-| termsUrl                    | String  | undefined | Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
-
+| Option                      | Type     | Default   | Description |
+| --------------------------- | -------- | --------- | ----------- |
+| Behaviour                   |          |           |             |
+| confirmPassword             | Boolean  | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
+| defaultState                | String   | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
+| enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
+| enforceEmailVerification    | Boolean  | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
+| forbidClientAccountCreation | Boolean  | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
+| overrideLoginErrors         | Boolean  | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
+| sendVerificationEmail       | Boolean  | false     | Specifies whether to send the verification email after successful registration. |
+| redirectTimeout             | Number   | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
+| socialLoginStyle            | String   | "popup"   | Specifies the login style for 3rd party services login. Valid values are `popup` or `redirect`. See `loginStyle` option of [Meteor.loginWith<ExternalService>](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) for more information.  |
+| Appearance                  |          |           |             |
+| defaultLayout               | String   | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
+| hideSignInLink              | Boolean  | false     | When set to true, asks to never show the link to the sign in page  |
+| hideSignUpLink              | Boolean  | false     | When set to true, asks to never show the link to the sign up page  |
+| showAddRemoveServices       | Boolean  | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by AccountsTemplates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
+| showForgotPasswordLink      | Boolean  | false     |             |
+| showLabels                  | Boolean  | true      | Specifies whether to display text labels above input elements. |
+| showPlaceholders            | Boolean  | true      | Specifies whether to display place-holder text inside input elements. |
+| Texts                       |          |           |             |
+| texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
+| Client-side Validation      |          |           |             |
+| continuousValidation        | Boolean  | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
+| negativeFeedback            | Boolean  | false     | Specifies whether to highlight input elements in case of negative validation. |
+| negativeValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
+| positiveValidation          | Boolean  | false     | Specifies whether to display negative validation feed-back inside input elements. |
+| positiveFeedback            | Boolean  | false     | Specifies whether to display positive validation feed-back inside input elements. |
+| showValidating              | Boolean  | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
+| Links                       |          |           |             |
+| homeRoutePath               | String   | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
+| privacyUrl                  | String   | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
+| termsUrl                    | String   | undefined | Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
+| Hooks                       |          |           |             |
+| onLogoutHook                | Function |           | Called on `AccountsTemplates.logout` invocation: allows for custom redirects or whatever custom action to be taken on user logout. |
+| onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` | 
 
 <a name="routing"/>
 #### Routing
