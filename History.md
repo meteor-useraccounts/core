@@ -3,7 +3,7 @@
 ## v1.4.0
 
 * added `useraccounts:ionic` to the suite! (Thanks @nickw!!!)
-* updated `useraccounts:semantic-ui` to SemanticUI@1.0.0
+* updated `useraccounts:semantic-ui` to SemanticUI@1.0.0 (Thanks @lumatijev!!!)
 * added `onLogoutHook` to be able to run code (custom redirects?) on `AccountsTemplates.logout` (see #191)
 * added `onSubmitHook` among configuration parameters to be able to run code on form submission (might be useful for modals! see #201 and #180)
 * submission button get now disabled also during fields (asynchronous) validation
