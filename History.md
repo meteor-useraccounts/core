@@ -2,7 +2,7 @@
 
 ## v1.4.0
 
-
+* added `useraccounts:ionic` to the suite! (Thanks @nickw!!!)
 * added `onLogoutHook` to be able to run code (custom redirects?) on `AccountsTemplates.logout` (see #191)
 * added `onSubmitHook` among configuration parameters to be able to run code on form submission (might be useful for modals! see #201 and #180)
 * submission button get now disabled also during fields (asynchronous) validation
