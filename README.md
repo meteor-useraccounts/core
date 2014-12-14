@@ -1,7 +1,7 @@
-Accounts Templates
-==================
+User Accounts
+=============
 
-AccountsTemplates is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
+User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
 
 The package `useraccounts:core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
@@ -145,6 +145,7 @@ Add the official package as usual with `meteor add useraccounts:semantic-ui` but
 * [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
 * [useraccounts:bootstrap](https://atmospherejs.com/useraccounts/bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
 * [useraccounts:foundation](https://atmospherejs.com/useraccounts/foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
+* [useraccounts:ionic](https://atmospherejs.com/useraccounts/ionic) styled for [Ionic](http://ionicframework.com/)
 * [useraccounts:ratchet](https://atmospherejs.com/useraccounts/ratchet) styled for [Ratchet](http://goratchet.com/)
 * [useraccounts:semantic-ui](https://atmospherejs.com/useraccounts/semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * plus others coming soon...
