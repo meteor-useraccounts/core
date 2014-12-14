@@ -1319,25 +1319,29 @@ Normally, if you have not configured a social account with, e.g.,
 ```javascript
 // Set up login services
 Meteor.startup(function() {
-    // Remove configuration entries in case service is already configured
-    ServiceConfiguration.configurations.remove({$or: [
-        {service: "facebook"},
-        {service: "github"}
-    ]});
-
     // Add Facebook configuration entry
-    ServiceConfiguration.configurations.insert({
-        "service": "facebook",
-        "appId": "XXXXXXXXXXXXXXX",
-        "secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    });
+    ServiceConfiguration.configurations.update(
+      { "service": "facebook" },
+      {
+        $set: {
+          "appId": "XXXXXXXXXXXXXXX",
+          "secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        }
+      },
+      { upsert: true }
+    );
 
     // Add GitHub configuration entry
-    ServiceConfiguration.configurations.insert({
-        "service": "github",
-        "clientId": "XXXXXXXXXXXXXXXXXXXX",
-        "secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    });
+    ServiceConfiguration.configurations.update(
+      { "service": "github" },
+      {
+        $set: {
+          "clientId": "XXXXXXXXXXXXXXXXXXXX",
+          "secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        }
+      },
+      { upsert: true }
+    );
 });
 ```
 
