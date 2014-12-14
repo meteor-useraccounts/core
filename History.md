@@ -1,5 +1,18 @@
 ## Master
 
+## v1.4.0
+
+
+* added `onLogoutHook` to be able to run code (custom redirects?) on `AccountsTemplates.logout` (see #191)
+* added `onSubmitHook` among configuration parameters to be able to run code on form submission (might be useful for modals! see #201 and #180)
+* submission button get now disabled also during fields (asynchronous) validation
+* `enforceEmailVerification` now works also with username login (fixed #196)
+* better IE compatibility (see #199)
+* better input field validation flows to recover from previous errors (see #177)
+* updated dependency to softwarerero:accounts-t9n@1.0.4
+* new [Contributing section](https://github.com/meteor-useraccounts/core#contributing) among docs
+* a few improvements and typo fixes for README.md
+
 ## v1.3.2 / 2014/11/25
 
 * more robust logout pattern when dealing with routes protected with ensureSigndIn
