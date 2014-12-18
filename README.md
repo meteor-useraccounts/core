@@ -342,7 +342,7 @@ Details for each of them follow.
 | termsUrl                    | String   | undefined | Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
 | Hooks                       |          |           |             |
 | onLogoutHook                | Function |           | Called on `AccountsTemplates.logout` invocation: allows for custom redirects or whatever custom action to be taken on user logout. |
-| onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` | 
+| onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` |
 
 <a name="routing"/>
 #### Routing
@@ -610,6 +610,7 @@ AccountsTemplates.configure({
     texts: {
         info: {
             emailSent: "info.emailSent",
+            emailVerified: "info.emailVerified",
             pwdChanged: "info.passwordChanged",
             pwdReset: "info.passwordReset",
             pwdSet: "info.passwordReset",
