@@ -610,6 +610,7 @@ AccountsTemplates.configure({
     texts: {
         info: {
             emailSent: "info.emailSent",
+            emailVerified: "info.emailVerified",
             pwdChanged: "info.passwordChanged",
             pwdReset: "info.passwordReset",
             pwdSet: "info.passwordReset",
