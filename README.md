@@ -7,7 +7,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 The package `useraccounts:core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
 This means that developing a version of the UI with a different styling is just a matter of writing a few dozen of html lines, nothing more!
 
-Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) you can switch to your preferred language on the fly! Available languages are now: Arabic, Czech, French, German, Italian, Polish, Portuguese, Russian, Slovenian, Spanish, Swedish and Vietnamese.
+Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) you can switch to your preferred language on the fly! Available languages are now: Arabic, Czech, French, German, Italian, Polish, Portuguese, Russian, Slovenian, Spanish, Swedish, Turkish and Vietnamese.
 
 It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection.
 
