@@ -1,5 +1,12 @@
 ## Master
 
+## v.1.4.1
+
+* updated dependency to softwarerero:accounts-t9n@1.0.5 to include Turkish language
+* fixed `{{> atForm state='<state>'}}` which was no more working with Meteor@1.0.2 (see #217)
+* fixed some text configuration (see #209, thanks @bumbleblym)
+* fixed some typos into the docs (see #208, thanks @bumbleblym)
+
 ## v1.4.0
 
 * added `useraccounts:ionic` to the suite! (Thanks @nickw!!!)
