@@ -331,9 +331,9 @@ Details for each of them follow.
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | Client-side Validation      |          |           |             |
 | continuousValidation        | Boolean  | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
-| negativeFeedback            | Boolean  | false     | Specifies whether to highlight input elements in case of negative validation. |
-| negativeValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
-| positiveValidation          | Boolean  | false     | Specifies whether to display negative validation feed-back inside input elements. |
+| negativeValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of negative validation. |
+| positiveValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
+| negativeFeedback            | Boolean  | false     | Specifies whether to display negative validation feed-back inside input elements. |
 | positiveFeedback            | Boolean  | false     | Specifies whether to display positive validation feed-back inside input elements. |
 | showValidating              | Boolean  | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
 | Links                       |          |           |             |
