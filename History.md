@@ -1,5 +1,11 @@
 ## Master
 
+## v1.5.0
+
+* added `useraccounts:polymer` to the suite! (WIP, Thanks @kevohagan!!!)
+* fixed a bug with atVerifyEmail route (see #241 and #173)
+* little docs improovements
+
 ## v.1.4.1
 
 * updated dependency to softwarerero:accounts-t9n@1.0.5 to include Turkish language
