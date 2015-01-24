@@ -993,7 +993,7 @@ Template.appAtInput.replaces("atInput");
 
 Grouping fields together is a special problem in regard to layout. The issue is creating some container markup *while* iterating over the fields (the templating engine of Meteor doesn't allow outputting an opening tag inside a loop without closing it in the same iteration).
 
-A solution to the problem is demonstrated in [this gist](https://gist.github.com/dalgard/a844f6569d8f471db9a7).
+A solution to the problem is demonstrated in [this gist](https://gist.github.com/dalgard/a844f6569d8f471db9a7) (Semantic UI version).
 
 
 <a name="css-rules">
