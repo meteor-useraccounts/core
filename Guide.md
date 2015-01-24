@@ -961,9 +961,9 @@ AccountsTemplates.addFields([
 <a name="extending-templates"/>
 ### Extending Templates
 
-Through the use of the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `useraccounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling for the forms.
+With the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `user-accounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling.
 
-Custom properties may be attached to a field's `options` object, which can then be accessed while looping them. Adding a divider could look like this:
+Custom properties that hold information about the look of the form may be attached to the `options` object of a field. It can then be used to change the output while looping the fields. Adding a divider might look like this:
 
 ```javascript
 AccountsTemplates.addField({
@@ -991,7 +991,7 @@ AccountsTemplates.addField({
 Template.appAtInput.replaces("atInput");
 ```
 
-Grouping fields together is a special problem in regard to layout. The issue here is creating some container markup *while* iterating over the fields (the templating engine of Meteor doesn't allow outputting an opening tag inside a loop without closing it in the same iteration).
+Grouping fields together is a special problem in regard to layout. The issue is creating some container markup *while* iterating over the fields (the templating engine of Meteor doesn't allow outputting an opening tag inside a loop without closing it in the same iteration).
 
 A solution to the problem is demonstrated in [this gist](https://gist.github.com/dalgard/a844f6569d8f471db9a7).
 
