@@ -27,6 +27,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Errors Text](#errors-text)
   * [Disabling Client-side Accounts Creation](#disabling-client-side-accounts-creation)
   * [Form Fields Configuration](#form-fields-configuration)
+  * [Extending Templates](#extending-templates)
   * [CSS Rules](#css-rules)
 * [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
 * [Side Notes](#side-notes)
@@ -656,6 +657,7 @@ Each field object is represented by the following properties:
 | positiveValidation   | Boolean       |          | Specifies whether to display negative validation feed-back inside input elements. |
 | positiveFeedback     | Boolean       |          | Specifies whether to display positive validation feed-back inside input elements. |
 | showValidating       | Boolean       |          | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
+| options              | Object        |          | An object with custom properties that are made available inside the templates. This is used to customize the layout and style of forms (through the use of [template-extension](https://github.com/aldeed/meteor-template-extension); see [Advanced Customization](#advanced-customization)) |
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
@@ -954,6 +956,44 @@ AccountsTemplates.addFields([
   }
 ]);
 ```
+
+
+<a name="extending-templates"/>
+### Extending Templates
+
+Through the use of the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `useraccounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling for the forms.
+
+Custom properties may be attached to a field's `options` object, which can then be accessed while looping them. Adding a divider could look like this:
+
+```javascript
+AccountsTemplates.addField({
+  _id: "address",
+  type: "text",
+  
+  // Options object with custom properties for my layout. At the moment, there are
+  // no special properties; it is up the developer to invent them
+  options: {
+    // Put a divider before this field
+    dividerBefore: true
+  }
+});
+```
+
+```html
+<template name="appAtInput">
+  {{#if options.dividerBefore}}<hr>{{/if}}
+
+  {{> Template.dynamic template=templateName}}
+</template>
+```
+
+```javascript
+Template.appAtInput.replaces("atInput");
+```
+
+Grouping fields together is a special problem in regard to layout. The issue here is creating some container markup *while* iterating over the fields (the templating engine of Meteor doesn't allow outputting an opening tag inside a loop without closing it in the same iteration).
+
+A solution to the problem is demonstrated in [this gist](https://gist.github.com/dalgard/a844f6569d8f471db9a7).
 
 
 <a name="css-rules">
