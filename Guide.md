@@ -658,7 +658,7 @@ Each field object is represented by the following properties:
 | positiveValidation   | Boolean          |          | Display negative validation feedback inside input elements. |
 | positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
 | showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
-| options              | Object        |          | An object with custom properties that are made available inside the templates. This is used to customize the layout and style of forms through the use of [template-extension](https://github.com/aldeed/meteor-template-extension). See [Extending Templates](#extending-templates) |
+| options              | Object           |          | An object with custom properties that are made available inside the templates. This is used to customize the layout and style of forms through the use of [template-extension](https://github.com/aldeed/meteor-template-extension). See [Extending Templates](#extending-templates) |
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
