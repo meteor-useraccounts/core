@@ -1,8 +1,8 @@
-User Accounts
-=============
+# User Accounts
 
 User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
+## Some Details
 
 The package `useraccounts:core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
 This means that developing a version of the UI with a different styling is just a matter of writing a few dozen of html lines, nothing more!
