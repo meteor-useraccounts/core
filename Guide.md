@@ -15,7 +15,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 * [Basic Customization](#basic-customization)
   * [I18n Support](#i18n)
   * [Configuration API](#configuration-api)
-  * [Options](#options)
+    * [Options](#options)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
 * [Advanced Customization](#advanced-customization)
@@ -286,7 +286,7 @@ AccountsTemplates.configure({
 
 
 <a name="routing"/>
-#### Routing
+### Routing
 
 There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
 
@@ -358,7 +358,7 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
 in this case, any field different from `template` and `layoutTemplate` will be ignored!
 
 <a name="content-protection"/>
-#### Content Protection
+### Content Protection
 
 There is a method which permits to prompt for the sign in form for the pages requiring the user to be signed in. It is:
 
@@ -431,12 +431,12 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
 
 see [Routing](#routing) for more information.
 
-<a name="advances-customization"/>
+<a name="advanced-customization"/>
 ## Advanced Customization
 
 
 <a name="configuring-texts"/>
-## Configuring Texts
+### Configuring Texts
 
 In case you wish to change texts on atForm, you can call:
 
@@ -636,28 +636,28 @@ One of the most interesting part is that custom additional sign up fields can be
 
 Each field object is represented by the following properties:
 
-| Property             | Type          | Required | Description                                                                                                                                                                                                                            |
-| -------------------- | ------------- |:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _id                  | String        |    X     | A unique field's id / name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lower-case letters.                                       |
-| type                 | String        |    X     | Specifies the input element type: at the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`, `hidden`.                                                                                        |
-| required             | Boolean       |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
-| displayName          | String or obj |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `showLabels` options is set to true.                             |
-| placeholder          | String or obj |          | Specifies the place-holder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
-| select               | list of obj   |          | Lets you specify the list of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
-| minLength            | Integer       |          | If specified requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
-| maxLength            | Integer       |          | If specified require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
-| re                   | RegExp        |          | Possibly specifies the regular expression to be used for field's content validation. Validation is performed both client-side (at every input change iff `continuousValidation` option is set to true) and server-side on form submit. |
-| func                 | Function      |          | Custom function to be used for validation.                                                                                                                                                                                             |
-| errStr               | String        |          | Error message to be displayed in case re or func validation fail.                                                                                                                                                                      |
-| trim                 | Boolean       |          | Specifies whether to trim the input value or not.                                                                                                                                                                                      |
-| lowercase            | Boolean       |          | Specifies whether to convert the input value to lowercase or not.                                                                                                                                                                      |
-| uppercase            | Boolean       |          | Specifies whether to convert the input value to uppercase or not.                                                                                                                                                                      |
-| continuousValidation | Boolean       |          | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
-| negativeFeedback     | Boolean       |          | Specifies whether to highlight input elements in case of negative validation. |
-| negativeValidation   | Boolean       |          | Specifies whether to highlight input elements in case of positive validation. |
-| positiveValidation   | Boolean       |          | Specifies whether to display negative validation feed-back inside input elements. |
-| positiveFeedback     | Boolean       |          | Specifies whether to display positive validation feed-back inside input elements. |
-| showValidating       | Boolean       |          | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
+| Property             | Type             | Required | Description                                                                                                                                                                                                                            |
+| -------------------- | -----------------|:--------:| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _id                  | String           |    X     | A unique field's id/name (internal use only) to be also used as attribute name into `Meteor.user().profile` in case it identifies an additional sign up field. Usually all lowercase letters.                                       |
+| type                 | String           |    X     | Specifies the input element type. At the moment supported inputs are: `password`, `email`, `text`, `tel`, `url`, `checkbox`, `select`, `radio`, `hidden`.                                                                                        |
+| required             | Boolean          |          | When set to true the corresponding field cannot be left blank                                                                                                                                                                          |
+| displayName          | String or Object |          | The field name to be shown as text label above the input element. In case nothing is specified, the capitalized `_id` is used. The text label is shown only if `showLabels` options is set to true.                             |
+| placeholder          | String or Object |          | The placeholder text to be shown inside the input element. In case nothing is specified, the capitalized `_id` will be used. The place-holder is shown only if `showPlaceholders` option is set to true.                    |
+| select               | [Object]         |          | Lets you specify an array of choices to be displayed for select and radio inputs. See example below.                                                                                                                                   |
+| minLength            | Integer          |          | If specified, requires the content of the field to be at least `minLength` characters.                                                                                                                                                  |
+| maxLength            | Integer          |          | If specified, require the content of the field to be at most `maxLength` characters.                                                                                                                                                    |
+| re                   | RegExp           |          | Possibly specifies the regular expression to be used for the field's content validation. Validation is performed both client-side (at every input change if `continuousValidation` option is set to true) and server-side on form submit. |
+| func                 | Function         |          | Custom function to be used for validation.                                                                                                                                                                                             |
+| errStr               | String           |          | Error message to be displayed in case re or func validation fail.                                                                                                                                                                      |
+| trim                 | Boolean          |          | Trim the input value.                                                                                                                                                                                      |
+| lowercase            | Boolean          |          | Convert the input value to lowercase.                                                                                                                                                                      |
+| uppercase            | Boolean          |          | Convert the input value to uppercase.                                                                                                                                                                      |
+| continuousValidation | Boolean          |          | Continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
+| negativeFeedback     | Boolean          |          | Highlight input elements in case of negative validation. |
+| negativeValidation   | Boolean          |          | Highlight input elements in case of positive validation. |
+| positiveValidation   | Boolean          |          | Display negative validation feedback inside input elements. |
+| positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
+| showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
 | options              | Object        |          | An object with custom properties that are made available inside the templates. This is used to customize the layout and style of forms through the use of [template-extension](https://github.com/aldeed/meteor-template-extension). See [Extending Templates](#extending-templates) |
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
@@ -1001,8 +1001,8 @@ Grouping fields together is a special problem in regard to layout. The issue is 
 A solution to the problem is demonstrated in [this gist](https://gist.github.com/dalgard/a844f6569d8f471db9a7) (Semantic UI version).
 
 
-<a name="css-rules">
-## CSS Rules
+<a name="css-rules"/>
+### CSS Rules
 
 The main atForm is build up of several pieces, appearing and disappearing based on configuration options as well as the current internal status.
 Each of these blocks is wrapped inside a `div` with class `at-<something>`: this should made your life easier if you're trying to write your own CSS rules to change templates' appearance.
@@ -1109,7 +1109,7 @@ Below is a html snapshot of an over-complete `atForm` taken from the unstyled ve
 
 
 <a name="wrapping-up-for-famo.us"/>
-##Wrapping Up for Famo.us
+## Wrapping Up for Famo.us
 
 By simply typing
 
