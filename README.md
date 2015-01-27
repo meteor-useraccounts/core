@@ -28,6 +28,8 @@ Detailed explanations of features and configuration options can be found in the 
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [onehanders.com](http://onehanders.com/)
 * [Henfood](http://labs.henesis.eu/henfood)
+* [We Work Meteor](http://www.weworkmeteor.com/)
+* [Doughbies](http://www.doughbies.co/)
 
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
