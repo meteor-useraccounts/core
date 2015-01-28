@@ -23,13 +23,14 @@ Detailed explanations of features and configuration options can be found in the 
 
 ## Who's using this?
 
-* [Telescope](http://www.telesc.pe/)
-* [Crater.io](http://crater.io/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
-* [onehanders.com](http://onehanders.com/)
-* [Henfood](http://labs.henesis.eu/henfood)
-* [We Work Meteor](http://www.weworkmeteor.com/)
+* [crater.io](http://crater.io/)
 * [Doughbies](http://www.doughbies.co/)
+* [Henfood](http://labs.henesis.eu/henfood)
+* [meteorgigs.io](https://www.meteorgigs.io/)
+* [onehanders.com](http://onehanders.com/)
+* [Telescope](http://www.telesc.pe/)
+* [We Work Meteor](http://www.weworkmeteor.com/)
 
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
