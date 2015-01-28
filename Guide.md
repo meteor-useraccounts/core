@@ -653,12 +653,14 @@ Each field object is represented by the following properties:
 | trim                 | Boolean          |          | Trim the input value.                                                                                                                                                                                      |
 | lowercase            | Boolean          |          | Convert the input value to lowercase.                                                                                                                                                                      |
 | uppercase            | Boolean          |          | Convert the input value to uppercase.                                                                                                                                                                      |
+| transform            | Function         |          | Custom function to transform the input value.                                                                                                                                                                      |
 | continuousValidation | Boolean          |          | Continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeValidation   | Boolean          |          | Highlight input elements in case of negative validation. |
 | positiveValidation   | Boolean          |          | Highlight input elements in case of positive validation. |
 | negativeFeedback     | Boolean          |          | Display negative validation feedback inside input elements. |
 | positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
 | showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
+| options              | Object           |          | Allows to pass in additional custom options to be possbly used to extend input templates (see [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates))  |
 
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
