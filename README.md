@@ -11,10 +11,13 @@ Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) yo
 
 It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection.
 
-You can get a better idea about this heading to http://accounts-templates.meteor.com/ and then, on your choice, to:
-* http://accounts-templates-bootstrap.meteor.com/
-* http://accounts-templates-foundation.meteor.com/
-* http://accounts-templates-semantic-ui.meteor.com/
+You can get a better idea about this heading to http://useraccounts.meteor.com/ and then, on your choice, to:
+* http://useraccounts-bootstrap.meteor.com/
+* http://useraccounts-foundation.meteor.com/
+* http://useraccounts-ionic.meteor.com/
+* http://useraccounts-polymer.meteor.com/
+* http://useraccounts-ratchet.meteor.com/
+* http://useraccounts-semantic-ui.meteor.com/
 
 Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/meteor-useraccounts/ui) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
