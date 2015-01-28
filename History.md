@@ -1,5 +1,9 @@
 ## Master
 
+## v1.6.1
+
+* updated deps for iron:router and softwarerero:accounts-t9n to latest versions
+
 ## v1.6.0
 
 * moved the documentation to a separate file: [Guide](https://github.com/meteor-useraccounts/core/blob/master/Guide.md)
