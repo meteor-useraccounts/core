@@ -18,6 +18,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Options](#options)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
+  * [reCaptcha Setup](#reCaptcha-setup)
 * [Advanced Customization](#advanced-customization)
   * [Configuring Texts](#configuring-texts)
     * [Form Title](#form-title)
@@ -431,6 +432,69 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
 ```
 
 see [Routing](#routing) for more information.
+
+<a name="reCaptcha-setup"/>
+### reCaptcha Setup
+To set up [reCaptcha](https://www.google.com/recaptcha/intro/index.html), you need to first obtain API keys.
+
+Then, a recommended setup is as follows.
+
+A [Meteor settings file](http://docs.meteor.com/#/full/meteor_settings) with the keys:
+
+```javascript
+{
+    "public": {
+        "reCaptcha": {
+            "siteKey": YOUR SITE KEY
+        }
+    },
+    "reCaptcha": {
+        "secretKey": YOUR SECRET KEY
+    }
+}
+```
+
+and configuration to show the reCaptcha widget:
+
+```javascript
+AccountsTemplates.configure({
+    showReCaptcha: true
+});
+```
+
+The reCaptcha plugin can likewise be set up with the following complete example:
+
+
+```javascript
+AccountsTemplates.configure({
+    reCaptcha: {
+        siteKey: YOUR SITE KEY,
+        theme: "light",
+        data_type: "image"
+    },
+    showReCaptcha: true
+});
+```
+
+And, in a separate file in the `/server` folder:
+
+```javascript
+AccountsTemplates.configure({
+    reCaptcha: {
+        secretKey: YOUR SECRET KEY.
+    },
+});
+```
+
+Each option is described below:
+
+| Option                      | Type     | Default   | Description |
+| --------------------------- | -------- | --------- | ----------- |
+| siteKey                     | String   | none      | The site key needed to create the reCaptcha widget. This can be specified in just the Meteor settings file. |
+| secretKey                   | String   | none      | The secret key needed to verify the reCaptcha response. ***Warning: Only set this in a file in `/server` or in a Meteor settings file. Otherwise, your private key can be read by anyone!*** |
+| theme                       | String   | "light"   | Sets the reCaptcha theme color. The options are "light" and "dark". |
+| data_type                   | String   | "image"   | Sets the verification method. Options are "image" or "audio". |
+| showReCaptcha               | Boolean  | false     | Whether to show the reCaptcha widget on sign in or not. No reCaptcha validation will occur if set to false. |
 
 <a name="advanced-customization"/>
 ## Advanced Customization
