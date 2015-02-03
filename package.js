@@ -43,6 +43,7 @@ Package.on_use(function(api) {
         "lib/field.js",
         "lib/core.js",
         "lib/client.js",
+        "lib/templates_helpers/at_cancel_btn.js",
         "lib/templates_helpers/at_error.js",
         "lib/templates_helpers/at_form.js",
         "lib/templates_helpers/at_input.js",
