@@ -700,7 +700,8 @@ AccountsTemplates.addField({
 
 asks AccountsTemplates to display "At least six characters" as the placeholder for the password field when the sign up form is display, and to display "Password" (the capitalized *_id*_) in any other case.
 
-**Custom validation** can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
+##### Custom validation
+Custom validation can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
 
 ```
 AccountsTemplates.addField({
