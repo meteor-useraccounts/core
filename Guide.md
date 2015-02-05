@@ -661,6 +661,7 @@ Each field object is represented by the following properties:
 | positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
 | showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
 | options              | Object           |          | Allows to pass in additional custom options to be possbly used to extend input templates (see [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates))  |
+| template             | String           |          | The name of a custom template to be used in place of the default one. |
 
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
@@ -967,6 +968,8 @@ AccountsTemplates.addFields([
 ### Extending Templates
 
 With the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `user-accounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling.
+
+In case of input fileds the option `template` (see [Form Fields Configuration](#form-fields-configuration)) can be directly used without the need to rely on `aldeed:template-extension` package.
 
 Custom properties that hold information about the look of the form may be attached to the `options` object of a field. It may then be used to change the output while looping the fields. Adding a divider might look like this:
 
