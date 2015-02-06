@@ -21,6 +21,10 @@ Package.on_use(function(api) {
         "reactive-dict",
     ], "client");
 
+    api.use([
+        "http"
+    ], "server");
+
     api.imply([
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.6",
@@ -51,6 +55,7 @@ Package.on_use(function(api) {
         "lib/templates_helpers/at_pwd_form.js",
         "lib/templates_helpers/at_pwd_form_btn.js",
         "lib/templates_helpers/at_pwd_link.js",
+        "lib/templates_helpers/at_reCaptcha.js",
         "lib/templates_helpers/at_result.js",
         "lib/templates_helpers/at_sep.js",
         "lib/templates_helpers/at_signin_link.js",
