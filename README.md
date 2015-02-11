@@ -26,6 +26,7 @@ Detailed explanations of features and configuration options can be found in the 
 
 ## Who's using this?
 
+* [Abesea](https://abesea.com/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [crater.io](http://crater.io/)
 * [Doughbies](http://www.doughbies.co/)
