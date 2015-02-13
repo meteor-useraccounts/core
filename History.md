@@ -1,5 +1,18 @@
 ## Master
 
+## v1.7.0
+
+* `useraccounts:materialize` to the suite! (Many thanks to @Kestanous!!!)
+* fixed glitch within `ensureSignedIn` (see #278)
+* added experimental support for [reChaptcha](https://www.google.com/recaptcha/intro/index.html) (see #268 and [reCaptcha Setup](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#recaptcha-setup), great work @theplatapi!)
+* new `template` option for deeper input fields customization (see #273 and [Form Fields Configuration](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-fields-configuration))
+* prevent access to `atChangePwd` for users not being logged in (see #207)
+* use `Meteor.userID()` in place of `Meteor.user()` where possible to reduce reactive re-computations
+* fixed bug with timed out redirects  (see #263)
+* fixed reactivity bug within `ensureSignedIn` (see #262)
+* removed warning about MAIL_URL not being configured (see #267, #210)
+* better `atNavButton` behaviour (see #265 tnx @adrianmc)
+
 ## v1.6.1
 
 * updated deps for iron:router and softwarerero:accounts-t9n to latest versions
