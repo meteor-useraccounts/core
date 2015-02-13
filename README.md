@@ -15,6 +15,7 @@ You can get a better idea about this heading to http://useraccounts.meteor.com/ 
 * http://useraccounts-bootstrap.meteor.com/
 * http://useraccounts-foundation.meteor.com/
 * http://useraccounts-ionic.meteor.com/
+* http://useraccounts-materialize.meteor.com/
 * http://useraccounts-polymer.meteor.com/
 * http://useraccounts-ratchet.meteor.com/
 * http://useraccounts-semantic-ui.meteor.com/
