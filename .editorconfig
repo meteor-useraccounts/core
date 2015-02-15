@@ -1,4 +1,4 @@
-#.editorconfig
+# .editorconfig
 # Meteor adapted EditorConfig, http://EditorConfig.org
 # By RaiX 2013
 
@@ -16,3 +16,11 @@ indent_brace_style = 1TBS
 spaces_around_operators = true
 quote_type = auto
 # curly_bracket_next_line = true
+
+[*.html]
+end_of_line = lf
+insert_final_newline = false
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+charset = utf-8
