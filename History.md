@@ -1,5 +1,10 @@
 ## Master
 
+## v1.7.1
+
+* fixed routing regression (see #284)
+* removed useless logs
+
 ## v1.7.0
 
 * `useraccounts:materialize` to the suite! (Many thanks to @Kestanous!!!)
