@@ -349,7 +349,7 @@ All the above fields are optional and fall back to default values in case you do
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
 
-Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for `AccountsTemplates.ensuredSignedIn` (see [Content Protection](#content-protection)):
+Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for the Iron Router `ensuredSignedIn` plugin (see [Content Protection](#content-protection)):
 
 ```javascript
 AccountsTemplates.configureRoute('ensureSignedIn', {
@@ -363,67 +363,32 @@ in this case, any field different from `template` and `layoutTemplate` will be i
 <a name="content-protection"/>
 ### Content Protection
 
-There is a method which permits to prompt for the sign in form for the pages requiring the user to be signed in. It is:
-
-```javascript
-AccountsTemplates.ensureSignedIn
-```
-
+User Accounts packages come with an Iron Router plugin called `ensureSignedIn` which permits to prompt for the sign in form for the pages requiring the user to be signed in.
 It behaves nicely letting the required route path inside the address bar and bringing you back to the same route once logged in.
 
-In case you want to protect about all of your routes you might want to set up your Router this way:
+To protect **all** you routes use it like this:
 
 ```javascript
-Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+Router.plugin('ensureSignedIn');
+```
+
+While in case you want to protect *almost all* your routes you might want to set up the plugin this way:
+
+```javascript
+Router.plugin('ensureSignedIn', {
     except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword']
 });
 ```
 
-if, instead, it's only a bunch of routes to be protected you could do:
+if, instead, it's only a bunch of routes to be protected you could do (even more than once inside different files...):
 
 ```javascript
-Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+Router.plugin('ensureSignedIn', {
     only: ['profile', 'privateStuff']
 });
 ```
 
-Another possibility is to set up single routes one after the another. For example:
-
-```javascript
-Router.map(function() {
-    this.route('home', {
-        path: '/',
-        template: 'homeMain'
-    });
-
-    this.route('aboutPage', {
-        path: '/about',
-        template: 'about'
-    });
-
-    this.route('private1', {
-        path: '/private1',
-        template: 'privatePage1',
-        onBeforeAction: AccountsTemplates.ensureSignedIn
-    });
-
-    this.route('private2', {
-        path: '/private2',
-        template: 'privatePage2',
-        onBeforeAction: function(pause){
-            AccountsTemplates.ensureSignedIn.call(this, pause);
-
-            // Some more stuff to check advanced permission an the like...
-        }
-    });
-});
-```
-
-In this case only `private1` and `private2` routes are protected with sign-in access. Please note that `ensureSignedIn` is called through the `call` method passing `this` (the Router object) and `pause` as parameters inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
-
-possibly have a look at the iron-router [documentation](http://eventedmind.github.io/iron-router/) for more details.
-
-If you wish to customize the template and layout to be used you can change them with:
+Moreover, if you wish to customize the template and layout to be used you can change them with:
 
 ```javascript
 AccountsTemplates.configureRoute('ensureSignedIn', {
@@ -433,6 +398,7 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
 ```
 
 see [Routing](#routing) for more information.
+
 
 <a name="reCaptcha-setup"/>
 ### reCaptcha Setup
