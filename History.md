@@ -1,6 +1,6 @@
 ## Master
 
-* added `lowercaseUsername` configuration option (STILL TO BE documented!!!)
+* added `lowercaseUsername` configuration option (see [Configuration API Options](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#options))
 * added `ensureSignedIn` plugin for Iron Router (see [Content Protection](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#content-protection))
 * fixed `ensureSignedIn` regression (see #286)
 
