@@ -1,5 +1,9 @@
 ## Master
 
+## v1.8.1
+
+* made (a fake) `ensureSignedIn` plugin available also on server side code (fixed #291)
+
 ## v1.8.0
 
 * added `lowercaseUsername` configuration option (see [Configuration API Options](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#options))
