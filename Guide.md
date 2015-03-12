@@ -268,7 +268,7 @@ Details for each of them follow.
 
 ##### onSubmitHook
 
-A straighforward configuration about how to detect when a user logs in or regiters might look like the following:
+A straighforward configuration about how to detect when a user logs in or registers might look like the following:
 
 ```javascript
 var mySubmitFunc = function(error, state){
