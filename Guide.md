@@ -18,6 +18,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Options](#options)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
+  * [reCaptcha Setup](#reCaptcha-setup)
 * [Advanced Customization](#advanced-customization)
   * [Configuring Texts](#configuring-texts)
     * [Form Title](#form-title)
@@ -59,12 +60,14 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 <a name="available-versions"/>
 ### Available Versions
 
-* [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
 * [useraccounts:bootstrap](https://atmospherejs.com/useraccounts/bootstrap) styled for [Twitter Bootstrap](http://getbootstrap.com/)
 * [useraccounts:foundation](https://atmospherejs.com/useraccounts/foundation) styled for [Zurb Foundation](http://foundation.zurb.com/)
 * [useraccounts:ionic](https://atmospherejs.com/useraccounts/ionic) styled for [Ionic](http://ionicframework.com/)
+* [useraccounts:materialize](https://atmospherejs.com/useraccounts/materialize) styled for [Materialize](http://materializecss.com/)
+* [useraccounts:polymer](https://atmospherejs.com/useraccounts/polymer) styled for [Polymer](https://www.polymer-project.org/) (WIP)
 * [useraccounts:ratchet](https://atmospherejs.com/useraccounts/ratchet) styled for [Ratchet](http://goratchet.com/)
 * [useraccounts:semantic-ui](https://atmospherejs.com/useraccounts/semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
+* [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
 * plus others coming soon...
 
 
@@ -179,6 +182,7 @@ AccountsTemplates.configure({
     forbidClientAccountCreation: false,
     overrideLoginErrors: true,
     sendVerificationEmail: false,
+    lowercaseUsername: false,
 
     // Appearance
     showAddRemoveServices: false,
@@ -226,7 +230,7 @@ Details for each of them follow.
 
 | Option                      | Type     | Default   | Description |
 | --------------------------- | -------- | --------- | ----------- |
-| Behaviour                   |          |           |             |
+| **Behaviour**               |          |           |             |
 | confirmPassword             | Boolean  | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
 | defaultState                | String   | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
 | enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
@@ -236,34 +240,35 @@ Details for each of them follow.
 | sendVerificationEmail       | Boolean  | false     | Specifies whether to send the verification email after successful registration. |
 | redirectTimeout             | Number   | 2000      | Specifies a timeout time for the redirect after successful form submit on `enrollAccount`, `forgotPwd`, `resetPwd`, and `verifyEmail` routes. |
 | socialLoginStyle            | String   | "popup"   | Specifies the login style for 3rd party services login. Valid values are `popup` or `redirect`. See `loginStyle` option of [Meteor.loginWith<ExternalService>](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) for more information.  |
-| Appearance                  |          |           |             |
+| lowercaseUsername           | Boolean  | false     | Possibly asks to transform `username` field for user objects at registration time to be always in lowercase with no spaces. The original `username` value will be added to the `user.profile` field for later use.  |
+| **Appearance**              |          |           |             |
 | defaultLayout               | String   | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
 | hideSignInLink              | Boolean  | false     | When set to true, asks to never show the link to the sign in page  |
 | hideSignUpLink              | Boolean  | false     | When set to true, asks to never show the link to the sign up page  |
 | showAddRemoveServices       | Boolean  | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by AccountsTemplates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
-| showForgotPasswordLink      | Boolean  | false     |             |
+| showForgotPasswordLink      | Boolean  | false     | Specifies whether to display a link to the forgot password page/form |
 | showLabels                  | Boolean  | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean  | true      | Specifies whether to display place-holder text inside input elements. |
-| Texts                       |          |           |             |
+| **Texts**                   |          |           |             |
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
-| Client-side Validation      |          |           |             |
+| **Client-side Validation**  |          |           |             |
 | continuousValidation        | Boolean  | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of negative validation. |
 | positiveValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
 | negativeFeedback            | Boolean  | false     | Specifies whether to display negative validation feed-back inside input elements. |
 | positiveFeedback            | Boolean  | false     | Specifies whether to display positive validation feed-back inside input elements. |
 | showValidating              | Boolean  | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
-| Links                       |          |           |             |
+| **Links**                   |          |           |             |
 | homeRoutePath               | String   | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
 | privacyUrl                  | String   | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
 | termsUrl                    | String   | undefined | Path for the route displaying the document about terms of use. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
-| Hooks                       |          |           |             |
+| **Hooks**                   |          |           |             |
 | onLogoutHook                | Function |           | Called on `AccountsTemplates.logout` invocation: allows for custom redirects or whatever custom action to be taken on user logout. |
 | onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` |
 
 ##### onSubmitHook
 
-A straighforward configuration about how to detect when a user logs in or regiters might look like the following:
+A straighforward configuration about how to detect when a user logs in or registers might look like the following:
 
 ```javascript
 var mySubmitFunc = function(error, state){
@@ -346,7 +351,7 @@ All the above fields are optional and fall back to default values in case you do
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
 
-Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for `AccountsTemplates.ensuredSignedIn` (see [Content Protection](#content-protection)):
+Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for the Iron Router `ensuredSignedIn` plugin (see [Content Protection](#content-protection)):
 
 ```javascript
 AccountsTemplates.configureRoute('ensureSignedIn', {
@@ -360,67 +365,34 @@ in this case, any field different from `template` and `layoutTemplate` will be i
 <a name="content-protection"/>
 ### Content Protection
 
-There is a method which permits to prompt for the sign in form for the pages requiring the user to be signed in. It is:
-
-```javascript
-AccountsTemplates.ensureSignedIn
-```
-
+User Accounts packages come with an Iron Router plugin called `ensureSignedIn` which permits to prompt for the sign in form for the pages requiring the user to be signed in.
 It behaves nicely letting the required route path inside the address bar and bringing you back to the same route once logged in.
 
-In case you want to protect about all of your routes you might want to set up your Router this way:
+**Please note that a fake version of `ensureSignedIn` is also available on server-side to allow for shared routing files, but there's no way to check whether a user is logged in or not on a server-side route!**
+
+To protect **all** you routes use it like this:
 
 ```javascript
-Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+Router.plugin('ensureSignedIn');
+```
+
+While in case you want to protect *almost all* your routes you might want to set up the plugin this way:
+
+```javascript
+Router.plugin('ensureSignedIn', {
     except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword']
 });
 ```
 
-if, instead, it's only a bunch of routes to be protected you could do:
+if, instead, it's only a bunch of routes to be protected you could do (even more than once inside different files...):
 
 ```javascript
-Router.onBeforeAction(AccountsTemplates.ensureSignedIn, {
+Router.plugin('ensureSignedIn', {
     only: ['profile', 'privateStuff']
 });
 ```
 
-Another possibility is to set up single routes one after the another. For example:
-
-```javascript
-Router.map(function() {
-    this.route('home', {
-        path: '/',
-        template: 'homeMain'
-    });
-
-    this.route('aboutPage', {
-        path: '/about',
-        template: 'about'
-    });
-
-    this.route('private1', {
-        path: '/private1',
-        template: 'privatePage1',
-        onBeforeAction: AccountsTemplates.ensureSignedIn
-    });
-
-    this.route('private2', {
-        path: '/private2',
-        template: 'privatePage2',
-        onBeforeAction: function(pause){
-            AccountsTemplates.ensureSignedIn.call(this, pause);
-
-            // Some more stuff to check advanced permission an the like...
-        }
-    });
-});
-```
-
-In this case only `private1` and `private2` routes are protected with sign-in access. Please note that `ensureSignedIn` is called through the `call` method passing `this` (the Router object) and `pause` as parameters inside `onBeforeAction` for route `private2` in order to achieve correct functioning (see [here](https://github.com/EventedMind/iron-router/blob/devel/DOCS.md#before-and-after-hooks)).
-
-possibly have a look at the iron-router [documentation](http://eventedmind.github.io/iron-router/) for more details.
-
-If you wish to customize the template and layout to be used you can change them with:
+Moreover, if you wish to customize the template and layout to be used you can change them with:
 
 ```javascript
 AccountsTemplates.configureRoute('ensureSignedIn', {
@@ -430,6 +402,70 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
 ```
 
 see [Routing](#routing) for more information.
+
+
+<a name="reCaptcha-setup"/>
+### reCaptcha Setup
+To set up [reCaptcha](https://www.google.com/recaptcha/intro/index.html), you need to first obtain API keys.
+
+Then, a recommended setup is as follows.
+
+A [Meteor settings file](http://docs.meteor.com/#/full/meteor_settings) with the keys:
+
+```javascript
+{
+    "public": {
+        "reCaptcha": {
+            "siteKey": YOUR SITE KEY
+        }
+    },
+    "reCaptcha": {
+        "secretKey": YOUR SECRET KEY
+    }
+}
+```
+
+and configuration to show the reCaptcha widget:
+
+```javascript
+AccountsTemplates.configure({
+    showReCaptcha: true
+});
+```
+
+The reCaptcha plugin can likewise be set up with the following complete example:
+
+
+```javascript
+AccountsTemplates.configure({
+    reCaptcha: {
+        siteKey: YOUR SITE KEY,
+        theme: "light",
+        data_type: "image"
+    },
+    showReCaptcha: true
+});
+```
+
+And, in a separate file in the `/server` folder:
+
+```javascript
+AccountsTemplates.configure({
+    reCaptcha: {
+        secretKey: YOUR SECRET KEY.
+    },
+});
+```
+
+Each option is described below:
+
+| Option                      | Type     | Default   | Description |
+| --------------------------- | -------- | --------- | ----------- |
+| siteKey                     | String   | none      | The site key needed to create the reCaptcha widget. This can be specified in just the Meteor settings file. |
+| secretKey                   | String   | none      | The secret key needed to verify the reCaptcha response. ***Warning: Only set this in a file in `/server` or in a Meteor settings file. Otherwise, your private key can be read by anyone!*** |
+| theme                       | String   | "light"   | Sets the reCaptcha theme color. The options are "light" and "dark". |
+| data_type                   | String   | "image"   | Sets the verification method. Options are "image" or "audio". |
+| showReCaptcha               | Boolean  | false     | Whether to show the reCaptcha widget on sign in or not. No reCaptcha validation will occur if set to false. |
 
 <a name="advanced-customization"/>
 ## Advanced Customization
@@ -492,12 +528,28 @@ AccountsTemplates.configure({
         resetPwd: "Reset Pwd Title",
         signIn: "Sign In Title",
         signUp: "Sign Up Title",
+        verifyEmail: "Verify Email Title",
       }
     }
 });
 ```
 
 the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+You can also *hide* a title by setting it to an empty string. For example with:
+
+```
+AccountsTemplates.configure({
+    texts: {
+      title: {
+        signIn: "",
+      }
+    }
+});
+```
+
+no title will be shown on the sign in form.
+
 
 <a name="button-text"/>
 #### Button Text
@@ -652,13 +704,16 @@ Each field object is represented by the following properties:
 | trim                 | Boolean          |          | Trim the input value.                                                                                                                                                                                      |
 | lowercase            | Boolean          |          | Convert the input value to lowercase.                                                                                                                                                                      |
 | uppercase            | Boolean          |          | Convert the input value to uppercase.                                                                                                                                                                      |
+| transform            | Function         |          | Custom function to transform the input value.                                                                                                                                                                      |
 | continuousValidation | Boolean          |          | Continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
-| negativeFeedback     | Boolean          |          | Highlight input elements in case of negative validation. |
-| negativeValidation   | Boolean          |          | Highlight input elements in case of positive validation. |
-| positiveValidation   | Boolean          |          | Display negative validation feedback inside input elements. |
+| negativeValidation   | Boolean          |          | Highlight input elements in case of negative validation. |
+| positiveValidation   | Boolean          |          | Highlight input elements in case of positive validation. |
+| negativeFeedback     | Boolean          |          | Display negative validation feedback inside input elements. |
 | positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
 | showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
-| options              | Object           |          | An object with custom properties that are made available inside the templates. This is used to customize the layout and style of forms through the use of [template-extension](https://github.com/aldeed/meteor-template-extension). See [Extending Templates](#extending-templates) |
+| options              | Object           |          | Allows to pass in additional custom options to be possbly used to extend input templates (see [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates))  |
+| template             | String           |          | The name of a custom template to be used in place of the default one. |
+
 
 `displayName`, `placeholder`, and `errStr` can also be an [accounts-t9n](https://atmospherejs.com/softwarerero/accounts-t9n) registered key, in which case it will be translated based on the currently selected language.
 In case you'd like to specify a key which is not already provided by accounts-t9n you can always map your own keys. To learn how to register new labels, please refer to the official [documentation](https://github.com/softwarerero/meteor-accounts-t9n#define-translations).
@@ -697,14 +752,15 @@ AccountsTemplates.addField({
 
 asks AccountsTemplates to display "At least six characters" as the placeholder for the password field when the sign up form is display, and to display "Password" (the capitalized *_id*_) in any other case.
 
-**Custom validation** can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
+##### Custom validation
+Custom validation can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
 
 ```
 AccountsTemplates.addField({
     _id: 'name',
     type: 'text',
     displayName: "Name",
-    func: function(value){return value === 'Full Name';},
+    func: function(value){return value !== 'Full Name';},
     errStr: 'Only "Full Name" allowed!',
 });
 ```
@@ -964,13 +1020,15 @@ AccountsTemplates.addFields([
 
 With the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `user-accounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling.
 
+In case of input fileds the option `template` (see [Form Fields Configuration](#form-fields-configuration)) can be directly used without the need to rely on `aldeed:template-extension` package.
+
 Custom properties that hold information about the look of the form may be attached to the `options` object of a field. It may then be used to change the output while looping the fields. Adding a divider might look like this:
 
 ```javascript
 AccountsTemplates.addField({
   _id: "address",
   type: "text",
-  
+
   // Options object with custom properties for my layout. At the moment, there are
   // no special properties; it is up the developer to invent them
   options: {

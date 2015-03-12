@@ -1,8 +1,8 @@
-User Accounts
-=============
+# User Accounts
 
 User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/) platform. It provides highly customizable user accounts UI templates for many different front-end frameworks. At the moment it includes forms for sign in, sign up, forgot password, reset password, change password, enroll account, and link or remove of many 3rd party services.
 
+## Some Details
 
 The package `useraccounts:core` contains all the core logic and templates' helpers and events used by dependant packages providing styled versions of the accounts UI.
 This means that developing a version of the UI with a different styling is just a matter of writing a few dozen of html lines, nothing more!
@@ -11,10 +11,14 @@ Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) yo
 
 It also uses [iron-router](https://atmospherejs.com/package/iron-router) for basic routing and content protection.
 
-You can get a better idea about this heading to http://accounts-templates.meteor.com/ and then, on your choice, to:
-* http://accounts-templates-bootstrap.meteor.com/
-* http://accounts-templates-foundation.meteor.com/
-* http://accounts-templates-semantic-ui.meteor.com/
+You can get a better idea about this heading to http://useraccounts.meteor.com/ and then, on your choice, to:
+* http://useraccounts-bootstrap.meteor.com/
+* http://useraccounts-foundation.meteor.com/
+* http://useraccounts-ionic.meteor.com/
+* http://useraccounts-materialize.meteor.com/
+* http://useraccounts-polymer.meteor.com/
+* http://useraccounts-ratchet.meteor.com/
+* http://useraccounts-semantic-ui.meteor.com/
 
 Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/meteor-useraccounts/ui) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
@@ -23,11 +27,15 @@ Detailed explanations of features and configuration options can be found in the 
 
 ## Who's using this?
 
-* [Telescope](http://www.telesc.pe/)
-* [Crater.io](http://crater.io/)
+* [Abesea](https://abesea.com/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
-* [onehanders.com](http://onehanders.com/)
+* [crater.io](http://crater.io/)
+* [Doughbies](http://www.doughbies.co/)
 * [Henfood](http://labs.henesis.eu/henfood)
+* [meteorgigs.io](https://www.meteorgigs.io/)
+* [onehanders.com](http://onehanders.com/)
+* [Telescope](http://www.telesc.pe/)
+* [We Work Meteor](http://www.weworkmeteor.com/)
 
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.

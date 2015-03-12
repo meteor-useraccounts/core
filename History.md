@@ -1,5 +1,53 @@
 ## Master
 
+## v1.8.1
+
+* made (a fake) `ensureSignedIn` plugin available also on server side code (fixed #291)
+
+## v1.8.0
+
+* added `lowercaseUsername` configuration option (see [Configuration API Options](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#options))
+* added `ensureSignedIn` plugin for Iron Router (see [Content Protection](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#content-protection))
+* fixed `ensureSignedIn` regression (see #286)
+
+## v1.7.1
+
+* fixed routing regression (see #284)
+* removed useless logs
+
+## v1.7.0
+
+* `useraccounts:materialize` to the suite! (Many thanks to @Kestanous!!!)
+* fixed glitch within `ensureSignedIn` (see #278)
+* added experimental support for [reChaptcha](https://www.google.com/recaptcha/intro/index.html) (see #268 and [reCaptcha Setup](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#recaptcha-setup), great work @theplatapi!)
+* new `template` option for deeper input fields customization (see #273 and [Form Fields Configuration](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-fields-configuration))
+* prevent access to `atChangePwd` for users not being logged in (see #207)
+* use `Meteor.userID()` in place of `Meteor.user()` where possible to reduce reactive re-computations
+* fixed bug with timed out redirects  (see #263)
+* fixed reactivity bug within `ensureSignedIn` (see #262)
+* removed warning about MAIL_URL not being configured (see #267, #210)
+* better `atNavButton` behaviour (see #265 tnx @adrianmc)
+
+## v1.6.1
+
+* updated deps for iron:router and softwarerero:accounts-t9n to latest versions
+
+## v1.6.0
+
+* moved the documentation to a separate file: [Guide](https://github.com/meteor-useraccounts/core/blob/master/Guide.md)
+* fixed bug about calling `sibmitHook` (see #249 #252 tnx @dalgard)
+* new `options` for field configuration (see #250 and [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates) tnx @dalgard)
+* a bit of cleanup for docs (see #251 tnx @dalgard)
+* capitalazed default value for display name and placeholder (see #247)
+* switch to official `Accounts._hasPassword` (see [this](https://github.com/meteor/meteor/pull/2271) and [this](https://github.com/meteor/meteor/pull/3410), tnx @glasser)
+* more sites using useraccounts: congrats to @nate-strauser and @msamoylov on their launches! (see [the list](https://github.com/meteor-useraccounts/core#whos-using-this))
+* new landing page for the whole project and new live examples (still to be further improoved...) :) (see [useraccounts.meteor.com](https://useraccounts.meteor.com))
+* added `transform` among the options for [field configuration](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-fields-configuration)
+* better behaviour for input value tranform/fix
+* terms and agreements now showed also on enrollment form (see #253)
+* link to singIn now shown also on forgot password form in case `forbidClientAccountCreation` is set to true (partial solution to #229)
+* moved terms and agreements link right after the submit button (see #239)
+
 ## v1.5.0
 
 * added `useraccounts:polymer` to the suite! (WIP, Thanks @kevohagan!!!)
