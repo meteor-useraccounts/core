@@ -1,5 +1,11 @@
 ## Master
 
+## v1.9.0
+
+* fixed little redirect bug (see #315)
+* added title configuration for `verifyEmail` state plus letting titles to be hidden by
+  setting the corresponding text to an empy string (see [Form Title](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-title))
+
 ## v1.8.1
 
 * made (a fake) `ensureSignedIn` plugin available also on server side code (fixed #291)
