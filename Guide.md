@@ -368,7 +368,7 @@ in this case, any field different from `template` and `layoutTemplate` will be i
 User Accounts packages come with an Iron Router plugin called `ensureSignedIn` which permits to prompt for the sign in form for the pages requiring the user to be signed in.
 It behaves nicely letting the required route path inside the address bar and bringing you back to the same route once logged in.
 
-**Please note that a fake version of `ensureSignedIn` is also available on server-side to allow for shared routing files, but there's no way to check whether a user is logged in or not on a server-side route!** 
+**Please note that a fake version of `ensureSignedIn` is also available on server-side to allow for shared routing files, but there's no way to check whether a user is logged in or not on a server-side route!**
 
 To protect **all** you routes use it like this:
 
@@ -528,12 +528,28 @@ AccountsTemplates.configure({
         resetPwd: "Reset Pwd Title",
         signIn: "Sign In Title",
         signUp: "Sign Up Title",
+        verifyEmail: "Verify Email Title",
       }
     }
 });
 ```
 
 the above example asks to change the title for all possible form states, but you can specify only a subset of them leaving default values unchanged.
+
+You can also *hide* a title by setting it to an empty string. For example with:
+
+```
+AccountsTemplates.configure({
+    texts: {
+      title: {
+        signIn: "",
+      }
+    }
+});
+```
+
+no title will be shown on the sign in form.
+
 
 <a name="button-text"/>
 #### Button Text
