@@ -63,6 +63,7 @@ Package.on_use(function(api) {
         "lib/templates_helpers/at_social.js",
         "lib/templates_helpers/at_terms_link.js",
         "lib/templates_helpers/at_title.js",
+        "lib/templates_helpers/at_message.js",
         "lib/methods.js",
     ], ["client"]);
 
