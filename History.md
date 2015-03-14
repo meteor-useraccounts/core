@@ -2,6 +2,7 @@
 
 ## v1.9.0
 
+* configurable `Login Forbidden` text (see [Errors Text](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#errors-text), plus #301)
 * fixed little redirect bug (see #315)
 * added title configuration for `verifyEmail` state plus letting titles to be hidden by
   setting the corresponding text to an empy string (see [Form Title](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-title))
