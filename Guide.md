@@ -509,7 +509,7 @@ AccountsTemplates.configure({
 };
 ```
 
-the above example asks to change all available text configurations, but you can specify only a subset of them leaving default values unchanged.
+the above example asks to change some of the available text configurations. You can specify only a subsets of them leaving default values unchanged.
 To learn how to change title, button, social buttons' icon, info, and errors text read below.
 
 
@@ -641,6 +641,7 @@ In case you wish to change the text for errors appearing inside the error box, y
 AccountsTemplates.configure({
     texts: {
         errors: {
+            loginForbidden: "error.accounts.Login forbidden",
             mustBeLoggedIn: "error.accounts.Must be logged in",
             pwdMismatch: "error.pwdsDontMatch",
         }
