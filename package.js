@@ -31,7 +31,7 @@ Package.on_use(function(api) {
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.6",
         "meteorhacks:flow-router@1.1.1",
-        "meteorhacks:flow-layout@1.0.1",
+        "meteorhacks:flow-layout@1.0.2",
         "meteorhacks:fast-render@2.3.1",
     ], ["client", "server"]);
 
