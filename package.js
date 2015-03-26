@@ -12,7 +12,8 @@ Package.on_use(function(api) {
         "accounts-base",
         "check",
         "underscore",
-        "iron:router",
+        "meteorhacks:flow-router",
+        "meteorhacks:flow-layout",
         "reactive-var",
     ], ["client", "server"]);
 
@@ -28,7 +29,8 @@ Package.on_use(function(api) {
     api.imply([
         "accounts-base",
         "softwarerero:accounts-t9n@1.0.6",
-        "iron:router@1.0.7",
+        "meteorhacks:flow-router@1.1.1",
+        "meteorhacks:flow-layout@1.0.2",
     ], ["client", "server"]);
 
     api.imply([
