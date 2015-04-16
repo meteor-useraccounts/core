@@ -56,6 +56,7 @@ Package.on_use(function(api) {
         "lib/templates_helpers/at_pwd_form_btn.js",
         "lib/templates_helpers/at_pwd_link.js",
         "lib/templates_helpers/at_reCaptcha.js",
+        "lib/templates_helpers/at_resend_verification_email_link.js",
         "lib/templates_helpers/at_result.js",
         "lib/templates_helpers/at_sep.js",
         "lib/templates_helpers/at_signin_link.js",
