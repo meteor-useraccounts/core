@@ -32,7 +32,6 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Grouping Fields](#grouping-fields)
   * [CSS Rules](#css-rules)
 * [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
-* [Flow Router Integration](#flow-router-integration)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 
@@ -1365,60 +1364,6 @@ The first animation is started after `animQueueStartDelay` milliseconds from the
 
 And that's it!
 Enjoy ;-)
-
-<a name="flow-router-integration"/>
-## Flow Router Integration
-
-[Flow Router](https://github.com/meteorhacks/flow-router) integration is still WIP, but there is a branch that you can use today, in order to work with Flow Router.
-```bash
-> cd your/project/path
-> mkdir packages && cd packages
-> git clone https://github.com/meteor-useraccounts/core.git
-> git checkout flow-router-integration
-> cd ..
-> meteor add useraccounts:<something>
-> meteor
-```
-And that's it for the setup.  
-Now there are a few things that are handled differently, when using Useraccounts + Flow Router in your project.
-As Flow Router only does the routing, we use [Flow Layout](https://github.com/meteorhacks/flow-layout) to do the rendering. Therefore there are two new options that you can define per route and/or globally on the AccountsTemplate object:
-- `defaultLayoutRegions`: An object holding layout structure
-- `defaultContentRegion`: The key of the region in your layout, where the useraccounts templates should be rendered into
-
-This is how it would look like:
-```javascript
-AccountsTemplates.configure({
-    defaultLayout: 'masterLayout',
-    // new property
-    defaultLayoutRegions: {
-        top: 'header',
-        aside: 'menu'
-    },
-    // new property
-    defaultContentRegion: 'main'
-});
-```
-If you want to do this route specifically you can do this (the same without the 'default'):
-```javascript
-AccountsTemplates.configureRoute('signIn', {
-    layoutRegions: {
-        top: 'header',
-        aside: 'menu'
-    },
-    contentRegion: 'main'
-});
-```
-As a replacement for the IR plugin `ensureSignedIn` you can use `AccountsTemplates.ensureSignedIn` as a middleware in your route definition:
-```javascript
-FlowRouter.route('/private', {
-    action: function() {
-        // FlowLayout.render(...)
-    },
-    middlewares: [AccountsTemplates.ensureSignedIn]
-});
-```
-There is a demo repository (using materilaize) [here](https://github.com/PhilippSpo/useraccounts-materialize-flow), which is also deployed [here](http://useraccounts-materialize-flow.meteor.com/).  
-If you figure out any bugs let us know :)
 
 <a name="side-notes"/>
 ## Side Notes
