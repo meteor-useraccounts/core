@@ -251,7 +251,7 @@ Details for each of them follow.
 | showForgotPasswordLink      | Boolean  | false     | Specifies whether to display a link to the forgot password page/form |
 | showLabels                  | Boolean  | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean  | true      | Specifies whether to display place-holder text inside input elements. |
-| showForgotPasswordLink      | Boolean  | false     | Specifies whether to display a link to the resend verification email page/form |
+| showResendVerificationEmailLink      | Boolean  | false     | Specifies whether to display a link to the resend verification email page/form |
 | **Texts**                   |          |           |             |
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | **Client-side Validation**  |          |           |             |
