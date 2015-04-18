@@ -2,7 +2,8 @@
 
 ## v1.9.0
 
-* Resend verification email (see #349)
+* Resend verification email (see #349, thanks @dalgard)
+* Allow for a neutral message text to be displayed (see #314 and #317, thanks @dalgard)
 * more configurable error texts (see [Errors Text](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#errors-text), plus #301 #342)
 * fixed little redirect bug (see #315)
 * added title configuration for `verifyEmail` state plus letting titles to be hidden by
