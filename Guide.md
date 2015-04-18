@@ -222,7 +222,7 @@ AccountsTemplates.configure({
           "meteor-developer": "fa fa-rocket"
       },
       title: {
-          forgotPwd: "Recover Your Passwod"
+          forgotPwd: "Recover Your Password"
       },
     },
 });
