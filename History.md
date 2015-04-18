@@ -1,5 +1,9 @@
 ## Master
 
+## v1.9.1
+
+* aligned `useraccounts:unstyled` with the latest PRs
+
 ## v1.9.0
 
 * Resend verification email (see #349, thanks @dalgard)
