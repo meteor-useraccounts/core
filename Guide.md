@@ -134,7 +134,7 @@ this will prevent the template to change its content. See [internal states](#int
 
 Well, actually there is many, used inside `atForm`...
 
-...plus one another: `atNavButton` which is currently at an experimental stage, but which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status.
+...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working your should set up at least a signIn route, see [Routing](#routing))
 
 
 <a name="basic-customization"/>
