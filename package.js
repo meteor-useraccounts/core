@@ -5,7 +5,6 @@ Package.describe({
   git: 'https://github.com/meteor-useraccounts/core.git',
 });
 
-
 Package.on_use(function(api) {
   api.versionsFrom('METEOR@1.0.3');
 
