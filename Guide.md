@@ -190,6 +190,7 @@ AccountsTemplates.configure({
     showForgotPasswordLink: false,
     showLabels: true,
     showPlaceholders: true,
+    showResendVerificationEmailLink: false,
 
     // Client-side Validation
     continuousValidation: false,
@@ -250,6 +251,7 @@ Details for each of them follow.
 | showForgotPasswordLink      | Boolean  | false     | Specifies whether to display a link to the forgot password page/form |
 | showLabels                  | Boolean  | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean  | true      | Specifies whether to display place-holder text inside input elements. |
+| showResendVerificationEmailLink      | Boolean  | false     | Specifies whether to display a link to the resend verification email page/form |
 | **Texts**                   |          |           |             |
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | **Client-side Validation**  |          |           |             |
@@ -348,6 +350,7 @@ All the above fields are optional and fall back to default values in case you do
 | sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
 | sign up         | signUp        | atSignUp        | /sign-up         | fullPageAtForm |                        |
 | verify email    | verifyEmail   | atVerifyEmail   | /verify-email    | fullPageAtForm |            X           |
+| resend verification email    | resendVerificationEmail   | atresendVerificationEmail   | /send-again    | fullPageAtForm |                        |
 
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
@@ -486,6 +489,9 @@ AccountsTemplates.configure({
         pwdLink_pre: "",
         pwdLink_link: "forgotPassword",
         pwdLink_suff: "",
+        resendVerificationEmailLink_pre: "Verification email lost?",
+        resendVerificationEmailLink_link: "Send again",
+        resendVerificationEmailLink_suff: "",
         sep: "OR",
         signInLink_pre: "ifYouAlreadyHaveAnAccount",
         signInLink_link: "signin",
@@ -608,7 +614,8 @@ AccountsTemplates.configure({
             pwdChanged: "info.passwordChanged",
             pwdReset: "info.passwordReset",
             pwdSet: "info.passwordReset",
-            signUpVerifyEmail: "Registration Successful! Please check your email and follow the instructions.",
+            signUpVerifyEmail: "Successful Registration! Please check your email and follow the instructions.",
+            verificationEmailSent: "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.",
         }
     }
 });

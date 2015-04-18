@@ -1,6 +1,6 @@
 Package.describe({
     summary: "Meteor sign up and sign in templates core package.",
-    version: "1.8.1",
+    version: "1.9.0",
     name: "useraccounts:core",
     git: "https://github.com/meteor-useraccounts/core.git",
 });
@@ -56,6 +56,7 @@ Package.on_use(function(api) {
         "lib/templates_helpers/at_pwd_form_btn.js",
         "lib/templates_helpers/at_pwd_link.js",
         "lib/templates_helpers/at_reCaptcha.js",
+        "lib/templates_helpers/at_resend_verification_email_link.js",
         "lib/templates_helpers/at_result.js",
         "lib/templates_helpers/at_sep.js",
         "lib/templates_helpers/at_signin_link.js",
@@ -73,7 +74,7 @@ Package.on_use(function(api) {
 });
 
 Package.on_test(function(api) {
-    api.use("useraccounts:core@1.8.1");
+    api.use("useraccounts:core@1.9.0");
 
     api.use([
         'accounts-password',
