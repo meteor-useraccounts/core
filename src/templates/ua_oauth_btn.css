@@ -1,0 +1,55 @@
+.ua-oauth-btn.facebook {
+  background: #3B5998;
+  color: #fff;
+}
+.ua-oauth-btn.facebook.disabled {
+  color: #ddd;
+  background: #666666;
+}
+.ua-oauth-btn.facebook:hover {
+  background: #2C4780;
+}
+.ua-oauth-btn.linkedin {
+  background: #338AB0;
+  color: #fff;
+}
+.ua-oauth-btn.linkedin.disabled {
+  color: #ddd;
+  background: #666666;
+}
+.ua-oauth-btn.linkedin:hover {
+  background: #0571A6;
+}
+.ua-oauth-btn.twitter {
+  background: #4099FF;
+  color: #fff;
+}
+.ua-oauth-btn.twitter.disabled {
+  color: #ddd;
+  background: #666666;
+}
+.ua-oauth-btn.twitter:hover {
+  background: #3288EB;
+}
+.ua-oauth-btn.google {
+  background: #db5a3c;
+  color: #fff;
+}
+.ua-oauth-btn.google.disabled {
+  color: #ddd;
+  background: #666666;
+}
+.ua-oauth-btn.google:hover {
+  background: #CA4C2E;
+}
+.ua-oauth-btn.github {
+  background: #666;
+  color: #fff;
+}
+.ua-oauth-btn.github.disabled {
+  color: #ddd;
+  background: #666666;
+}
+.ua-oauth-btn.github:hover {
+  background: #555;
+}

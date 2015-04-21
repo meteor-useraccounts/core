@@ -1,0 +1,45 @@
+<template name="uaStatus">
+  <div class="{{module.skinClasses 'container'}} ua-status">
+    {{#if module.showError}}
+      {{!-- TODO: separate this into a uaError template and use skins --}}
+      <div class="ui icon error message at-error">
+        <i class="warning icon"></i>
+        <div class="content">
+          {{#if module.singleError}}
+            {{#each module.error}}
+              <p>{{errorText}}</p>
+            {{/each}}
+          {{else}}
+            <ul class="list">
+              {{#each module.error}}
+                <li>{{errorText}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+    {{#if module.showMessage}}
+      {{!-- TODO: separate this into a uaMessage template use skins --}}
+      <div class="ui icon info message at-message">
+        <i class="info icon"></i>
+        <div class="content">
+          <p>
+            <strong>{{module.message}}</strong>
+          </p>
+        </div>
+      </div>
+    {{/if}}
+    {{#if module.showSuccess}}
+      {{!-- TODO: separate this into a uaSuccess template use skins --}}
+      <div class="ui icon success message at-success">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <p>
+            <strong>{{module.success}}</strong>
+          </p>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</template>

@@ -1,0 +1,7 @@
+<template name="uaOauth">
+  <div class="{{module.skinClasses 'container'}} ua-oauth">
+    {{#each module.services}}
+      {{> Template.dynamic template=template}}
+    {{/each}}
+  </div>
+</template>
