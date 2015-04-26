@@ -32,6 +32,17 @@ UAModule.prototype._configure = function(options) {
   return _.omit(options, this._id);
 };
 
+UAModule.prototype.getText = function(key) {
+  var
+    self = this,
+    uaTmpl = Template.currentData().instance,
+    state = uaTmpl.getState();
+
+  var texts = self.texts[state] || self.texts.default;
+  return texts[key] || '';
+};
+
+
 UAModule.prototype.skinClasses = function(element) {
   UALog.trace('module ' + this._id + ': skinClasses - ' + element);
   var
@@ -49,5 +60,9 @@ UAModule.prototype.skinClasses = function(element) {
 
 
 UAModule.prototype.template = null;
+
+
+UAModule.prototype.texts = {};
+
 
 UAModule.prototype.visible = false;

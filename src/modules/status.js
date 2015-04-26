@@ -37,20 +37,17 @@ UAStatus.prototype.configure = function(options) {
 };
 
 
-UAStatus.prototype._getTemplateObject = function(data) {
-  UALog.trace('_getTemplateObject');
+UAStatus.prototype._initFormTemplate = function(uaForm) {
+  UALog.trace('_initFormTemplate');
   var
+    data = uaForm.data,
     initialError = (data && data.error) || null,
     initialMessage = (data && data.message) || null,
     initialSuccess = (data && data.success) || null;
 
-  var tmplObj = {
-    error: ReactiveVar(initialError),
-    message: ReactiveVar(initialMessage),
-    success: ReactiveVar(initialSuccess),
-  };
-
-  return tmplObj;
+  uaForm.error = ReactiveVar(initialError);
+  uaForm.message = ReactiveVar(initialMessage);
+  uaForm.success = ReactiveVar(initialSuccess);
 };
 
 

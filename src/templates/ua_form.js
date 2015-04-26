@@ -10,7 +10,7 @@ Template.uaForm.onCreated(function() {
 	var self = this;
 
 	// Initializes the ua object
-	_.extend(self, UserAccounts.getTemplateObject(self.data));
+	UserAccounts.initFormTemplate(self);
 
 	// register this template within UserAccounts
 	UserAccounts.tmplInstances.push(self);
@@ -34,6 +34,7 @@ Template.uaForm.helpers({
 			};
 		});
 
+		console.dir(modules);
 		return modules;
 	},
 	skinClasses: function(element) {
@@ -49,5 +50,13 @@ Template.uaForm.helpers({
 			}
 			return classes;
 		}
+	}
+});
+
+
+Template.uaForm.events({
+	'click .ua-link a': function(e){
+		e.preventDefault();
+		UserAccounts.linkClick(this.instance, this.module.targetState);
 	}
 });

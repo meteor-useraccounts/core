@@ -47,9 +47,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'src/templates/ua_form.html',
     'src/templates/ua_form.js',
-    'src/templates/ua_oauth.html',
-    'src/templates/ua_oauth_btn.html',
-    'src/templates/ua_oauth_btn.css',
+    'src/templates/ua_link.html',
     'src/templates/ua_status.html',
     'src/templates/ua_title.html',
     'i18n/ua.en.i18n.js',
@@ -57,6 +55,7 @@ Package.onUse(function(api) {
   ], Client);
 
   api.addFiles([
+    'src/modules/link.js',
     'src/modules/status.js',
     'src/modules/title.js',
   ], Both);

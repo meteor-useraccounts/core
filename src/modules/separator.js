@@ -9,29 +9,29 @@
 // ------------------------------------------
 //  Logs the start of execution for this file
 // ------------------------------------------
-UALog.trace('Loading title.js');
+UALog.trace('Loading separator.js');
 
 
 // define the Student class
-function UATitle() {
+function UASep() {
   // Call the parent constructor
   UAModule.call(this);
 
-  this._id = 'title';
-  this.position = 10;
-  this.template = 'uaTitle';
+  this._id = 'separator';
+  this.position = 30;
+  this.template = 'uaSep';
 }
 
 
 // inherit UAModule
-UATitle.prototype = new UAModule();
+UASep.prototype = new UAModule();
 
 
 // correct the constructor pointer because it points to UAModule
-UATitle.prototype.constructor = UATitle;
+UASep.prototype.constructor = UASep;
 
 
-UATitle.prototype.configure = function(options) {
+UASep.prototype.configure = function(options) {
   UALog.trace('configure ' + this._id);
   // console.log(options);
 
@@ -39,22 +39,16 @@ UATitle.prototype.configure = function(options) {
 };
 
 
-UATitle.prototype.texts = {
+UASep.prototype.texts = {
   default: {
-    title: 'useraccounts',
-  },
-  signIn: {
-    title: 'sign_in',
-  },
-  signUp: {
-    title: 'register',
+    sep: 'or',
   },
 };
 
 
-UATitle.prototype.title = function() {
-  return this.getText('title');
+UASep.prototype.text = function() {
+  return this.getText('sep');
 };
 
 
-UserAccounts._modules.title = new UATitle();
+UserAccounts._modules.separator = new UASep();

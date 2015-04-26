@@ -14,6 +14,12 @@ UALog.trace('Loading client.js');
 
 var __slice = [].slice;
 
+
+UserAccounts.__startupHooks.push(function() {
+  UALog.debug(' - Initializing');
+});
+
+
 UserAccounts.t = function() {
   console.log('t');
   var args, key;
@@ -41,10 +47,11 @@ UserAccounts.defaultState = 'signIn';
 
 
 
-UserAccounts.getTemplateObject = function(data) {
-  UALog.trace('UserAccounts.getTemplateObject');
+UserAccounts.initFormTemplate = function(uaForm) {
+  UALog.trace('UserAccounts.initFormTemplate');
   var
     self = this,
+    data = uaForm.data,
     objs = _.union(_.values(self._modules), _.values(self._plugins)),
     defaultState = (data && data.defaultState) || self.defaultState;
 
@@ -52,24 +59,43 @@ UserAccounts.getTemplateObject = function(data) {
     throw Error('Invalid inital state!');
   }
 
-  var tmplObj = {
-    state: ReactiveVar(defaultState)
-  };
+  uaForm.disabled = ReactiveVar(false);
+  uaForm.loading = ReactiveVar(false);
+  uaForm.state = ReactiveVar(defaultState);
 
   // State validation
-  tmplObj._isValidState = function(value) {
+  uaForm._isValidState = function(value) {
     return _.contains(self.STATES, value);
   };
 
 
+  // Getter for disabled state
+  uaForm.isDisabled = function() {
+    return this.disabled.get();
+  };
+
+  // Getter for loading state
+  uaForm.isLoading = function() {
+    return this.loading.get();
+  };
+
   // Getter for current state
-  tmplObj.getState = function() {
+  uaForm.getState = function() {
     return this.state.get();
   };
 
+  // Setter for disabled state
+  uaForm.setDisabled = function(value) {
+    return this.disabled.set(value);
+  };
+
+  // Setter for loading state
+  uaForm.setLoading = function(value) {
+    return this.loading.set(value);
+  };
 
   // Setter for current state
-  tmplObj.setState = function(state, callback) {
+  uaForm.setState = function(state, callback) {
     check(state, String);
     if (!this._isValidState(state)) {
       throw new Meteor.Error(
@@ -85,22 +111,18 @@ UserAccounts.getTemplateObject = function(data) {
     }
   };
 
-  // Ask each module and each plugin to possibly add other fields to the tmplObj
-  tmplObj = _.reduce(objs, function(tmplObj, obj) {
-    console.dir(obj);
-    if (obj._getTemplateObject !== undefined) {
-      tmplObj = _.extend(tmplObj, obj._getTemplateObject(data));
+  // Ask each module and each plugin to possibly add other stuff to the uaForm
+  _.each(objs, function(obj) {
+    if (!!obj._initFormTemplate) {
+      obj._initFormTemplate(uaForm);
     }
-    return tmplObj;
-  }, tmplObj);
-
-  return tmplObj;
+  });
 };
 
+UserAccounts.linkClick = function(uaTmpl, targetState) {
+	uaTmpl.setState(targetState);
+};
 
-UserAccounts.__startupHooks.push(function() {
-  UALog.debug(' - Initializing');
-});
 
 
 Template.registerHelper('UserAccounts', function() {
