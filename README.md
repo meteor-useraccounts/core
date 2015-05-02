@@ -30,7 +30,6 @@ Detailed explanations of features and configuration options can be found in the 
 * [Abesea](https://abesea.com/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [crater.io](http://crater.io/)
-* [Doughbies](http://www.doughbies.co/)
 * [Henfood](http://labs.henesis.eu/henfood)
 * [meteorgigs.io](https://www.meteorgigs.io/)
 * [onehanders.com](http://onehanders.com/)

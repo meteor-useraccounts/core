@@ -675,7 +675,7 @@ AccountsTemplates disables by default accounts creation on the client. This is d
 This way a bulletproof profile fields full validation can be performed.
 But there is one more parameter to set in case you'd like to forbid client-side accounts creation, which is the following:
 
-* `forbidClientAccountCreation` - (Boolean, default true) Specifies whether to forbid accounts creation from the client.
+* `forbidClientAccountCreation` - (Boolean, default false) Specifies whether to forbid accounts creation from the client.
 
 it is exactly the same provided by the Accounts object, so this means you need to do:
 
