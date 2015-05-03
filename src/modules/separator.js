@@ -18,37 +18,45 @@ function UASep() {
   UAModule.call(this);
 
   this._id = 'separator';
-  this.position = 30;
+  this.position = 40;
   this.template = 'uaSep';
+  this.templateClass = 'sep';
+  this.visible = false;
 }
 
 
 // inherit UAModule
 UASep.prototype = new UAModule();
 
+_.extend(UASep.prototype, {
+  // correct the constructor pointer because it points to UAModule
+  constructor: UASep,
 
-// correct the constructor pointer because it points to UAModule
-UASep.prototype.constructor = UASep;
+  configure: function(options) {
+    UALog.trace('configure ' + this._id);
+    // console.log(options);
 
-
-UASep.prototype.configure = function(options) {
-  UALog.trace('configure ' + this._id);
-  // console.log(options);
-
-  this.texts = _.defaults(options.texts || {}, this.texts);
-};
-
-
-UASep.prototype.texts = {
-  default: {
-    sep: 'or',
+    this.texts = _.defaults(options.texts || {}, this.texts);
   },
-};
 
+  texts: {
+    default: {
+      sep: 'or',
+    },
+  },
 
-UASep.prototype.text = function() {
-  return this.getText('sep');
-};
+  text: function() {
+    return this.getText('sep');
+  },
+});
 
+UALog.trace('Adding separator module');
+var separator = new UASep();
+UserAccounts._modules.separator = separator;
+UserAccounts.separator = separator;
 
-UserAccounts._modules.separator = new UASep();
+UserAccounts.startup(function(){
+  if (!!this.oauth && !!this.password) {
+    this.separator.visible = true;
+  }
+});
