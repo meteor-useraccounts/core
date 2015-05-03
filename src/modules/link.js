@@ -18,8 +18,9 @@ function UALink() {
 	UAModule.call(this);
 
 	this._id = 'link';
-	this.position = 40;
+	this.position = 60;
 	this.template = 'uaLink';
+	this.templateClass = 'link';
 	this.targetState = 'signIn';
 }
 
@@ -28,48 +29,44 @@ function UALink() {
 UALink.prototype = new UAModule();
 
 
-// correct the constructor pointer because it points to UAModule
-UALink.prototype.constructor = UALink;
+_.extend(UALink.prototype, {
+	// correct the constructor pointer because it points to UAModule
+	constructor: UALink,
 
+	configure: function(options) {
+		UALog.trace('configure ' + this._id);
+		// console.log(options);
 
-UALink.prototype.configure = function(options) {
-	UALog.trace('configure ' + this._id);
-	// console.log(options);
+		this.text = _.defaults(options.text || {}, this.text);
+	},
 
-	this.text = _.defaults(options.text || {}, this.text);
-};
+	prefix: function() {
+		return this.getText('prefix');
+	},
 
+	suffix: function() {
+		return this.getText('suffix');
+	},
 
+	linkUrl: function() {
+		return '#';
+	},
 
+	linkText: function() {
+		return this.getText('text');
+	},
 
-UALink.prototype.prefix = function() {
-	return this.getText('prefix');
-};
+	disabled: function() {
+		return '';
+	},
+});
 
-
-UALink.prototype.suffix = function() {
-	return this.getText('suffix');
-};
-
-
-UALink.prototype.linkUrl = function() {
-	return '#';
-};
-
-
-UALink.prototype.linkText = function() {
-	return this.getText('text');
-};
-
-
-UALink.prototype.disabled = function() {
-	return '';
-};
-
+UALog.trace('Adding signInLink module');
 var signInLink = new UALink();
 signInLink._id = 'signInLink';
+signInLink.templateClass = 'sign-in-link';
 signInLink.targetState = 'signIn';
-signInLink.position = 40;
+signInLink.position = 60;
 signInLink.texts = {
 	default: {
 		prefix: 'If you already have an account',
@@ -77,12 +74,15 @@ signInLink.texts = {
 		text: 'sign in',
 	},
 };
+UserAccounts._modules.signInLink = signInLink;
+UserAccounts.signInLink = signInLink;
 
-
+UALog.trace('Adding signUpLink module');
 var signUpLink = new UALink();
 signUpLink._id = 'signUpLink';
+signUpLink.templateClass = 'sign-up-link';
 signUpLink.targetState = 'signUp';
-signUpLink.position = 50;
+signUpLink.position = 70;
 signUpLink.texts = {
 	default: {
 		prefix: 'Don\'t have an account?',
@@ -90,8 +90,5 @@ signUpLink.texts = {
 		text: 'Register',
 	},
 };
-
-
-
-UserAccounts._modules.signInLink = signInLink;
 UserAccounts._modules.signUpLink = signUpLink;
+UserAccounts.signUpLink = signUpLink;

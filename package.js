@@ -24,6 +24,7 @@ Package.onUse(function(api) {
   // Logger
   api.use([
     'jag:pince@0.0.5',
+    'underscore',
   ], Both);
 
   api.use([
@@ -48,6 +49,7 @@ Package.onUse(function(api) {
     'src/templates/ua_form.html',
     'src/templates/ua_form.js',
     'src/templates/ua_link.html',
+    'src/templates/ua_sep.html',
     'src/templates/ua_status.html',
     'src/templates/ua_title.html',
     'i18n/ua.en.i18n.js',
@@ -56,6 +58,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'src/modules/link.js',
+    'src/modules/separator.js',
     'src/modules/status.js',
     'src/modules/title.js',
   ], Both);

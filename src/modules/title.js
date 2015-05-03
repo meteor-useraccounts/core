@@ -20,6 +20,7 @@ function UATitle() {
   this._id = 'title';
   this.position = 10;
   this.template = 'uaTitle';
+  this.templateClass = 'title';
 }
 
 
@@ -27,34 +28,37 @@ function UATitle() {
 UATitle.prototype = new UAModule();
 
 
-// correct the constructor pointer because it points to UAModule
-UATitle.prototype.constructor = UATitle;
+_.extend(UATitle.prototype, {
 
+  // correct the constructor pointer because it points to UAModule
+  constructor: UATitle,
 
-UATitle.prototype.configure = function(options) {
-  UALog.trace('configure ' + this._id);
-  // console.log(options);
+  configure: function(options) {
+    UALog.trace('configure ' + this._id);
+    // console.log(options);
 
-  this.texts = _.defaults(options.texts || {}, this.texts);
-};
-
-
-UATitle.prototype.texts = {
-  default: {
-    title: 'useraccounts',
+    this.texts = _.defaults(options.texts || {}, this.texts);
   },
-  signIn: {
-    title: 'sign_in',
+
+  texts: {
+    default: {
+      title: 'useraccounts',
+    },
+    signIn: {
+      title: 'sign_in',
+    },
+    signUp: {
+      title: 'register',
+    },
   },
-  signUp: {
-    title: 'register',
+
+  title: function() {
+    return this.getText('title');
   },
-};
+});
 
 
-UATitle.prototype.title = function() {
-  return this.getText('title');
-};
-
-
-UserAccounts._modules.title = new UATitle();
+UALog.trace('Adding title module');
+var title = new UATitle();
+UserAccounts._modules.title = title;
+UserAccounts.title = title;

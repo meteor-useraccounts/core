@@ -22,9 +22,12 @@ UserAccounts.__startupHooks.push(function() {
 
 UserAccounts.t = function() {
   console.log('t');
-  var args, key;
-  key = arguments.length >= 2 ? arguments[0] : undefined;
-  args = arguments.length >= 2 ? __slice.call(arguments, 1) : [];
+  var
+    key = arguments.length >= 1 ? arguments[0] : undefined,
+    args = arguments.length >= 2 ? __slice.call(arguments, 1) : []
+  ;
+  console.log('key: ' + key);
+  console.log('args: ' + args);
 
   return UserAccounts.i18n[key] || key;
 };
