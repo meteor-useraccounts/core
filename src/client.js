@@ -45,6 +45,38 @@ UserAccounts.STATES = [
 ];
 
 
+// Apply skin to modules
+UserAccounts.applySkin = function(framework, skin){
+  console.log('Applying skin for framework ' + framework);
+  _.each(skin, function(elements, moduleName){
+      console.log('Module: ' + moduleName);
+      console.log('Module: ' + elements);
+
+      // Pick up current module
+      var module;
+      if (moduleName === 'uaForm') {
+        module = UserAccounts;
+      }
+      else {
+        module = UserAccounts._modules[moduleName];
+      }
+
+      // In case the module exists
+      if (module) {
+        // Possibly initialize the object for the current framework
+        if (!module.skins[framework]) {
+          module.skins[framework] = {};
+        }
+
+        //Applies module's elements
+        var skinObj = module.skins[framework];
+        _.each(elements, function(value, element){
+          skinObj[element] = value;
+        });
+      }
+  });
+};
+
 // Initial default state
 UserAccounts.defaultState = 'signIn';
 
