@@ -1383,8 +1383,9 @@ Enjoy ;-)
 > cd your/project/path
 > mkdir packages && cd packages
 > git clone https://github.com/meteor-useraccounts/core.git
+> cd core
 > git checkout flow-router-integration
-> cd ..
+> cd ../..
 > meteor add useraccounts:<something>
 > meteor
 ```
