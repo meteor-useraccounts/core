@@ -978,6 +978,7 @@ In order to let the user register with both a `username` and an `email` address 
 This is an example about how to configure such a behaviour:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -994,7 +995,8 @@ AccountsTemplates.addFields([
       displayName: "email",
       re: /.+@(.+){2,}\.(.+){2,}/,
       errStr: 'Invalid email',
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -1002,6 +1004,7 @@ This will trigger the automatic insertion of the special field `username_and_ema
 If you wish to further customize the `username_and_email` field you can add it together with the other two:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -1024,7 +1027,8 @@ AccountsTemplates.addFields([
       type: 'text',
       required: true,
       displayName: "Login",
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -1379,8 +1383,9 @@ Enjoy ;-)
 > cd your/project/path
 > mkdir packages && cd packages
 > git clone https://github.com/meteor-useraccounts/core.git
+> cd core
 > git checkout flow-router-integration
-> cd ..
+> cd ../..
 > meteor add useraccounts:<something>
 > meteor
 ```

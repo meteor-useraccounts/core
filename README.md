@@ -28,6 +28,7 @@ Detailed explanations of features and configuration options can be found in the 
 ## Who's using this?
 
 * [Abesea](https://abesea.com/)
+* [backspace.academy](http://backspace.academy/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [crater.io](http://crater.io/)
 * [Henfood](http://labs.henesis.eu/henfood)
