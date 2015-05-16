@@ -17,11 +17,20 @@ UALog.trace('Initializing logger options');
 //  Pick up settings for this logger
 // ----------------------------------
 
+var
+  publicSettings = Meteor.settings &&
+                   Meteor.settings.public &&
+                   Meteor.settings.public.useraccounts,
+  settings = Meteor.settings &&
+             Meteor.settings &&
+             Meteor.settings.useraccounts
+;
+
 var uaLogLevelSettings;
-if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.useraccounts) {
-  uaLogLevelSettings = Meteor.settings.public.useraccounts.logLevel;
-} else if (Meteor.settings && Meteor.settings && Meteor.settings.useraccounts) {
-  uaLogLevelSettings = Meteor.settings.useraccounts.logLevel;
+if (publicSettings) {
+  uaLogLevelSettings = publicSettings.logLevel;
+} else if (settings) {
+  uaLogLevelSettings = settings.logLevel;
 }
 
 if (uaLogLevelSettings && uaLogLevelSettings.core) {

@@ -158,7 +158,7 @@ UserAccounts.initFormTemplate = function(uaForm) {
 };
 
 UserAccounts.linkClick = function(uaTmpl, targetState) {
-	uaTmpl.setState(targetState);
+  uaTmpl.setState(targetState);
 };
 
 
