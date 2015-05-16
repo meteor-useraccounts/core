@@ -39,9 +39,8 @@ Template.uaForm.helpers({
 	},
 	skinClasses: function(element) {
 		UALog.trace('template uaForm: skinClasses - ' + element);
-		console.dir(Template.currentData());
 		var
-			framework = Template.currentData().framework;
+			framework = Template.instance().framework;
 
 		if (_.has(UserAccounts.skins, framework)) {
 			var classes = UserAccounts.skins[framework][element];

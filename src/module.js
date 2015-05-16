@@ -47,7 +47,8 @@ UAModule.prototype.skinClasses = function(element) {
   UALog.trace('module ' + this._id + ': skinClasses - ' + element);
   var
     self = this,
-    framework = Template.currentData().framework;
+    framework = Template.currentData().instance.framework
+  ;
 
   if (_.has(self.skins, framework)) {
     var classes = self.skins[framework][element];

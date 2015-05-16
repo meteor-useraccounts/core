@@ -88,13 +88,16 @@ UserAccounts.initFormTemplate = function(uaForm) {
     self = this,
     data = uaForm.data,
     objs = _.union(_.values(self._modules), _.values(self._plugins)),
-    defaultState = (data && data.defaultState) || self.defaultState;
+    framework = (data && data.framework) || self.currentFramework,
+    defaultState = (data && data.defaultState) || self.defaultState
+  ;
 
   if (!_.contains(self.STATES, defaultState)) {
     throw Error('Invalid inital state!');
   }
 
   uaForm.disabled = ReactiveVar(false);
+  uaForm.framework = framework;
   uaForm.loading = ReactiveVar(false);
   uaForm.state = ReactiveVar(defaultState);
 
