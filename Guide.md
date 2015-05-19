@@ -697,8 +697,7 @@ Accounts.config({
 <a name="form-fields-configuration"/>
 ### Form Fields Configuration
 
-Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour.
-One of the most interesting part is that custom additional sign up fields can be also added to the sign up form!
+Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour. Additional (custom) fields can be added to the sign up and registration forms, and the properties of built-in fields, like `email` and `password` can be overridded (see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 Each field object is represented by the following properties:
 
@@ -920,7 +919,7 @@ There are a number of special ids used for basic input fields. These are:
 * username_and_email
 
 Any other id will be interpreted as an additional sign up field.
-In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
+In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties). To customize special fields see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 #### Add a field
 
