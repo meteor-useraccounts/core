@@ -697,8 +697,7 @@ Accounts.config({
 <a name="form-fields-configuration"/>
 ### Form Fields Configuration
 
-Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour.
-One of the most interesting part is that custom additional sign up fields can be also added to the sign up form!
+Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour. Additional (custom) fields can be added to the sign up and registration forms, and the properties of built-in fields, like `email` and `password` can be overridded (see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 Each field object is represented by the following properties:
 
@@ -920,7 +919,7 @@ There are a number of special ids used for basic input fields. These are:
 * username_and_email
 
 Any other id will be interpreted as an additional sign up field.
-In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
+In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties). To customize special fields see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 #### Add a field
 
@@ -978,6 +977,7 @@ In order to let the user register with both a `username` and an `email` address 
 This is an example about how to configure such a behaviour:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -994,7 +994,8 @@ AccountsTemplates.addFields([
       displayName: "email",
       re: /.+@(.+){2,}\.(.+){2,}/,
       errStr: 'Invalid email',
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -1002,6 +1003,7 @@ This will trigger the automatic insertion of the special field `username_and_ema
 If you wish to further customize the `username_and_email` field you can add it together with the other two:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -1024,7 +1026,8 @@ AccountsTemplates.addFields([
       type: 'text',
       required: true,
       displayName: "Login",
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -1379,8 +1382,9 @@ Enjoy ;-)
 > cd your/project/path
 > mkdir packages && cd packages
 > git clone https://github.com/meteor-useraccounts/core.git
+> cd core
 > git checkout flow-router-integration
-> cd ..
+> cd ../..
 > meteor add useraccounts:<something>
 > meteor
 ```
