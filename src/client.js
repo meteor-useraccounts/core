@@ -75,6 +75,8 @@ UserAccounts.applySkin = function(framework, skin){
         });
       }
   });
+  this.frameworks.push(framework);
+  this.currentFramework = framework;
 };
 
 // Initial default state

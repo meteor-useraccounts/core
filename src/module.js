@@ -55,8 +55,10 @@ UAModule.prototype.skinClasses = function(element) {
     if (_.isFunction(classes)) {
       classes = classes();
     }
-    return classes;
+    return classes || '';
   }
+
+  return '';
 };
 
 
