@@ -211,7 +211,7 @@ AccountsTemplates.configure({
     // Hooks
     onLogoutHook: myLogoutFunc,
     onSubmitHook: mySubmitFunc,
-    preSubmitHook: myPreSubmitFunc,
+    preSignUpHook: myPreSubmitFunc,
 
     // Texts
     texts: {
@@ -269,7 +269,7 @@ Details for each of them follow.
 | **Hooks**                   |          |           |             |
 | onLogoutHook                | Function |           | Called on `AccountsTemplates.logout` invocation: allows for custom redirects or whatever custom action to be taken on user logout. |
 | onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` |
-| preSubmitHook               | Function |           | `func(password, info)` Called just before submitting the `pwdForm` for sign-up: allows for custom actions on the data being submitted. A nice use could be extending the user profile object accessing `info.profile`.  to be taken on form submission. The plain text `password` is also provided for any reasonable use. |
+| preSignUpHook               | Function |           | `func(password, info)` Called just before submitting the `pwdForm` for sign-up: allows for custom actions on the data being submitted. A nice use could be extending the user profile object accessing `info.profile`.  to be taken on form submission. The plain text `password` is also provided for any reasonable use. |
 
 ##### onSubmitHook
 
