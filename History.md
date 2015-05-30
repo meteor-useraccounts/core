@@ -1,5 +1,13 @@
 ## Master
 
+## v1.11.0
+
+* change `profile.username` to `profile.name` when using `lowercaseUsername` options (WARNING! this is a bit of a breaking change, see #388)
+* removed possibly annoying warning (see #398)
+* added a `preSignUpHook` to be possibly used to enrich the user profile just before new user registration (see #400)
+* route configuration now accepts additional parameters to be passed to IR (see #409)
+* some improvements to the docs
+
 ## v1.10.0
 
 * more customizable texts (see 7d166b74f111e05b22ef2c7d93908441e242350d)
