@@ -32,6 +32,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Grouping Fields](#grouping-fields)
   * [CSS Rules](#css-rules)
 * [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
+* [Flow Router Integration](#flow-router-integration)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 
@@ -133,7 +134,7 @@ this will prevent the template to change its content. See [internal states](#int
 
 Well, actually there is many, used inside `atForm`...
 
-...plus one another: `atNavButton` which is currently at an experimental stage, but which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status.
+...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working your should set up at least a signIn route, see [Routing](#routing))
 
 
 <a name="basic-customization"/>
@@ -189,6 +190,7 @@ AccountsTemplates.configure({
     showForgotPasswordLink: false,
     showLabels: true,
     showPlaceholders: true,
+    showResendVerificationEmailLink: false,
 
     // Client-side Validation
     continuousValidation: false,
@@ -209,6 +211,7 @@ AccountsTemplates.configure({
     // Hooks
     onLogoutHook: myLogoutFunc,
     onSubmitHook: mySubmitFunc,
+    preSubmitHook: myPreSubmitFunc,
 
     // Texts
     texts: {
@@ -220,7 +223,7 @@ AccountsTemplates.configure({
           "meteor-developer": "fa fa-rocket"
       },
       title: {
-          forgotPwd: "Recover Your Passwod"
+          forgotPwd: "Recover Your Password"
       },
     },
 });
@@ -249,6 +252,7 @@ Details for each of them follow.
 | showForgotPasswordLink      | Boolean  | false     | Specifies whether to display a link to the forgot password page/form |
 | showLabels                  | Boolean  | true      | Specifies whether to display text labels above input elements. |
 | showPlaceholders            | Boolean  | true      | Specifies whether to display place-holder text inside input elements. |
+| showResendVerificationEmailLink      | Boolean  | false     | Specifies whether to display a link to the resend verification email page/form |
 | **Texts**                   |          |           |             |
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | **Client-side Validation**  |          |           |             |
@@ -265,6 +269,7 @@ Details for each of them follow.
 | **Hooks**                   |          |           |             |
 | onLogoutHook                | Function |           | Called on `AccountsTemplates.logout` invocation: allows for custom redirects or whatever custom action to be taken on user logout. |
 | onSubmitHook                | Function |           | `func(error, state)` Called when the `pwdForm` is being submitted: allows for custom actions to be taken on form submission. `error` contains possible errors occurred during the submission process, `state` specifies the `atForm` internal state from which the submission was triggered. A nice use case might be closing the modal or side-menu showing `atForm` |
+| preSubmitHook               | Function |           | `func(password, info)` Called just before submitting the `pwdForm` for sign-up: allows for custom actions on the data being submitted. A nice use could be extending the user profile object accessing `info.profile`.  to be taken on form submission. The plain text `password` is also provided for any reasonable use. |
 
 ##### onSubmitHook
 
@@ -347,6 +352,7 @@ All the above fields are optional and fall back to default values in case you do
 | sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
 | sign up         | signUp        | atSignUp        | /sign-up         | fullPageAtForm |                        |
 | verify email    | verifyEmail   | atVerifyEmail   | /verify-email    | fullPageAtForm |            X           |
+| resend verification email    | resendVerificationEmail   | atresendVerificationEmail   | /send-again    | fullPageAtForm |                        |
 
 If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
 If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
@@ -485,6 +491,9 @@ AccountsTemplates.configure({
         pwdLink_pre: "",
         pwdLink_link: "forgotPassword",
         pwdLink_suff: "",
+        resendVerificationEmailLink_pre: "Verification email lost?",
+        resendVerificationEmailLink_link: "Send again",
+        resendVerificationEmailLink_suff: "",
         sep: "OR",
         signInLink_pre: "ifYouAlreadyHaveAnAccount",
         signInLink_link: "signin",
@@ -607,7 +616,8 @@ AccountsTemplates.configure({
             pwdChanged: "info.passwordChanged",
             pwdReset: "info.passwordReset",
             pwdSet: "info.passwordReset",
-            signUpVerifyEmail: "Registration Successful! Please check your email and follow the instructions.",
+            signUpVerifyEmail: "Successful Registration! Please check your email and follow the instructions.",
+            verificationEmailSent: "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.",
         }
     }
 });
@@ -641,9 +651,14 @@ In case you wish to change the text for errors appearing inside the error box, y
 AccountsTemplates.configure({
     texts: {
         errors: {
+            accountsCreationDisabled: "Client side accounts creation is disabled!!!",
+            cannotRemoveService: "Cannot remove the only active service!",
+            captchaVerification: "Captcha verification failed!",
             loginForbidden: "error.accounts.Login forbidden",
             mustBeLoggedIn: "error.accounts.Must be logged in",
             pwdMismatch: "error.pwdsDontMatch",
+            validationErrors: "Validation Errors",
+            verifyEmailFirst: "Please verify your email first. Check the email and follow the link!",
         }
     }
 });
@@ -662,7 +677,7 @@ AccountsTemplates disables by default accounts creation on the client. This is d
 This way a bulletproof profile fields full validation can be performed.
 But there is one more parameter to set in case you'd like to forbid client-side accounts creation, which is the following:
 
-* `forbidClientAccountCreation` - (Boolean, default true) Specifies whether to forbid accounts creation from the client.
+* `forbidClientAccountCreation` - (Boolean, default false) Specifies whether to forbid accounts creation from the client.
 
 it is exactly the same provided by the Accounts object, so this means you need to do:
 
@@ -684,8 +699,7 @@ Accounts.config({
 <a name="form-fields-configuration"/>
 ### Form Fields Configuration
 
-Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour.
-One of the most interesting part is that custom additional sign up fields can be also added to the sign up form!
+Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour. Additional (custom) fields can be added to the sign up and registration forms, and the properties of built-in fields, like `email` and `password` can be overridded (see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 Each field object is represented by the following properties:
 
@@ -907,7 +921,7 @@ There are a number of special ids used for basic input fields. These are:
 * username_and_email
 
 Any other id will be interpreted as an additional sign up field.
-In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties).
+In case a special field is not explicitly added, it will be automatically inserted at initialization time (with appropriate default properties). To customize special fields see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
 
 #### Add a field
 
@@ -954,7 +968,7 @@ AccountsTemplates.addField({
     type: 'password',
     required: true,
     minLength: 6,
-    re: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
+    re: /(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
     errStr: 'At least 1 digit, 1 lower-case and 1 upper-case',
 });
 ```
@@ -965,6 +979,7 @@ In order to let the user register with both a `username` and an `email` address 
 This is an example about how to configure such a behaviour:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -981,7 +996,8 @@ AccountsTemplates.addFields([
       displayName: "email",
       re: /.+@(.+){2,}\.(.+){2,}/,
       errStr: 'Invalid email',
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -989,6 +1005,7 @@ This will trigger the automatic insertion of the special field `username_and_ema
 If you wish to further customize the `username_and_email` field you can add it together with the other two:
 
 ```javascript
+var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
@@ -1011,7 +1028,8 @@ AccountsTemplates.addFields([
       type: 'text',
       required: true,
       displayName: "Login",
-  }
+  },
+  pwd
 ]);
 ```
 
@@ -1357,6 +1375,61 @@ The first animation is started after `animQueueStartDelay` milliseconds from the
 
 And that's it!
 Enjoy ;-)
+
+<a name="flow-router-integration"/>
+## Flow Router Integration
+
+[Flow Router](https://github.com/meteorhacks/flow-router) integration is still WIP, but there is a branch that you can use today, in order to work with Flow Router.
+```bash
+> cd your/project/path
+> mkdir packages && cd packages
+> git clone https://github.com/meteor-useraccounts/core.git
+> cd core
+> git checkout flow-router-integration
+> cd ../..
+> meteor add useraccounts:<something>
+> meteor
+```
+And that's it for the setup.  
+Now there are a few things that are handled differently, when using Useraccounts + Flow Router in your project.
+As Flow Router only does the routing, we use [Flow Layout](https://github.com/meteorhacks/flow-layout) to do the rendering. Therefore there are two new options that you can define per route and/or globally on the AccountsTemplate object:
+- `defaultLayoutRegions`: An object holding layout structure
+- `defaultContentRegion`: The key of the region in your layout, where the useraccounts templates should be rendered into
+
+This is how it would look like:
+```javascript
+AccountsTemplates.configure({
+    defaultLayout: 'masterLayout',
+    // new property
+    defaultLayoutRegions: {
+        top: 'header',
+        aside: 'menu'
+    },
+    // new property
+    defaultContentRegion: 'main'
+});
+```
+If you want to do this route specifically you can do this (the same without the 'default'):
+```javascript
+AccountsTemplates.configureRoute('signIn', {
+    layoutRegions: {
+        top: 'header',
+        aside: 'menu'
+    },
+    contentRegion: 'main'
+});
+```
+As a replacement for the IR plugin `ensureSignedIn` you can use `AccountsTemplates.ensureSignedIn` as a middleware in your route definition:
+```javascript
+FlowRouter.route('/private', {
+    action: function() {
+        // FlowLayout.render(...)
+    },
+    middlewares: [AccountsTemplates.ensureSignedIn]
+});
+```
+There is a demo repository (using materilaize) [here](https://github.com/PhilippSpo/useraccounts-materialize-flow), which is also deployed [here](http://useraccounts-materialize-flow.meteor.com/).  
+If you figure out any bugs let us know :)
 
 <a name="side-notes"/>
 ## Side Notes

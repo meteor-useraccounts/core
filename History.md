@@ -1,8 +1,23 @@
 ## Master
 
+## v1.10.0
+
+* more customizable texts (see 7d166b74f111e05b22ef2c7d93908441e242350d)
+* added autofocus for the first input field of `atPwdForm`.
+* fixed some texts configuration capability (see #380)
+* various corrections/improvements to the docs
+* allowed for `field.setError` to take in Boolean values (see #361)
+* fixed bug with `Must be logged in` error message shown after sign out (see #321)
+
+## v1.9.1
+
+* aligned `useraccounts:unstyled` with the latest PRs
+
 ## v1.9.0
 
-* configurable `Login Forbidden` text (see [Errors Text](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#errors-text), plus #301)
+* resend verification email (see #349, thanks @dalgard)
+* allow for a neutral message text to be displayed (see #314 and #317, thanks @dalgard)
+* more configurable error texts (see [Errors Text](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#errors-text), plus #301 #342)
 * fixed little redirect bug (see #315)
 * added title configuration for `verifyEmail` state plus letting titles to be hidden by
   setting the corresponding text to an empy string (see [Form Title](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#form-title))
