@@ -1,5 +1,11 @@
 ## Master
 
+## v1.11.1
+
+* fixes for #410, #411, and #413
+* Added a section about available internal states to the Guide (see [Internal States](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#internal-states)
+
+
 ## v1.11.0
 
 * change `profile.username` to `profile.name` when using `lowercaseUsername` options (WARNING! this is a bit of a breaking change, see #388)
