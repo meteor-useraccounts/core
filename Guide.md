@@ -16,6 +16,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [I18n Support](#i18n)
   * [Configuration API](#configuration-api)
     * [Options](#options)
+  * [Internal States](#internal-states)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
   * [reCaptcha Setup](#reCaptcha-setup)
@@ -293,6 +294,28 @@ AccountsTemplates.configure({
     onSubmitHook: mySubmitFunc
 });
 ```
+
+<a name="internal-states"/>
+### Internal States
+
+The `atForm` template changes reactively based on the current internal state of AccountsTemplates.
+The current internal state can be queried with `AccountsTemplates.getState()` and set with `AccountsTemplates.setState(new_state)`
+
+
+Currently available states are:
+
+| Internal State          | What's shown                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------- |
+| changePwd               | Change password form asking to set a new password                                     |
+| enrollAccount           | Account Enrollment form asking to set a password                                      |
+| forgotPwd               | Forgot Password form asking for the email address where to send a reset password link |
+| hide                    | None at all...                                                                        |
+| resendVerificationEmail | Login form with an additional button to get another verification email                |
+| resetPwd                | Reset Password form asking to set a password                                          |
+| signIn                  | Login form                                                                            |
+| signUp                  | Registration form                                                                     |
+| verifyEmail             | Only the result about email verification                                              |
+
 
 
 <a name="routing"/>
