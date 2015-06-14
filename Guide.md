@@ -1062,7 +1062,7 @@ AccountsTemplates.addFields([
 
 With the [aldeed:template-extension](https://github.com/aldeed/meteor-template-extension) package, the built-in templates or sub-templates of any `user-accounts` UI package may be replaced by custom templates. The purpose is to create more sophisticated or specialized layouts or styling.
 
-In case of input fileds the option `template` (see [Form Fields Configuration](#form-fields-configuration)) can be directly used without the need to rely on `aldeed:template-extension` package.
+In case of input fields the option `template` (see [Form Fields Configuration](#form-fields-configuration)) can be directly used without the need to rely on `aldeed:template-extension` package.
 
 Custom properties that hold information about the look of the form may be attached to the `options` object of a field. It may then be used to change the output while looping the fields. Adding a divider might look like this:
 
