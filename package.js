@@ -29,8 +29,8 @@ Package.on_use(function(api) {
   api.imply([
       "accounts-base",
       "softwarerero:accounts-t9n@1.0.6",
-      "meteorhacks:flow-router@1.14.1",
-      "meteorhacks:flow-layout@1.1.1",
+      "meteorhacks:flow-router@1.16.1",
+      "meteorhacks:flow-layout@1.4.0",
   ], ["client", "server"]);
 
 
