@@ -1419,17 +1419,13 @@ AccountsTemplates.configureRoute('signIn', {
     contentRegion: 'main'
 });
 ```
-As a replacement for the IR plugin `ensureSignedIn` you can use `AccountsTemplates.ensureSignedIn` as a global trigger:
-```javascript
-FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn], {except: ["home"]});
-```
-Alternatively, you can use `AccountsTemplates.ensureSignedIn` as a route-level trigger:
+As a replacement for the IR plugin `ensureSignedIn` you can use `AccountsTemplates.ensureSignedIn` as a middleware in your route definition:
 ```javascript
 FlowRouter.route('/private', {
     action: function() {
         // FlowLayout.render(...)
     },
-    triggersEnter: [AccountsTemplates.ensureSignedIn]
+    middlewares: [AccountsTemplates.ensureSignedIn]
 });
 ```
 There is a demo repository (using materilaize) [here](https://github.com/PhilippSpo/useraccounts-materialize-flow), which is also deployed [here](http://useraccounts-materialize-flow.meteor.com/).  
