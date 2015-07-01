@@ -59,7 +59,7 @@ Some guidelines below:
 * **Bugs**: If you think you found a bug, please create a "reproduction." This is a small project that demonstrates the problem as concisely as possible. If you think the bug can be reproduced with only a few steps a description by words might be enough though. The project should be cloneable from Github. Any bug reports without a reproduction that don't have an obvious solution will be marked as "awaiting-reproduction" and closed after a bit of time.
 
 ###  Working Locally
-This is useful if you're contributing code to useraccounts or just trying to modify something to suite your own specific needs.
+This is useful if you're contributing code to useraccounts or just trying to modify something to suit your own specific needs.
 
 ##### Scenario A
 
