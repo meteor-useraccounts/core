@@ -83,7 +83,7 @@ We'll try to make them richer and richer, still keeping them as general as possi
 <a name="setup"/>
 ### Setup
 
-Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it via meteorite:
+Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it:
 
 ```Shell
 meteor add useraccounts:bootstrap
@@ -122,20 +122,20 @@ It is `atForm` and can be used anywhere you wish like this:
 {{> atForm}}
 ```
 
-Its design is as *transparent* as possible making it play nicely with themes and personal css customizations! What more, it is not wrapped inside any *container* so that you can put it everywhere, including complex multi-column layouts.
+Its design is as *transparent* as possible, making it play nicely with themes and your CSS customizations! Also, it is not wrapped inside any *container* so that you can put it anywhere, including complex multi-column layouts.
 
-In case you wish to *lock* the template to a particular state, you can also use, e.g.,
+In case you wish to *lock* the template to a particular state, you can specify that via the `state` parameter:
 
 ```html
 {{> atForm state='signUp'}}
 ```
 
-this will prevent the template to change its content. See [internal states](#internal-states) for more details...
+This will prevent the template from changing its content. See [internal states](#internal-states) for more details...
 
 
 Well, actually there is many, used inside `atForm`...
 
-...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working your should set up at least a signIn route, see [Routing](#routing))
+...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working you should set up at least a `signIn` route, see [Routing](#routing)).
 
 
 <a name="basic-customization"/>
@@ -164,7 +164,7 @@ There are basically two different ways to interact with AccountsTemplates for ba
 
 **These functions should be called in top-level code, not inside `Meteor.startup()`.**
 
-There is no specific order for the above calls to be effective, and you can do many of them possibly in different files
+There is no specific order for the above calls to be effective, and you can call them more than once, possibly in different files.
 
 **The only other requirement is to make exactly the same calls on both the server and the client.** The best thing is to put everything inside a file shared between both. I suggest you use something like `lib/config/at_config.js`
 
@@ -172,13 +172,13 @@ There is no specific order for the above calls to be effective, and you can do m
 <a name="options"/>
 #### Options
 
-By calling `AccountsTemplates.configure(options)` you can specify a bunch of choices regarding both visual appearance and behaviour.
+By calling `AccountsTemplates.configure(options)` you can specify a bunch of choices regarding both visual appearance and behavior.
 
 The following is an almost complete example of options configuration (with fields in alphabetical order):
 
 ```javascript
 AccountsTemplates.configure({
-    // Behaviour
+    // Behavior
     confirmPassword: true,
     enablePasswordChange: true,
     forbidClientAccountCreation: false,
@@ -234,7 +234,7 @@ Details for each of them follow.
 
 | Option                      | Type     | Default   | Description |
 | --------------------------- | -------- | --------- | ----------- |
-| **Behaviour**               |          |           |             |
+| **Behavior**               |          |           |             |
 | confirmPassword             | Boolean  | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
 | defaultState                | String   | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
 | enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
