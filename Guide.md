@@ -262,7 +262,7 @@ Details for each of them follow.
 | positiveValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
 | negativeFeedback            | Boolean  | false     | Specifies whether to display negative validation feed-back inside input elements. |
 | positiveFeedback            | Boolean  | false     | Specifies whether to display positive validation feed-back inside input elements. |
-| showValidating              | Boolean  | false     | Specifies whether to display a loding icon inside input elements while the validation process is in progress. |
+| showValidating              | Boolean  | false     | Specifies whether to display a loading icon inside input elements while the validation process is in progress. |
 | **Links**                   |          |           |             |
 | homeRoutePath               | String   | '/'       | Path for the home route, to be possibly used for redirects after successful form submission. |
 | privacyUrl                  | String   | undefined | Path for the route displaying the privacy document. In case it is specified, a link to the page will be displayed at the bottom of the form (when appropriate). |
