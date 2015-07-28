@@ -13,7 +13,7 @@ Package.on_use(function(api) {
       "check",
       "underscore",
       "meteorhacks:flow-router",
-      "meteorhacks:flow-layout",
+      "kadira:blaze-layout",
       "reactive-var",
   ], ["client", "server"]);
 
@@ -29,8 +29,8 @@ Package.on_use(function(api) {
   api.imply([
       "accounts-base",
       "softwarerero:accounts-t9n@1.0.6",
-      "meteorhacks:flow-router@1.16.1",
-      "meteorhacks:flow-layout@1.4.0",
+      "meteorhacks:flow-router@1.19.0",
+      "kadira:blaze-layout@2.0.0",
   ], ["client", "server"]);
 
 
