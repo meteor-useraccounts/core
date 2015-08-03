@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Meteor sign up and sign in templates core package.',
-  version: '1.10.0',
+  version: '1.11.2',
   name: 'useraccounts:core',
   git: 'https://github.com/meteor-useraccounts/core.git',
 });
@@ -12,8 +12,8 @@ Package.on_use(function(api) {
       "accounts-base",
       "check",
       "underscore",
-      "meteorhacks:flow-router",
-      "meteorhacks:flow-layout",
+      "kadira:flow-router",
+      "kadira:blaze-layout",
       "reactive-var",
   ], ["client", "server"]);
 
@@ -29,8 +29,8 @@ Package.on_use(function(api) {
   api.imply([
       "accounts-base",
       "softwarerero:accounts-t9n@1.0.6",
-      "meteorhacks:flow-router@1.16.1",
-      "meteorhacks:flow-layout@1.4.0",
+      "kadira:flow-router@2.0.1",
+      "kadira:blaze-layout@2.0.0",
   ], ["client", "server"]);
 
 
