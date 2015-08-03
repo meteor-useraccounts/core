@@ -21,13 +21,13 @@ UserAccounts.__startupHooks.push(function() {
 
 
 UserAccounts.t = function() {
-  console.log('t');
+  // console.log('t');
   var
     key = arguments.length >= 1 ? arguments[0] : undefined,
     args = arguments.length >= 2 ? __slice.call(arguments, 1) : []
   ;
-  console.log('key: ' + key);
-  console.log('args: ' + args);
+  // console.log('key: ' + key);
+  // console.log('args: ' + args);
 
   return UserAccounts.i18n[key] || key;
 };
@@ -47,10 +47,10 @@ UserAccounts.STATES = [
 
 // Apply skin to modules
 UserAccounts.applySkin = function(framework, skin){
-  console.log('Applying skin for framework ' + framework);
+  // console.log('Applying skin for framework ' + framework);
   _.each(skin, function(elements, moduleName){
-      console.log('Module: ' + moduleName);
-      console.log('Module: ' + elements);
+      //console.log('Module: ' + moduleName);
+      //console.log('Module: ' + elements);
 
       // Pick up current module
       var module;

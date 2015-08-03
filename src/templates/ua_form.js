@@ -34,7 +34,7 @@ Template.uaForm.helpers({
       };
     });
 
-    console.dir(modules);
+    //console.dir(modules);
     return modules;
   },
   skinClasses: function(element) {

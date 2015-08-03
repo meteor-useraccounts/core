@@ -68,15 +68,15 @@ _.extend(UAStatus.prototype, {
 
   text: function(){
     var text = '';
-    console.log('text');
-    console.dir(this);
+    //console.log('text');
+    //console.dir(this);
     if (!!this.field){
-      console.log('field: ' + this.field);
+      //console.log('field: ' + this.field);
       text += UserAccounts.t(this.field) + ': ';
     }
     if (!!this.value){
-      console.log('value: ' + this.value);
-      console.log('valueT: ' + UserAccounts.t(this.value));
+      //console.log('value: ' + this.value);
+      //console.log('valueT: ' + UserAccounts.t(this.value));
       text += UserAccounts.t(this.value);
     }
 
@@ -85,7 +85,7 @@ _.extend(UAStatus.prototype, {
     //  value = value.substring(15);
     //}
 
-    console.log('text: ' + text);
+    //console.log('text: ' + text);
     return text;
   },
 
@@ -95,12 +95,12 @@ _.extend(UAStatus.prototype, {
       uaTmpl = Template.currentData().instance,
       val = uaTmpl[this.reactiveVarName].get()
     ;
-    console.log('value');
-    console.dir(val);
+    //console.log('value');
+    //console.dir(val);
 
     // Simple string
     if (typeof val === 'string') {
-      console.log('string');
+      //console.log('string');
       val = [{
         value: val,
         text: self.text
@@ -126,7 +126,7 @@ _.extend(UAStatus.prototype, {
       val = [_.extend(val, {text: self.text})];
     }
 
-    console.dir(val);
+    //console.dir(val);
     return val;
   },
 });
