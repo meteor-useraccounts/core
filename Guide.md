@@ -51,7 +51,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 * fully reactive, Blaze fast!
 * no use of `Session` object
 * very easily stylizable for different font-end frameworks
-* ...[wrap it up for famo.us]() with a simple meteor line!
+* ...[wrap it up for famo.us](#wrapping-up-for-famo.us) with a simple meteor line!
 
 
 
