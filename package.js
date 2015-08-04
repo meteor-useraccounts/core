@@ -12,7 +12,6 @@ Package.on_use(function(api) {
     'accounts-base',
     'check',
     'underscore',
-    'iron:router',
     'reactive-var',
   ], ['client', 'server']);
 
@@ -28,7 +27,6 @@ Package.on_use(function(api) {
   api.imply([
     'accounts-base',
     'softwarerero:accounts-t9n@1.0.6',
-    'iron:router@1.0.7',
   ], ['client', 'server']);
 
   api.imply([
@@ -40,6 +38,7 @@ Package.on_use(function(api) {
     'lib/core.js',
     'lib/server.js',
     'lib/methods.js',
+    'lib/server_methods.js',
   ], ['server']);
 
   api.add_files([
