@@ -16,6 +16,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [I18n Support](#i18n)
   * [Configuration API](#configuration-api)
     * [Options](#options)
+    * [logout](#logout)
   * [Internal States](#internal-states)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
@@ -274,7 +275,7 @@ Details for each of them follow.
 
 ##### onSubmitHook
 
-A straighforward configuration about how to detect when a user logs in or registers might look like the following:
+A straightforward configuration about how to detect when a user logs in or registers might look like the following:
 
 ```javascript
 var mySubmitFunc = function(error, state){
@@ -294,6 +295,32 @@ AccountsTemplates.configure({
     onSubmitHook: mySubmitFunc
 });
 ```
+
+<a name="logout"/>
+##### AccountsTemplate.logout()
+
+Should be used in place of `Meteor.logout()`.  This function invokes the `onLogoutHook` specified in the optional configuration.
+Also note that `AccountsTemplate.logout()` is invoked when logging out using the `atNavButton`.
+
+
+```javascript
+//Use in  place of Meteor.logout() in your client code.  Also called automatically by atNavButton when clicking Sign Off
+AccountsTemplate.logout();
+
+```
+
+
+```javascript
+var myPostLogout = function(){
+    //example redirect after login
+    Router.go('/home');
+};
+
+AccountsTemplates.configure({
+    onLogoutHook: myPostLogout
+});
+```
+
 
 <a name="internal-states"/>
 ### Internal States
