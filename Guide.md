@@ -16,6 +16,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [I18n Support](#i18n)
   * [Configuration API](#configuration-api)
     * [Options](#options)
+    * [logout](#logout)
   * [Internal States](#internal-states)
   * [Routing](#routing)
   * [Content Protection](#content-protection)
@@ -295,6 +296,7 @@ AccountsTemplates.configure({
 });
 ```
 
+<a name="logout"/>
 ##### AccountsTemplate.logout()
 
 Should be used in place of `Meteor.logout()`.  This function invokes the `onLogoutHook` specified in the optional configuration.
