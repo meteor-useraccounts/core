@@ -1,6 +1,6 @@
 <!-- Template level auth -->
 <template name="ensureSignedIn">
-  {{#if currentUser}}
+  {{#if signedIn}}
     {{> Template.dynamic template=template}}
   {{else}}
     {{#if auth}}

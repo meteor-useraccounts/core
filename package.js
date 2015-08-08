@@ -66,6 +66,7 @@ Package.on_use(function(api) {
     'lib/templates_helpers/at_title.js',
     'lib/templates_helpers/at_message.js',
     'lib/templates_helpers/ensure_signed_in.html',
+    'lib/templates_helpers/ensure_signed_in.js',
     'lib/methods.js',
   ], ['client']);
 
