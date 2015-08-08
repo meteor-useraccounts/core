@@ -423,43 +423,25 @@ in this case, any field different from `template` and `layoutTemplate` will be i
 <a name="content-protection"/>
 ### Content Protection
 
-User Accounts packages come with an Iron Router plugin called `ensureSignedIn` which permits to prompt for the sign in form for the pages requiring the user to be signed in.
-It behaves nicely letting the required route path inside the address bar and bringing you back to the same route once logged in.
 
-**Please note that a fake version of `ensureSignedIn` is also available on server-side to allow for shared routing files, but there's no way to check whether a user is logged in or not on a server-side route!**
+If you want to secure a specific template, you could add that template like this:
 
-To protect **all** you routes use it like this:
-
-```javascript
-Router.plugin('ensureSignedIn');
+```handlebars
+{{> ensureSignedIn template="myTemplate"}}
 ```
+and that will render the default `fullPageAtForm` template from your chosen User Accounts templates package (bootstrap, materialize, etc).  Once signed in, it'll render `myTemplate` instead of the accounts form.
 
-While in case you want to protect *almost all* your routes you might want to set up the plugin this way:
+If you want to declare a custom sign in template instead of `fullPageAtForm`, you would do this:
 
-```javascript
-Router.plugin('ensureSignedIn', {
-    except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword']
-});
+```handlebars
+{{> ensureSignedIn template="myTemplate" auth="myLoginForm"}}
 ```
+That custom auth template just needs to include `{{> atForm}}` somewhere in it.  The only reason you'd use this optional feature is if you wanted to modify the layout around the `atForm` template (like
+`fullPageAtForm` does).
 
-if, instead, it's only a bunch of routes to be protected you could do (even more than once inside different files...):
 
-```javascript
-Router.plugin('ensureSignedIn', {
-    only: ['profile', 'privateStuff']
-});
-```
-
-Moreover, if you wish to customize the template and layout to be used you can change them with:
-
-```javascript
-AccountsTemplates.configureRoute('ensureSignedIn', {
-    template: 'myLogin',
-    layoutTemplate: 'myLayout',
-});
-```
-
-see [Routing](#routing) for more information.
+In case you're using one of the routing packages [useraccounts:iron-routing](https://github.com/meteor-useraccounts/iron-routing)
+or [useraccounts:flow-routing](https://github.com/meteor-useraccounts/flow-routing) refer to their documentation for more possibilities.
 
 
 <a name="reCaptcha-setup"/>
