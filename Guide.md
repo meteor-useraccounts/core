@@ -11,6 +11,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [Available Versions](#available-versions)
   * [Boilerplates](#boilerplates)
   * [Setup](#setup)
+  * [Routing](#routing)
   * [Templates](#templates)
 * [Basic Customization](#basic-customization)
   * [I18n Support](#i18n)
@@ -18,7 +19,6 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Options](#options)
     * [logout](#logout)
   * [Internal States](#internal-states)
-  * [Routing](#routing)
   * [Content Protection](#content-protection)
   * [reCaptcha Setup](#reCaptcha-setup)
 * [Advanced Customization](#advanced-customization)
@@ -34,7 +34,6 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
     * [Grouping Fields](#grouping-fields)
   * [CSS Rules](#css-rules)
 * [Wrapping Up for Famo.us](#wrapping-up-for-famo.us)
-* [Flow Router Integration](#flow-router-integration)
 * [Side Notes](#side-notes)
   * [3rd Party Login Services Configuration](#3rd-party-login-services-configuration)
 
@@ -112,6 +111,14 @@ And that's it!
 This is to let you configure your app exactly the way you wish, without imposing anything beforehand!
 
 
+<a name="routing"/>
+### Routing
+
+If you'd like to easily configure specific routes to deal with accounts management, you might be interested to check out
+[useraccounts:iron-routing](https://github.com/meteor-useraccounts/iron-routing) and [useraccounts:flow-routing](https://github.com/meteor-useraccounts/flow-routing) packages.
+They provide very easy routes set-up via the `AccountsTemplates.configureRoute` method.
+
+
 <a name="templates"/>
 ### Templates
 
@@ -136,7 +143,7 @@ This will prevent the template from changing its content. See [internal states](
 
 Well, actually there is many, used inside `atForm`...
 
-...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working you should set up at least a `signIn` route, see [Routing](#routing)).
+...plus one another: `atNavButton` which can be used inside navbars to get a basic sign-in sign-out button which changes text and behaviour based on the user status (to get it working you should set up at least a `signIn` route).
 
 
 <a name="basic-customization"/>
@@ -249,7 +256,6 @@ Details for each of them follow.
 | socialLoginStyle            | String   | "popup"   | Specifies the login style for 3rd party services login. Valid values are `popup` or `redirect`. See `loginStyle` option of [Meteor.loginWith<ExternalService>](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) for more information.  |
 | lowercaseUsername           | Boolean  | false     | Possibly asks to transform `username` field for user objects at registration time to be always in lowercase with no spaces. The original `username` value will be added to the `user.profile` field for later use.  |
 | **Appearance**              |          |           |             |
-| defaultLayout               | String   | undefined | Possibly specify the default layout to be used to render configured routes (see [Routing](#routing). |
 | hideSignInLink              | Boolean  | false     | When set to true, asks to never show the link to the sign in page  |
 | hideSignUpLink              | Boolean  | false     | When set to true, asks to never show the link to the sign up page  |
 | showAddRemoveServices       | Boolean  | false     | Tells whether to show social account buttons also when the user is signed in. In case it is set to true, the text of buttons will change from 'Sign in With XXX' to 'Add XXX' or 'Remove XXX' when the user signs in. 'Add' will be used if that particular service is still not associated with the current account, while 'Remove' is used only in case a particular service is already used by the user **and** there are at least two services available for sign in operations. Clicks on 'Add XXX' trigger the call to `Meteor.loginWithXXX`, as usual, while click on 'Remove XXX' will call the method `ATRemoveService` provided by AccountsTemplates. This means you need to have some additional logic to deal with the call `Meteor.loginWithXXX` in order to actually add the service to the user account. One solution to this is to use the package [accounts-meld](https://atmospherejs.com/package/accounts-meld) which was build exactly for this purpose. |
@@ -346,79 +352,6 @@ Currently available states are:
 | verifyEmail             | Only the result about email verification                                              |
 
 
-
-<a name="routing"/>
-### Routing
-
-There are no routes provided by default. But you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using `AccountsTemplates.configureRoute`. This is done internally relying on the awesome [Iron-Router](https://atmospherejs.com/package/iron-router) package.
-
-The simplest way is to make the call passing just the route code (available codes are: changePwd, enrollAccount, forgotPwd, resetPwd, signIn, signUp):
-
-```javascript
-AccountsTemplates.configureRoute('signIn');
-```
-
-This will set up the sign in route with a full-page form letting users access your app.
-
-But you can also pass in more options to adapt it to your needs with:
-
-```javascript
-AccountsTemplates.configureRoute(route_code, options);
-```
-
-The following is a complete example of a route configuration:
-
-```javascript
-AccountsTemplates.configureRoute('signIn', {
-    name: 'signin',
-    path: '/login',
-    template: 'myLogin',
-    layoutTemplate: 'myLayout',
-    redirect: '/user-profile',
-});
-```
-
-Fields `name`, `path`, `template`, and `layoutTemplate` are passed down directly to Router.map (see the official iron router documentation [here](https://github.com/EventedMind/iron-router/#api) for more details), while `redirect` permits to specify where to redirect the user after successful form submit. Actually, `redirect` can be a function so that, for example, the following:
-
-```javascript
-AccountsTemplates.configureRoute('signIn', {
-    redirect: function(){
-        var user = Meteor.user();
-        if (user)
-          Router.go('/user/' + user._id);
-    }
-});
-```
-
-will redirect to, e.g., '/user/ae8WQQk6DrtDzA2AZ' after succesful login :-)
-
-
-All the above fields are optional and fall back to default values in case you don't provide them. Default values are as follows:
-
-| Action          | route_code    | Route Name      | Route Path       | Template       | Redirect after Timeout |
-| --------------- | ------------- | --------------- | ---------------  | -------------- |:----------------------:|
-| change password | changePwd     | atChangePwd     | /change-password | fullPageAtForm |                        |
-| enroll account  | enrollAccount | atEnrollAccount | /enroll-account  | fullPageAtForm |            X           |
-| forgot password | forgotPwd     | atForgotPwd     | /forgot-password | fullPageAtForm |            X           |
-| reset password  | resetPwd      | atResetPwd      | /reset-password  | fullPageAtForm |            X           |
-| sign in         | signIn        | atSignIn        | /sign-in         | fullPageAtForm |                        |
-| sign up         | signUp        | atSignUp        | /sign-up         | fullPageAtForm |                        |
-| verify email    | verifyEmail   | atVerifyEmail   | /verify-email    | fullPageAtForm |            X           |
-| resend verification email    | resendVerificationEmail   | atresendVerificationEmail   | /send-again    | fullPageAtForm |                        |
-
-If `layoutTemplate` is not specified, it falls back to what is currently set up with Iron-Router.
-If `redirect` is not specified, it default to the previous route (obviously routes set up with `AccountsTemplates.configureRoute` are excluded to provide a better user experience). What more, when the login form is shown to protect private content (see [Content Protection](#content-protection), the user is redirect to the protected page after successful sign in or sign up, regardless of whether a `redirect` parameter was passed for `signIn` or `signUp` route configuration or not.
-
-Besides the above list of routes you can also configure `ensureSignedIn` in order to specify different template and layout to be used for the Iron Router `ensuredSignedIn` plugin (see [Content Protection](#content-protection)):
-
-```javascript
-AccountsTemplates.configureRoute('ensureSignedIn', {
-    template: 'myLogin',
-    layoutTemplate: 'myLayout',
-});
-```
-
-in this case, any field different from `template` and `layoutTemplate` will be ignored!
 
 <a name="content-protection"/>
 ### Content Protection
@@ -1410,60 +1343,6 @@ The first animation is started after `animQueueStartDelay` milliseconds from the
 And that's it!
 Enjoy ;-)
 
-<a name="flow-router-integration"/>
-## Flow Router Integration
-
-[Flow Router](https://github.com/meteorhacks/flow-router) integration is still WIP, but there is a branch that you can use today, in order to work with Flow Router.
-```bash
-> cd your/project/path
-> mkdir packages && cd packages
-> git clone https://github.com/meteor-useraccounts/core.git
-> cd core
-> git checkout flow-router-integration
-> cd ../..
-> meteor add useraccounts:<something>
-> meteor
-```
-And that's it for the setup.  
-Now there are a few things that are handled differently, when using Useraccounts + Flow Router in your project.
-As Flow Router only does the routing, we use [Flow Layout](https://github.com/meteorhacks/flow-layout) to do the rendering. Therefore there are two new options that you can define per route and/or globally on the AccountsTemplate object:
-- `defaultLayoutRegions`: An object holding layout structure
-- `defaultContentRegion`: The key of the region in your layout, where the useraccounts templates should be rendered into
-
-This is how it would look like:
-```javascript
-AccountsTemplates.configure({
-    defaultLayout: 'masterLayout',
-    // new property
-    defaultLayoutRegions: {
-        top: 'header',
-        aside: 'menu'
-    },
-    // new property
-    defaultContentRegion: 'main'
-});
-```
-If you want to do this route specifically you can do this (the same without the 'default'):
-```javascript
-AccountsTemplates.configureRoute('signIn', {
-    layoutRegions: {
-        top: 'header',
-        aside: 'menu'
-    },
-    contentRegion: 'main'
-});
-```
-As a replacement for the IR plugin `ensureSignedIn` you can use `AccountsTemplates.ensureSignedIn` as a middleware in your route definition:
-```javascript
-FlowRouter.route('/private', {
-    action: function() {
-        // FlowLayout.render(...)
-    },
-    middlewares: [AccountsTemplates.ensureSignedIn]
-});
-```
-There is a demo repository (using materilaize) [here](https://github.com/PhilippSpo/useraccounts-materialize-flow), which is also deployed [here](http://useraccounts-materialize-flow.meteor.com/).  
-If you figure out any bugs let us know :)
 
 <a name="side-notes"/>
 ## Side Notes
