@@ -1,5 +1,14 @@
 ## Master
 
+## v1.12.0
+
+* removed routing support from core: refer to [useraccounts:iron-routing](https://github.com/meteor-useraccounts/iron-routing) and [useraccounts:flow-routing](https://github.com/meteor-useraccounts/flow-routing) packages to get some ;-)
+* added template level content protection (see new [Content Protection](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#content-protection) section)
+* `displayName` configuration option for form fields now accepts also functions
+* added the `focusFirstInput` configuration option
+* fixed many typos and added/removed some sections in the Guide
+
+
 ## v1.11.1
 
 * fixes for #410, #411, and #413
