@@ -18,6 +18,7 @@ Package.on_use(function(api) {
   api.use([
     'blaze',
     'reactive-dict',
+    'templating'
   ], 'client');
 
   api.use([
@@ -64,6 +65,7 @@ Package.on_use(function(api) {
     'lib/templates_helpers/at_terms_link.js',
     'lib/templates_helpers/at_title.js',
     'lib/templates_helpers/at_message.js',
+    'lib/templates_helpers/ensure_signed_in.html',
     'lib/methods.js',
   ], ['client']);
 
