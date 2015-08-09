@@ -305,15 +305,15 @@ AccountsTemplates.configure({
 ```
 
 <a name="logout"/>
-##### AccountsTemplate.logout()
+##### AccountsTemplates.logout()
 
 Should be used in place of `Meteor.logout()`.  This function invokes the `onLogoutHook` specified in the optional configuration.
-Also note that `AccountsTemplate.logout()` is invoked when logging out using the `atNavButton`.
+Also note that `AccountsTemplates.logout()` is invoked when logging out using the `atNavButton`.
 
 
 ```javascript
 //Use in  place of Meteor.logout() in your client code.  Also called automatically by atNavButton when clicking Sign Off
-AccountsTemplate.logout();
+AccountsTemplates.logout();
 
 ```
 
