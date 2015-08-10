@@ -76,14 +76,14 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 <a name="boilerplates"/>
 ### Boilerplates
 
-For a very very quick start you can find some boilerplate example inside [this repository](https://github.com/meteor-useraccounts/boilerplates)
+For a very very quick start you can find some boilerplate examples inside [this repository](https://github.com/meteor-useraccounts/boilerplates).
 
-We'll try to make them richer and richer, still keeping them as general as possible, as the time passes by...
+We'll try to make them richer and richer, while still keeping them as general as possible.
 
 <a name="setup"/>
 ### Setup
 
-Just choose one of the packages among the [available styled versions](#available-styled-versions) and install it:
+Just choose one of the packages among the [available styled versions](#available-versions) and install it:
 
 ```Shell
 meteor add useraccounts:bootstrap
