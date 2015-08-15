@@ -320,7 +320,7 @@ AccountsTemplates.logout();
 
 ```javascript
 var myPostLogout = function(){
-    //example redirect after login
+    //example redirect after logout
     Router.go('/home');
 };
 
