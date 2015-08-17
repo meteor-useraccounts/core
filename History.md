@@ -1,5 +1,11 @@
 ## Master
 
+
+## v1.12.2
+
+* various fixes and a bit of clean up for `useraccounts:flow-routing`
+
+
 ## v1.12.1
 
 * fixed inifinite redirect loop for `ensuredSignedIn` within `useraccounts:flow-routing` (see https://github.com/meteor-useraccounts/flow-routing/issues/2)
