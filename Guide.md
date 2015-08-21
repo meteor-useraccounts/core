@@ -666,7 +666,7 @@ Accounts.config({
 <a name="form-fields-configuration"/>
 ### Form Fields Configuration
 
-Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour. Additional (custom) fields can be added to the sign up and registration forms, and the properties of built-in fields, like `email` and `password` can be overridded (see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields)
+Every input field appearing inside AccountsTemplates forms can be easily customized both for appearance and validation behaviour. Additional (custom) fields can be added to the sign up and registration forms, and the properties of built-in fields, like `email` and `password` can be overridded (see [Remove fields](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#remove-fields))
 
 Each field object is represented by the following properties:
 
@@ -737,7 +737,7 @@ asks AccountsTemplates to display "At least six characters" as the placeholder f
 ##### Custom validation
 Custom validation can be achieved by providing a regular expression or a function. In case you go for the function solution, this:
 
-```
+```javascript
 AccountsTemplates.addField({
     _id: 'name',
     type: 'text',
