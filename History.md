@@ -1,6 +1,11 @@
 ## Master
 
 
+## v1.12.3
+* fixed radio buttons for useraccounts:materialize (see https://github.com/meteor-useraccounts/core/issues/421)
+* fixed query parameters pick up for useraccounts:iron-routing (see meteor-useraccounts/core#367)
+* corrected few typos within the docs and removed unnecessary debug log
+
 ## v1.12.2
 
 * various fixes and a bit of clean up for `useraccounts:flow-routing`
