@@ -51,11 +51,3 @@ Template.uaForm.helpers({
     }
   }
 });
-
-
-Template.uaForm.events({
-  'click .ua-link a': function(e){
-    e.preventDefault();
-    UserAccounts.linkClick(this.instance, this.module.targetState);
-  }
-});

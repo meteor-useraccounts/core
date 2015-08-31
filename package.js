@@ -8,7 +8,7 @@
 
 var Both = ['client', 'server'];
 var Client = 'client';
-var Server = 'server';
+// var Server = 'server';
 
 
 Package.describe({
@@ -21,51 +21,43 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0');
 
-  // Logger
   api.use([
-    'jag:pince@0.0.5',
+    'check',
+    'jag:pince@0.0.9',
     'underscore',
   ], Both);
 
   api.use([
-    'reactive-dict',
     'reactive-var',
     'templating',
   ], Client);
 
-  // Base Class definition
+  // Base Classes definition
   api.addFiles([
     'src/_globals.js',
     'src/logger.js',
     'src/module.js',
+    'src/plugin.js',
     'src/core.js',
   ], Both);
 
-  api.addFiles([
-    'src/server.js',
-  ], Server);
-
+  // Templates
   api.addFiles([
     'src/templates/ua_form.html',
     'src/templates/ua_form.js',
-    'src/templates/ua_link.html',
-    'src/templates/ua_sep.html',
-    'src/templates/ua_status.html',
-    'src/templates/ua_title.html',
+    'src/templates/ua_full_page_form.html',
+  ], Client);
+
+  // Client files
+  api.addFiles([
     'i18n/ua.en.i18n.js',
     'src/client.js',
   ], Client);
 
-  api.addFiles([
-    'src/modules/link.js',
-    'src/modules/separator.js',
-    'src/modules/status.js',
-    'src/modules/title.js',
-  ], Both);
 
   api.export([
-    'UA',
     'UAModule',
+    'UAPlugin',
     'UserAccounts',
   ], Both);
 });
