@@ -1,3 +1,5 @@
+'use strict';
+
 Package.describe({
   summary: 'Meteor sign up and sign in templates core package.',
   version: '1.12.3',
@@ -5,7 +7,7 @@ Package.describe({
   git: 'https://github.com/meteor-useraccounts/core.git',
 });
 
-Package.on_use(function(api) {
+Package.onUse(function(api) {
   api.versionsFrom('METEOR@1.0.3');
 
   api.use([
@@ -34,7 +36,7 @@ Package.on_use(function(api) {
     'templating',
   ], ['client']);
 
-  api.add_files([
+  api.addFiles([
     'lib/field.js',
     'lib/core.js',
     'lib/server.js',
@@ -42,7 +44,7 @@ Package.on_use(function(api) {
     'lib/server_methods.js',
   ], ['server']);
 
-  api.add_files([
+  api.addFiles([
     'lib/utils.js',
     'lib/field.js',
     'lib/core.js',
@@ -75,7 +77,7 @@ Package.on_use(function(api) {
   ], ['client', 'server']);
 });
 
-Package.on_test(function(api) {
+Package.onTest(function(api) {
   api.use('useraccounts:core@1.12.3');
 
   api.use([
@@ -84,7 +86,7 @@ Package.on_test(function(api) {
     'test-helpers'
   ], ['client', 'server']);
 
-  api.add_files([
+  api.addFiles([
     'tests/tests.js',
   ], ['client', 'server']);
 });
