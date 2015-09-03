@@ -14,26 +14,25 @@ UALog.trace('Loading module.js');
 //  Module Base Class Declaration
 // ------------------------
 
-UAModule = function() {
-  this._id = null;
-  this.visible = true;
-  this.skins = {};
-};
-
+UAModule = function _UAModule() {};
 
 _.extend(UAModule.prototype, {
 
   _id: 'UAModule',
-  template: null,
-  texts: {},
-  visible: false,
 
-  _configure: function(options) {
+  skins: {},
+
+  template: null,
+
+  texts: {},
+
+  visible: true,
+
+  _configure: function _configure(options) {
+    var self = this;
+    var moduleOptions = options[self._id];
+
     UALog.trace('_configure ' + this._id);
-    var
-      self = self,
-      moduleOptions = options[self._id]
-    ;
 
     if (self.configure && moduleOptions) {
       self.configure(moduleOptions);
@@ -41,25 +40,24 @@ _.extend(UAModule.prototype, {
     return _.omit(options, self._id);
   },
 
-  getText: function(key) {
-    var
-      self = this,
-      uaTmpl = Template.currentData().instance,
-      state = uaTmpl.getState();
-
+  getText: function getText(key) {
+    var self = this;
+    var uaTmpl = Template.currentData().instance;
+    var state = uaTmpl.getState();
     var texts = self.texts[state] || self.texts.default;
+
     return texts[key] || '';
   },
 
-  skinClasses: function(element) {
+  skinClasses: function skinClasses(element) {
+    var self = this;
+    var classes;
+    var framework = Template.currentData().instance.framework;
+
     UALog.trace('module ' + this._id + ': skinClasses - ' + element);
-    var
-      self = this,
-      framework = Template.currentData().instance.framework
-    ;
 
     if (_.has(self.skins, framework)) {
-      var classes = self.skins[framework][element];
+      classes = self.skins[framework][element];
       if (_.isFunction(classes)) {
         classes = classes();
       }

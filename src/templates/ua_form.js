@@ -5,9 +5,10 @@
 'use strict';
 
 
-Template.uaForm.onCreated(function() {
-  UALog.trace('uaForm created');
+Template.uaForm.onCreated(function onCreated() {
   var self = this;
+
+  UALog.trace('uaForm created');
 
   // Initializes the ua object
   UserAccounts.initFormTemplate(self);
@@ -18,14 +19,12 @@ Template.uaForm.onCreated(function() {
 
 
 Template.uaForm.helpers({
-  modules: function() {
-    var
-      self = this,
-      tmplInstance = Template.instance(),
-      data = self.data,
-      framework = (data && data.framework) || UserAccounts.currentFramework;
-
-    var modules = _.map(UserAccounts.modules(), function(mod) {
+  modules: function mods() {
+    var self = this;
+    var tmplInstance = Template.instance();
+    var data = self.data;
+    var framework = data && data.framework || UserAccounts.currentFramework;
+    var modules = _.map(UserAccounts.modules(), function m(mod) {
       // return _.extend({instance: tmplInstance}, mod);
       return {
         module: mod,
@@ -34,20 +33,21 @@ Template.uaForm.helpers({
       };
     });
 
-    //console.dir(modules);
+    // console.dir(modules);
     return modules;
   },
-  skinClasses: function(element) {
+  skinClasses: function skinClasses(element) {
+    var framework = Template.instance().framework;
+    var classes;
+
     UALog.trace('template uaForm: skinClasses - ' + element);
-    var
-      framework = Template.instance().framework;
 
     if (_.has(UserAccounts.skins, framework)) {
-      var classes = UserAccounts.skins[framework][element];
+      classes = UserAccounts.skins[framework][element];
       if (_.isFunction(classes)) {
         classes = classes();
       }
       return classes;
     }
-  }
+  },
 });

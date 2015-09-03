@@ -20,137 +20,156 @@ UALog.trace('Loading main.js');
 
 // Singleton Object
 UserAccounts = {
+
   __startupHooks: [],
-  _modules: {},
-  _plugins: {},
-  events: [],
-  helpers: [],
-  tmplInstances: [],
-};
 
+  __startup: function __startup() {
+    var self = this;
+    var hook;
 
-UserAccounts.__startup = function() {
-  var self = this;
-
-  // run the startup hooks. other calls to startup() during this can still
-  // add hooks to the end.
-  while (self.__startupHooks.length) {
-    var hook = self.__startupHooks.shift();
-    hook.call(self);
-  }
-  // Setting this to null tells Meteor.startup to call hooks immediately.
-  self.__startupHooks = null;
-};
-
-
-UserAccounts.configure = function(options) {
-  UALog.trace('configure');
-
-  var
-    self = this,
-    objs = _.union(_.values(self._modules), _.values(self._plugins));
-
-  // Ask each module and each plugin to consume its own configuration options
-  options = _.reduce(objs, function(options, obj) {
-    if (obj._configure !== undefined) {
-      options = obj._configure(options);
+    // run the startup hooks. other calls to startup() during this can still
+    // add hooks to the end.
+    while (self.__startupHooks.length) {
+      hook = self.__startupHooks.shift();
+      hook.call(self);
     }
-    return options;
-  }, options);
+    // Setting this to null tells Meteor.startup to call hooks immediately.
+    self.__startupHooks = null;
+  },
 
-  // Deal with remaining options
-  // TODO: core configuration here
-};
+  _modules: {},
 
+  _plugins: {},
 
-UserAccounts.modules = function() {
-  var self = this;
+  configure: function configure(globalOptions) {
+    var self = this;
+    var objs = _.union(_.values(self._modules), _.values(self._plugins));
+    var coreOptions;
 
-  return _.sortBy(_.values(self._modules), 'position');
-};
+    UALog.trace('configure');
 
+    // Ask each module and each plugin to consume its own configuration options
+    coreOptions = _.reduce(objs, function moduleOpts(options, obj) {
+      var opts;
+      if (obj._configure !== undefined) {
+        opts = obj._configure(options);
+        return opts;
+      }
+      return options;
+    }, globalOptions);
 
-UserAccounts.setLogLevel = function(name, logger) {
+    // Deal with remaining options
+    // TODO: core configuration here
+    coreOptions;
+  },
 
-};
+  modules: function modules() {
+    var self = this;
 
+    return _.sortBy(_.values(self._modules), 'position');
+  },
 
-UserAccounts.registerModule = function(module) {
-  check(module, UAModule);
-  var moduleName = module._id;
+  registerModule: function registerModule(module) {
+    var moduleName;
 
-  if (this._modules[moduleName] || this[moduleName]) {
-    throw new Error('A module called ' + moduleName + ' is already in use!');
-  }
+    check(module, UAModule);
 
-  this._modules[moduleName] = module;
-  this[moduleName] = module;
+    moduleName = module._id;
 
-  if (module.init) {
-    module.init(this);
-  }
-};
+    if (this._modules[moduleName] || this[moduleName]) {
+      throw new Error('A module called ' + moduleName + ' is already in use!');
+    }
 
+    this._modules[moduleName] = module;
+    this[moduleName] = module;
 
-UserAccounts.removeModule = function(moduleName) {
-  check(moduleName, String);
+    if (module.init) {
+      module.init(this);
+    }
+  },
 
-  if (!this._modules[moduleName]) {
-    throw new Error('Module ' + moduleName + ' not in use!');
-  }
+  registerPlugin: function registerPlugin(plugin) {
+    var pluginName = plugin._id;
 
-  var module = this._modules[moduleName];
-  delete this._modules[moduleName];
-  delete this[moduleName];
+    check(plugin, UAPlugin);
 
-  if (module.uninit) {
-    module.uninit(this);
-  }
-};
+    if (this._plugins[pluginName] || this[pluginName]) {
+      throw new Error('A plugin called ' + pluginName + ' is already in use!');
+    }
 
+    this._plugins[pluginName] = plugin;
+    this[pluginName] = plugin;
 
-UserAccounts.registerPlugin = function(plugin) {
-  check(plugin, UAPlugin);
-  var pluginName = plugin._id;
+    if (plugin.init) {
+      plugin.init(this);
+    }
+  },
 
-  if (this._plugins[pluginName] || this[pluginName]) {
-    throw new Error('A plugin called ' + pluginName + ' is already in use!');
-  }
+  removeModule: function removeModule(moduleName) {
+    var module;
 
-  this._plugins[pluginName] = plugin;
-  this[pluginName] = plugin;
+    check(moduleName, String);
 
-  if (plugin.init) {
-    plugin.init(this);
-  }
-};
+    if (!this._modules[moduleName]) {
+      throw new Error('Module ' + moduleName + ' not in use!');
+    }
 
+    module = this._modules[moduleName];
+    delete this._modules[moduleName];
+    delete this[moduleName];
 
-UserAccounts.removePlugin = function(pluginName) {
-  // TODO: check plugin is a subclass of UAPlugin
-  check(pluginName, String);
+    if (module.uninit) {
+      module.uninit(this);
+    }
+  },
 
-  if (!this._plugins[pluginName]) {
-    throw new Error('Plugin ' + pluginName + ' not in use!');
-  }
+  removePlugin: function removePlugin(pluginName) {
+    var plugin;
 
-  var plugin = this._plugins[pluginName];
-  delete this._plugins[pluginName];
-  delete this[pluginName];
+    check(pluginName, String);
 
-  if (plugin.uninit) {
-    plugin.uninit(this);
-  }
-};
+    if (!this._plugins[pluginName]) {
+      throw new Error('Plugin ' + pluginName + ' not in use!');
+    }
 
+    plugin = this._plugins[pluginName];
+    delete this._plugins[pluginName];
+    delete this[pluginName];
 
-UserAccounts.startup = function(callback) {
-  var self = this;
+    if (plugin.uninit) {
+      plugin.uninit(this);
+    }
+  },
 
-  if (self.__startupHooks) {
-    self.__startupHooks.push(callback);
-  } else {
-    // We already started up. Just call it now.
-    callback();
-  }
+  setLogLevel: function setLogLevel(logger) {
+    var name;
+
+    UALog.trace('setLogLevel');
+
+    check(logger, Logger);
+
+    name = logger.name.split(':');
+
+    if (name[0] === 'useraccounts') {
+      if (name.length === 2) {
+        name = name[1];
+      } else {
+        name = name[0];
+      }
+
+      // TODO: load options for *name* from Meteor settings or ENV variables
+    }
+  },
+
+  startup: function startup(callback) {
+    var self = this;
+
+    if (self.__startupHooks) {
+      self.__startupHooks.push(callback);
+    } else {
+      // We already started up. Just call it now.
+      callback();
+    }
+  },
+
 };

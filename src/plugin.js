@@ -14,20 +14,18 @@ UALog.trace('Loading plugin.js');
 //  Plugin Base Class Declaration
 // ------------------------
 
-UAPlugin = function() {
-};
+UAPlugin = function _UAPlugin() {};
 
 _.extend(UAPlugin.prototype, {
 
   _id: 'UAPlugin',
   texts: {},
 
-  _configure: function(options) {
+  _configure: function _configure(options) {
+    var self = self;
+    var pluginOptions = options[self._id];
+
     UALog.trace('_configure ' + this._id);
-    var
-      self = self,
-      pluginOptions = options[self._id]
-    ;
 
     if (self.configure && pluginOptions) {
       self.configure(pluginOptions);
@@ -35,25 +33,24 @@ _.extend(UAPlugin.prototype, {
     return _.omit(options, self._id);
   },
 
-  getText: function(key) {
-    var
-      self = this,
-      uaTmpl = Template.currentData().instance,
-      state = uaTmpl.getState();
-
+  getText: function getText(key) {
+    var self = this;
+    var uaTmpl = Template.currentData().instance;
+    var state = uaTmpl.getState();
     var texts = self.texts[state] || self.texts.default;
+
     return texts[key] || '';
   },
 
-  skinClasses: function(element) {
+  skinClasses: function skinClasses(element) {
+    var self = this;
+    var framework = Template.currentData().instance.framework;
+    var classes;
+
     UALog.trace('plugin ' + this._id + ': skinClasses - ' + element);
-    var
-      self = this,
-      framework = Template.currentData().instance.framework
-    ;
 
     if (_.has(self.skins, framework)) {
-      var classes = self.skins[framework][element];
+      classes = self.skins[framework][element];
       if (_.isFunction(classes)) {
         classes = classes();
       }
