@@ -15,10 +15,10 @@ Package.describe({
   name: 'useraccounts:core',
   summary: 'Amazingly customizable users accounting templates (and much more!)',
   version: '2.0.0',
-  git: 'https://github.com/meteor-useraccounts/core.git'
+  git: 'https://github.com/meteor-useraccounts/core.git',
 });
 
-Package.onUse(function(api) {
+Package.onUse(function pkgOnUse(api) {
   api.versionsFrom('1.0');
 
   api.use([
@@ -60,4 +60,21 @@ Package.onUse(function(api) {
     'UAPlugin',
     'UserAccounts',
   ], Both);
+});
+
+Package.onTest(function pkfOnTest(api) {
+  api.use(
+    [
+      'sanjo:jasmine@0.16.4',
+      'useraccounts:core',
+    ],
+    ['client', 'server']
+  );
+
+  api.addFiles(
+    [
+      'tests/jasmine/both/unit/useraccounts.js',
+    ],
+    ['client', 'server']
+  );
 });
