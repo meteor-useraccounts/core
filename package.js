@@ -32,6 +32,10 @@ Package.onUse(function pkgOnUse(api) {
     'templating',
   ], Client);
 
+  api.imply([
+    'jag:pince',
+  ], Both);
+
   // Base Classes definition
   api.addFiles([
     'src/_globals.js',
