@@ -217,6 +217,73 @@ describe('UserAccounts', function() {
   });
 
   describe('setLogLevel', function() {
+    var oldSettings;
+
+    beforeAll(function() {
+      oldSettings = Meteor.settings;
+    });
+
+    afterAll(function() {
+      Meteor.settings = oldSettings;
+    });
+
+    beforeEach(function() {
+      spyOn(Logger, 'setLevel');
+      Meteor.settings = {
+        UserAccounts: {},
+      };
+    });
+
+    it('should load log level for logger from settings', function() {
+      var testLogger = new Logger('useraccounts');
+      var level = 'trace';
+      Meteor.settings.UserAccounts.logLevel = level;
+      UserAccounts.setLogLevel(testLogger);
+      expect(Logger.setLevel).toHaveBeenCalledWith(testLogger.name, level);
+    });
+
+    it('should load log level for logger from settings', function() {
+      var testLogger = new Logger('useraccounts:test');
+      var level = 'trace';
+      Meteor.settings.UserAccounts = {
+        logLevel: 'wrongLevel',
+        test: {
+          logLevel: level,
+        },
+      };
+      UserAccounts.setLogLevel(testLogger);
+      expect(Logger.setLevel).toHaveBeenCalledWith(testLogger.name, level);
+    });
+
+    it('should load log level for logger from settings.public', function() {
+      var testLogger = new Logger('useraccounts');
+      var level = 'trace';
+      Meteor.settings.UserAccounts.test = { logLevel: 'wrongLevel' };
+      Meteor.settings.public = {
+        UserAccounts: {
+          logLevel: level,
+        },
+      };
+      UserAccounts.setLogLevel(testLogger);
+      expect(Logger.setLevel).toHaveBeenCalledWith(testLogger.name, level);
+    });
+
+    it('should load log level for logger from settings.public', function() {
+      var testLogger = new Logger('useraccounts:test');
+      var level = 'trace';
+      Meteor.settings.UserAccounts.test = { logLevel: 'wrongLevel' };
+      Meteor.settings.public = {
+        UserAccounts: {
+          logLevel: 'wrongLevel',
+          test: {
+            logLevel: level,
+          },
+        },
+      };
+      UserAccounts.setLogLevel(testLogger);
+      expect(Logger.setLevel).toHaveBeenCalledWith(testLogger.name, level);
+    });
+
     xit('should load log level for logger from settings or ENV', function() {
       expect(false).toBe(true);
     });

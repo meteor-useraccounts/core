@@ -27,6 +27,8 @@ UserAccounts = {
     var self = this;
     var hook;
 
+    UALog.trace('UserAccounts.__startup');
+
     // run the startup hooks. other calls to startup() during this can still
     // add hooks to the end.
     while (self.__startupHooks.length) {
@@ -46,7 +48,7 @@ UserAccounts = {
     var objs = _.union(_.values(self._modules), _.values(self._plugins));
     var coreOptions;
 
-    UALog.trace('configure');
+    UALog.trace('UserAccounts.configure');
 
     // Ask each module and each plugin to consume its own configuration options
     coreOptions = _.reduce(objs, function moduleOpts(options, obj) {
@@ -66,11 +68,15 @@ UserAccounts = {
   modules: function modules() {
     var self = this;
 
+    UALog.trace('UserAccounts.modules');
+
     return _.sortBy(_.values(self._modules), 'position');
   },
 
   registerModule: function registerModule(module) {
     var moduleName;
+
+    UALog.trace('UserAccounts.registerModule');
 
     check(module, UAModule);
 
@@ -91,6 +97,8 @@ UserAccounts = {
   registerPlugin: function registerPlugin(plugin) {
     var pluginName = plugin._id;
 
+    UALog.trace('UserAccounts.registerPlugin');
+
     check(plugin, UAPlugin);
 
     if (this._plugins[pluginName] || this[pluginName]) {
@@ -107,6 +115,8 @@ UserAccounts = {
 
   removeModule: function removeModule(moduleName) {
     var module;
+
+    UALog.trace('UserAccounts.removeModule');
 
     check(moduleName, String);
 
@@ -126,6 +136,8 @@ UserAccounts = {
   removePlugin: function removePlugin(pluginName) {
     var plugin;
 
+    UALog.trace('UserAccounts.removePlugin');
+
     check(pluginName, String);
 
     if (!this._plugins[pluginName]) {
@@ -142,27 +154,55 @@ UserAccounts = {
   },
 
   setLogLevel: function setLogLevel(logger) {
+    var logLevel = 'error';
     var name;
+    var settings;
 
-    UALog.trace('setLogLevel');
+    UALog.trace('UserAccounts.setLogLevel');
 
     check(logger, Logger);
 
+    // Try to split name in two parts since name is usually in the form
+    // *root:leaf* or simply *root*.
     name = logger.name.split(':');
-
+    // In any case We expect *root* to be equal *useraccounts*...
     if (name[0] === 'useraccounts') {
-      if (name.length === 2) {
-        name = name[1];
-      } else {
-        name = name[0];
-      }
+      // Pick up the second name or null
+      name = name.length === 2 && name[1] || null;
 
-      // TODO: load options for *name* from Meteor settings or ENV variables
+      // Look for UA log level settings inside Meteor.settings
+      settings = Meteor.settings.UserAccounts;
+      if (name) {
+        settings = settings && settings[name];
+      }
+      logLevel = settings && settings.logLevel || logLevel;
+
+      // Give precedence to the *public* settings for the client-side
+      settings = Meteor.settings.public;
+      settings = settings && settings.UserAccounts;
+      if (name) {
+        settings = settings && settings[name];
+      }
+      logLevel = settings && settings.logLevel || logLevel;
+
+      // TODO: load options for *name* from ENV variables
+      //       for the server-side
+      /*
+      if (Meteor.isServer && process.env.UA_LOGLEVEL_XXX) {
+      }
+      */
+
+      // Eventually set the log level for the required logger
+      Logger.setLevel(logger.name, logLevel);
+    } else {
+      throw new Error('not a UserAccounts logger...');
     }
   },
 
   startup: function startup(callback) {
     var self = this;
+
+    UALog.trace('UserAccounts.startup');
 
     if (self.__startupHooks) {
       self.__startupHooks.push(callback);
