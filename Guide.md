@@ -693,7 +693,7 @@ Each field object is represented by the following properties:
 | negativeFeedback     | Boolean          |          | Display negative validation feedback inside input elements. |
 | positiveFeedback     | Boolean          |          | Display positive validation feedback inside input elements. |
 | showValidating       | Boolean          |          | Display a loading icon inside input elements while the validation process is in progress. |
-| options              | Object           |          | Allows to pass in additional custom options to be possbly used to extend input templates (see [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates))  |
+| options              | Object           |          | Allows to pass in additional custom options to be possibly used to extend input templates (see [Extending Templates](https://github.com/meteor-useraccounts/core/blob/master/Guide.md#extending-templates))  |
 | template             | String           |          | The name of a custom template to be used in place of the default one. |
 
 
