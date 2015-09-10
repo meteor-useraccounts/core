@@ -12,7 +12,6 @@ Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) yo
 For basic routing and content protection, `useraccounts:core` integrates with either [flow-router](https://github.com/meteor-useraccounts/flow-routing) or [iron-router](https://atmospherejs.com/package/iron-router).
 
 You can get a better idea about this heading to http://useraccounts.meteor.com/ and then, on your choice, to:
-* http://app.decipherchinese.com/
 * http://useraccounts-bootstrap.meteor.com/
 * http://useraccounts-foundation.meteor.com/
 * http://useraccounts-ionic.meteor.com/
@@ -32,11 +31,13 @@ Detailed explanations of features and configuration options can be found in the 
 * [backspace.academy](http://backspace.academy/)
 * [bootstrappers.io](http://www.bootstrappers.io/)
 * [crater.io](http://crater.io/)
+* [Dechiper Chinese](http://app.decipherchinese.com/)
 * [Henfood](http://labs.henesis.eu/henfood)
 * [meteorgigs.io](https://www.meteorgigs.io/)
 * [Orion](http://orionjs.org/)
 * [Telescope](http://www.telesc.pe/)
 * [We Work Meteor](http://www.weworkmeteor.com/)
+
 
 Aren't you on the list?!
 If you have a production app using accounts templates, let me know! I'd like to add your link to the above ones.
