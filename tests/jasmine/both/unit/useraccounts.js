@@ -44,6 +44,7 @@ describe('UserAccounts', function() {
   mA.configure = function() {};
   mA.init = function() {};
   mA.uninit = function() {};
+
   mB._id = 'mB';
 
   pA._id = 'pA';
@@ -61,7 +62,7 @@ describe('UserAccounts', function() {
       removeModules();
     });
     it('should pass sub-options to modules and plugins', function() {
-      // NOTE: this is more an integration test than a unit test...
+      // NOTE: this is probably more an integration test than a unit test...
       var moduleOptions = {
         thisIsTheOption: true,
       };
@@ -86,10 +87,6 @@ describe('UserAccounts', function() {
 
   describe('registerModule', function() {
     beforeEach(function() {
-      removeModules();
-    });
-
-    afterEach(function() {
       removeModules();
     });
 
@@ -118,7 +115,6 @@ describe('UserAccounts', function() {
       spyOn(mA, 'init');
       UserAccounts.registerModule(mA);
       expect(mA.init).toHaveBeenCalled();
-      // expect(initCalled).toBe(true);
     });
 
     it('should not complain if module has no init method', function() {
@@ -128,10 +124,6 @@ describe('UserAccounts', function() {
 
   describe('registerPlugin', function() {
     beforeEach(function() {
-      removePlugins();
-    });
-
-    afterEach(function() {
       removePlugins();
     });
 
@@ -169,11 +161,8 @@ describe('UserAccounts', function() {
 
   describe('removeModule', function() {
     beforeEach(function() {
-      UserAccounts.registerModule(mA);
-    });
-
-    afterEach(function() {
       removeModules();
+      UserAccounts.registerModule(mA);
     });
 
     it('should check the module is currently registered', function() {
@@ -205,11 +194,8 @@ describe('UserAccounts', function() {
 
   describe('removePlugin', function() {
     beforeEach(function() {
-      UserAccounts.registerPlugin(pA);
-    });
-
-    afterEach(function() {
       removePlugins();
+      UserAccounts.registerPlugin(pA);
     });
 
     it('should check the plugin is currently registered', function() {
