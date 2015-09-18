@@ -1,14 +1,28 @@
 /* eslint func-names: 0 */
+/* global
+  afterAll: false,
+  afterEach: false,
+  beforeAll: false,
+  beforeEach: false,
+  describe: false,
+  expect: false,
+  it: false,
+  Logger: false,
+  spyOn: false,
+  UAModule: false,
+  UAPlugin: false,
+  UserAccounts: false,
+  xit: false
+*/
+'use strict';
 
 describe('UserAccounts', function() {
   var fakeModule = {};
   var fakePlugin = {};
-  var initCalled = false;
   var mA = new UAModule();
   var mB = new UAModule();
   var pA = new UAPlugin();
   var pB = new UAPlugin();
-  var uninitCalled = false;
 
   function removeModules() {
     _.each(UserAccounts._modules, function(module) {
@@ -27,27 +41,40 @@ describe('UserAccounts', function() {
   }
 
   mA._id = 'mA';
-  mA.init = function() {
-    initCalled = true;
-  };
-  mA.uninit = function() {
-    uninitCalled = true;
-  };
+  mA.configure = function() {};
+  mA.init = function() {};
+  mA.uninit = function() {};
   mB._id = 'mB';
 
   pA._id = 'pA';
-  pA.init = function() {
-    initCalled = true;
-  };
-  pA.uninit = function() {
-    uninitCalled = true;
-  };
+  pA.init = function() {};
+  pA.uninit = function() {};
 
   pB._id = 'pB';
 
   describe('configure', function() {
-    xit('should pass sub-options to modules and plugins', function() {
-      expect(false).toBe(true);
+    beforeEach(function() {
+      removeModules();
+    });
+
+    afterEach(function() {
+      removeModules();
+    });
+    it('should pass sub-options to modules and plugins', function() {
+      // NOTE: this is more an integration test than a unit test...
+      var moduleOptions = {
+        thisIsTheOption: true,
+      };
+      var globalOptions = {
+        mA: moduleOptions,
+        mB: null,
+      };
+
+      spyOn(mA, 'configure');
+      UserAccounts.registerModule(mA);
+      UserAccounts.configure(globalOptions);
+      expect(mA.configure).toHaveBeenCalled();
+      expect(mA.configure).toHaveBeenCalledWith(moduleOptions);
     });
   });
 
@@ -59,7 +86,6 @@ describe('UserAccounts', function() {
 
   describe('registerModule', function() {
     beforeEach(function() {
-      initCalled = false;
       removeModules();
     });
 
@@ -89,24 +115,23 @@ describe('UserAccounts', function() {
     });
 
     it('should call the init method of the module', function() {
+      spyOn(mA, 'init');
       UserAccounts.registerModule(mA);
-      expect(initCalled).toBe(true);
+      expect(mA.init).toHaveBeenCalled();
+      // expect(initCalled).toBe(true);
     });
 
     it('should not complain if module has no init method', function() {
       expect(function() { UserAccounts.registerModule(mB); }).not.toThrow();
-      expect(initCalled).toBe(false);
     });
   });
 
   describe('registerPlugin', function() {
     beforeEach(function() {
-      initCalled = false;
       removePlugins();
     });
 
     afterEach(function() {
-      initCalled = false;
       removePlugins();
     });
 
@@ -132,19 +157,18 @@ describe('UserAccounts', function() {
     });
 
     it('should call the init method of the plugin', function() {
+      spyOn(pA, 'init');
       UserAccounts.registerPlugin(pA);
-      expect(initCalled).toBe(true);
+      expect(pA.init).toHaveBeenCalled();
     });
 
     it('should not complain if plugin has no init method', function() {
       expect(function() { UserAccounts.registerPlugin(pB); }).not.toThrow();
-      expect(initCalled).toBe(false);
     });
   });
 
   describe('removeModule', function() {
     beforeEach(function() {
-      uninitCalled = false;
       UserAccounts.registerModule(mA);
     });
 
@@ -168,20 +192,19 @@ describe('UserAccounts', function() {
     });
 
     it('should call the uninit method of the module', function() {
+      spyOn(mA, 'uninit');
       UserAccounts.removeModule(mA._id);
-      expect(uninitCalled).toBe(true);
+      expect(mA.uninit).toHaveBeenCalled();
     });
 
     it('should not complain if module has no uninit method', function() {
       UserAccounts.registerModule(mB);
       expect(function() { UserAccounts.removeModule(mB._id); }).not.toThrow();
-      expect(uninitCalled).toBe(false);
     });
   });
 
   describe('removePlugin', function() {
     beforeEach(function() {
-      uninitCalled = false;
       UserAccounts.registerPlugin(pA);
     });
 
@@ -205,14 +228,14 @@ describe('UserAccounts', function() {
     });
 
     it('should call the uninit method of the plugin', function() {
+      spyOn(pA, 'uninit');
       UserAccounts.removePlugin(pA._id);
-      expect(uninitCalled).toBe(true);
+      expect(pA.uninit).toHaveBeenCalled();
     });
 
     it('should not complain if plugin has no uninit method', function() {
       UserAccounts.registerPlugin(pB);
       expect(function() { UserAccounts.removePlugin(pB._id); }).not.toThrow();
-      expect(uninitCalled).toBe(false);
     });
   });
 
