@@ -20,4 +20,10 @@ describe('templates', function() {
       expect($(div).find('div.ua-form').length).toBe(1);
     });
   });
+
+  describe('uaFullPageForm', function() {
+    it('should exist', function() {
+      expect(Template.uaFullPageForm).toBeDefined();
+    });
+  });
 });
