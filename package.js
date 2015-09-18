@@ -81,4 +81,10 @@ Package.onTest(function pkfOnTest(api) {
     ],
     ['client', 'server']
   );
+  api.addFiles(
+    [
+      'tests/jasmine/client/integration/templates.js',
+    ],
+    ['client']
+  );
 });
