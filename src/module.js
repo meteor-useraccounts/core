@@ -28,18 +28,6 @@ _.extend(UAModule.prototype, {
 
   visible: true,
 
-  _configure: function _configure(options) {
-    var self = this;
-    var moduleOptions = options[self._id];
-
-    UALog.trace('_configure ' + this._id);
-
-    if (self.configure && moduleOptions) {
-      self.configure(moduleOptions);
-    }
-    return _.omit(options, self._id);
-  },
-
   getText: function getText(key) {
     var self = this;
     var uaTmpl = Template.currentData().instance;

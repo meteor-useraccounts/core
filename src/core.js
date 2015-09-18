@@ -52,10 +52,16 @@ UserAccounts = {
 
     // Ask each module and each plugin to consume its own configuration options
     coreOptions = _.reduce(objs, function moduleOpts(options, obj) {
-      var opts;
-      if (obj._configure !== undefined) {
-        opts = obj._configure(options);
-        return opts;
+      var objName = obj._id;
+      var objOptions = options[objName];
+
+      if (objOptions) {
+        if (obj.configure) {
+          obj.configure(objOptions);
+        } else {
+          throw new Error('No configuration options expected for ' + objName);
+        }
+        return _.omit(options, objName);
       }
       return options;
     }, globalOptions);
