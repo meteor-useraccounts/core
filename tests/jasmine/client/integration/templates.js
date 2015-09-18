@@ -17,7 +17,7 @@ describe('templates', function() {
     it('should contain a div with ua-form class', function() {
       var div = document.createElement('DIV');
       Blaze.render(Template.uaForm, div);
-      expect($(div).find('div.ua-form')[0]).toBeDefined();
+      expect($(div).find('div.ua-form').length).toBe(1);
     });
   });
 });
