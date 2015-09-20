@@ -14,13 +14,31 @@ UALog.trace('Loading plugin.js');
 //  Plugin Base Class Declaration
 // ------------------------
 
+/**
+ * UAPlugin - description
+ *
+ * @return {type}  description
+ */
 UAPlugin = function _UAPlugin() {};
 
 _.extend(UAPlugin.prototype, {
 
+  /**
+   *
+   */
   _id: 'UAPlugin',
+
+  /**
+   *
+   */
   texts: {},
 
+  /**
+   * getText - description
+   *
+   * @param  {type} key description
+   * @return {type}     description
+   */
   getText: function getText(key) {
     var self = this;
     var uaTmpl = Template.currentData().instance;
@@ -30,6 +48,12 @@ _.extend(UAPlugin.prototype, {
     return texts[key] || '';
   },
 
+  /**
+   * skinClasses - description
+   *
+   * @param  {type} element description
+   * @return {type}         description
+   */
   skinClasses: function skinClasses(element) {
     var self = this;
     var framework = Template.currentData().instance.framework;

@@ -6,6 +6,13 @@
 'use strict';
 
 
+/**
+ * _setLogLevel - description
+ *
+ * @param  {type} logger description
+ * @throws {Error} Will throw an error in case the logger name does not start
+ *     with 'useraccounts'.
+ */
 setLogLevel = function _setLogLevel(logger) {
   var logLevel = 'error';
   var name;

@@ -22,8 +22,15 @@ UALog.trace('Loading main.js');
 // Singleton Object
 UserAccounts = {
 
+  /**
+   *
+   */
   __startupHooks: [],
 
+  /**
+   * __startup - description
+   *
+   */
   __startup: function __startup() {
     var self = this;
     var hook;
@@ -40,12 +47,28 @@ UserAccounts = {
     self.__startupHooks = null;
   },
 
+  /**
+   *
+   */
   _modules: {},
 
+  /**
+   *
+   */
   _plugins: {},
 
+  /**
+   *
+   */
   texts: {},
 
+  /**
+   * configure - description
+   *
+   * @param  {type} globalOptions description
+   * @throws {Error} Will throw an error in case globalOptions contains invalid
+   *     options or sub-objects referencing unexisting modules/plugins.
+   */
   configure: function configure(globalOptions) {
     var self = this;
     var objs = _.union(_.values(self._modules), _.values(self._plugins));
@@ -74,10 +97,20 @@ UserAccounts = {
     coreOptions = coreOptions;
   },
 
+  /**
+   * init - description
+   *
+   * @return {type}  description
+   */
   init: function init() {
     this.__startup();
   },
 
+  /**
+   * modules - description
+   *
+   * @return {array}  description
+   */
   modules: function modules() {
     var self = this;
 
@@ -86,6 +119,13 @@ UserAccounts = {
     return _.sortBy(_.values(self._modules), 'position');
   },
 
+  /**
+   * registerModule - description
+   *
+   * @param  {UAModule} module description
+   * @throws {Error} Will throw an error in case a module with the same name
+   *     already exists.
+   */
   registerModule: function registerModule(module) {
     var moduleName;
 
@@ -107,6 +147,13 @@ UserAccounts = {
     }
   },
 
+  /**
+   * registerPlugin - description
+   *
+   * @param  {UAPlugin} plugin description
+   * @throws {Error} Will throw an error in case a plugin with the same name
+   *     already exists.
+   */
   registerPlugin: function registerPlugin(plugin) {
     var pluginName = plugin._id;
 
@@ -126,6 +173,13 @@ UserAccounts = {
     }
   },
 
+  /**
+   * removeModule - description
+   *
+   * @param  {string} moduleName description
+   * @throws {Error} Will throw an error in case no module called *moduleName*
+   *     exists.
+   */
   removeModule: function removeModule(moduleName) {
     var module;
 
@@ -146,6 +200,13 @@ UserAccounts = {
     }
   },
 
+  /**
+   * removePlugin - description
+   *
+   * @param  {type} pluginName description
+   * @throws {Error} Will throw an error in case no plugin called *pluginName*
+   *     exists.
+   */
   removePlugin: function removePlugin(pluginName) {
     var plugin;
 
@@ -166,12 +227,22 @@ UserAccounts = {
     }
   },
 
+  /**
+   *
+   */
   setLogLevel: setLogLevel,
 
+  /**
+   * startup - description
+   *
+   * @param  {type} callback description
+   */
   startup: function startup(callback) {
     var self = this;
 
     UALog.trace('UserAccounts.startup');
+
+    check(callback, Function);
 
     if (self.__startupHooks) {
       self.__startupHooks.push(callback);
@@ -180,5 +251,4 @@ UserAccounts = {
       callback();
     }
   },
-
 };

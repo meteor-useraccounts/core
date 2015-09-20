@@ -6,8 +6,27 @@
     UserAccounts: true
 */
 
+/**
+ *
+ */
 setLogLevel = undefined;
+
+/**
+ *
+ */
 UALog = undefined;
+
+/**
+ *
+ */
 UAModule = undefined;
+
+/**
+ *
+ */
 UAPlugin = undefined;
+
+/**
+ *
+ */
 UserAccounts = undefined;

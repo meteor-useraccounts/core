@@ -14,20 +14,46 @@ UALog.trace('Loading module.js');
 //  Module Base Class Declaration
 // ------------------------
 
+/**
+ * UAModule - description
+ *
+ * @return {type}  description
+ */
 UAModule = function _UAModule() {};
 
 _.extend(UAModule.prototype, {
 
+  /**
+   *
+   */
   _id: 'UAModule',
 
+  /**
+   *
+   */
   skins: {},
 
+  /**
+   *
+   */
   template: null,
 
+  /**
+   *
+   */
   texts: {},
 
+  /**
+   *
+   */
   visible: true,
 
+  /**
+   * getText - description
+   *
+   * @param  {type} key description
+   * @return {type}     description
+   */
   getText: function getText(key) {
     var self = this;
     var uaTmpl = Template.currentData().instance;
@@ -37,6 +63,12 @@ _.extend(UAModule.prototype, {
     return texts[key] || '';
   },
 
+  /**
+   * skinClasses - description
+   *
+   * @param  {type} element description
+   * @return {type}         description
+   */
   skinClasses: function skinClasses(element) {
     var self = this;
     var classes;
