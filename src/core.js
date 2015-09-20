@@ -1,4 +1,5 @@
 /* global
+  setLogLevel: false,
   UALog: true,
   UAModule: false,
   UAPlugin: false,
@@ -43,6 +44,8 @@ UserAccounts = {
 
   _plugins: {},
 
+  texts: {},
+
   configure: function configure(globalOptions) {
     var self = this;
     var objs = _.union(_.values(self._modules), _.values(self._plugins));
@@ -68,7 +71,11 @@ UserAccounts = {
 
     // Deal with remaining options
     // TODO: core configuration here
-    coreOptions;
+    coreOptions = coreOptions;
+  },
+
+  init: function init() {
+    this.__startup();
   },
 
   modules: function modules() {
@@ -159,51 +166,7 @@ UserAccounts = {
     }
   },
 
-  setLogLevel: function setLogLevel(logger) {
-    var logLevel = 'error';
-    var name;
-    var settings;
-
-    UALog.trace('UserAccounts.setLogLevel');
-
-    check(logger, Logger);
-
-    // Try to split name in two parts since name is usually in the form
-    // *root:leaf* or simply *root*.
-    name = logger.name.split(':');
-    // In any case We expect *root* to be equal *useraccounts*...
-    if (name[0] === 'useraccounts') {
-      // Pick up the second name or null
-      name = name.length === 2 && name[1] || null;
-
-      // Look for UA log level settings inside Meteor.settings
-      settings = Meteor.settings.UserAccounts;
-      if (name) {
-        settings = settings && settings[name];
-      }
-      logLevel = settings && settings.logLevel || logLevel;
-
-      // Give precedence to the *public* settings for the client-side
-      settings = Meteor.settings.public;
-      settings = settings && settings.UserAccounts;
-      if (name) {
-        settings = settings && settings[name];
-      }
-      logLevel = settings && settings.logLevel || logLevel;
-
-      // TODO: load options for *name* from ENV variables
-      //       for the server-side
-      /*
-      if (Meteor.isServer && process.env.UA_LOGLEVEL_XXX) {
-      }
-      */
-
-      // Eventually set the log level for the required logger
-      Logger.setLevel(logger.name, logLevel);
-    } else {
-      throw new Error('not a UserAccounts logger...');
-    }
-  },
+  setLogLevel: setLogLevel,
 
   startup: function startup(callback) {
     var self = this;

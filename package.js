@@ -54,7 +54,7 @@ Package.onUse(function pkgOnUse(api) {
 
   // Client files
   api.addFiles([
-    'i18n/ua.en.i18n.js',
+    'src/texts.js',
     'src/client.js',
   ], Client);
 
@@ -66,7 +66,7 @@ Package.onUse(function pkgOnUse(api) {
   ], Both);
 });
 
-Package.onTest(function pkfOnTest(api) {
+Package.onTest(function pkgOnTest(api) {
   api.use(
     [
       'sanjo:jasmine@0.16.4',

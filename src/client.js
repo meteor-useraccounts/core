@@ -11,13 +11,6 @@
 // ------------------------------------------
 UALog.trace('Loading client.js');
 
-
-/*
-UserAccounts.__startupHooks.push(function() {
-  UALog.debug(' - Initializing');
-});
-*/
-
 _.extend(UserAccounts, {
 
   frameworks: [],
@@ -72,6 +65,12 @@ _.extend(UserAccounts, {
     this.currentFramework = framework;
   },
 
+  init: function init() {
+    this.__startup();
+    Template.registerHelper('uaT', UserAccounts.t);
+    Template.registerHelper('UserAccounts', UserAccounts);
+  },
+
   initFormTemplate: function initFormTemplate(uaForm) {
     var self = this;
     var data = uaForm.data;
@@ -86,10 +85,10 @@ _.extend(UserAccounts, {
     }
 
     _.extend(uaForm, {
-      disabled: ReactiveVar(false),
+      disabled: new ReactiveVar(false),
       framework: framework,
-      loading: ReactiveVar(false),
-      state: ReactiveVar(defaultState),
+      loading: new ReactiveVar(false),
+      state: new ReactiveVar(defaultState),
 
       // State validation
       _isValidState: function _isValidState(value) {
@@ -162,9 +161,6 @@ _.extend(UserAccounts, {
     // console.log('key: ' + key);
     // console.log('args: ' + args);
 
-    return UserAccounts.i18n[key] || key;
+    return UserAccounts.texts[key] || key;
   },
 });
-
-
-Template.registerHelper('UserAccounts', UserAccounts);

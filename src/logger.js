@@ -1,42 +1,59 @@
 /* global
   Logger: false,
+  setLogLevel: true,
   UALog: true
 */
 'use strict';
 
 
+setLogLevel = function _setLogLevel(logger) {
+  var logLevel = 'error';
+  var name;
+  var settings;
+
+  UALog.trace('UserAccounts.setLogLevel');
+
+  check(logger, Logger);
+
+  // Try to split name in two parts since name is usually in the form
+  // *root:leaf* or simply *root*.
+  name = logger.name.split(':');
+  // In any case We expect *root* to be equal *useraccounts*...
+  if (name[0] === 'useraccounts') {
+    // Pick up the second name or null
+    name = name.length === 2 && name[1] || null;
+
+    // Look for UA log level settings inside Meteor.settings
+    settings = Meteor.settings && Meteor.settings.UserAccounts;
+    if (name) {
+      settings = settings && settings[name];
+    }
+    logLevel = settings && settings.logLevel || logLevel;
+
+    // Give precedence to the *public* settings for the client-side
+    settings = Meteor.settings && Meteor.settings.public;
+    settings = settings && settings.UserAccounts;
+    if (name) {
+      settings = settings && settings[name];
+    }
+    logLevel = settings && settings.logLevel || logLevel;
+
+    // TODO: load options for *name* from ENV variables
+    //       for the server-side
+    /*
+    if (Meteor.isServer && process.env.UA_LOGLEVEL_XXX) {
+    }
+    */
+
+    // Eventually set the log level for the required logger
+    Logger.setLevel(logger.name, logLevel);
+  } else {
+    throw new Error('not a UserAccounts logger...');
+  }
+};
+
 // ------------------------------------
 //  Create the logger for this package
 // ------------------------------------
 UALog = new Logger('useraccounts:core');
-
-UALog.trace('Initializing logger options');
-
-
-// ----------------------------------
-//  Pick up settings for this logger
-// ----------------------------------
-
-var
-  publicSettings = Meteor.settings &&
-                   Meteor.settings.public &&
-                   Meteor.settings.public.useraccounts,
-  settings = Meteor.settings &&
-             Meteor.settings &&
-             Meteor.settings.useraccounts
-;
-
-var uaLogLevelSettings;
-if (publicSettings) {
-  uaLogLevelSettings = publicSettings.logLevel;
-} else if (settings) {
-  uaLogLevelSettings = settings.logLevel;
-}
-
-if (uaLogLevelSettings && uaLogLevelSettings.core) {
-  Logger.setLevel('useraccounts:core', uaLogLevelSettings.core);
-}
-
-if (Meteor.isServer && process.env.USERACCOUNTS_CORE_LOGLEVEL) {
-  Logger.setLevel('useraccounts:core', process.env.USERACCOUNTS_CORE_LOGLEVEL);
-}
+setLogLevel(UALog);
