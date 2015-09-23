@@ -21,6 +21,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [Internal States](#internal-states)
   * [Content Protection](#content-protection)
   * [reCaptcha Setup](#reCaptcha-setup)
+  * [Detecting reactively when a request is being processed](#detecting-reactively-when-a-request-is-being-processed)
 * [Advanced Customization](#advanced-customization)
   * [Configuring Texts](#configuring-texts)
     * [Form Title](#form-title)
@@ -329,7 +330,6 @@ AccountsTemplates.configure({
 });
 ```
 
-
 <a name="internal-states"/>
 ### Internal States
 
@@ -439,6 +439,33 @@ Each option is described below:
 | theme                       | String   | "light"   | Sets the reCaptcha theme color. The options are "light" and "dark". |
 | data_type                   | String   | "image"   | Sets the verification method. Options are "image" or "audio". |
 | showReCaptcha               | Boolean  | false     | Whether to show the reCaptcha widget on sign in or not. No reCaptcha validation will occur if set to false. |
+
+<a name="detect-reactively-when-a-form-is-being-processed"/>
+### Detect reactively when a form is being processed
+
+`AccountsTemplates.disabled()` returns `true` when a submitted form is being processed and `false` once the submission process has been completed(successfully or not). `AccountsTemplate.disabled()` is reactive and can be used to trigger UI events, such as spinners, "Please wait" messages or to disable input elements, while the form is being processed. The function works irrespectively of form status (signIn, signUp, pwdReset etc.). A typical use-case would be in a template helper: 
+
+```html
+<template name="myLogin">
+ {{#if atDisabled}}
+  Please wait...
+ {{/if}}
+ <div class="{{atClass}}">
+  {{> atForm}}
+ </div>
+</template>
+```
+
+```js
+Template.myLogin.helpers({
+ atDisabled: function() {
+  return AccountsTemplates.disabled();
+ },
+ atClass: function() {
+  return AccountsTemplates.disabled() ? 'disabled' : 'active';
+ }
+});
+```
 
 <a name="advanced-customization"/>
 ## Advanced Customization
