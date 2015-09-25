@@ -83,7 +83,8 @@ Package.onTest(function(api) {
   api.use([
     'accounts-password',
     'tinytest',
-    'test-helpers'
+    'test-helpers',
+    'underscore',
   ], ['client', 'server']);
 
   api.addFiles([
