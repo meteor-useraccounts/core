@@ -5,6 +5,11 @@
 'use strict';
 
 
+/**
+ * onCreated - description
+ *
+ * @return {type}  description
+ */
 Template.uaForm.onCreated(function onCreated() {
   var self = this;
 
@@ -19,6 +24,12 @@ Template.uaForm.onCreated(function onCreated() {
 
 
 Template.uaForm.helpers({
+
+  /**
+   * mods - description
+   *
+   * @return {type}  description
+   */
   modules: function mods() {
     var self = this;
     var tmplInstance = Template.instance();
@@ -36,6 +47,14 @@ Template.uaForm.helpers({
     // console.dir(modules);
     return modules;
   },
+
+
+  /**
+   * skinClasses - description
+   *
+   * @param  {type} element description
+   * @return {type}         description
+   */
   skinClasses: function skinClasses(element) {
     var framework = Template.instance().framework;
     var classes;
