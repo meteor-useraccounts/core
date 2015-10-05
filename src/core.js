@@ -25,27 +25,7 @@ UserAccounts = {
   /**
    *
    */
-  __startupHooks: [],
-
-  /**
-   * __startup - description
-   *
-   */
-  __startup: function __startup() {
-    var self = this;
-    var hook;
-
-    UALog.trace('UserAccounts.__startup');
-
-    // run the startup hooks. other calls to startup() during this can still
-    // add hooks to the end.
-    while (self.__startupHooks.length) {
-      hook = self.__startupHooks.shift();
-      hook.call(self);
-    }
-    // Setting this to null tells Meteor.startup to call hooks immediately.
-    self.__startupHooks = null;
-  },
+  _startupHooks: [],
 
   /**
    *
@@ -61,6 +41,26 @@ UserAccounts = {
    *
    */
   texts: {},
+
+  /**
+   * _startup - description
+   *
+   */
+  _startup: function _startup() {
+    var self = this;
+    var hook;
+
+    UALog.trace('UserAccounts._startup');
+
+    // run the startup hooks. other calls to startup() during this can still
+    // add hooks to the end.
+    while (self._startupHooks.length) {
+      hook = self._startupHooks.shift();
+      hook.call(self);
+    }
+    // Setting this to null tells Meteor.startup to call hooks immediately.
+    self._startupHooks = null;
+  },
 
   /**
    * configure - description
@@ -103,7 +103,7 @@ UserAccounts = {
    * @return {type}  description
    */
   init: function init() {
-    this.__startup();
+    this._startup();
   },
 
   /**
@@ -244,8 +244,8 @@ UserAccounts = {
 
     check(callback, Function);
 
-    if (self.__startupHooks) {
-      self.__startupHooks.push(callback);
+    if (self._startupHooks) {
+      self._startupHooks.push(callback);
     } else {
       // We already started up. Just call it now.
       callback();
