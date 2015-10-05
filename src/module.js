@@ -1,6 +1,8 @@
 /* global
+    Spacebars: false,
     UALog: false,
-    UAModule: true
+    UAModule: true,
+    UserAccounts: false
 */
 'use strict';
 
@@ -46,7 +48,26 @@ _.extend(UAModule.prototype, {
   /**
    *
    */
+  textTransforms: {},
+
+  /**
+   *
+   */
   visible: true,
+
+  /**
+   * getTextTransform - description
+   *
+   * @param  {type} key description
+   * @return {type}     description
+   */
+  _getTextTransform: function _getTextTransform(key) {
+    var self = this;
+
+    UALog.trace('UAModule._getTextTransform (' + self._id + ')');
+
+    return self.textTransforms[key] || self.textTransforms.default;
+  },
 
   /**
    * getText - description
@@ -54,13 +75,50 @@ _.extend(UAModule.prototype, {
    * @param  {type} key description
    * @return {type}     description
    */
-  getText: function getText(key) {
+  getText: function getText() {
     var self = this;
     var uaTmpl = Template.currentData().instance;
     var state = uaTmpl.getState();
     var texts = self.texts[state] || self.texts.default;
+    var text;
+    var transform;
+    var element;
+    var key;
+    var options;
 
-    return texts[key] || '';
+    UALog.trace('UAModule.getText (' + self._id + ')');
+
+    // Check there is at least one parameter
+    // NOTE: you might get one more parameter which is an instance of
+    //       Spacebars.kw providing access to keyword arguments, so we
+    //       need to remove it not to pass it on to next function calls...
+    options = _.filter(arguments, function omitSpacebarsKw(param) {
+      return !(param instanceof Spacebars.kw);
+    });
+
+    // In case no option remains, there's nothing to do here...
+    if (options.length < 1) {
+      return '';
+    }
+
+    // Retrieve the requested element
+    element = options[0];
+    // Retrieve the key for requested element
+    key = texts[element] || element;
+    // Put the retrieved text back in first position
+    options[0] = key;
+
+    // Retrieve the text associated with the key
+    text = UserAccounts.t.apply(UserAccounts, options);
+
+    // Retrieve the transform for the requested element
+    transform = self._getTextTransform(element);
+    // Possibly apply the configured transform to the text
+    if (transform) {
+      text = transform(text);
+    }
+
+    return text;
   },
 
   /**
@@ -74,7 +132,7 @@ _.extend(UAModule.prototype, {
     var classes;
     var framework = Template.currentData().instance.framework;
 
-    UALog.trace('module ' + this._id + ': skinClasses - ' + element);
+    UALog.trace('UAModule.skinClasses (' + self._id + ')');
 
     if (_.has(self.skins, framework)) {
       classes = self.skins[framework][element];
