@@ -25,6 +25,7 @@ Package.onUse(function pkgOnUse(api) {
     'check',
     'jag:pince@0.0.9',
     'underscore',
+    'underscorestring:underscore.string@3.2.2',
   ], Both);
 
   api.use([
@@ -34,6 +35,7 @@ Package.onUse(function pkgOnUse(api) {
 
   api.imply([
     'jag:pince',
+    'underscorestring:underscore.string',
   ], Both);
 
   // Base Classes definition
@@ -67,24 +69,16 @@ Package.onUse(function pkgOnUse(api) {
 });
 
 Package.onTest(function pkgOnTest(api) {
-  api.use(
-    [
-      'sanjo:jasmine@0.16.4',
-      'useraccounts:core',
-    ],
-    ['client', 'server']
-  );
+  api.use([
+    'sanjo:jasmine@0.16.4',
+    'useraccounts:core',
+  ], Both);
 
-  api.addFiles(
-    [
-      'tests/jasmine/both/unit/useraccounts.js',
-    ],
-    ['client', 'server']
-  );
-  api.addFiles(
-    [
-      'tests/jasmine/client/integration/templates.js',
-    ],
-    ['client']
-  );
+  api.addFiles([
+    'tests/jasmine/both/unit/useraccounts.js',
+  ], Both);
+
+  api.addFiles([
+    'tests/jasmine/client/integration/templates.js',
+  ], Client);
 });
