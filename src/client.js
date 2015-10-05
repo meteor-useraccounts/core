@@ -1,6 +1,7 @@
 /* global
     Match: false,
     ReactiveVar: false,
+    s: false,
     UserAccounts: false,
     UALog: false
 */
@@ -15,6 +16,24 @@ UALog.trace('Loading client.js');
 _.extend(UserAccounts, {
 
   /**
+   * Allowed Internal (client-side) States
+   */
+  _states: [
+    'signIn', // Sign In
+    'signUp', // Sign Up
+  ],
+
+  /**
+   *
+   */
+  currentFramework: 'none',
+
+  /**
+   * Default initial state
+   */
+  defaultState: 'signIn',
+
+  /**
    *
    */
   frameworks: [],
@@ -27,25 +46,7 @@ _.extend(UserAccounts, {
   /**
    *
    */
-  currentFramework: 'none',
-
-  /**
-   *
-   */
   tmplInstances: [],
-
-  /**
-   * Default initial state
-   */
-  defaultState: 'signIn',
-
-  /**
-   * Allowed Internal (client-side) States
-   */
-  STATES: [
-    'signIn', // Sign In
-    'signUp', // Sign Up
-  ],
 
   /**
    * applySkin - Apply skin to modules
@@ -54,13 +55,9 @@ _.extend(UserAccounts, {
    * @param  {object} skin      description
    */
   applySkin: function applySkin(framework, skin) {
-    // console.log('Applying skin for framework ' + framework);
     _.each(skin, function skn(elements, moduleName) {
       var module;
       var skinObj;
-
-      // console.log('Module: ' + moduleName);
-      // console.log('Module: ' + elements);
 
       // Pick up current module
       if (moduleName === 'uaForm') {
@@ -95,7 +92,7 @@ _.extend(UserAccounts, {
    *
    */
   init: function init() {
-    this.__startup();
+    this._startup();
     Template.registerHelper('uaT', UserAccounts.t);
     Template.registerHelper('UserAccounts', UserAccounts);
   },
@@ -114,7 +111,7 @@ _.extend(UserAccounts, {
 
     UALog.trace('UserAccounts.initFormTemplate');
 
-    if (!_.contains(self.STATES, defaultState)) {
+    if (!_.contains(self._states, defaultState)) {
       throw Error('Invalid inital state!');
     }
 
@@ -146,7 +143,16 @@ _.extend(UserAccounts, {
        * @return {bool}       description
        */
       _isValidState: function _isValidState(value) {
-        return _.contains(self.STATES, value);
+        return _.contains(self._states, value);
+      },
+
+      /**
+       * getState - Getter for current state
+       *
+       * @return {string}  description
+       */
+      getState: function getState() {
+        return this.state.get();
       },
 
       /**
@@ -168,12 +174,14 @@ _.extend(UserAccounts, {
       },
 
       /**
-       * getState - Getter for current state
+       * setLoading - Setter for loading state
        *
-       * @return {string}  description
+       * @param  {bool} value description
+       * @return {bool}       description
        */
-      getState: function getState() {
-        return this.state.get();
+      setLoading: function setLoading(value) {
+        check(value, Boolean);
+        return this.loading.set(value);
       },
 
       /**
@@ -183,17 +191,8 @@ _.extend(UserAccounts, {
        * @return {bool}       description
        */
       setDisabled: function setDisabled(value) {
+        check(value, Boolean);
         return this.disabled.set(value);
-      },
-
-      /**
-       * setLoading - Setter for loading state
-       *
-       * @param  {bool} value description
-       * @return {bool}       description
-       */
-      setLoading: function setLoading(value) {
-        return this.loading.set(value);
       },
 
       /**
@@ -236,7 +235,7 @@ _.extend(UserAccounts, {
    * @throws {Error} Will throw an error in case of invalid initial state.
    */
   setInitialState: function setInitialState(state) {
-    if (!_.contains(this.STATES, state)) {
+    if (!_.contains(this._states, state)) {
       throw Error('Invalid inital state!');
     }
     UserAccounts.defaultState = state;
@@ -248,13 +247,34 @@ _.extend(UserAccounts, {
    * @return {string}  description
    */
   t: function t() {
-    // console.log('t');
-    var __slice = [].slice;
-    var key = arguments.length >= 1 ? arguments[0] : undefined;
-    var args = arguments.length >= 2 ? __slice.call(arguments, 1) : [];
-    // console.log('key: ' + key);
-    // console.log('args: ' + args);
+    var key;
+    var text;
 
-    return UserAccounts.texts[key] || key;
+    UALog.trace('UserAccounts.t');
+
+    // Check there is at least one parameter
+    // NOTE: you always get one more parameter which is an instance of
+    //       Spacebars.kw providing access to keyword arguments,
+    //       so we need to check the expected length plus one...
+    if (arguments.length < 2) {
+      return '';
+    }
+
+    // Retrieve the requested key
+    key = arguments[0];
+    // Retrieve the text currently associated with the requested key
+    text = UserAccounts.texts[key] || key;
+
+    // In case we get more that one argument we expext the key
+    // to have placeholders to be substituded with the arguments
+    // following the first one...
+    if (arguments.length >= 3) {
+      // Put the retrieved text back in first position
+      arguments[0] = text;
+      // Actually substitute placeholders
+      text = s.sprintf.apply(s, arguments);
+    }
+
+    return text;
   },
 });
