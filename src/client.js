@@ -76,7 +76,6 @@ _.extend(UserAccounts, {
    */
   init: function init() {
     this._startup();
-    Template.registerHelper('uaT', UserAccounts.t);
     Template.registerHelper('UserAccounts', UserAccounts);
   },
 
