@@ -33,7 +33,7 @@ setLogLevel = function _setLogLevel(logger) {
     // Look for UA log level settings inside Meteor.settings
     settings = Meteor.settings && Meteor.settings.UserAccounts;
     if (name) {
-      settings = settings && settings[name];
+      settings = settings && settings[name] || settings;
     }
     logLevel = settings && settings.logLevel || logLevel;
 
@@ -41,7 +41,7 @@ setLogLevel = function _setLogLevel(logger) {
     settings = Meteor.settings && Meteor.settings.public;
     settings = settings && settings.UserAccounts;
     if (name) {
-      settings = settings && settings[name];
+      settings = settings && settings[name] || settings;
     }
     logLevel = settings && settings.logLevel || logLevel;
 
