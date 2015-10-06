@@ -54,37 +54,20 @@ _.extend(UserAccounts, {
    * @param  {string} framework description
    * @param  {object} skin      description
    */
-  applySkin: function applySkin(framework, skin) {
+  applySkin: function _applySkin(framework, skin) {
+    var self = this;
+
     _.each(skin, function skn(elements, moduleName) {
-      var module;
-      var skinObj;
-
-      // Pick up current module
-      if (moduleName === 'uaForm') {
-        module = UserAccounts;
-      } else {
-        module = UserAccounts._modules[moduleName];
-      }
-
-      // In case the module exists
+      var module = moduleName === 'uaForm' ? self : self._modules[moduleName];
       if (module) {
-        // Possibly initialize the object for the current framework
-        if (!module.skins[framework]) {
-          module.skins[framework] = {};
-        }
-
-        // Applies module's elements
-        skinObj = module.skins[framework];
-        _.extend(skinObj, elements);
-        /*
-        _.each(elements, function (value, element){
-          skinObj[element] = value;
-        });
-        */
+        module.skins[framework] = _.extend(
+          module.skins[framework] || {},
+          elements
+        );
       }
     });
-    this.frameworks.push(framework);
-    this.currentFramework = framework;
+    self.frameworks.push(framework);
+    self.currentFramework = framework;
   },
 
   /**
