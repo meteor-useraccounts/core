@@ -1,5 +1,15 @@
 ## Master
 
+## v1.12.4
+
+* fixed query parameters look-up for `useraccounts:iron-routing`
+* updated `useraccounts:polymer` to use Polimer 1.0 (see updated [boilerplate](https://github.com/meteor-useraccounts/boilerplates/tree/master/polymer) with some instructions for Meteor 1.2)
+* updates and fixes for `useraccounts:flow-rounting` (see https://github.com/meteor-useraccounts/flow-routing/issues/12)
+* improoved css for `useraccounts:semantic-ui`
+* disallowed use of `signUp` state in case `forbidClientAccountCreation` is set (see #547)
+* updated dependency on softwarerero:accounts-t9n to version 1.1.5
+* a bit of linting here and there...
+* a few typos correction and improvements to the [Guide](https://github.com/meteor-useraccounts/core/blob/master/Guide.md)
 
 ## v1.12.3
 
