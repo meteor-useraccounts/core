@@ -7,7 +7,7 @@
 * updates and fixes for `useraccounts:flow-rounting` (see https://github.com/meteor-useraccounts/flow-routing/issues/12)
 * improoved css for `useraccounts:semantic-ui`
 * disallowed use of `signUp` state in case `forbidClientAccountCreation` is set (see #547)
-* updated dependency on softwarerero:accounts-t9n to version 1.1.5
+* updated dependency on softwarerero:accounts-t9n to version 1.1.4
 * a bit of linting here and there...
 * a few typos correction and improvements to the [Guide](https://github.com/meteor-useraccounts/core/blob/master/Guide.md)
 
