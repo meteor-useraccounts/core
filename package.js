@@ -2,7 +2,7 @@
 
 Package.describe({
   summary: 'Meteor sign up and sign in templates core package.',
-  version: '1.12.3',
+  version: '1.12.4',
   name: 'useraccounts:core',
   git: 'https://github.com/meteor-useraccounts/core.git',
 });
@@ -78,7 +78,7 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use('useraccounts:core@1.12.3');
+  api.use('useraccounts:core@1.12.4');
 
   api.use([
     'accounts-password',
