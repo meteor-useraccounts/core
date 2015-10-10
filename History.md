@@ -2,6 +2,7 @@
 
 ## v1.12.4
 
+* fixed input element classes for `useraccounts:materialize` (see https://github.com/meteor-useraccounts/materialize/pull/18)
 * fixed query parameters look-up for `useraccounts:iron-routing`
 * updated `useraccounts:polymer` to use Polimer 1.0 (see updated [boilerplate](https://github.com/meteor-useraccounts/boilerplates/tree/master/polymer) with some instructions for Meteor 1.2)
 * updates and fixes for `useraccounts:flow-rounting` (see https://github.com/meteor-useraccounts/flow-routing/issues/12)
