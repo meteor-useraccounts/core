@@ -24,5 +24,4 @@ test:
     # Run tests in Velocity CI Mode
     - meteor test-packages --driver-package velocity:html-reporter ./:
         environment:
-          VELOCITY_CI: true
           VELOCITY_TEST_PACKAGES: 1
