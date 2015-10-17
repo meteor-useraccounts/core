@@ -1,0 +1,29 @@
+dependencies:
+  cache_directories:
+    - "~/.meteor"
+    - "~/.npm"
+
+  override:
+    # Restore the meteor symlink
+    - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
+    # Install Meteor if the cache didn't restore it
+    - if [ ! -e ~/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+
+    # Install  package dependencies for Cucumber support files
+    # - npm install --production:
+    #     pwd:
+    #       tests/cucumber
+
+test:
+  override:
+    # Run unit and integration tests in Velocity CI Mode
+    - meteor test-packages --driver-package velocity:html-reporter --velocity --release velocity:METEOR@1.1.0.3_1 ./:
+        environment:
+          VELOCITY_CI: true
+          VELOCITY_TEST_PACKAGES: 1
+
+    # Run end-to-end tests in Velocity CI Mode
+    # - meteor --test:
+    #     environment:
+    #       VELOCITY_CI: true
+    #       CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/results.cucumber"
