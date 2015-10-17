@@ -17,8 +17,12 @@ dependencies:
 test:
   override:
     # Run tests in Velocity CI Mode
-    - meteor --test:
+    # - meteor --test:
+    #     environment:
+    #       VELOCITY_CI: true
+    #       CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/results.cucumber"
+    # Run tests in Velocity CI Mode
+    - meteor test-packages --driver-package velocity:html-reporter ./:
         environment:
           VELOCITY_CI: true
-          CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/results.cucumber"
-    - cp .meteor/local/log/*.log $CIRCLE_ARTIFACTS
+					VELOCITY_TEST_PACKAGES=1
