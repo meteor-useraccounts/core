@@ -10,18 +10,20 @@ dependencies:
     - if [ ! -e ~/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
 
     # Install  package dependencies for Cucumber support files
-    - npm install --production:
-        pwd:
-          tests/cucumber
+    # - npm install --production:
+    #     pwd:
+    #       tests/cucumber
 
 test:
   override:
-    # Run tests in Velocity CI Mode
+    # Run unit and integration tests in Velocity CI Mode
+    - meteor test-packages --driver-package velocity:html-reporter --velocity --release velocity:METEOR@1.1.0.3_1 ./:
+        environment:
+          VELOCITY_CI: true
+          VELOCITY_TEST_PACKAGES: 1
+
+    # Run end-to-end tests in Velocity CI Mode
     # - meteor --test:
     #     environment:
     #       VELOCITY_CI: true
     #       CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/results.cucumber"
-    # Run tests in Velocity CI Mode
-    - meteor test-packages --driver-package velocity:html-reporter ./:
-        environment:
-          VELOCITY_TEST_PACKAGES: 1
