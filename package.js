@@ -71,6 +71,7 @@ Package.onUse(function pkgOnUse(api) {
 Package.onTest(function pkgOnTest(api) {
   api.use([
     'sanjo:jasmine@0.16.4',
+    'underscore',
     'useraccounts:core',
   ], Both);
 
