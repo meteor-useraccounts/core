@@ -36,7 +36,6 @@ Template.uaForm.helpers({
     const data = this.data;
     const framework = data && data.framework || UserAccounts.currentFramework;
     const modules = _.map(UserAccounts.modules(), function m(mod) {
-      // return _.extend({instance: tmplInstance}, mod);
       return {
         module: mod,
         instance: tmplInstance,
@@ -44,7 +43,6 @@ Template.uaForm.helpers({
       };
     });
 
-    // console.dir(modules);
     return modules;
   },
 
