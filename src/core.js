@@ -25,7 +25,7 @@ UserAccounts = {
   /**
    *
    */
-  _startupHooks: [],
+  _knownErrors: {},
 
   /**
    *
@@ -35,7 +35,17 @@ UserAccounts = {
   /**
    *
    */
+  _notifyCallbacks: [],
+
+  /**
+   *
+   */
   _plugins: {},
+
+  /**
+   *
+   */
+  _startupHooks: [],
 
   /**
    *
@@ -98,6 +108,24 @@ UserAccounts = {
   },
 
   /**
+   * getErrorCode - description
+   *
+   * @return {type}  description
+   */
+  getErrorCode: function getErrorCode(err) {
+    var self = this;
+    var errCode;
+    var reason;
+
+    UALog.trace('UserAccounts.notifyError');
+
+    reason = err.reason || err.message;
+    errCode = self._knownErrors[reason] || reason;
+
+    return errCode;
+  },
+
+  /**
    * init - description
    *
    * @return {type}  description
@@ -117,6 +145,24 @@ UserAccounts = {
     UALog.trace('UserAccounts.modules');
 
     return _.sortBy(_.values(self._modules), 'position');
+  },
+
+  /**
+   * notify - description
+   *
+   * @param  {type} msg          description
+   * @param  {type} type         description
+   * @param  {type} tmplInstance description
+   * @return {type}              description
+   */
+  notify: function notify(msg, type, tmplInstance) {
+    var self = this;
+
+    UALog.trace('UserAccounts.notify');
+
+    _.each(self._notifyCallbacks, function n(cb) {
+      cb(msg, type, tmplInstance);
+    });
   },
 
   /**
@@ -145,6 +191,21 @@ UserAccounts = {
     if (module.init) {
       module.init(this);
     }
+  },
+
+  /**
+   * registerNotifyCB - description
+   *
+   * @param  {type} cb description
+   * @return {type}    description
+   */
+  registerNotifyCB: function registerNotifyCB(cb) {
+    var self = this;
+
+    UALog.trace('UserAccounts.registerNotifyCB');
+
+    check(cb, Function);
+    self._notifyCallbacks.push(cb);
   },
 
   /**
