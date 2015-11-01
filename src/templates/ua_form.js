@@ -48,7 +48,7 @@ Template.uaForm.helpers({
 
 
   /**
-   * skinClasses - description
+   * skinAttrs - description
    *
    * @param  {type} element description
    * @return {type}         description
@@ -57,7 +57,7 @@ Template.uaForm.helpers({
     var framework = Template.instance().framework;
     var classes;
 
-    UALog.trace('template uaForm: skinClasses - ' + element);
+    UALog.trace('template uaForm: skinAttrs - ' + element);
 
     if (_.has(UserAccounts.skins, framework)) {
       classes = UserAccounts.skins[framework][element];

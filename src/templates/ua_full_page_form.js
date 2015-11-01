@@ -8,13 +8,13 @@
 
 Template.uaFullPageForm.helpers({
   /**
-   * skinClasses - description
+   * skinAttrs - description
    *
    * @param  {type} element description
    * @return {type}         description
    */
   skinAttrs(element) {
-    UALog.trace('template uaFullPageForm: skinClasses - ' + element);
+    UALog.trace('template uaFullPageForm: skinAttrs - ' + element);
 
     const framework = UserAccounts.currentFramework;
     let classes;
@@ -24,7 +24,7 @@ Template.uaFullPageForm.helpers({
       if (_.isFunction(classes)) {
         classes = classes();
       }
-      console.dir(classes);
+
       return classes;
     }
   },
