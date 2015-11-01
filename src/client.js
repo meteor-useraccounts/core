@@ -54,7 +54,7 @@ _.extend(UserAccounts, {
    * @param  {string} framework description
    * @param  {object} skin      description
    */
-  applySkin: function _applySkin(framework, skin) {
+  applySkin(framework, skin) {
     var self = this;
 
     _.each(skin, function skn(elements, moduleName) {
@@ -74,7 +74,7 @@ _.extend(UserAccounts, {
    * init - description
    *
    */
-  init: function init() {
+  init() {
     this._startup();
     Template.registerHelper('UserAccounts', UserAccounts);
   },
@@ -84,7 +84,7 @@ _.extend(UserAccounts, {
    *
    * @param  {type} uaForm description
    */
-  initFormTemplate: function initFormTemplate(uaForm) {
+  initFormTemplate(uaForm) {
     var self = this;
     var data = uaForm.data;
     var objs = _.union(_.values(self._modules), _.values(self._plugins));
@@ -106,7 +106,7 @@ _.extend(UserAccounts, {
       /**
        *
        */
-      framework: framework,
+      framework,
 
       /**
        *
@@ -124,7 +124,7 @@ _.extend(UserAccounts, {
        * @param  {string} value description
        * @return {bool}       description
        */
-      _isValidState: function _isValidState(value) {
+      _isValidState(value) {
         return _.contains(self._states, value);
       },
 
@@ -133,7 +133,7 @@ _.extend(UserAccounts, {
        *
        * @return {string}  description
        */
-      getState: function getState() {
+      getState() {
         return this.state.get();
       },
 
@@ -142,7 +142,7 @@ _.extend(UserAccounts, {
        *
        * @return {bool}  description
        */
-      isDisabled: function isDisabled() {
+      isDisabled() {
         return this.disabled.get();
       },
 
@@ -151,7 +151,7 @@ _.extend(UserAccounts, {
        *
        * @return {bool}  description
        */
-      isLoading: function isLoading() {
+      isLoading() {
         return this.loading.get();
       },
 
@@ -161,7 +161,7 @@ _.extend(UserAccounts, {
        * @param  {bool} value description
        * @return {bool}       description
        */
-      setLoading: function setLoading(value) {
+      setLoading(value) {
         check(value, Boolean);
         return this.loading.set(value);
       },
@@ -172,7 +172,7 @@ _.extend(UserAccounts, {
        * @param  {bool} value description
        * @return {bool}       description
        */
-      setDisabled: function setDisabled(value) {
+      setDisabled(value) {
         check(value, Boolean);
         return this.disabled.set(value);
       },
@@ -184,7 +184,7 @@ _.extend(UserAccounts, {
        * @param  {function} callback description
        * @throws {Error} Will throw an error in case of invalid state.
        */
-      setState: function setState(state, callback) {
+      setState(state, callback) {
         check(state, String);
         check(callback, Match.Optional(Function)); //eslint-disable-line
         if (!this._isValidState(state)) {
@@ -216,7 +216,7 @@ _.extend(UserAccounts, {
    * @param  {string} state description
    * @throws {Error} Will throw an error in case of invalid initial state.
    */
-  setInitialState: function setInitialState(state) {
+  setInitialState(state) {
     if (!_.contains(this._states, state)) {
       throw Error('Invalid inital state!');
     }
@@ -228,7 +228,7 @@ _.extend(UserAccounts, {
    *
    * @return {string}  description
    */
-  t: function t() {
+  t() {
     var key;
     var text;
 

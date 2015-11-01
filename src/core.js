@@ -11,7 +11,7 @@
 // ------------------------------------------
 //  Logs the start of execution for this file
 // ------------------------------------------
-UALog.trace('Loading main.js');
+UALog.trace('Loading core.js');
 
 
 // ------------------------
@@ -56,40 +56,39 @@ UserAccounts = {
    * _startup - description
    *
    */
-  _startup: function _startup() {
-    var self = this;
-    var hook;
-
+  _startup() {
     UALog.trace('UserAccounts._startup');
 
     // run the startup hooks. other calls to startup() during this can still
     // add hooks to the end.
-    while (self._startupHooks.length) {
-      hook = self._startupHooks.shift();
-      hook.call(self);
+    while (this._startupHooks.length) {
+      const hook = this._startupHooks.shift();
+      hook.call(this);
     }
     // Setting this to null tells Meteor.startup to call hooks immediately.
-    self._startupHooks = null;
+    this._startupHooks = null;
   },
 
   /**
    * configure - description
    *
-   * @param  {type} globalOptions description
+   * @param  {Object} globalOptions description
    * @throws {Error} Will throw an error in case globalOptions contains invalid
    *     options or sub-objects referencing unexisting modules/plugins.
    */
-  configure: function configure(globalOptions) {
-    var self = this;
-    var objs = _.union(_.values(self._modules), _.values(self._plugins));
-    var coreOptions;
-
+  configure(globalOptions) {
     UALog.trace('UserAccounts.configure');
+
+    check(globalOptions, Match.Object);
+
+    const objs = _.union(_.values(this._modules), _.values(this._plugins));
+    let coreOptions;
+
 
     // Ask each module and each plugin to consume its own configuration options
     coreOptions = _.reduce(objs, function moduleOpts(options, obj) {
-      var objName = obj._id;
-      var objOptions = options[objName];
+      const objName = obj._id;
+      const objOptions = options[objName];
 
       if (objOptions) {
         if (obj.configure) {
@@ -110,17 +109,16 @@ UserAccounts = {
   /**
    * getErrorCode - description
    *
-   * @return {type}  description
+   * @param  {type} err description
+   * @return {type}     description
    */
-  getErrorCode: function getErrorCode(err) {
-    var self = this;
-    var errCode;
-    var reason;
-
+  getErrorCode(err) {
     UALog.trace('UserAccounts.notifyError');
 
-    reason = err.reason || err.message;
-    errCode = self._knownErrors[reason] || reason;
+    check(err, Match.oneOf(Error, Meteor.Error));
+
+    const reason = err.reason || err.message;
+    const errCode = this._knownErrors[reason] || reason;
 
     return errCode;
   },
@@ -128,39 +126,39 @@ UserAccounts = {
   /**
    * init - description
    *
-   * @return {type}  description
    */
-  init: function init() {
+  init() {
+    UALog.trace('UserAccounts.init');
+
     this._startup();
   },
 
   /**
    * modules - description
    *
-   * @return {array}  description
+   * @return {Array}  description
    */
-  modules: function modules() {
-    var self = this;
-
+  modules() {
     UALog.trace('UserAccounts.modules');
 
-    return _.sortBy(_.values(self._modules), 'position');
+    return _.sortBy(_.values(this._modules), 'position');
   },
 
   /**
    * notify - description
    *
-   * @param  {type} msg          description
-   * @param  {type} type         description
-   * @param  {type} tmplInstance description
-   * @return {type}              description
+   * @param  {String} msg          description
+   * @param  {String} type         description
+   * @param  {Object} tmplInstance description
    */
-  notify: function notify(msg, type, tmplInstance) {
-    var self = this;
-
+  notify(msg, type, tmplInstance) {
     UALog.trace('UserAccounts.notify');
 
-    _.each(self._notifyCallbacks, function n(cb) {
+    check(msg, String);
+    check(type, String);
+    check(tmplInstance, Match.Object);
+
+    self._notifyCallbacks.forEach(function n(cb) {
       cb(msg, type, tmplInstance);
     });
   },
@@ -172,14 +170,12 @@ UserAccounts = {
    * @throws {Error} Will throw an error in case a module with the same name
    *     already exists.
    */
-  registerModule: function registerModule(module) {
-    var moduleName;
-
+  registerModule(module) {
     UALog.trace('UserAccounts.registerModule');
 
     check(module, UAModule);
 
-    moduleName = module._id;
+    const moduleName = module._id;
 
     if (this._modules[moduleName] || this[moduleName]) {
       throw new Error('A module called ' + moduleName + ' is already in use!');
@@ -196,16 +192,14 @@ UserAccounts = {
   /**
    * registerNotifyCB - description
    *
-   * @param  {type} cb description
-   * @return {type}    description
+   * @param  {Function} cb description
    */
-  registerNotifyCB: function registerNotifyCB(cb) {
-    var self = this;
-
+  registerNotifyCB(cb) {
     UALog.trace('UserAccounts.registerNotifyCB');
 
     check(cb, Function);
-    self._notifyCallbacks.push(cb);
+
+    this._notifyCallbacks.push(cb);
   },
 
   /**
@@ -215,12 +209,12 @@ UserAccounts = {
    * @throws {Error} Will throw an error in case a plugin with the same name
    *     already exists.
    */
-  registerPlugin: function registerPlugin(plugin) {
-    var pluginName = plugin._id;
-
+  registerPlugin(plugin) {
     UALog.trace('UserAccounts.registerPlugin');
 
     check(plugin, UAPlugin);
+
+    const pluginName = plugin._id;
 
     if (this._plugins[pluginName] || this[pluginName]) {
       throw new Error('A plugin called ' + pluginName + ' is already in use!');
@@ -241,9 +235,7 @@ UserAccounts = {
    * @throws {Error} Will throw an error in case no module called *moduleName*
    *     exists.
    */
-  removeModule: function removeModule(moduleName) {
-    var module;
-
+  removeModule(moduleName) {
     UALog.trace('UserAccounts.removeModule');
 
     check(moduleName, String);
@@ -252,13 +244,15 @@ UserAccounts = {
       throw new Error('Module ' + moduleName + ' not in use!');
     }
 
-    module = this._modules[moduleName];
+    const module = this._modules[moduleName];
     delete this._modules[moduleName];
     delete this[moduleName];
 
     if (module.uninit) {
       module.uninit(this);
     }
+
+    return module;
   },
 
   /**
@@ -268,9 +262,7 @@ UserAccounts = {
    * @throws {Error} Will throw an error in case no plugin called *pluginName*
    *     exists.
    */
-  removePlugin: function removePlugin(pluginName) {
-    var plugin;
-
+  removePlugin(pluginName) {
     UALog.trace('UserAccounts.removePlugin');
 
     check(pluginName, String);
@@ -279,34 +271,34 @@ UserAccounts = {
       throw new Error('Plugin ' + pluginName + ' not in use!');
     }
 
-    plugin = this._plugins[pluginName];
+    const plugin = this._plugins[pluginName];
     delete this._plugins[pluginName];
     delete this[pluginName];
 
     if (plugin.uninit) {
       plugin.uninit(this);
     }
+
+    return plugin;
   },
 
   /**
    *
    */
-  setLogLevel: setLogLevel,
+  setLogLevel,
 
   /**
    * startup - description
    *
    * @param  {type} callback description
    */
-  startup: function startup(callback) {
-    var self = this;
-
+  startup(callback) {
     UALog.trace('UserAccounts.startup');
 
     check(callback, Function);
 
-    if (self._startupHooks) {
-      self._startupHooks.push(callback);
+    if (this._startupHooks) {
+      this._startupHooks.push(callback);
     } else {
       // We already started up. Just call it now.
       callback();

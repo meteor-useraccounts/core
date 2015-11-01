@@ -11,15 +11,13 @@
  * @return {type}  description
  */
 Template.uaForm.onCreated(function onCreated() {
-  var self = this;
-
-  UALog.trace('uaForm created');
+  UALog.trace('uaForm.onCreated');
 
   // Initializes the ua object
-  UserAccounts.initFormTemplate(self);
+  UserAccounts.initFormTemplate(this);
 
   // register this template within UserAccounts
-  UserAccounts.tmplInstances.push(self);
+  UserAccounts.tmplInstances.push(this);
 });
 
 
@@ -30,12 +28,13 @@ Template.uaForm.helpers({
    *
    * @return {type}  description
    */
-  modules: function mods() {
-    var self = this;
-    var tmplInstance = Template.instance();
-    var data = self.data;
-    var framework = data && data.framework || UserAccounts.currentFramework;
-    var modules = _.map(UserAccounts.modules(), function m(mod) {
+  modules() {
+    UALog.trace('uaForm.modules');
+
+    const tmplInstance = Template.instance();
+    const data = this.data;
+    const framework = data && data.framework || UserAccounts.currentFramework;
+    const modules = _.map(UserAccounts.modules(), function m(mod) {
       // return _.extend({instance: tmplInstance}, mod);
       return {
         module: mod,
@@ -55,7 +54,7 @@ Template.uaForm.helpers({
    * @param  {type} element description
    * @return {type}         description
    */
-  skinClasses: function skinClasses(element) {
+  skinClasses(element) {
     var framework = Template.instance().framework;
     var classes;
 

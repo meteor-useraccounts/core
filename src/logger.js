@@ -14,13 +14,13 @@
  *     with 'useraccounts'.
  */
 setLogLevel = function _setLogLevel(logger) {
-  var logLevel = 'error';
-  var name;
-  var settings;
-
   UALog.trace('UserAccounts.setLogLevel');
 
   check(logger, Logger);
+
+  let logLevel = 'error';
+  let name;
+  let settings;
 
   // Try to split name in two parts since name is usually in the form
   // *root:leaf* or simply *root*.

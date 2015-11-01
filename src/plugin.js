@@ -19,13 +19,15 @@ UALog.trace('Loading plugin.js');
  *
  * @return {type}  description
  */
-UAPlugin = function _UAPlugin() {};
+UAPlugin = class UAPlugin {
+  constructor(pluginId) {
+    UALog.trace('UAPlugin.constructor');
 
-_.extend(UAPlugin.prototype, {
+    check(pluginId, String);
 
-  /**
-   *
-   */
-  _id: 'UAPlugin',
-
-});
+    /**
+     *
+     */
+    this._id = pluginId;
+  }
+};
