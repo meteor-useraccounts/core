@@ -23,6 +23,7 @@ Package.onUse(function pkgOnUse(api) {
 
   api.use([
     'check',
+    'ecmascript',
     'jag:pince@0.0.9',
     'underscore',
     'underscorestring:underscore.string@3.2.2',

@@ -21,39 +21,53 @@ UALog.trace('Loading module.js');
  *
  * @return {type}  description
  */
-UAModule = function _UAModule() {};
+UAModule = class UAModule {
 
-_.extend(UAModule.prototype, {
+  constructor({ moduleId, position, template, templateClass }) {
+    check(moduleId, String);
+    check(position, Match.Integer);
+    check(template, String);
+    check(templateClass, String);
 
-  /**
-   *
-   */
-  _id: 'UAModule',
+    /**
+     *
+     */
+    this._id = moduleId;
 
-  /**
-   *
-   */
-  skins: {},
+    /**
+     *
+     */
+    this.position = position;
+    /**
+     *
+     */
+    this.skins = {};
 
-  /**
-   *
-   */
-  template: null,
+    /**
+     *
+     */
+    this.template = template;
 
-  /**
-   *
-   */
-  texts: {},
+    /**
+     *
+     */
+    this.templateClass = templateClass;
 
-  /**
-   *
-   */
-  textTransforms: {},
+    /**
+     *
+     */
+    this.texts = {};
 
-  /**
-   *
-   */
-  visible: true,
+    /**
+     *
+     */
+    this.textTransforms = {};
+
+    /**
+     *
+     */
+    this.visible = true;
+  }
 
   /**
    * getTextTransform - description
@@ -61,13 +75,13 @@ _.extend(UAModule.prototype, {
    * @param  {type} key description
    * @return {type}     description
    */
-  _getTextTransform: function _getTextTransform(key) {
-    var self = this;
+  _getTextTransform(key) {
+    let self = this;
 
     UALog.trace('UAModule._getTextTransform (' + self._id + ')');
 
     return self.textTransforms[key] || self.textTransforms.default;
-  },
+  }
 
   /**
    * getText - description
@@ -75,16 +89,17 @@ _.extend(UAModule.prototype, {
    * @param  {type} key description
    * @return {type}     description
    */
-  getText: function getText() {
-    var self = this;
-    var uaTmpl = Template.currentData().instance;
-    var state = uaTmpl.getState();
-    var texts = self.texts[state] || self.texts.default;
-    var text;
-    var transform;
-    var element;
-    var key;
-    var options;
+  getText() {
+    const self = this;
+    const uaTmpl = Template.currentData().instance;
+    const state = uaTmpl.getState();
+    const texts = self.texts[state] || self.texts.default;
+
+    let text;
+    let transform;
+    let element;
+    let key;
+    let options;
 
     UALog.trace('UAModule.getText (' + self._id + ')');
 
@@ -109,7 +124,7 @@ _.extend(UAModule.prototype, {
     options[0] = key;
 
     // Retrieve the text associated with the key
-    text = UserAccounts.t.apply(UserAccounts, options);
+    text = UserAccounts.t(...options);
 
     // Retrieve the transform for the requested element
     transform = self._getTextTransform(element);
@@ -119,7 +134,7 @@ _.extend(UAModule.prototype, {
     }
 
     return text;
-  },
+  }
 
   /**
    * skinClasses - description
@@ -127,10 +142,11 @@ _.extend(UAModule.prototype, {
    * @param  {type} element description
    * @return {type}         description
    */
-  skinClasses: function skinClasses(element) {
-    var self = this;
-    var classes;
-    var framework = Template.currentData().instance.framework;
+  skinClasses(element) {
+    const self = this;
+    const framework = Template.currentData().instance.framework;
+
+    let classes;
 
     UALog.trace('UAModule.skinClasses (' + self._id + ')');
 
@@ -143,5 +159,5 @@ _.extend(UAModule.prototype, {
     }
 
     return '';
-  },
-});
+  }
+};
