@@ -80,6 +80,12 @@ Package.onTest(function pkgOnTest(api) {
     'tests/jasmine/both/unit/useraccounts.js',
   ], Both);
 
+
+  api.use([
+    'jquery',
+    'templating',
+  ], Client);
+
   api.addFiles([
     'tests/jasmine/client/integration/templates.js',
   ], Client);

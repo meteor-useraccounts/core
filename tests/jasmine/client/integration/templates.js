@@ -4,7 +4,8 @@
   Blaze: false,
   describe: false,
   expect: false,
-  it: false
+  it: false,
+  Template: false
 */
 'use strict';
 

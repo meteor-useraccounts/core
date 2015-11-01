@@ -19,10 +19,20 @@
 describe('UserAccounts', function() {
   var fakeModule = {};
   var fakePlugin = {};
-  var mA = new UAModule();
-  var mB = new UAModule();
-  var pA = new UAPlugin();
-  var pB = new UAPlugin();
+  var mA = new UAModule({
+    moduleId: 'mA',
+    position: 0,
+    template: 'template',
+    templateClass: 'mA',
+  });
+  var mB = new UAModule({
+    moduleId: 'mB',
+    position: 0,
+    template: 'template',
+    templateClass: 'mB',
+  });
+  var pA = new UAPlugin('pA');
+  var pB = new UAPlugin('pB');
 
   function removeModules() {
     _.each(UserAccounts._modules, function(module) {
@@ -40,18 +50,12 @@ describe('UserAccounts', function() {
     });
   }
 
-  mA._id = 'mA';
   mA.configure = function() {};
   mA.init = function() {};
   mA.uninit = function() {};
 
-  mB._id = 'mB';
-
-  pA._id = 'pA';
   pA.init = function() {};
   pA.uninit = function() {};
-
-  pB._id = 'pB';
 
   describe('configure', function() {
     beforeEach(function() {
