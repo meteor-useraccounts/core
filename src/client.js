@@ -234,14 +234,6 @@ _.extend(UserAccounts, {
 
     UALog.trace('UserAccounts.t');
 
-    // Check there is at least one parameter
-    // NOTE: you always get one more parameter which is an instance of
-    //       Spacebars.kw providing access to keyword arguments,
-    //       so we need to check the expected length plus one...
-    if (arguments.length < 2) {
-      return '';
-    }
-
     // Retrieve the requested key
     key = arguments[0];
     // Retrieve the text currently associated with the requested key
