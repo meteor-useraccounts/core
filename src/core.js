@@ -1,4 +1,5 @@
 /* global
+  Match: false,
   setLogLevel: false,
   UALog: true,
   UAModule: false,
@@ -79,7 +80,7 @@ UserAccounts = {
   configure(globalOptions) {
     UALog.trace('UserAccounts.configure');
 
-    check(globalOptions, Match.Object);
+    check(globalOptions, Object);
 
     const objs = _.union(_.values(this._modules), _.values(this._plugins));
     let coreOptions;
@@ -156,7 +157,7 @@ UserAccounts = {
 
     check(msg, String);
     check(type, String);
-    check(tmplInstance, Match.Object);
+    check(tmplInstance, Object);
 
     self._notifyCallbacks.forEach(function n(cb) {
       cb(msg, type, tmplInstance);
