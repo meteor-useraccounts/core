@@ -17,7 +17,7 @@ dependencies:
 test:
   override:
     # Run unit and integration tests in Velocity CI Mode
-    - meteor test-packages --driver-package velocity:html-reporter@0.9.0-rc.4 --velocity --release velocity:METEOR@1.2-rc.15_2 ./
+    - meteor test-packages --driver-package velocity:html-reporter@0.9.0-rc.4 --velocity --release velocity:METEOR@1.2-rc.15_2 ./:
         environment:
           VELOCITY_CI: true
           VELOCITY_TEST_PACKAGES: true
