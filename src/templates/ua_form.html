@@ -1,9 +1,11 @@
 <template name="uaForm">
-  <div class="{{skinClasses 'container'}} ua-form">
-    {{#each modules}}
-      {{#if module.visible}}
-        {{> Template.dynamic template=module.template}}
-      {{/if}}
-    {{/each}}
+  <div class="ua-form">
+    <div {{skinAttrs 'container'}}>
+      {{#each modules}}
+        {{#if module.visible}}
+          {{> Template.dynamic template=module.template}}
+        {{/if}}
+      {{/each}}
+    </div>
   </div>
 </template>

@@ -1,4 +1,5 @@
 /* global
+    Template: false,
     UserAccounts: false,
     UALog: false
 */
@@ -54,7 +55,7 @@ Template.uaForm.helpers({
    * @param  {type} element description
    * @return {type}         description
    */
-  skinClasses(element) {
+  skinAttrs(element) {
     var framework = Template.instance().framework;
     var classes;
 

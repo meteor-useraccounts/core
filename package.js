@@ -53,6 +53,7 @@ Package.onUse(function pkgOnUse(api) {
     'src/templates/ua_form.html',
     'src/templates/ua_form.js',
     'src/templates/ua_full_page_form.html',
+    'src/templates/ua_full_page_form.js',
   ], Client);
 
   // Client files

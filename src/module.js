@@ -142,13 +142,13 @@ UAModule = class UAModule {
    * @param  {type} element description
    * @return {type}         description
    */
-  skinClasses(element) {
+  skinAttrs(element) {
     const self = this;
     const framework = Template.currentData().instance.framework;
 
     let classes;
 
-    UALog.trace('UAModule.skinClasses (' + self._id + ')');
+    UALog.trace('UAmodule.skinAttrs (' + self._id + ')');
 
     if (_.has(self.skins, framework)) {
       classes = self.skins[framework][element];
