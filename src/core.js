@@ -29,6 +29,14 @@ UserAccounts = {
   _knownErrors: {},
 
   /**
+   *  References to currently registered modules are kept inside the _modules
+   *  object. This is going to be something like:
+   *
+   *    {
+   *      title: <instance of UATitleModule>,
+   *      oauth: <instance of UAOAuthModule>,
+   *      ...
+   *    }
    *
    */
   _modules: {},
@@ -39,7 +47,14 @@ UserAccounts = {
   _notifyCallbacks: [],
 
   /**
+   *  References to currently registered plugins are kept inside the _plugin
+   *  object. This is going to be something like:
    *
+   *    {
+   *      flowrouting: <instance of UAFlowRoutingPlugin>,
+   *      links: <instance of UALinksPlugin>,
+   *      ...
+   *    }
    */
   _plugins: {},
 
@@ -135,9 +150,10 @@ UserAccounts = {
   },
 
   /**
-   * modules - description
+   * modules - provides the list of currently registered module objects sorted
+   *           by increasing 'position' property.
    *
-   * @return {Array}  description
+   * @return {Array}  module objects sorted by position
    */
   modules() {
     UALog.trace('UserAccounts.modules');
@@ -165,9 +181,9 @@ UserAccounts = {
   },
 
   /**
-   * registerModule - description
+   * registerModule - Register a new module to be added to the uaForm template.
    *
-   * @param  {UAModule} module description
+   * @param  {UAModule} module instance of a subclass of UAModule
    * @throws {Error} Will throw an error in case a module with the same name
    *     already exists.
    */

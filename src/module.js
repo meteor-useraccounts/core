@@ -30,21 +30,27 @@ UAModule = class UAModule {
     check(templateClass, String);
 
     /**
-     *
+     *  Each module is uniquely identified by a string name stored into _id.
      */
     this._id = moduleId;
 
     /**
-     *
+     *  The order with which modules appear inside the uaForm template depends
+     *  on their 'position' property which is supposed to be an integer value
+     *  (grater than zero...).
      */
     this.position = position;
+
     /**
      *
      */
     this.skins = {};
 
     /**
-     *
+     *  Each module is rendered using a dynamic template specified with their
+     *  'template' property which is a string referring to the name of the
+     *  template to be used. Referred templates are usually to be provided with
+     *  no helpers nor event handlers.
      */
     this.template = template;
 
@@ -64,7 +70,10 @@ UAModule = class UAModule {
     this.textTransforms = {};
 
     /**
-     *
+     *  Whether a registered module is displayed within the uaForm template or
+     *  not depends on its 'visible' property. This can be set to both a static
+     *  value or a function querying, e.g., the current uaForm status to make
+     *  the module visible only for particular statuses.
      */
     this.visible = true;
   }
@@ -137,7 +146,7 @@ UAModule = class UAModule {
   }
 
   /**
-   * skinClasses - description
+   * skinAttrs - description
    *
    * @param  {type} element description
    * @return {type}         description
