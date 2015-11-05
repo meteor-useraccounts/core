@@ -1035,6 +1035,18 @@ With the [aldeed:template-extension](https://github.com/aldeed/meteor-template-e
 
 In case of input fields the option `template` (see [Form Fields Configuration](#form-fields-configuration)) can be directly used without the need to rely on `aldeed:template-extension` package.
 
+Here is a simple example of a template you can use for a field of type 'select':
+
+```html
+<template name="customSelectTemplate">
+  <select id="at-field-{{_id}}" name="at-field-{{_id}}" data-something="{{options.someOption}}">
+    {{#each select}}
+    <option value="{{value}}">{{text}}</option>
+    {{/each}}
+  </select>
+</template>
+```
+
 Custom properties that hold information about the look of the form may be attached to the `options` object of a field. It may then be used to change the output while looping the fields. Adding a divider might look like this:
 
 ```javascript
