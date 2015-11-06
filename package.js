@@ -20,7 +20,8 @@ Package.onUse(function(api) {
   api.use([
     'blaze',
     'reactive-dict',
-    'templating'
+    'templating',
+    'jquery'
   ], 'client');
 
   api.use([
