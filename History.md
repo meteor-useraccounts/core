@@ -1,5 +1,18 @@
 ## Master
 
+## v1.13.0
+
+* [mdl] *new* `useraccounts:mdl` package to get UI templates styled for [Material Design Lite](http://www.getmdl.io/) (kudos to @kctang and @liquidautumn, thank you guys!).
+* [flow-routing] added support for React-based layouts (merged https://github.com/meteor-useraccounts/flow-routing/pull/20 tnx @timothyarmes).
+* [materialize] fixed offset problem for fullPageAtForm on medium screens.
+* [materialize] fixed some margins (see https://github.com/meteor-useraccounts/materialize/issues/19).
+* [iron-routing] fixed a problem with route paths (merged https://github.com/meteor-useraccounts/iron-routing/pull/8 tnx @trave7er).
+* [core] updated dependency to softwarerero:accounts-t9n@1.1.7
+* [core] fixed a bug with reCaptcha (merged https://github.com/meteor-useraccounts/core/pull/565 tnx @scsirdx).
+* [core] added missing dependency on JQuery (merged https://github.com/meteor-useraccounts/core/pull/574 tnx @stubailo).
+* [core] added postSignUpHook hook to let people modify newly created user objects (merged https://github.com/meteor-useraccounts/core/pull/586 tnx @shwaydogg)
+* added [Meteor Icon](http://www.getmdl.io/) badges to all packages' README file.
+
 ## v1.12.4
 
 * fixed input element classes for `useraccounts:materialize` (see https://github.com/meteor-useraccounts/materialize/pull/18)
