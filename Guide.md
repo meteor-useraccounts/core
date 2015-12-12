@@ -250,7 +250,7 @@ Details for each of them follow.
 | defaultState                | String   | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
 | enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
 | enforceEmailVerification    | Boolean  | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
-| focusFirstInput             | Boolean  | true      | When set to true, asks to autofocus the first input of atForm when the template is rendered. |
+| focusFirstInput             | Boolean  | !Meteor.isCordova      | When set to true, asks to autofocus the first input of atForm when the template is rendered. Note: have a look at [this issue](https://github.com/meteor-useraccounts/core/issues/594) in case you're getting problems with cordova apps. |
 | forbidClientAccountCreation | Boolean  | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
 | overrideLoginErrors         | Boolean  | true      | Asks to show a general `Login Forbidden` on a login failure, without specifying whether it was for a wrong email or for a wrong password. |
 | sendVerificationEmail       | Boolean  | false     | Specifies whether to send the verification email after successful registration. |
@@ -445,7 +445,7 @@ Each option is described below:
 <a name="detect-reactively-when-a-form-is-being-processed"/>
 ### Detect reactively when a form is being processed
 
-`AccountsTemplates.disabled()` returns `true` when a submitted form is being processed and `false` once the submission process has been completed(successfully or not). `AccountsTemplate.disabled()` is reactive and can be used to trigger UI events, such as spinners, "Please wait" messages or to disable input elements, while the form is being processed. The function works irrespectively of form status (signIn, signUp, pwdReset etc.). A typical use-case would be in a template helper: 
+`AccountsTemplates.disabled()` returns `true` when a submitted form is being processed and `false` once the submission process has been completed (successfully or not). `AccountsTemplate.disabled()` is reactive and can be used to trigger UI events, such as spinners, "Please wait" messages or to disable input elements, while the form is being processed. The function works irrespectively of form status (signIn, signUp, pwdReset etc.). A typical use-case would be in a template helper:
 
 ```html
 <template name="myLogin">
