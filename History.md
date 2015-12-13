@@ -1,5 +1,12 @@
 ## Master
 
+## v1.13.1
+
+* added language support to recaptcha (fixed https://github.com/meteor-useraccounts/core/issues/561 tnx @canesin)
+* fixed validation trigger for select inputs (see discussion within https://github.com/meteor-useraccounts/core/issues/569 tnx @cunneen)
+* change default value for `focusFirstInput` to get it disabled when running on Cordova (see https://github.com/meteor-useraccounts/core/issues/594 tnx @derwaldgeist)
+* fixed regression about reCaptcha reset due to https://github.com/meteor-useraccounts/core/pull/565 (merged https://github.com/meteor-useraccounts/core/pull/597 tnx @jebh)
+
 ## v1.13.0
 
 * [mdl] *new* `useraccounts:mdl` package to get UI templates styled for [Material Design Lite](http://www.getmdl.io/) (kudos to @kctang and @liquidautumn, thank you guys!).
