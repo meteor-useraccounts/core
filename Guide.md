@@ -71,6 +71,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
 * [useraccounts:ratchet](https://atmospherejs.com/useraccounts/ratchet) styled for [Ratchet](http://goratchet.com/)
 * [useraccounts:semantic-ui](https://atmospherejs.com/useraccounts/semantic-ui) styled for [Semantic UI](http://semantic-ui.com)
 * [useraccounts:unstyled](https://atmospherejs.com/useraccounts/unstyled) with plain html and no CSS rules
+* [quave:useraccounts-framework7] (https://atmospherejs.com/quave/useraccounts-framework7) styled for [Framework7](http://www.idangero.us/framework7/)
 * plus others coming soon...
 
 
