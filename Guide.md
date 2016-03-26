@@ -511,7 +511,7 @@ AccountsTemplates.configure({
         termsAnd: "and",
         termsTerms: "terms",
     }
-};
+});
 ```
 
 the above example asks to change some of the available text configurations. You can specify only a subsets of them leaving default values unchanged.
