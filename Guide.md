@@ -248,7 +248,7 @@ Details for each of them follow.
 | **Behavior**               |          |           |             |
 | confirmPassword             | Boolean  | true      | Specifies whether to ask the password twice for confirmation. This has no effect on the sign in form. |
 | defaultState                | String   | "signIn"  | Specifies the state to be used initially when atForm is rendered. This is not considered when rendering atForm on configured routes. |
-| enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configures, this is to be done *manually* inside some custom template. |
+| enablePasswordChange        | Boolean  | false     | Specifies whether to allow to show the form for password change. Note: In case the `changePwd` route is not configured, this is to be done *manually* inside some custom template. |
 | enforceEmailVerification    | Boolean  | false     | When set to true together with sendVerificationEmail, forbids user login unless the email address is verified. **Warning: experimental! Use it only if you have accounts-password as the only service!!!** |
 | focusFirstInput             | Boolean  | !Meteor.isCordova      | When set to true, asks to autofocus the first input of atForm when the template is rendered. Note: have a look at [this issue](https://github.com/meteor-useraccounts/core/issues/594) in case you're getting problems with cordova apps. |
 | forbidClientAccountCreation | Boolean  | false     | Specifies whether to forbid user registration from the client side. In case it is set to true, neither the link for user registration nor the sign up form will be shown. |
