@@ -21,7 +21,7 @@ User Accounts is a suite of packages for the [Meteor.js](https://www.meteor.com/
   * [Internal States](#internal-states)
   * [Content Protection](#content-protection)
   * [reCaptcha Setup](#reCaptcha-setup)
-  * [Detecting reactively when a request is being processed](#detecting-reactively-when-a-request-is-being-processed)
+  * [Detect reactively when a form is being processed](#detect-reactively-when-a-form-is-being-processed)
 * [Advanced Customization](#advanced-customization)
   * [Configuring Texts](#configuring-texts)
     * [Form Title](#form-title)
