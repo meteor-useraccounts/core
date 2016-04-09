@@ -204,6 +204,7 @@ AccountsTemplates.configure({
     showResendVerificationEmailLink: false,
 
     // Client-side Validation
+    signInPreValidation: false,
     continuousValidation: false,
     negativeFeedback: false,
     negativeValidation: true,
@@ -268,6 +269,7 @@ Details for each of them follow.
 | **Texts**                   |          |           |             |
 | texts                       | Object   |           | Permits to specify texts to be shown on the atForm for each of its states (see [below](#configuring-texts)). |
 | **Client-side Validation**  |          |           |             |
+| signInPreValidation               | Boolean  | false     | Specifies whether to pre validation in client side when state is `signIn`.|
 | continuousValidation        | Boolean  | false     | Specifies whether to continuously validate fields' value while the user is typing. *It is performed client-side only to save round trips with the server*. |
 | negativeValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of negative validation. |
 | positiveValidation          | Boolean  | false     | Specifies whether to highlight input elements in case of positive validation. |
