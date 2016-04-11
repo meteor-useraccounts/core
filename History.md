@@ -1,5 +1,9 @@
 ## Master
 
+## v1.14.2
+
+* [flow-routing] fixed dependency on kadira:flow-router: now using the last non-Meteor@1.3 one
+
 ## v1.14.1
 
 * fixed automatic update of weak dependencies on routing packages when publishing new versions
