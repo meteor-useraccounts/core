@@ -1,5 +1,14 @@
 ## Master
 
+## v1.14.0
+
+* [bulma] *new* `useraccounts:bulma` package to get UI templates styled for [Bulma](http://bulma.io/) (thanks to @dominikmayer)
+* [flow-routing] better error management (merged https://github.com/meteor-useraccounts/flow-routing/pull/23 thanks @stubailo)
+* [flow-routing] added support for FlowRouter 3 (merged https://github.com/meteor-useraccounts/flow-routing/pull/26 thanks @timothyarmes)
+* [foundation-sites] *new* `useraccounts:foundation-sites` package to get UI templates styled for [Foundation for Sites 6](http://foundation.zurb.com/sites.html) (thanks to @venetianthief)
+* [materialize] Added row around recaptcha (thanks @qwIvan)
+* some minor fixed to the Guide
+
 ## v1.13.1
 
 * added language support to recaptcha (fixed https://github.com/meteor-useraccounts/core/issues/561 tnx @canesin)
