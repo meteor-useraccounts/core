@@ -1,5 +1,9 @@
 ## Master
 
+## v1.14.1
+
+* fixed automatic update of weak dependencies on routing packages when publishing new versions
+
 ## v1.14.0
 
 * [bulma] *new* `useraccounts:bulma` package to get UI templates styled for [Bulma](http://bulma.io/) (thanks to @dominikmayer)
