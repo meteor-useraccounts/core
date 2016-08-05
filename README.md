@@ -14,15 +14,6 @@ Thanks to [accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) yo
 
 For basic routing and content protection, `useraccounts:core` integrates with either [flow-router](https://github.com/meteor-useraccounts/flow-routing) or [iron-router](https://atmospherejs.com/package/iron-router).
 
-You can get a better idea about this heading to http://useraccounts.meteor.com/ and then, on your choice, to:
-* http://useraccounts-bootstrap.meteor.com/
-* http://useraccounts-foundation.meteor.com/
-* http://useraccounts-ionic.meteor.com/
-* http://useraccounts-materialize.meteor.com/
-* http://useraccounts-polymer.meteor.com/
-* http://useraccounts-ratchet.meteor.com/
-* http://useraccounts-semantic-ui.meteor.com/
-
 Any comments, suggestions, testing efforts, and PRs are very very welcome! Please use the [repository](https://github.com/meteor-useraccounts/ui) issues tracker for reporting bugs, problems, ideas, discussions, etc..
 
 ## The UserAccounts Guide
