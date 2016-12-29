@@ -104,7 +104,7 @@ meteor add accounts-google
 ...
 ```
 
-**Note**: 3rd party services need to be configured... more about this [here](http://docs.meteor.com/#meteor_loginwithexternalservice)
+**Note**: 3rd party services need to be configured... more about this [here](http://docs.meteor.com/api/accounts.html#service-configuration)
 
 And that's it!
 
