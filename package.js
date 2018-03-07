@@ -15,6 +15,7 @@ Package.onUse(function(api) {
     'check',
     'underscore',
     'reactive-var',
+    'ecmascript@0.10.0'
   ], ['client', 'server']);
 
   api.use([
@@ -30,7 +31,6 @@ Package.onUse(function(api) {
 
   api.imply([
     'accounts-base',
-    'softwarerero:accounts-t9n@1.3.3',
   ], ['client', 'server']);
 
   api.imply([
